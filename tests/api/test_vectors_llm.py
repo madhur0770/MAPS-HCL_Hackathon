@@ -34,7 +34,7 @@ def test_missing_preposition_unknown_city(app_db):
 def test_missing_preposition_typo_is_repaired(app_db):
     c = TestClient(make_app(app_db))
     a = chat(c, "need a ticket suryanagr")
-    assert "where you are going" in a["answer"] and "not sure I understood" not in a["answer"]   # typo repaired to a real station, asks for the rest
+    assert "Suryanagar" in a["answer"] and "start" in a["answer"].lower()   # typo repaired to a real station; asks whether it is the start or the end
 
 
 def test_vector_fusion_finds_paraphrase(app_db):

@@ -95,7 +95,7 @@ function Bookings({ items, onAsk }) {
             <span className={"pill " + (BK_CLASS[b.status] || "")}>{b.status.replace("_", " ")}</span>
           </div>
           <div>{b.train_no} {b.train_name}</div>
-          <div className="muted">{b.from_code} → {b.to_code} · {fmtDate(b.journey_date)} · {b.class} · ₹{b.amount_paid}</div>
+          <div className="muted">{b.from_code} → {b.to_code} · {fmtDate(b.journey_date)} · {b.class} · ₹{(b.amount_paid / 100).toLocaleString('en-IN', {minimumFractionDigits: (b.amount_paid % 100) ? 2 : 0})}</div>
           <div className="trav">
             {b.travellers.map((t) => (
               <span key={t.traveller_id} className={"pill " + (STATUS_CLASS[t.status] || "")} title={t.traveller_name}>{t.traveller_name.split(" ")[0]} {t.status}</span>

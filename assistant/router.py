@@ -89,6 +89,23 @@ def handle(db, passenger_id, session_id, message, as_of_in=None, trace_id=None):
     # continue a half-finished request (slot filling)
     if pend_intent and (intent in ("unknown", "booking_status", "search_trains") or intent == pend_intent) and not slots.get("action_id"):
         merged = dict(sess.get("collected", {}))
+        rp = merged.pop("role_pending", None)
+        if rp:
+            # earlier we asked whether the one station named is the start or the destination
+            low_t = text.lower()
+            ns = slots.get("stations", [])
+            if slots.get("to_st") and not slots.get("from_st"):
+                merged["from_st"] = rp
+            elif slots.get("from_st") and not slots.get("to_st"):
+                merged["to_st"] = rp
+            elif not ns and re.search(r"\b(to|going|destination|dest|jaana|tak|arrive|reach)\b|तक|जाना", low_t):
+                merged["to_st"] = rp; merged["stations"] = [rp]
+            elif not ns and re.search(r"\b(from|start|starting|origin|se|leave|depart)\b|से", low_t):
+                merged["from_st"] = rp; merged["stations"] = [rp]
+            elif len(ns) == 1 and ns[0] != rp:
+                merged["from_st"], merged["to_st"] = rp, ns[0]
+                slots["from_st"], slots["to_st"] = rp, ns[0]
+                slots["stations"] = [rp, ns[0]]
         if len(slots.get("stations", [])) == 1 and not slots.get("from_st") and not slots.get("to_st"):
             # a bare station name answers the question that was asked: fill whichever end is still missing
             if merged.get("to_st") and not merged.get("from_st"):
@@ -679,6 +696,15 @@ def do_search(ctx):
         return ambiguous_reply(ctx, amb)
     missing = []
     fs, ts = slots.get("from_st"), slots.get("to_st")
+    if len(sts) == 1 and not fs and not ts and not slots.get("amb_role") and not re.search(r"\b(from|to|se|tak|for|into|towards)\b|से|तक", ctx.get("text", ""), re.I):
+        # one station and no hint whether it is the start or the end: ask instead of guessing
+        col = dict(slots)
+        col["role_pending"] = sts[0]
+        sess = ctx["sess"]
+        asked = sess.get("asked", 0) if sess.get("pending_intent") == "search_trains" else 0
+        if asked < MAX_FOLLOWUPS:
+            sess["pending_intent"], sess["collected"], sess["asked"] = "search_trains", col, asked + 1
+            return reply("clarification", t("ask_role", lang, st="%s (%s)" % (station_label(db, sts[0]), sts[0])))
     if len(sts) < 2 and fs and ts:
         sts = [fs, ts]
         slots["stations"] = sts

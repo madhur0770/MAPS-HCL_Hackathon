@@ -59,3 +59,15 @@ def test_smalltalk_and_problem_reports(c):
     assert "station called" not in a["answer"] and "Please tell me where" not in a["answer"]
     a = say(c, "s", "my train is late what do i do")
     assert "station called" not in a["answer"]
+
+
+def test_single_station_without_role_asks_instead_of_guessing(c):
+    a = say(c, "q", "I need a ticket anpn")
+    assert "start" in a["answer"].lower() and "Anandpur North" in a["answer"]
+    a = say(c, "q", "to")
+    assert "travelling from" in a["answer"] or "from" in a["answer"]
+    a = say(c, "q", "Arunoday and date 30-11-2026")
+    assert "Arunoday to Anandpur North" in a["answer"], a["answer"]
+    a = say(c, "q2", "I need a ticket anpn")
+    a = say(c, "q2", "arunoday 30 nov 2026")          # a bare second station: the first one is the start
+    assert "Anandpur North to Arunoday" in a["answer"], a["answer"]
