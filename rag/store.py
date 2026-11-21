@@ -8,7 +8,15 @@ _cache = {}
 
 
 def docs_from_db(db):
-    return [dict(r) for r in db.execute("SELECT * FROM documents")]
+    """Documents as the search sees them. Any sentence that tries to give the assistant an order ("ignore all previous instructions...") is dropped
+    here, so a poisoned FAQ or circular can never reach an answer; the stored original is untouched."""
+    from rag.ingest import sanitize
+    out = []
+    for r in db.execute("SELECT * FROM documents"):
+        d = dict(r)
+        d["text"], _ = sanitize(d["text"])
+        out.append(d)
+    return out
 
 
 def get_index(db):

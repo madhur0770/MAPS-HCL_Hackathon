@@ -3,7 +3,7 @@
     "step": "1 ask for estimate (no change)",
     "reply": {
       "answer_type": "answer",
-      "answer": "If you cancel booking BKG0001 now (95 h 15 m before departure from Arunoday at 25 Nov 2026, 09:15), you would get back ₹2,802 of ₹3,062.50. More than 48 hours before departure: the fare minus the fixed ₹260 charge.",
+      "answer": "If you cancel booking BKG0001 now (95 h 15 m before departure from Arunoday at 25 Nov 2026, 09:15), you would get back ₹2,802 of ₹3,062.50. More than 48 hours before departure: the fare minus the fixed ₹260 charge. Amount deducted: ₹260.50.",
       "sources": [
         {
           "doc_id": "RUL-003",
@@ -15,7 +15,7 @@
         },
         {
           "doc_id": "CIR-001",
-          "section": "3.3"
+          "section": "3"
         }
       ],
       "tools": [
@@ -55,7 +55,7 @@
               },
               {
                 "doc_id": "CIR-001",
-                "section": "3.3"
+                "section": "3"
               }
             ],
             "class": "AC2",
@@ -75,7 +75,7 @@
       ],
       "pending_action": null,
       "handed_to_human": false,
-      "trace_id": "TR-CEA3CFE0729E"
+      "trace_id": "TR-FB4D1BF9570A"
     }
   },
   {
@@ -94,7 +94,7 @@
         },
         {
           "doc_id": "CIR-001",
-          "section": "3.3"
+          "section": "3"
         }
       ],
       "tools": [
@@ -134,7 +134,7 @@
               },
               {
                 "doc_id": "CIR-001",
-                "section": "3.3"
+                "section": "3"
               }
             ],
             "class": "AC2",
@@ -155,7 +155,7 @@
           "tool": "propose_cancel",
           "input": {},
           "output": {
-            "action_id": "ACT-357071F5",
+            "action_id": "ACT-FDC14EF2",
             "type": "cancel_booking",
             "booking_id": "BKG0001",
             "expires_at": "2026-11-21T10:10:00+05:30"
@@ -163,13 +163,13 @@
         }
       ],
       "pending_action": {
-        "action_id": "ACT-357071F5",
+        "action_id": "ACT-FDC14EF2",
         "type": "cancel_booking",
         "booking_id": "BKG0001",
         "expires_at": "2026-11-21T10:10:00+05:30"
       },
       "handed_to_human": false,
-      "trace_id": "TR-45DC7145A02E"
+      "trace_id": "TR-87AA3B6C2E1A"
     }
   },
   {
@@ -211,7 +211,7 @@
   {
     "step": "4 confirm (separate call) -> change + verify",
     "reply": {
-      "trace_id": "TR-BF7B96B5AC44",
+      "trace_id": "TR-2C65381C21F3",
       "answer_type": "action_done",
       "answer": "Done. Booking BKG0001: 1 traveller(s) cancelled. Refund ₹2,802. Booking status is now CANCELLED. (I re-read the booking to check.)",
       "sources": [
@@ -226,7 +226,7 @@
           "output": {
             "ok": true,
             "status": "done",
-            "action_id": "ACT-357071F5",
+            "action_id": "ACT-FDC14EF2",
             "action_type": "cancel_booking",
             "result": {
               "booking_id": "BKG0001",
@@ -285,7 +285,7 @@
   {
     "step": "6 audit trace of the preview",
     "trace": {
-      "trace_id": "TR-45DC7145A02E",
+      "trace_id": "TR-87AA3B6C2E1A",
       "ts": "2026-11-21T10:00:00+05:30",
       "passenger_id": "P001",
       "session_id": "demo1",
@@ -317,7 +317,7 @@
         },
         {
           "doc_id": "CIR-001",
-          "section": "3.3"
+          "section": "3"
         }
       ],
       "tools": [
@@ -357,7 +357,7 @@
               },
               {
                 "doc_id": "CIR-001",
-                "section": "3.3"
+                "section": "3"
               }
             ],
             "class": "AC2",
@@ -378,7 +378,7 @@
           "tool": "propose_cancel",
           "input": {},
           "output": {
-            "action_id": "ACT-357071F5",
+            "action_id": "ACT-FDC14EF2",
             "type": "cancel_booking",
             "booking_id": "BKG0001",
             "expires_at": "2026-11-21T10:10:00+05:30"
@@ -386,7 +386,7 @@
         }
       ],
       "pending_action": {
-        "action_id": "ACT-357071F5",
+        "action_id": "ACT-FDC14EF2",
         "type": "cancel_booking",
         "booking_id": "BKG0001",
         "expires_at": "2026-11-21T10:10:00+05:30"
@@ -398,17 +398,17 @@
   {
     "step": "7 audit trace of the confirm",
     "trace": {
-      "trace_id": "TR-BF7B96B5AC44",
+      "trace_id": "TR-2C65381C21F3",
       "ts": "2026-11-21T10:00:00+05:30",
       "passenger_id": "P001",
       "session_id": "",
-      "input": "[confirm ACT-357071F5]",
+      "input": "[confirm ACT-FDC14EF2]",
       "steps": [
         {
           "step": "confirm",
-          "action_id": "ACT-357071F5",
+          "action_id": "ACT-FDC14EF2",
           "result": {
-            "trace_id": "TR-BF7B96B5AC44",
+            "trace_id": "TR-2C65381C21F3",
             "answer_type": "action_done",
             "answer": "Done. Booking BKG0001: 1 traveller(s) cancelled. Refund ₹2,802. Booking status is now CANCELLED. (I re-read the booking to check.)",
             "sources": [
@@ -423,7 +423,7 @@
                 "output": {
                   "ok": true,
                   "status": "done",
-                  "action_id": "ACT-357071F5",
+                  "action_id": "ACT-FDC14EF2",
                   "action_type": "cancel_booking",
                   "result": {
                     "booking_id": "BKG0001",

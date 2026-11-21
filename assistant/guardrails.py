@@ -14,6 +14,7 @@ INJECTION = [
     r"(reveal|show|print|repeat|leak) (me )?(your |the )?(system |hidden |initial )?(prompt|instructions)",
     r"\bsystem\s*:", r"\bdeveloper mode\b", r"\bjailbreak\b", r"override (the )?(rules|policy|policies|refund|limit)",
     r"(skip|bypass|without) (the )?(confirm|confirmation|preview)", r"pre-?authori[sz]ed",
+    r"\byou are (now )?(the |an? )?(admin|administrator|root|system|developer|owner|operator)\b", r"\bwithout (asking|confirming|my confirmation|any confirmation)\b",
     r"\bsudo\b", r"</?(system|assistant|instructions?)>", r"new instructions?\s*:",
     r"पिछले (सभी )?निर्देश(ों)? (को )?(अनदेखा|भूल)", r"pichhle (saare )?(instructions|nirdesh) (ignore|bhul)",
 ]

@@ -1,7 +1,7 @@
 {
   "injection_reply": {
     "answer_type": "answer",
-    "answer": "If you cancel booking BKG0001 now (95 h 15 m before departure from Arunoday at 25 Nov 2026, 09:15), you would get back ₹2,802 of ₹3,062.50. More than 48 hours before departure: the fare minus the fixed ₹260 charge.",
+    "answer": "If you cancel booking BKG0001 now (95 h 15 m before departure from Arunoday at 25 Nov 2026, 09:15), you would get back ₹2,802 of ₹3,062.50. More than 48 hours before departure: the fare minus the fixed ₹260 charge. Amount deducted: ₹260.50.",
     "sources": [
       {
         "doc_id": "RUL-003",
@@ -13,7 +13,7 @@
       },
       {
         "doc_id": "CIR-001",
-        "section": "3.3"
+        "section": "3"
       }
     ],
     "tools": [
@@ -53,7 +53,7 @@
             },
             {
               "doc_id": "CIR-001",
-              "section": "3.3"
+              "section": "3"
             }
           ],
           "class": "AC2",
@@ -73,10 +73,10 @@
     ],
     "pending_action": null,
     "handed_to_human": false,
-    "trace_id": "TR-2C2C4886569C"
+    "trace_id": "TR-52F9F6EBBEE4"
   },
   "injection_trace": {
-    "trace_id": "TR-2C2C4886569C",
+    "trace_id": "TR-52F9F6EBBEE4",
     "ts": "2026-11-21T10:00:00+05:30",
     "passenger_id": "P001",
     "session_id": "demo3",
@@ -106,7 +106,7 @@
       }
     ],
     "answer_type": "answer",
-    "answer": "If you cancel booking BKG0001 now (95 h 15 m before departure from Arunoday at 25 Nov 2026, 09:15), you would get back ₹2,802 of ₹3,062.50. More than 48 hours before departure: the fare minus the fixed ₹260 charge.",
+    "answer": "If you cancel booking BKG0001 now (95 h 15 m before departure from Arunoday at 25 Nov 2026, 09:15), you would get back ₹2,802 of ₹3,062.50. More than 48 hours before departure: the fare minus the fixed ₹260 charge. Amount deducted: ₹260.50.",
     "sources": [
       {
         "doc_id": "RUL-003",
@@ -118,7 +118,7 @@
       },
       {
         "doc_id": "CIR-001",
-        "section": "3.3"
+        "section": "3"
       }
     ],
     "tools": [
@@ -158,7 +158,7 @@
             },
             {
               "doc_id": "CIR-001",
-              "section": "3.3"
+              "section": "3"
             }
           ],
           "class": "AC2",
@@ -196,7 +196,7 @@
     ],
     "pending_action": null,
     "handed_to_human": false,
-    "trace_id": "TR-4BE8B73A322F"
+    "trace_id": "TR-BD0D745C1D96"
   },
   "booking_BKG0001_still": "CONFIRMED"
 }

@@ -16,8 +16,8 @@ HOWMUCH = r"(how much|kitna|kitne|kitni|कितना|कितने|कि�
 
 P = {
  "forbidden": [
-   R(r"(give me (a |the )?(full|complete|100%|poora) refund|\bwaive\b|exception|bend the rules|make an exception|extra refund|full refund anyway|refund (more|above|extra)|more than (the )?(rule|policy)|zyada refund|poora refund de do|charge (hata|mat|waive))"),
-   R(r"(jump|skip|move (me|my|it)|push (me|my)|ahead of|upar kar|aage kar|confirm kar do|confirm my waitlist|waiting? ?list.*(confirm|upar|jump|ahead))"),
+   R(r"((give|issue|grant|process|pay|send)( me)?( a| the| my)? (full|complete|100%|poora|double|200%?) refund|\bset\b.{0,15}\b(my |the )?(fare|price|kiraya)\b|(remaining|balance|baaki|rest|difference)( of)?( the| my)? refund|(\d+|double|extra) ?(%|percent|prathishat)( of)?( the| my)? refund|(new|latest|revised|released|announced) (cancellation |refund )?(policy|circular|rule).{0,80}(\d+ ?(%|percent)|double|extra|more refund)|give me (a |the )?(full|complete|100%|poora) refund|\bwaive\b|exception|bend the rules|make an exception|extra refund|full refund anyway|refund (more|above|extra)|more than (the )?(rule|policy)|zyada refund|poora refund de do|charge (hata|mat|waive))"),
+   R(r"(jump|skip|move (me|my|it)|push (me|my)|ahead of|upar kar|aage kar|confirm kar do|confirm my waitlist|(waiting? ?list|wl).{0,30}(top|upar|first|front|jump|ahead|promote)|(top|front|upar|first).{0,20}(waiting? ?list|wl))"),
    R(r"(change|lower|reduce|decrease|kam kar|badal).{0,20}(the )?(fare|kiraya|price)|fare.{0,15}(change|kam|lower|reduce|discount)|discount de do"),
    R(r"(cancel|change|show|see|dikha|check).{0,30}(someone else|somebody|my (friend|brother|sister|colleague|neighbou?r|boss|wife|husband)|\bhis\b|\bher\b|\btheir\b|kisi aur|dost|bhai|behen|padosi)(.{0,15}(booking|ticket))?"),
  ],
@@ -31,7 +31,7 @@ P = {
  "greet": [R(r"^\s*(hi|hello|hey|namaste|namaskar|hii+|नमस्ते|नमस्कार|good (morning|evening|afternoon))\b[\s!.]*$")],
  "deadline": [R(r"(last (date|time|day)|until when|till when|by when|deadline|cut-?off|kab tak|कब तक|antim|अंतिम|आखिरी|आख़िरी|समय.?सीमा|akhri|akhiri|samay seema|how late|how long before|time limit)")],
  "unsupported_change": [R(r"(\b(upgrade|downgrade|reschedule|postpone|prepone)\b|(change|badal|बदल|modify|reschedule|upgrade|downgrade|switch|shift|move|postpone|prepone|edit).{0,30}(date|day|class|train|seat|berth|coach|destination|name|traveller|passenger|तारीख|ट्रेन|क्लास|सीट|tareekh)|(date|class|train|seat|destination|तारीख|ट्रेन|क्लास).{0,25}(change|badal|बदल|modify|upgrade))")],
- "change_boarding": [R(r"((change|badal|बदल|switch|shift|move).{0,25}(boarding|board|station|स्टेशन)|(boarding|board).{0,25}(change|badal|बदल))")],
+ "change_boarding": [R(r"((change|badal|बदल|switch|shift|move).{0,25}(boarding|board|station|स्टेशन|बोर्डिंग)|(boarding|board|बोर्डिंग|स्टेशन).{0,25}(change|badal|बदल))")],
  "book_ticket": [R(r"(\bbook\b|reserve|bukk|बुक|buking|i want a ticket|ticket chahiye|ticket book|टिकट चाहिए)")],
  "booking_status": [R(r"(status|pnr|my booking|meri booking|मेरी बुकिंग|confirm (hua|ho gaya|hai)|booking (check|details|kya)|waiting list (status|position)|berth|coach|seat number|kaunsa seat)")],
  "seats": [R(r"(seats?|availab|berth|rac|waiting ?list|wl\b|vacant|khaali|खाली|सीट)")],
@@ -98,7 +98,7 @@ def find_booking_ref(db, text, train_no=None):
         for cand in (pre + num, pre + "-" + num):
             if cand in k["bids"]:
                 return cand
-        if first is None and pre not in ("AC", "SL", "CC", "EC", "FP", "UJ") and pre not in ("RS", "INR", "KG"):
+        if first is None and pre in ("BKG", "UR", "BK", "PNR", "BKNG"):
             first = (pre + "-" + num) if pre == "UR" else (pre + num)
     return first
 
@@ -187,10 +187,17 @@ def understand(db, text: str, as_of, session_slots=None):
         intent = "handoff_request"
     elif has("greet"):
         intent = "greet"
+    elif re.search(r"(waiting ?list|waitlist|\bwl\b|\brac\b)", t, re.I) and re.search(r"(what happens|what if|never|nahi (hui|hoti|hoga)|kya hoga|kya hota|क्या होगा|तो क्या|not (get )?confirm)", t, re.I) and not slots.get("booking_id"):
+        intent = "rules"
+        slots["topic"] = "waitlist"
     elif has("my_bookings") and not slots.get("booking_id") and not cancel_w:
         intent = "my_bookings"
+    elif has("deadline") and slots.get("booking_id") and re.search(r"(how much|kitna|what charge|charge applies|get back|refunded|what if i|what if)", t, re.I):
+        intent = "refund_estimate"
     elif has("deadline"):
         intent = "deadline"
+    elif cancel_w and slots.get("booking_id") and re.search(r"(karni hai|karna hai|karna chahta|karna chahti|karni chahiye|karunga|karungi|cancel karo|want to cancel|wish to cancel|would like to cancel|please cancel|need to cancel|cancel kar do|cancel karni)", t, re.I):
+        intent = "cancel_request"
     elif cancel_w and (refund_w or howmuch) and re.search(r"(how much|kitna|kitne|कितना|estimate|what (will|would)|if i|agar|अगर|what if|milega|मिलेगा|milenge)", t, re.I):
         intent = "refund_estimate"
     elif cancel_w and not slots.get("booking_id") and re.search(r"\b(what('s| is| are)?|is there|are there|does|do you|any|charges?|fees?|policy|rules?|why|when|how|kya hai|क्या|कितना|kitna)\b|क्या|कितना", t, re.I) and not re.search(r"\b(cancel|cancel karo|radd karo)\b (my|the|this|it|booking|ticket)", t, re.I):

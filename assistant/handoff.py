@@ -11,7 +11,7 @@ DESKS = {"dispute": "Refund Desk", "missed_train": "Refund Desk", "concession": 
 import os
 import re
 
-SAFETY = re.compile(r"(stole|stolen|theft|robbed|robbery|pickpocket|चोरी|chori|harass|molest|eve.?teas|threat|attack|assault|unsafe|emergency|medical emergency|heart attack|faint|unconscious|bomb|suspicious (bag|package)|unattended (bag|luggage)|fire\b|stalk|following me|छेड़|धमकी|आपातकाल|ख़तरा|khatre|chhed|dhamki|bachao|help me)", re.I)
+SAFETY = re.compile(r"(stole|stolen|theft|robbed|robbery|pickpocket|चोरी|chori|harass|molest|eve.?teas|threat|attack|assault|unsafe|emergency|medical emergency|heart attack|faint|unconscious|\bbomb\b|suspicious (bag|package)|unattended (bag|luggage)|fire\b|stalk|following me|छेड़|धमकी|आपातकाल|ख़तरा|khatre|chhed|dhamki|bachao|help me)", re.I)
 PRIVACY = re.compile(r"(my (details|data|phone|aadhaar|id|otp|password) (was|were|got|has been) (leaked|stolen|exposed|shared|hacked)|leaked|someone (logged|accessed|opened) (in )?my|hacked|unauthori[sz]ed|identity (theft|exposure)|data breach|privacy complaint|डेटा लीक)", re.I)
 ACTIVE = re.compile(r"(train (is )?(leaving|departing)|at the station|boarding now|already (at|on)|in the train|on board|aaj (ki|ka)|today'?s train|missed my train|miss(ed)? the train|train chhoot|ट्रेन छूट)", re.I)
 

@@ -49,6 +49,17 @@ def fixed_source(db, cls, as_of):
     return st.source(db, "cancel_fixed_charge_" + cls.lower(), as_of)
 
 
+def section_stating(db, doc_id, rupees, default="3.3"):
+    """The section of a document that really states this amount (a circular keeps its numbers in Section 3, the original rule in 3.3)."""
+    import re
+    row = db.execute("SELECT text FROM documents WHERE doc_id=?", (doc_id,)).fetchone()
+    if row:
+        for m in re.finditer(r"Section (\d+(?:\.\d+)?):.*?(?=\nSection \d|\Z)", row[0], re.S):
+            if re.search(r"(?<![\d,.])%d(?![\d])" % rupees, m.group(0)):
+                return m.group(1)
+    return default
+
+
 def traveller_line(t, cls, band, cfg, tatkal, delta_s):
     fare = int(t["fare_paid"])
     base = dict(traveller_id=t["traveller_id"], name=t["traveller_name"], fare=fare, status=t["status"])
@@ -116,7 +127,7 @@ def quote_refund(db, booking_id: str, as_of: dt.datetime, only_travellers=None) 
         sources.append(("RUL-003", "3.6"))
         if band != "E" and any(l["rule"] == "cnf_table" for l in lines):
             s = fixed_source(db, b["class"], as_of)
-            sources.append((s[0], "3.3"))
+            sources.append((s[0], section_stating(db, s[0], cfg["charge"][b["class"]] // PAISE)))
         if any(l["rule"] == "status_charge" for l in lines):
             sources.append(("RUL-003", "3.7"))
         if tatkal:

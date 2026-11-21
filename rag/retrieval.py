@@ -185,7 +185,7 @@ def retrieve(index: Index, query: str, as_of_date: str, topic=None, min_bm25=2.5
 
     # authority (rule > circular > FAQ) decides only between sections that are about equally relevant to the question
     top = max(same, key=lambda h: (h["bm25"], h["score"]))
-    close = [h for h in same if h is top or h["bm25"] >= 0.55 * top["bm25"]]
+    close = [h for h in same if h is top or h["bm25"] >= 0.45 * top["bm25"]]
     rest = [h for h in same if h not in close]
     ranked = sorted(close, key=key) + sorted(rest, key=lambda h: -h["score"])
     # a circular that replaces a rule is shown first, but the rule's sections keep their own value

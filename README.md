@@ -20,7 +20,8 @@ Without Ollama everything still works (lexical search, rule understanding).
 
 ## Check everything with one command
 ```
-python scripts/check_all.py          # data -> unit -> API -> red-team -> 66-question evaluation (live progress)
+python scripts/check_all.py          # data -> unit -> API -> red-team -> 66-question evaluation -> 40-question CSV evaluation (live progress)
+python scripts/run_csv_eval.py       # the 40-question CSV only: writes eval/report_40.md with the seven measures
 python scripts/stress.py http://localhost:8000 1000 24    # load test against a running API
 python scripts/make_audit_samples.py # rewrites the 3 sample audit records in docs/audit_samples/
 ```
@@ -55,7 +56,7 @@ The main UI is React (`ui-react/`, built into `app/static/` and served by the AP
 | `app/` | FastAPI (also answers to `/ask`, `/audit/{id}`, `/sources`, `/admin/load-data` and the `X-Customer-Id` header, the names the sibling briefs use): `/chat`, `/actions/{id}/confirm`, `/actions/{id}/cancel`, `/bookings/{id}`, `/ingest`, `/trace/{id}`, `/health` |
 | `ui-react/` | React chat app: passenger picker, live bookings panel, Confirm/Cancel buttons, sources, audit view, time travel, add-circular form |
 | `ui/` | simple Streamlit alternative |
-| `eval/` | 66 questions with hand-calculated answers, runner output (`report.md`) |
+| `eval/` | 66 questions with hand-calculated answers (`report.md`) and the 40-question CSV with fixtures and independent oracles (`csv_eval.py`, `report_40.md`) |
 | `tests/` | unit, API and red-team tests |
 | `docs/` | architecture, data note, documents list, AI-use note, audit samples, team and declaration template |
 
