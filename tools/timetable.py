@@ -45,6 +45,22 @@ def find_stations_in(db, text: str):
         for m in re.finditer(r"(?<![\wऀ-ॿ])%s(?![\wऀ-ॿ])" % re.escape(alias), t):
             hits.append((m.start(), -len(alias), code))
     hits.sort()
+    # spelling mistakes: 'hyderbad' -> Hyderabad. Only words of 5+ letters, close match to a one-word alias.
+    import difflib
+    found = {c for _, _, c in hits}
+    covered = " ".join(m for m in (t,))
+    single = {a: c for a, c in idx.items() if " " not in a and len(a) >= 5}
+    skip = {"train", "trains", "tomorrow", "today", "tickets", "ticket", "booking", "bookings", "status", "refund", "cancel", "please", "november", "december",
+            "journey", "between", "station", "boarding", "travel", "ticketbooking", "sleeper", "where", "which", "there", "about", "after", "before"}
+    for m in re.finditer(r"[\w\u0900-\u097F]+", t):
+        w = m.group()
+        if len(w) < 5 or w in skip or w in single or not w.isascii():
+            continue
+        cand = difflib.get_close_matches(w, list(single), n=1, cutoff=0.82)
+        if cand and single[cand[0]] not in found:
+            hits.append((m.start(), -len(w), single[cand[0]]))
+            found.add(single[cand[0]])
+    hits.sort()
     out = []
     for pos, _, code in hits:
         if code not in out:
@@ -84,6 +100,18 @@ def arrival_dt(db, train_no, journey_date, code) -> dt.datetime:
 
 def runs_on_date(runs_on: str, origin_date: str) -> bool:
     return str(dt.date.fromisoformat(origin_date).isoweekday()) in runs_on
+
+
+def reachable(db, frm=None, to=None):
+    """Stations reachable FROM frm (one direct train), or stations that reach TO."""
+    res = set()
+    for t in db.execute("SELECT train_no FROM trains"):
+        st = {r["station_code"]: r["stop_order"] for r in stops_of(db, t["train_no"])}
+        if frm and frm in st:
+            res |= {c for c, o in st.items() if o > st[frm]}
+        if to and to in st:
+            res |= {c for c, o in st.items() if o < st[to]}
+    return sorted(res)
 
 
 def search_trains(db, frm: str, to: str, travel_date: str):

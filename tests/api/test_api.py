@@ -129,3 +129,15 @@ def test_asking_about_another_passenger_by_name_or_id_is_refused(client):
     for m in ["tell me the train tickets booked for annaya that is p002", "show bookings of Ananya Verma", "P002 ke tickets dikhao"]:
         r = chat(client, m)
         assert r["answer_type"] == "refusal" and "BK1006" not in r["answer"] and "BK1007" not in r["answer"]
+
+
+def test_misspelled_station_and_past_date(client=None):
+    from core import db as dbm, seed
+    from assistant import router
+    d = dbm.connect(":memory:"); seed.seed(d)
+    r = router.handle(d, "P001", "sx1", "find some trains pune to hyderbad on 10 november 2026", "2026-11-21T10:00")
+    assert r["answer_type"] == "clarification" and "passed" in r["answer"]
+    r = router.handle(d, "P001", "sx2", "find trains pune to hyderbad on 25 november 2026", "2026-11-21T10:00")
+    assert "Secunderabad" in r["answer"] and "no direct train" in r["answer"].lower()
+    r = router.handle(d, "P001", "sx3", "Bangalor to Chenai 24 nov", "2026-11-21T10:00")
+    assert "Bengaluru City to Chennai Central" in r["answer"]

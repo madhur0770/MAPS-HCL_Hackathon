@@ -40,6 +40,14 @@ T = {
   "en": "Trains from %(frm)s to %(to)s on %(date)s:", "hi": "%(date)s को %(frm)s से %(to)s की ट्रेनें:", "hinglish": "%(date)s ko %(frm)s se %(to)s ki trains:"},
  "search_none": {
   "en": "I found no train from %(frm)s to %(to)s on %(date)s.", "hi": "%(date)s को %(frm)s से %(to)s की कोई ट्रेन नहीं मिली।", "hinglish": "%(date)s ko %(frm)s se %(to)s ki koi train nahi mili."},
+ "search_none_hint": {
+  "en": "There is no direct train on that pair. Direct trains from %(frm)s go to: %(a)s. Direct trains to %(to)s start from: %(b)s. You can try a connection through one of them.",
+  "hi": "इस जोड़ी पर सीधी ट्रेन नहीं है। %(frm)s से सीधी ट्रेनें यहाँ जाती हैं: %(a)s। %(to)s के लिए सीधी ट्रेनें यहाँ से चलती हैं: %(b)s। इनमें से किसी के रास्ते कनेक्शन आज़मा सकते हैं।",
+  "hinglish": "Is pair par seedhi train nahi hai. %(frm)s se seedhi trains yahan jati hain: %(a)s. %(to)s ke liye seedhi trains yahan se chalti hain: %(b)s. Inme se kisi ke raste connection try kar sakte hain."},
+ "past_date": {
+  "en": "%(date)s has already passed (today is %(today)s). Please give a date from today onwards.",
+  "hi": "%(date)s बीत चुकी है (आज %(today)s है)। कृपया आज या उसके बाद की तारीख बताइए।",
+  "hinglish": "%(date)s beet chuki hai (aaj %(today)s hai). Kripya aaj ya uske baad ki tareekh bataiye."},
  "midnight_note": {
   "en": "Note: this train leaves %(frm)s after midnight, on %(dep)s, and starts its journey on %(origin)s. Please check which date you mean.",
   "hi": "ध्यान दें: यह ट्रेन %(frm)s से आधी रात के बाद, %(dep)s को चलती है और इसकी यात्रा %(origin)s को शुरू होती है। कृपया सही तारीख देख लें।",

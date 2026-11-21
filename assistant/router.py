@@ -204,7 +204,8 @@ def route_ask(ctx, intent, missing_keys, collected):
         ctx["sess"].pop("pending_intent", None); ctx["sess"].pop("collected", None); ctx["sess"]["asked"] = 0
         return reply("handed_to_human", t("gave_up", lang, missing=names) + " " + t("handoff", lang, desk=h["desk"], hid=h["handoff_id"]), handed=True,
                      tools=[tool("create_handoff", h)])
-    names = ", ".join(t(k, lang) for k in missing_keys)
+    parts = [t(k, lang) for k in missing_keys]
+    names = parts[0] if len(parts) == 1 else ", ".join(parts[:-1]) + {"en": " and ", "hi": " और ", "hinglish": " aur "}.get(lang, " and ") + parts[-1]
     sess["pending_intent"], sess["collected"], sess["asked"] = intent, collected, asked + 1
     return reply("clarification", t("ask_search", lang, missing=names), extra={})
 
@@ -459,12 +460,21 @@ def do_search(ctx):
         return route_ask(ctx, "search_trains", missing, dict(slots))
     frm, to = sts[0], sts[1]
     done_asking(ctx)
+    if slots["date"] < as_of.date().isoformat():
+        return reply("clarification", t("past_date", lang, date=fmt_date(slots["date"]), today=fmt_date(as_of)))
     res = search_for(ctx, frm, to, slots["date"])
     if slots.get("train_no"):
         res = [r for r in res if r["train_no"] == slots["train_no"]]
     head_kw = dict(frm=station_label(db, frm), to=station_label(db, to), date=fmt_date(slots["date"]))
     if not res:
-        return reply("answer", t("search_none", lang, **head_kw), tools=[tool("search_trains", [], frm=frm, to=to, date=slots["date"])])
+        msg = t("search_none", lang, **head_kw)
+        a = [station_label(db, c) for c in tt.reachable(db, frm=frm)]
+        b = [station_label(db, c) for c in tt.reachable(db, to=to)]
+        if not tt.search_trains(db, frm, to, slots["date"]) and a and b:
+            direct_any = any(True for d in range(0, 7) if tt.search_trains(db, frm, to, (as_of.date() + __import__("datetime").timedelta(days=d)).isoformat()))
+            if not direct_any:
+                msg += " " + t("search_none_hint", lang, frm=head_kw["frm"], to=head_kw["to"], a=", ".join(a), b=", ".join(b))
+        return reply("answer", msg, tools=[tool("search_trains", [], frm=frm, to=to, date=slots["date"])])
     lines = [t("search_head", lang, **head_kw)]
     for r in res[:6]:
         cls = []
