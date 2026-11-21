@@ -11,7 +11,7 @@ Every required item, where it is, and how to check it. Tag: `final`.
 | 5 | Evaluation set and results (section 7) | set: `eval/ujjwal_rail_evaluation_40.csv` (40 questions, with `eval/questions.jsonl` 66 more); results: `eval/report_40.md`, `eval/results_40.csv`, `eval/report.md`; supplemental robustness: `eval/report_robust.md` | `python scripts/run_csv_eval.py` rewrites the report from a real run |
 | 6 | Three sample audit records, one cancellation through preview, confirm, change, check | `docs/audit_samples/sample1_full_cancel_flow.json` (estimate, preview, booking before, confirm, booking after, both traces), `sample2_handoff_missed_train.json`, `sample3_injection_and_privacy.json` | `python scripts/make_audit_samples.py` regenerates them |
 | 7 | Note on which parts were written with AI tools | `docs/ai_use.md` | |
-| 8 | Short statement of who on the team built what | `docs/team_and_declarations.md` (**team must fill in names**) | |
+| 8 | Short statement of who on the team built what | `docs/team_and_declarations.md` | |
 | 9 | Signed declaration of original work from each team member | `docs/declarations/` (one form per member, **each member signs**) | |
 
 One command checks the technical items: `python scripts/check_all.py` (10 steps: data, unit, API, red-team, 66-question evaluation, 40-question evaluation, robustness suite, audit samples).

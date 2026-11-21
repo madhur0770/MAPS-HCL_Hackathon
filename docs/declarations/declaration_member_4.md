@@ -1,9 +1,9 @@
-# Declaration of original work (member 4)
+# Declaration of original work (Madhur)
 
 Project: Train Travel Assistant for Ujjwal Rail (HCLTech AI Engineer hackathon, 21 Nov 2026)
 Repository: https://github.com/madhur0770/MAPS-HCL_Hackathon
 
-I, ____________________________ (roll / ID ____________), declare that:
+I, Madhur (roll / ID ____________), declare that:
 
 1. I took part in building this project and the parts I built are listed in `docs/team_and_declarations.md`.
 2. The work is original to our team. No code, data, document or evaluation set was copied from another team or from another repository; third-party libraries are used only through their normal packages (see `requirements.txt` and `ui-react/package.json`).
