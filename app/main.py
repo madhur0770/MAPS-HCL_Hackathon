@@ -28,6 +28,8 @@ _hits = defaultdict(deque)
 
 def make_app(db_conn=None):
     app = FastAPI(title="Ujjwal Rail Travel Assistant", version="1.0")
+    from fastapi.middleware.cors import CORSMiddleware
+    app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"], allow_methods=["*"], allow_headers=["*"])
     db = db_conn or dbm.connect()
     dbm.init_db(db)
     if db.execute("SELECT count(*) FROM stations").fetchone()[0] == 0:
@@ -158,6 +160,18 @@ def make_app(db_conn=None):
             _audit_action(pid, trace, action_id, "cancel", out)
             return out
 
+    @app.get("/bookings")
+    def list_my_bookings(x_passenger_id: str = Header(None)):
+        pid = who(x_passenger_id)
+        with LOCK:
+            out = []
+            for b in bk.list_bookings(db, pid):
+                tr = db.execute("SELECT name FROM trains WHERE train_no=?", (b["train_no"],)).fetchone()
+                b["train_name"] = tr["name"] if tr else ""
+                b["travellers"] = bk.travellers(db, b["booking_id"])
+                out.append(b)
+            return out
+
     @app.get("/bookings/{booking_id}")
     def get_booking(booking_id: str, x_passenger_id: str = Header(None)):
         pid = who(x_passenger_id)
@@ -206,6 +220,11 @@ def make_app(db_conn=None):
         with LOCK:
             seed.seed(db, anchor=os.getenv("DATA_ANCHOR", seed.ANCHOR_DEFAULT))
         return {"status": "reset"}
+
+    static = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static")
+    if os.path.isdir(static):                       # the React build is served by the API itself: one URL, no CORS
+        from fastapi.staticfiles import StaticFiles
+        app.mount("/", StaticFiles(directory=static, html=True), name="ui")
 
     return app
 

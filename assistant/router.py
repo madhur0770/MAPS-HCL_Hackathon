@@ -69,6 +69,10 @@ def handle(db, passenger_id, session_id, message, as_of_in=None, trace_id=None):
     if injected:
         step("input_guard", result="injection_detected", matched=injected[:60])
         text = guardrails.strip_injection(message)
+    if other_person(db, passenger_id, text) and not re.search(r"\bBK\d", text, re.I):
+        step("route", decision="asks_about_another_passenger")
+        r = reply("refusal", t("own_only", lang), sources=[{"doc_id": "RULE-12", "section": "Section 1"}])
+        return finish(db, r, audit, trace_id, passenger_id, session_id, lang, sess, as_of, t0)
     u = und.understand(db, text, as_of, sess)
     intent, slots = u["intent"], u["slots"]
     step("understand", intent=intent, slots={k: v for k, v in slots.items() if k != "topic"})
@@ -163,6 +167,30 @@ def finish(db, r, audit, trace_id, passenger_id, session_id, lang, sess, as_of, 
 # ------------------------------------------------------------------ helpers
 def tool(name, output, **inp):
     return {"tool": name, "input": inp, "output": output}
+
+
+def other_person(db, pid, text):
+    """True when the message asks about ANOTHER passenger (by id or by name, even misspelled)."""
+    import difflib
+    for m in re.findall(r"\bP\d{3}\b", text, re.I):
+        if m.upper() != pid:
+            return True
+    rows = db.execute("SELECT passenger_id, name FROM passengers").fetchall()
+    own = next((r["name"] for r in rows if r["passenger_id"] == pid), "").lower().split()
+    words = [w for w in re.findall(r"[a-zA-Z]{4,}", text.lower())]
+    pointing = re.search(r"\b(for|of|about|ke|ka|ki|ko)\b|'s\b", text, re.I)
+    askword = re.search(r"(ticket|booking|booked|trip|journey|status|refund|phone|detail|history|pnr|बुकिंग|टिकट)", text, re.I)
+    if not (pointing and askword):
+        return False
+    for r in rows:
+        if r["passenger_id"] == pid:
+            continue
+        for part in r["name"].lower().split():
+            if part in own:
+                continue
+            if any(difflib.SequenceMatcher(None, w, part).ratio() >= 0.8 for w in words):
+                return True
+    return False
 
 
 def route_ask(ctx, intent, missing_keys, collected):

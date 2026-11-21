@@ -6,7 +6,7 @@ uses **code** for train search, seats, fares, refunds and deadlines, and changes
 ## Start it (pick one)
 
 ```
-docker compose up --build            # API http://localhost:8000/docs   UI http://localhost:8501
+docker compose up --build            # React app + API at http://localhost:8000   (API docs: /docs)   Streamlit alt: http://localhost:8501
 ```
 or without Docker (Windows PowerShell):
 ```
@@ -35,6 +35,9 @@ Sign in as **P001 Aarav** (English). Left panel can also pick P002 (Hindi) and P
 9. Live document: `POST /ingest` a new circular (see `tests/api/test_api.py::test_live_ingest_changes_answers_without_restart`) and ask again - the answer changes with no restart.
 10. Show `GET /trace/{trace_id}` or "Show full audit record" in the UI.
 
+## Front end
+The main UI is React (`ui-react/`, built into `app/static/` and served by the API at http://localhost:8000). To change it: `cd ui-react && npm install && npm run dev` (port 5173, proxies to the API) and `npm run build` to publish. `ui/streamlit_app.py` is a simple alternative.
+
 ## What is where
 | Folder | What |
 |---|---|
@@ -44,7 +47,8 @@ Sign in as **P001 Aarav** (English). Left panel can also pick P002 (Hindi) and P
 | `rag/` | search (BM25 + character n-grams + rank fusion), precedence by date and authority, live ingest |
 | `assistant/` | guards, understanding (en/hi/hinglish), router, templates (`i18n.py`), correctors, handoff, optional LLM |
 | `app/` | FastAPI: `/chat`, `/actions/{id}/confirm`, `/actions/{id}/cancel`, `/bookings/{id}`, `/ingest`, `/trace/{id}`, `/health` |
-| `ui/` | Streamlit chat with Confirm / Cancel buttons and a "how I got this" panel |
+| `ui-react/` | React chat app: passenger picker, live bookings panel, Confirm/Cancel buttons, sources, audit view, time travel, add-circular form |
+| `ui/` | simple Streamlit alternative |
 | `eval/` | 62 questions with hand-calculated answers, runner output (`report.md`) |
 | `tests/` | unit, API and red-team tests |
 | `docs/` | architecture, data note, documents list, AI-use note, audit samples, team and declaration template |

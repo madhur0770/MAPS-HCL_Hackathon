@@ -118,3 +118,14 @@ def test_concurrent_requests_all_succeed(client):
     ts = [threading.Thread(target=work, args=(k,)) for k in range(8)]
     [t.start() for t in ts]; [t.join() for t in ts]
     assert codes and set(codes) == {200}
+
+
+def test_list_my_bookings_only_own(client):
+    r = client.get("/bookings", headers=H).json()
+    assert r and all(b["passenger_id"] == "P001" for b in r)
+
+
+def test_asking_about_another_passenger_by_name_or_id_is_refused(client):
+    for m in ["tell me the train tickets booked for annaya that is p002", "show bookings of Ananya Verma", "P002 ke tickets dikhao"]:
+        r = chat(client, m)
+        assert r["answer_type"] == "refusal" and "BK1006" not in r["answer"] and "BK1007" not in r["answer"]
