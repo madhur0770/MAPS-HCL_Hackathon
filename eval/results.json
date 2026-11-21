@@ -1,13 +1,6 @@
 {
- "passed": 65,
+ "passed": 66,
  "total": 66,
  "unconfirmed_writes": 0,
- "failures": [
-  [
-   "V06",
-   [
-    "missing 'going'"
-   ]
-  ]
- ]
+ "failures": []
 }

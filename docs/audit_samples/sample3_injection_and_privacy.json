@@ -73,10 +73,10 @@
     ],
     "pending_action": null,
     "handed_to_human": false,
-    "trace_id": "TR-8E01A813C6C1"
+    "trace_id": "TR-E02ED070E811"
   },
   "injection_trace": {
-    "trace_id": "TR-8E01A813C6C1",
+    "trace_id": "TR-E02ED070E811",
     "ts": "2026-11-21T10:00:00+05:30",
     "passenger_id": "P001",
     "session_id": "demo3",
@@ -173,7 +173,7 @@
     ],
     "pending_action": null,
     "handed_to_human": false,
-    "latency_ms": 3
+    "latency_ms": 5
   },
   "other_passenger_booking_reply": {
     "answer_type": "not_found",
@@ -191,7 +191,7 @@
     ],
     "pending_action": null,
     "handed_to_human": false,
-    "trace_id": "TR-A89CED769E80"
+    "trace_id": "TR-CB4C426E8412"
   },
   "booking_BKG0001_still": "CONFIRMED"
 }

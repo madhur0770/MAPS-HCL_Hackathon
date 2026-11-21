@@ -46,7 +46,7 @@
 {"id": "V03", "cat": "vague", "turns": ["what about the refund"], "who": "P001", "as_of": "2026-11-21T10:00", "type": "clarification"}
 {"id": "V04", "cat": "vague", "turns": ["trains from Anandpur to Chetakgarh tomorrow"], "who": "P001", "as_of": "2026-11-21T10:00", "type": "clarification", "has": ["Anandpur Central", "Anandpur North"]}
 {"id": "V05", "cat": "vague", "turns": ["i need a ticket delhi"], "who": "P001", "as_of": "2026-11-21T10:00", "type": "clarification", "has": ["Delhi", "We serve"], "not_has": ["not sure I understood"], "unchanged": true}
-{"id": "V06", "cat": "vague", "turns": ["need a ticket suryanagr"], "who": "P001", "as_of": "2026-11-21T10:00", "type": "clarification", "has": ["going"], "not_has": ["not sure I understood"], "unchanged": true}
+{"id": "V06", "cat": "vague", "turns": ["need a ticket suryanagr"], "who": "P001", "as_of": "2026-11-21T10:00", "type": "clarification", "has": ["Suryanagar", "start"], "not_has": ["not sure I understood"], "unchanged": true}
 {"id": "V05", "cat": "vague", "turns": ["I need a ticket to delhi"], "who": "P001", "as_of": "2026-11-21T10:00", "type": "clarification", "has": ["Delhi", "Anandpur"], "unchanged": true}
 {"id": "V06", "cat": "vague", "turns": ["i need a ticket from delhi to pune on 30-11-2026"], "who": "P001", "as_of": "2026-11-21T10:00", "type": "clarification", "has": ["could not find a station"], "unchanged": true}
 {"id": "V07", "cat": "vague", "turns": ["what is my booking id for neelkanth rapid"], "who": "P001", "as_of": "2026-11-21T10:00", "has": ["BKG0025"], "unchanged": true}

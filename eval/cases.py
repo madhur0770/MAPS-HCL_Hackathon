@@ -72,7 +72,7 @@ case("V02", "vague", "I want to travel tomorrow", type="clarification")
 case("V03", "vague", "what about the refund", type="clarification")
 case("V04", "vague", "trains from Anandpur to Chetakgarh tomorrow", type="clarification", has=["Anandpur Central", "Anandpur North"])                                  # two stations share the name
 case("V05", "vague", "i need a ticket delhi", type="clarification", has=["Delhi", "We serve"], not_has=["not sure I understood"], unchanged=True)                                 # no 'to': the leftover word is the place
-case("V06", "vague", "need a ticket suryanagr", type="clarification", has=["going"], not_has=["not sure I understood"], unchanged=True)                                       # typo repaired, asks for the rest
+case("V06", "vague", "need a ticket suryanagr", type="clarification", has=["Suryanagar", "start"], not_has=["not sure I understood"], unchanged=True)                                       # typo repaired to a real station; asks whether it is the start or the end
 
 case("V05", "vague", "I need a ticket to delhi", type="clarification", has=["Delhi", "Anandpur"], unchanged=True)                                                   # not on the network: say so, list the cities
 case("V06", "vague", "i need a ticket from delhi to pune on 30-11-2026", type="clarification", has=["could not find a station"], unchanged=True)
