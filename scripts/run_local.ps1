@@ -8,6 +8,8 @@ $py = ".\.venv\Scripts\python.exe"
 if (-not (Test-Path $py)) { Write-Host "Run .\scripts\setup.ps1 first." -ForegroundColor Red; exit 1 }
 if (-not (Test-Path app\static\index.html)) { Write-Host "React build missing (app\static). Run: cd ui-react; npm install; npm run build" -ForegroundColor Red; exit 1 }
 $env:MOCK_LLM = if ($env:MOCK_LLM) { $env:MOCK_LLM } else { "true" }
+# free port 8000 if an older copy of the app is still running
+Get-NetTCPConnection -LocalPort 8000 -State Listen -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }
 $steps = @("Generate data", "Start app")
 $i = 0
 Show-Step (++$i) $steps.Count $steps[0]; & $py scripts\generate_data.py

@@ -1,0 +1,32 @@
+{
+  "dataset_id": "ujjwal-demo-v1",
+  "reference_date": "2026-11-21",
+  "random_seed": 42,
+  "generated_at": "2026-11-21T12:35:25.434383+05:30",
+  "creative_generation": "deterministic-curated-fallback (no external LLM invoked)",
+  "files": [
+    "booking_travellers.json",
+    "bookings.json",
+    "edge_cases.json",
+    "fares.json",
+    "passengers.json",
+    "seats.json",
+    "service_cancellations.json",
+    "stations.json",
+    "train_capacities.json",
+    "train_stops.json",
+    "trains.json"
+  ],
+  "counts": {
+    "stations": 18,
+    "trains": 25,
+    "train_stops": 124,
+    "fares": 870,
+    "train_capacities": 85,
+    "seats": 914,
+    "passengers": 25,
+    "bookings": 50,
+    "booking_travellers": 91,
+    "service_cancellations": 1
+  }
+}

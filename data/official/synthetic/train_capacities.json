@@ -1,0 +1,682 @@
+[
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "class": "FP",
+    "confirmed_capacity": 1,
+    "rac_capacity": 0,
+    "waitlist_capacity": 3
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "class": "AC2",
+    "confirmed_capacity": 24,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "class": "AC3",
+    "confirmed_capacity": 36,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "class": "SL",
+    "confirmed_capacity": 48,
+    "rac_capacity": 6,
+    "waitlist_capacity": 9
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "AC2",
+    "confirmed_capacity": 1,
+    "rac_capacity": 2,
+    "waitlist_capacity": 2
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "AC3",
+    "confirmed_capacity": 36,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "SL",
+    "confirmed_capacity": 48,
+    "rac_capacity": 6,
+    "waitlist_capacity": 9
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "FP",
+    "confirmed_capacity": 1,
+    "rac_capacity": 0,
+    "waitlist_capacity": 1
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "AC2",
+    "confirmed_capacity": 24,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "EC",
+    "confirmed_capacity": 40,
+    "rac_capacity": 5,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "CC",
+    "confirmed_capacity": 50,
+    "rac_capacity": 6,
+    "waitlist_capacity": 10
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1004",
+    "class": "AC3",
+    "confirmed_capacity": 36,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1004",
+    "class": "SL",
+    "confirmed_capacity": 48,
+    "rac_capacity": 6,
+    "waitlist_capacity": 9
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1004",
+    "class": "CC",
+    "confirmed_capacity": 50,
+    "rac_capacity": 6,
+    "waitlist_capacity": 10
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "AC2",
+    "confirmed_capacity": 24,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "AC3",
+    "confirmed_capacity": 36,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "EC",
+    "confirmed_capacity": 40,
+    "rac_capacity": 5,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "FP",
+    "confirmed_capacity": 12,
+    "rac_capacity": 0,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC2",
+    "confirmed_capacity": 24,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC3",
+    "confirmed_capacity": 36,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "SL",
+    "confirmed_capacity": 48,
+    "rac_capacity": 6,
+    "waitlist_capacity": 9
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1007",
+    "class": "AC2",
+    "confirmed_capacity": 24,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1007",
+    "class": "AC3",
+    "confirmed_capacity": 36,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1007",
+    "class": "SL",
+    "confirmed_capacity": 48,
+    "rac_capacity": 6,
+    "waitlist_capacity": 9
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "FP",
+    "confirmed_capacity": 12,
+    "rac_capacity": 0,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "AC2",
+    "confirmed_capacity": 24,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "EC",
+    "confirmed_capacity": 40,
+    "rac_capacity": 5,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "CC",
+    "confirmed_capacity": 50,
+    "rac_capacity": 6,
+    "waitlist_capacity": 10
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "AC3",
+    "confirmed_capacity": 36,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "SL",
+    "confirmed_capacity": 48,
+    "rac_capacity": 6,
+    "waitlist_capacity": 9
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "CC",
+    "confirmed_capacity": 50,
+    "rac_capacity": 6,
+    "waitlist_capacity": 10
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1010",
+    "class": "AC2",
+    "confirmed_capacity": 24,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1010",
+    "class": "AC3",
+    "confirmed_capacity": 36,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1010",
+    "class": "EC",
+    "confirmed_capacity": 40,
+    "rac_capacity": 5,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "FP",
+    "confirmed_capacity": 12,
+    "rac_capacity": 0,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "AC2",
+    "confirmed_capacity": 24,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "AC3",
+    "confirmed_capacity": 36,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "SL",
+    "confirmed_capacity": 48,
+    "rac_capacity": 6,
+    "waitlist_capacity": 9
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC2",
+    "confirmed_capacity": 24,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC3",
+    "confirmed_capacity": 36,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "SL",
+    "confirmed_capacity": 48,
+    "rac_capacity": 6,
+    "waitlist_capacity": 9
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "class": "FP",
+    "confirmed_capacity": 12,
+    "rac_capacity": 0,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "class": "AC2",
+    "confirmed_capacity": 24,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "class": "EC",
+    "confirmed_capacity": 40,
+    "rac_capacity": 5,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "class": "CC",
+    "confirmed_capacity": 50,
+    "rac_capacity": 6,
+    "waitlist_capacity": 10
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "AC3",
+    "confirmed_capacity": 36,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "SL",
+    "confirmed_capacity": 48,
+    "rac_capacity": 6,
+    "waitlist_capacity": 9
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "CC",
+    "confirmed_capacity": 50,
+    "rac_capacity": 6,
+    "waitlist_capacity": 10
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC2",
+    "confirmed_capacity": 24,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC3",
+    "confirmed_capacity": 36,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "EC",
+    "confirmed_capacity": 40,
+    "rac_capacity": 5,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "class": "FP",
+    "confirmed_capacity": 12,
+    "rac_capacity": 0,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "class": "AC2",
+    "confirmed_capacity": 24,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "class": "AC3",
+    "confirmed_capacity": 36,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "class": "SL",
+    "confirmed_capacity": 48,
+    "rac_capacity": 6,
+    "waitlist_capacity": 9
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "AC2",
+    "confirmed_capacity": 24,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "AC3",
+    "confirmed_capacity": 36,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "SL",
+    "confirmed_capacity": 48,
+    "rac_capacity": 6,
+    "waitlist_capacity": 9
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "FP",
+    "confirmed_capacity": 12,
+    "rac_capacity": 0,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "AC2",
+    "confirmed_capacity": 24,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "EC",
+    "confirmed_capacity": 40,
+    "rac_capacity": 5,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "CC",
+    "confirmed_capacity": 50,
+    "rac_capacity": 6,
+    "waitlist_capacity": 10
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1019",
+    "class": "AC3",
+    "confirmed_capacity": 36,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1019",
+    "class": "SL",
+    "confirmed_capacity": 48,
+    "rac_capacity": 6,
+    "waitlist_capacity": 9
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1019",
+    "class": "CC",
+    "confirmed_capacity": 50,
+    "rac_capacity": 6,
+    "waitlist_capacity": 10
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "AC2",
+    "confirmed_capacity": 24,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "AC3",
+    "confirmed_capacity": 36,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "EC",
+    "confirmed_capacity": 40,
+    "rac_capacity": 5,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "FP",
+    "confirmed_capacity": 12,
+    "rac_capacity": 0,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC2",
+    "confirmed_capacity": 24,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC3",
+    "confirmed_capacity": 36,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "SL",
+    "confirmed_capacity": 48,
+    "rac_capacity": 6,
+    "waitlist_capacity": 9
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1022",
+    "class": "AC2",
+    "confirmed_capacity": 24,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1022",
+    "class": "AC3",
+    "confirmed_capacity": 36,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1022",
+    "class": "SL",
+    "confirmed_capacity": 48,
+    "rac_capacity": 6,
+    "waitlist_capacity": 9
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "FP",
+    "confirmed_capacity": 12,
+    "rac_capacity": 0,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "AC2",
+    "confirmed_capacity": 24,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "EC",
+    "confirmed_capacity": 40,
+    "rac_capacity": 5,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "CC",
+    "confirmed_capacity": 50,
+    "rac_capacity": 6,
+    "waitlist_capacity": 10
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "AC3",
+    "confirmed_capacity": 36,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "SL",
+    "confirmed_capacity": 48,
+    "rac_capacity": 6,
+    "waitlist_capacity": 9
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "CC",
+    "confirmed_capacity": 50,
+    "rac_capacity": 6,
+    "waitlist_capacity": 10
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1025",
+    "class": "AC2",
+    "confirmed_capacity": 24,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1025",
+    "class": "AC3",
+    "confirmed_capacity": 36,
+    "rac_capacity": 4,
+    "waitlist_capacity": 8
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1025",
+    "class": "EC",
+    "confirmed_capacity": 40,
+    "rac_capacity": 5,
+    "waitlist_capacity": 8
+  }
+]

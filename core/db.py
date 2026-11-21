@@ -25,10 +25,13 @@ CREATE TABLE IF NOT EXISTS passengers(
 CREATE TABLE IF NOT EXISTS bookings(
   booking_id TEXT PRIMARY KEY, passenger_id TEXT, train_no TEXT, journey_date TEXT, from_code TEXT,
   to_code TEXT, class TEXT, amount_paid INTEGER, status TEXT, booked_at TEXT,
-  tatkal INTEGER DEFAULT 0, refunded INTEGER DEFAULT 0);
+  tatkal INTEGER DEFAULT 0, refunded INTEGER DEFAULT 0,
+  boarding_datetime TEXT, cancelled_at TEXT, cancellation_type TEXT);
 CREATE TABLE IF NOT EXISTS booking_travellers(
   traveller_id INTEGER PRIMARY KEY AUTOINCREMENT, booking_id TEXT, traveller_name TEXT, age INTEGER,
   status TEXT, coach TEXT, berth TEXT, fare_paid INTEGER DEFAULT 0);
+CREATE TABLE IF NOT EXISTS service_cancellations(
+  train_no TEXT, journey_date TEXT, reason TEXT, announced_at TEXT, PRIMARY KEY(train_no, journey_date));
 CREATE TABLE IF NOT EXISTS actions(
   action_id TEXT PRIMARY KEY, passenger_id TEXT, booking_id TEXT, action_type TEXT, status TEXT,
   created_at TEXT, expires_at TEXT, result TEXT, payload TEXT, clock_offset REAL DEFAULT 0,

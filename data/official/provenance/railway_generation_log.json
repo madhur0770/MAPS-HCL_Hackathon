@@ -1,0 +1,32 @@
+{
+  "model_provider": null,
+  "actual_model_name": null,
+  "external_model_invoked": false,
+  "generation_parameters": {
+    "random_seed": 42,
+    "reference_date": "2026-11-21"
+  },
+  "generation_timestamp": "2026-11-21T12:35:25.434383+05:30",
+  "prompt_file": "data_generation/railway_generation_prompt.md",
+  "output_files": [
+    "booking_travellers.json",
+    "bookings.json",
+    "edge_cases.json",
+    "fares.json",
+    "passengers.json",
+    "seats.json",
+    "service_cancellations.json",
+    "stations.json",
+    "train_capacities.json",
+    "train_stops.json",
+    "trains.json",
+    "generation_manifest.json"
+  ],
+  "deterministic_corrections": [
+    "Python assigned IDs and keys",
+    "Python calculated routes, dates, fares and boarding datetimes",
+    "Python allocated CNF/RAC/WL inventory",
+    "Python created and reconciled edge cases"
+  ],
+  "limitation": "Ollama service was inaccessible; creative content uses the checked-in curated fallback catalog."
+}

@@ -109,7 +109,7 @@ def fare_for(no, cls, km):
     return int(round(km * RATE[cls] / 10.0) * 10) or 10
 
 
-def seed(db, anchor=ANCHOR_DEFAULT, rng_seed=42, progress=None):
+def seed_generated(db, anchor=ANCHOR_DEFAULT, rng_seed=42, progress=None):
     rnd = random.Random(rng_seed)
     init_db(db)
     for t in ["stations", "trains", "train_stops", "fares", "seats", "passengers", "bookings", "booking_travellers",
@@ -260,3 +260,11 @@ def seed(db, anchor=ANCHOR_DEFAULT, rng_seed=42, progress=None):
                     d["supersedes"], d["language"], d["text"], now))
     db.commit(); P("documents")
     return {"anchor": anchor}
+
+
+def seed(db, anchor=ANCHOR_DEFAULT, progress=None):
+    """Loads the supplied Ujjwal Rail dataset (data/official). The old generator above is kept only as a reference."""
+    from core import official
+    init_db(db)
+    official.load(db, progress)
+    return {"anchor": ANCHOR_DEFAULT}

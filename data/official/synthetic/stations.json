@@ -1,0 +1,184 @@
+[
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "station_code": "ANPR",
+    "name": "Anandpur Central",
+    "other_names": [
+      "Anandpur",
+      "Anand Pur",
+      "Anandpur Kendra"
+    ],
+    "city": "Anandpur"
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "station_code": "ANPN",
+    "name": "Anandpur North",
+    "other_names": [
+      "Anandpur",
+      "Anand Pur Uttar",
+      "Anandpur North"
+    ],
+    "city": "Anandpur"
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "station_code": "MTRP",
+    "name": "Mitrapur Junction",
+    "other_names": [
+      "Mitrapur",
+      "Mitra Pur Jn"
+    ],
+    "city": "Mitrapur"
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "station_code": "SURY",
+    "name": "Suryanagar",
+    "other_names": [
+      "Surya Nagar",
+      "Suryanagar Station"
+    ],
+    "city": "Suryanagar"
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "station_code": "NIRM",
+    "name": "Nirmalganj",
+    "other_names": [
+      "Nirmal Ganj",
+      "Nirmalganj Road"
+    ],
+    "city": "Nirmalganj"
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "station_code": "KAVA",
+    "name": "Kaveripuram",
+    "other_names": [
+      "Kaveri Puram",
+      "Kaveripur"
+    ],
+    "city": "Kaveripuram"
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "station_code": "VIND",
+    "name": "Vindhyapur",
+    "other_names": [
+      "Vindhya Pur",
+      "Vindhyapur City"
+    ],
+    "city": "Vindhyapur"
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "station_code": "CHET",
+    "name": "Chetakgarh",
+    "other_names": [
+      "Chetak Garh",
+      "Chetak Fort"
+    ],
+    "city": "Chetakgarh"
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "station_code": "NEEL",
+    "name": "Neelkanth City",
+    "other_names": [
+      "Neel Kanth",
+      "Neelkanth"
+    ],
+    "city": "Neelkanth"
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "station_code": "UDAY",
+    "name": "Udayabad",
+    "other_names": [
+      "Udaya Bad",
+      "Udayabad Town"
+    ],
+    "city": "Udayabad"
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "station_code": "SAHY",
+    "name": "Sahyadri Road",
+    "other_names": [
+      "Sahyadri",
+      "Sahyadri Rd"
+    ],
+    "city": "Sahyadri"
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "station_code": "KOSA",
+    "name": "Koshalpur",
+    "other_names": [
+      "Kaushal Pur",
+      "Koshalpur City"
+    ],
+    "city": "Koshalpur"
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "station_code": "RATN",
+    "name": "Ratnadeep",
+    "other_names": [
+      "Ratna Deep",
+      "Ratnadeep Nagar"
+    ],
+    "city": "Ratnadeep"
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "station_code": "MALV",
+    "name": "Malvanagar",
+    "other_names": [
+      "Malva Nagar",
+      "Malvanagar East"
+    ],
+    "city": "Malvanagar"
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "station_code": "TUNG",
+    "name": "Tungabhadra Town",
+    "other_names": [
+      "Tunga Bhadra",
+      "Tungabhadra"
+    ],
+    "city": "Tungabhadra"
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "station_code": "ARUN",
+    "name": "Arunoday",
+    "other_names": [
+      "Arun Uday",
+      "Arunoday City"
+    ],
+    "city": "Arunoday"
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "station_code": "PAVA",
+    "name": "Pavanpur",
+    "other_names": [
+      "Pawan Pur",
+      "Pavanpur Road"
+    ],
+    "city": "Pavanpur"
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "station_code": "MEGH",
+    "name": "Meghvan",
+    "other_names": [
+      "Megh Van",
+      "Meghvan Central"
+    ],
+    "city": "Meghvan"
+  }
+]

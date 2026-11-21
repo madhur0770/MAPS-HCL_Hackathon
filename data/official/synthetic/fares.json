@@ -1,0 +1,6962 @@
+[
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "class": "FP",
+    "from_code": "ANPR",
+    "to_code": "ANPN",
+    "fare": 85000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "class": "FP",
+    "from_code": "ANPR",
+    "to_code": "MTRP",
+    "fare": 170000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "class": "FP",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 255000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "class": "FP",
+    "from_code": "ANPN",
+    "to_code": "MTRP",
+    "fare": 85000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "class": "FP",
+    "from_code": "ANPN",
+    "to_code": "SURY",
+    "fare": 170000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "class": "FP",
+    "from_code": "MTRP",
+    "to_code": "SURY",
+    "fare": 85000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "class": "AC2",
+    "from_code": "ANPR",
+    "to_code": "ANPN",
+    "fare": 60000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "class": "AC2",
+    "from_code": "ANPR",
+    "to_code": "MTRP",
+    "fare": 120000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "class": "AC2",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 180000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "class": "AC2",
+    "from_code": "ANPN",
+    "to_code": "MTRP",
+    "fare": 60000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "class": "AC2",
+    "from_code": "ANPN",
+    "to_code": "SURY",
+    "fare": 120000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "class": "AC2",
+    "from_code": "MTRP",
+    "to_code": "SURY",
+    "fare": 60000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "class": "AC3",
+    "from_code": "ANPR",
+    "to_code": "ANPN",
+    "fare": 45000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "class": "AC3",
+    "from_code": "ANPR",
+    "to_code": "MTRP",
+    "fare": 90000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "class": "AC3",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 135000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "class": "AC3",
+    "from_code": "ANPN",
+    "to_code": "MTRP",
+    "fare": 45000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "class": "AC3",
+    "from_code": "ANPN",
+    "to_code": "SURY",
+    "fare": 90000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "class": "AC3",
+    "from_code": "MTRP",
+    "to_code": "SURY",
+    "fare": 45000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "class": "SL",
+    "from_code": "ANPR",
+    "to_code": "ANPN",
+    "fare": 25000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "class": "SL",
+    "from_code": "ANPR",
+    "to_code": "MTRP",
+    "fare": 50000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "class": "SL",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 75000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "class": "SL",
+    "from_code": "ANPN",
+    "to_code": "MTRP",
+    "fare": 25000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "class": "SL",
+    "from_code": "ANPN",
+    "to_code": "SURY",
+    "fare": 50000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "class": "SL",
+    "from_code": "MTRP",
+    "to_code": "SURY",
+    "fare": 25000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "AC2",
+    "from_code": "SURY",
+    "to_code": "KAVA",
+    "fare": 60250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "AC2",
+    "from_code": "SURY",
+    "to_code": "CHET",
+    "fare": 120500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "AC2",
+    "from_code": "SURY",
+    "to_code": "UDAY",
+    "fare": 180750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "AC2",
+    "from_code": "SURY",
+    "to_code": "KOSA",
+    "fare": 241000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "AC2",
+    "from_code": "KAVA",
+    "to_code": "CHET",
+    "fare": 60250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "AC2",
+    "from_code": "KAVA",
+    "to_code": "UDAY",
+    "fare": 120500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "AC2",
+    "from_code": "KAVA",
+    "to_code": "KOSA",
+    "fare": 180750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "AC2",
+    "from_code": "CHET",
+    "to_code": "UDAY",
+    "fare": 60250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "AC2",
+    "from_code": "CHET",
+    "to_code": "KOSA",
+    "fare": 120500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "AC2",
+    "from_code": "UDAY",
+    "to_code": "KOSA",
+    "fare": 60250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "AC3",
+    "from_code": "SURY",
+    "to_code": "KAVA",
+    "fare": 45250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "AC3",
+    "from_code": "SURY",
+    "to_code": "CHET",
+    "fare": 90500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "AC3",
+    "from_code": "SURY",
+    "to_code": "UDAY",
+    "fare": 135750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "AC3",
+    "from_code": "SURY",
+    "to_code": "KOSA",
+    "fare": 181000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "AC3",
+    "from_code": "KAVA",
+    "to_code": "CHET",
+    "fare": 45250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "AC3",
+    "from_code": "KAVA",
+    "to_code": "UDAY",
+    "fare": 90500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "AC3",
+    "from_code": "KAVA",
+    "to_code": "KOSA",
+    "fare": 135750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "AC3",
+    "from_code": "CHET",
+    "to_code": "UDAY",
+    "fare": 45250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "AC3",
+    "from_code": "CHET",
+    "to_code": "KOSA",
+    "fare": 90500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "AC3",
+    "from_code": "UDAY",
+    "to_code": "KOSA",
+    "fare": 45250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "SL",
+    "from_code": "SURY",
+    "to_code": "KAVA",
+    "fare": 25250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "SL",
+    "from_code": "SURY",
+    "to_code": "CHET",
+    "fare": 50500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "SL",
+    "from_code": "SURY",
+    "to_code": "UDAY",
+    "fare": 75750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "SL",
+    "from_code": "SURY",
+    "to_code": "KOSA",
+    "fare": 101000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "SL",
+    "from_code": "KAVA",
+    "to_code": "CHET",
+    "fare": 25250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "SL",
+    "from_code": "KAVA",
+    "to_code": "UDAY",
+    "fare": 50500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "SL",
+    "from_code": "KAVA",
+    "to_code": "KOSA",
+    "fare": 75750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "SL",
+    "from_code": "CHET",
+    "to_code": "UDAY",
+    "fare": 25250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "SL",
+    "from_code": "CHET",
+    "to_code": "KOSA",
+    "fare": 50500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "class": "SL",
+    "from_code": "UDAY",
+    "to_code": "KOSA",
+    "fare": 25250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "FP",
+    "from_code": "VIND",
+    "to_code": "UDAY",
+    "fare": 85500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "FP",
+    "from_code": "VIND",
+    "to_code": "RATN",
+    "fare": 171000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "FP",
+    "from_code": "VIND",
+    "to_code": "ARUN",
+    "fare": 256500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "FP",
+    "from_code": "VIND",
+    "to_code": "ANPR",
+    "fare": 342000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "FP",
+    "from_code": "VIND",
+    "to_code": "SURY",
+    "fare": 427500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "FP",
+    "from_code": "UDAY",
+    "to_code": "RATN",
+    "fare": 85500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "FP",
+    "from_code": "UDAY",
+    "to_code": "ARUN",
+    "fare": 171000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "FP",
+    "from_code": "UDAY",
+    "to_code": "ANPR",
+    "fare": 256500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "FP",
+    "from_code": "UDAY",
+    "to_code": "SURY",
+    "fare": 342000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "FP",
+    "from_code": "RATN",
+    "to_code": "ARUN",
+    "fare": 85500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "FP",
+    "from_code": "RATN",
+    "to_code": "ANPR",
+    "fare": 171000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "FP",
+    "from_code": "RATN",
+    "to_code": "SURY",
+    "fare": 256500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "FP",
+    "from_code": "ARUN",
+    "to_code": "ANPR",
+    "fare": 85500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "FP",
+    "from_code": "ARUN",
+    "to_code": "SURY",
+    "fare": 171000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "FP",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 85500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "AC2",
+    "from_code": "VIND",
+    "to_code": "UDAY",
+    "fare": 60500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "AC2",
+    "from_code": "VIND",
+    "to_code": "RATN",
+    "fare": 121000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "AC2",
+    "from_code": "VIND",
+    "to_code": "ARUN",
+    "fare": 181500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "AC2",
+    "from_code": "VIND",
+    "to_code": "ANPR",
+    "fare": 242000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "AC2",
+    "from_code": "VIND",
+    "to_code": "SURY",
+    "fare": 302500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "AC2",
+    "from_code": "UDAY",
+    "to_code": "RATN",
+    "fare": 60500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "AC2",
+    "from_code": "UDAY",
+    "to_code": "ARUN",
+    "fare": 121000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "AC2",
+    "from_code": "UDAY",
+    "to_code": "ANPR",
+    "fare": 181500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "AC2",
+    "from_code": "UDAY",
+    "to_code": "SURY",
+    "fare": 242000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "AC2",
+    "from_code": "RATN",
+    "to_code": "ARUN",
+    "fare": 60500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "AC2",
+    "from_code": "RATN",
+    "to_code": "ANPR",
+    "fare": 121000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "AC2",
+    "from_code": "RATN",
+    "to_code": "SURY",
+    "fare": 181500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "AC2",
+    "from_code": "ARUN",
+    "to_code": "ANPR",
+    "fare": 60500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "AC2",
+    "from_code": "ARUN",
+    "to_code": "SURY",
+    "fare": 121000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "AC2",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 60500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "EC",
+    "from_code": "VIND",
+    "to_code": "UDAY",
+    "fare": 50500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "EC",
+    "from_code": "VIND",
+    "to_code": "RATN",
+    "fare": 101000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "EC",
+    "from_code": "VIND",
+    "to_code": "ARUN",
+    "fare": 151500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "EC",
+    "from_code": "VIND",
+    "to_code": "ANPR",
+    "fare": 202000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "EC",
+    "from_code": "VIND",
+    "to_code": "SURY",
+    "fare": 252500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "EC",
+    "from_code": "UDAY",
+    "to_code": "RATN",
+    "fare": 50500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "EC",
+    "from_code": "UDAY",
+    "to_code": "ARUN",
+    "fare": 101000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "EC",
+    "from_code": "UDAY",
+    "to_code": "ANPR",
+    "fare": 151500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "EC",
+    "from_code": "UDAY",
+    "to_code": "SURY",
+    "fare": 202000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "EC",
+    "from_code": "RATN",
+    "to_code": "ARUN",
+    "fare": 50500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "EC",
+    "from_code": "RATN",
+    "to_code": "ANPR",
+    "fare": 101000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "EC",
+    "from_code": "RATN",
+    "to_code": "SURY",
+    "fare": 151500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "EC",
+    "from_code": "ARUN",
+    "to_code": "ANPR",
+    "fare": 50500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "EC",
+    "from_code": "ARUN",
+    "to_code": "SURY",
+    "fare": 101000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "EC",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 50500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "CC",
+    "from_code": "VIND",
+    "to_code": "UDAY",
+    "fare": 30500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "CC",
+    "from_code": "VIND",
+    "to_code": "RATN",
+    "fare": 61000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "CC",
+    "from_code": "VIND",
+    "to_code": "ARUN",
+    "fare": 91500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "CC",
+    "from_code": "VIND",
+    "to_code": "ANPR",
+    "fare": 122000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "CC",
+    "from_code": "VIND",
+    "to_code": "SURY",
+    "fare": 152500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "CC",
+    "from_code": "UDAY",
+    "to_code": "RATN",
+    "fare": 30500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "CC",
+    "from_code": "UDAY",
+    "to_code": "ARUN",
+    "fare": 61000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "CC",
+    "from_code": "UDAY",
+    "to_code": "ANPR",
+    "fare": 91500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "CC",
+    "from_code": "UDAY",
+    "to_code": "SURY",
+    "fare": 122000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "CC",
+    "from_code": "RATN",
+    "to_code": "ARUN",
+    "fare": 30500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "CC",
+    "from_code": "RATN",
+    "to_code": "ANPR",
+    "fare": 61000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "CC",
+    "from_code": "RATN",
+    "to_code": "SURY",
+    "fare": 91500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "CC",
+    "from_code": "ARUN",
+    "to_code": "ANPR",
+    "fare": 30500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "CC",
+    "from_code": "ARUN",
+    "to_code": "SURY",
+    "fare": 61000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "class": "CC",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 30500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1004",
+    "class": "AC3",
+    "from_code": "UDAY",
+    "to_code": "MALV",
+    "fare": 45750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1004",
+    "class": "AC3",
+    "from_code": "UDAY",
+    "to_code": "MEGH",
+    "fare": 91500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1004",
+    "class": "AC3",
+    "from_code": "UDAY",
+    "to_code": "SURY",
+    "fare": 137250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1004",
+    "class": "AC3",
+    "from_code": "MALV",
+    "to_code": "MEGH",
+    "fare": 45750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1004",
+    "class": "AC3",
+    "from_code": "MALV",
+    "to_code": "SURY",
+    "fare": 91500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1004",
+    "class": "AC3",
+    "from_code": "MEGH",
+    "to_code": "SURY",
+    "fare": 45750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1004",
+    "class": "SL",
+    "from_code": "UDAY",
+    "to_code": "MALV",
+    "fare": 25750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1004",
+    "class": "SL",
+    "from_code": "UDAY",
+    "to_code": "MEGH",
+    "fare": 51500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1004",
+    "class": "SL",
+    "from_code": "UDAY",
+    "to_code": "SURY",
+    "fare": 77250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1004",
+    "class": "SL",
+    "from_code": "MALV",
+    "to_code": "MEGH",
+    "fare": 25750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1004",
+    "class": "SL",
+    "from_code": "MALV",
+    "to_code": "SURY",
+    "fare": 51500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1004",
+    "class": "SL",
+    "from_code": "MEGH",
+    "to_code": "SURY",
+    "fare": 25750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1004",
+    "class": "CC",
+    "from_code": "UDAY",
+    "to_code": "MALV",
+    "fare": 30750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1004",
+    "class": "CC",
+    "from_code": "UDAY",
+    "to_code": "MEGH",
+    "fare": 61500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1004",
+    "class": "CC",
+    "from_code": "UDAY",
+    "to_code": "SURY",
+    "fare": 92250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1004",
+    "class": "CC",
+    "from_code": "MALV",
+    "to_code": "MEGH",
+    "fare": 30750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1004",
+    "class": "CC",
+    "from_code": "MALV",
+    "to_code": "SURY",
+    "fare": 61500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1004",
+    "class": "CC",
+    "from_code": "MEGH",
+    "to_code": "SURY",
+    "fare": 30750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "AC2",
+    "from_code": "RATN",
+    "to_code": "MALV",
+    "fare": 61000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "AC2",
+    "from_code": "RATN",
+    "to_code": "TUNG",
+    "fare": 122000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "AC2",
+    "from_code": "RATN",
+    "to_code": "ARUN",
+    "fare": 183000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "AC2",
+    "from_code": "RATN",
+    "to_code": "PAVA",
+    "fare": 244000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "AC2",
+    "from_code": "MALV",
+    "to_code": "TUNG",
+    "fare": 61000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "AC2",
+    "from_code": "MALV",
+    "to_code": "ARUN",
+    "fare": 122000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "AC2",
+    "from_code": "MALV",
+    "to_code": "PAVA",
+    "fare": 183000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "AC2",
+    "from_code": "TUNG",
+    "to_code": "ARUN",
+    "fare": 61000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "AC2",
+    "from_code": "TUNG",
+    "to_code": "PAVA",
+    "fare": 122000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "AC2",
+    "from_code": "ARUN",
+    "to_code": "PAVA",
+    "fare": 61000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "AC3",
+    "from_code": "RATN",
+    "to_code": "MALV",
+    "fare": 46000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "AC3",
+    "from_code": "RATN",
+    "to_code": "TUNG",
+    "fare": 92000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "AC3",
+    "from_code": "RATN",
+    "to_code": "ARUN",
+    "fare": 138000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "AC3",
+    "from_code": "RATN",
+    "to_code": "PAVA",
+    "fare": 184000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "AC3",
+    "from_code": "MALV",
+    "to_code": "TUNG",
+    "fare": 46000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "AC3",
+    "from_code": "MALV",
+    "to_code": "ARUN",
+    "fare": 92000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "AC3",
+    "from_code": "MALV",
+    "to_code": "PAVA",
+    "fare": 138000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "AC3",
+    "from_code": "TUNG",
+    "to_code": "ARUN",
+    "fare": 46000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "AC3",
+    "from_code": "TUNG",
+    "to_code": "PAVA",
+    "fare": 92000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "AC3",
+    "from_code": "ARUN",
+    "to_code": "PAVA",
+    "fare": 46000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "EC",
+    "from_code": "RATN",
+    "to_code": "MALV",
+    "fare": 51000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "EC",
+    "from_code": "RATN",
+    "to_code": "TUNG",
+    "fare": 102000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "EC",
+    "from_code": "RATN",
+    "to_code": "ARUN",
+    "fare": 153000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "EC",
+    "from_code": "RATN",
+    "to_code": "PAVA",
+    "fare": 204000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "EC",
+    "from_code": "MALV",
+    "to_code": "TUNG",
+    "fare": 51000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "EC",
+    "from_code": "MALV",
+    "to_code": "ARUN",
+    "fare": 102000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "EC",
+    "from_code": "MALV",
+    "to_code": "PAVA",
+    "fare": 153000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "EC",
+    "from_code": "TUNG",
+    "to_code": "ARUN",
+    "fare": 51000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "EC",
+    "from_code": "TUNG",
+    "to_code": "PAVA",
+    "fare": 102000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "class": "EC",
+    "from_code": "ARUN",
+    "to_code": "PAVA",
+    "fare": 51000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "FP",
+    "from_code": "ARUN",
+    "to_code": "MEGH",
+    "fare": 86250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "FP",
+    "from_code": "ARUN",
+    "to_code": "ANPN",
+    "fare": 172500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "FP",
+    "from_code": "ARUN",
+    "to_code": "SURY",
+    "fare": 258750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "FP",
+    "from_code": "ARUN",
+    "to_code": "KAVA",
+    "fare": 345000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "FP",
+    "from_code": "ARUN",
+    "to_code": "CHET",
+    "fare": 431250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "FP",
+    "from_code": "MEGH",
+    "to_code": "ANPN",
+    "fare": 86250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "FP",
+    "from_code": "MEGH",
+    "to_code": "SURY",
+    "fare": 172500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "FP",
+    "from_code": "MEGH",
+    "to_code": "KAVA",
+    "fare": 258750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "FP",
+    "from_code": "MEGH",
+    "to_code": "CHET",
+    "fare": 345000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "FP",
+    "from_code": "ANPN",
+    "to_code": "SURY",
+    "fare": 86250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "FP",
+    "from_code": "ANPN",
+    "to_code": "KAVA",
+    "fare": 172500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "FP",
+    "from_code": "ANPN",
+    "to_code": "CHET",
+    "fare": 258750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "FP",
+    "from_code": "SURY",
+    "to_code": "KAVA",
+    "fare": 86250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "FP",
+    "from_code": "SURY",
+    "to_code": "CHET",
+    "fare": 172500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "FP",
+    "from_code": "KAVA",
+    "to_code": "CHET",
+    "fare": 86250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC2",
+    "from_code": "ARUN",
+    "to_code": "MEGH",
+    "fare": 61250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC2",
+    "from_code": "ARUN",
+    "to_code": "ANPN",
+    "fare": 122500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC2",
+    "from_code": "ARUN",
+    "to_code": "SURY",
+    "fare": 183750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC2",
+    "from_code": "ARUN",
+    "to_code": "KAVA",
+    "fare": 245000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC2",
+    "from_code": "ARUN",
+    "to_code": "CHET",
+    "fare": 306250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC2",
+    "from_code": "MEGH",
+    "to_code": "ANPN",
+    "fare": 61250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC2",
+    "from_code": "MEGH",
+    "to_code": "SURY",
+    "fare": 122500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC2",
+    "from_code": "MEGH",
+    "to_code": "KAVA",
+    "fare": 183750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC2",
+    "from_code": "MEGH",
+    "to_code": "CHET",
+    "fare": 245000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC2",
+    "from_code": "ANPN",
+    "to_code": "SURY",
+    "fare": 61250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC2",
+    "from_code": "ANPN",
+    "to_code": "KAVA",
+    "fare": 122500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC2",
+    "from_code": "ANPN",
+    "to_code": "CHET",
+    "fare": 183750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC2",
+    "from_code": "SURY",
+    "to_code": "KAVA",
+    "fare": 61250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC2",
+    "from_code": "SURY",
+    "to_code": "CHET",
+    "fare": 122500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC2",
+    "from_code": "KAVA",
+    "to_code": "CHET",
+    "fare": 61250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC3",
+    "from_code": "ARUN",
+    "to_code": "MEGH",
+    "fare": 46250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC3",
+    "from_code": "ARUN",
+    "to_code": "ANPN",
+    "fare": 92500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC3",
+    "from_code": "ARUN",
+    "to_code": "SURY",
+    "fare": 138750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC3",
+    "from_code": "ARUN",
+    "to_code": "KAVA",
+    "fare": 185000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC3",
+    "from_code": "ARUN",
+    "to_code": "CHET",
+    "fare": 231250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC3",
+    "from_code": "MEGH",
+    "to_code": "ANPN",
+    "fare": 46250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC3",
+    "from_code": "MEGH",
+    "to_code": "SURY",
+    "fare": 92500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC3",
+    "from_code": "MEGH",
+    "to_code": "KAVA",
+    "fare": 138750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC3",
+    "from_code": "MEGH",
+    "to_code": "CHET",
+    "fare": 185000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC3",
+    "from_code": "ANPN",
+    "to_code": "SURY",
+    "fare": 46250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC3",
+    "from_code": "ANPN",
+    "to_code": "KAVA",
+    "fare": 92500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC3",
+    "from_code": "ANPN",
+    "to_code": "CHET",
+    "fare": 138750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC3",
+    "from_code": "SURY",
+    "to_code": "KAVA",
+    "fare": 46250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC3",
+    "from_code": "SURY",
+    "to_code": "CHET",
+    "fare": 92500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "AC3",
+    "from_code": "KAVA",
+    "to_code": "CHET",
+    "fare": 46250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "SL",
+    "from_code": "ARUN",
+    "to_code": "MEGH",
+    "fare": 26250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "SL",
+    "from_code": "ARUN",
+    "to_code": "ANPN",
+    "fare": 52500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "SL",
+    "from_code": "ARUN",
+    "to_code": "SURY",
+    "fare": 78750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "SL",
+    "from_code": "ARUN",
+    "to_code": "KAVA",
+    "fare": 105000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "SL",
+    "from_code": "ARUN",
+    "to_code": "CHET",
+    "fare": 131250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "SL",
+    "from_code": "MEGH",
+    "to_code": "ANPN",
+    "fare": 26250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "SL",
+    "from_code": "MEGH",
+    "to_code": "SURY",
+    "fare": 52500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "SL",
+    "from_code": "MEGH",
+    "to_code": "KAVA",
+    "fare": 78750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "SL",
+    "from_code": "MEGH",
+    "to_code": "CHET",
+    "fare": 105000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "SL",
+    "from_code": "ANPN",
+    "to_code": "SURY",
+    "fare": 26250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "SL",
+    "from_code": "ANPN",
+    "to_code": "KAVA",
+    "fare": 52500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "SL",
+    "from_code": "ANPN",
+    "to_code": "CHET",
+    "fare": 78750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "SL",
+    "from_code": "SURY",
+    "to_code": "KAVA",
+    "fare": 26250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "SL",
+    "from_code": "SURY",
+    "to_code": "CHET",
+    "fare": 52500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "class": "SL",
+    "from_code": "KAVA",
+    "to_code": "CHET",
+    "fare": 26250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1007",
+    "class": "AC2",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 61500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1007",
+    "class": "AC2",
+    "from_code": "ANPR",
+    "to_code": "VIND",
+    "fare": 123000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1007",
+    "class": "AC2",
+    "from_code": "ANPR",
+    "to_code": "UDAY",
+    "fare": 184500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1007",
+    "class": "AC2",
+    "from_code": "SURY",
+    "to_code": "VIND",
+    "fare": 61500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1007",
+    "class": "AC2",
+    "from_code": "SURY",
+    "to_code": "UDAY",
+    "fare": 123000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1007",
+    "class": "AC2",
+    "from_code": "VIND",
+    "to_code": "UDAY",
+    "fare": 61500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1007",
+    "class": "AC3",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 46500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1007",
+    "class": "AC3",
+    "from_code": "ANPR",
+    "to_code": "VIND",
+    "fare": 93000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1007",
+    "class": "AC3",
+    "from_code": "ANPR",
+    "to_code": "UDAY",
+    "fare": 139500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1007",
+    "class": "AC3",
+    "from_code": "SURY",
+    "to_code": "VIND",
+    "fare": 46500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1007",
+    "class": "AC3",
+    "from_code": "SURY",
+    "to_code": "UDAY",
+    "fare": 93000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1007",
+    "class": "AC3",
+    "from_code": "VIND",
+    "to_code": "UDAY",
+    "fare": 46500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1007",
+    "class": "SL",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 26500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1007",
+    "class": "SL",
+    "from_code": "ANPR",
+    "to_code": "VIND",
+    "fare": 53000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1007",
+    "class": "SL",
+    "from_code": "ANPR",
+    "to_code": "UDAY",
+    "fare": 79500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1007",
+    "class": "SL",
+    "from_code": "SURY",
+    "to_code": "VIND",
+    "fare": 26500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1007",
+    "class": "SL",
+    "from_code": "SURY",
+    "to_code": "UDAY",
+    "fare": 53000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1007",
+    "class": "SL",
+    "from_code": "VIND",
+    "to_code": "UDAY",
+    "fare": 26500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "FP",
+    "from_code": "SURY",
+    "to_code": "CHET",
+    "fare": 86750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "FP",
+    "from_code": "SURY",
+    "to_code": "KOSA",
+    "fare": 173500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "FP",
+    "from_code": "SURY",
+    "to_code": "ARUN",
+    "fare": 260250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "FP",
+    "from_code": "SURY",
+    "to_code": "ANPN",
+    "fare": 347000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "FP",
+    "from_code": "CHET",
+    "to_code": "KOSA",
+    "fare": 86750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "FP",
+    "from_code": "CHET",
+    "to_code": "ARUN",
+    "fare": 173500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "FP",
+    "from_code": "CHET",
+    "to_code": "ANPN",
+    "fare": 260250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "FP",
+    "from_code": "KOSA",
+    "to_code": "ARUN",
+    "fare": 86750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "FP",
+    "from_code": "KOSA",
+    "to_code": "ANPN",
+    "fare": 173500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "FP",
+    "from_code": "ARUN",
+    "to_code": "ANPN",
+    "fare": 86750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "AC2",
+    "from_code": "SURY",
+    "to_code": "CHET",
+    "fare": 61750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "AC2",
+    "from_code": "SURY",
+    "to_code": "KOSA",
+    "fare": 123500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "AC2",
+    "from_code": "SURY",
+    "to_code": "ARUN",
+    "fare": 185250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "AC2",
+    "from_code": "SURY",
+    "to_code": "ANPN",
+    "fare": 247000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "AC2",
+    "from_code": "CHET",
+    "to_code": "KOSA",
+    "fare": 61750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "AC2",
+    "from_code": "CHET",
+    "to_code": "ARUN",
+    "fare": 123500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "AC2",
+    "from_code": "CHET",
+    "to_code": "ANPN",
+    "fare": 185250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "AC2",
+    "from_code": "KOSA",
+    "to_code": "ARUN",
+    "fare": 61750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "AC2",
+    "from_code": "KOSA",
+    "to_code": "ANPN",
+    "fare": 123500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "AC2",
+    "from_code": "ARUN",
+    "to_code": "ANPN",
+    "fare": 61750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "EC",
+    "from_code": "SURY",
+    "to_code": "CHET",
+    "fare": 51750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "EC",
+    "from_code": "SURY",
+    "to_code": "KOSA",
+    "fare": 103500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "EC",
+    "from_code": "SURY",
+    "to_code": "ARUN",
+    "fare": 155250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "EC",
+    "from_code": "SURY",
+    "to_code": "ANPN",
+    "fare": 207000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "EC",
+    "from_code": "CHET",
+    "to_code": "KOSA",
+    "fare": 51750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "EC",
+    "from_code": "CHET",
+    "to_code": "ARUN",
+    "fare": 103500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "EC",
+    "from_code": "CHET",
+    "to_code": "ANPN",
+    "fare": 155250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "EC",
+    "from_code": "KOSA",
+    "to_code": "ARUN",
+    "fare": 51750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "EC",
+    "from_code": "KOSA",
+    "to_code": "ANPN",
+    "fare": 103500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "EC",
+    "from_code": "ARUN",
+    "to_code": "ANPN",
+    "fare": 51750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "CC",
+    "from_code": "SURY",
+    "to_code": "CHET",
+    "fare": 31750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "CC",
+    "from_code": "SURY",
+    "to_code": "KOSA",
+    "fare": 63500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "CC",
+    "from_code": "SURY",
+    "to_code": "ARUN",
+    "fare": 95250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "CC",
+    "from_code": "SURY",
+    "to_code": "ANPN",
+    "fare": 127000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "CC",
+    "from_code": "CHET",
+    "to_code": "KOSA",
+    "fare": 31750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "CC",
+    "from_code": "CHET",
+    "to_code": "ARUN",
+    "fare": 63500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "CC",
+    "from_code": "CHET",
+    "to_code": "ANPN",
+    "fare": 95250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "CC",
+    "from_code": "KOSA",
+    "to_code": "ARUN",
+    "fare": 31750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "CC",
+    "from_code": "KOSA",
+    "to_code": "ANPN",
+    "fare": 63500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "class": "CC",
+    "from_code": "ARUN",
+    "to_code": "ANPN",
+    "fare": 31750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "AC3",
+    "from_code": "VIND",
+    "to_code": "CHET",
+    "fare": 47000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "AC3",
+    "from_code": "VIND",
+    "to_code": "NEEL",
+    "fare": 94000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "AC3",
+    "from_code": "VIND",
+    "to_code": "UDAY",
+    "fare": 141000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "AC3",
+    "from_code": "VIND",
+    "to_code": "SAHY",
+    "fare": 188000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "AC3",
+    "from_code": "VIND",
+    "to_code": "KOSA",
+    "fare": 235000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "AC3",
+    "from_code": "CHET",
+    "to_code": "NEEL",
+    "fare": 47000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "AC3",
+    "from_code": "CHET",
+    "to_code": "UDAY",
+    "fare": 94000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "AC3",
+    "from_code": "CHET",
+    "to_code": "SAHY",
+    "fare": 141000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "AC3",
+    "from_code": "CHET",
+    "to_code": "KOSA",
+    "fare": 188000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "AC3",
+    "from_code": "NEEL",
+    "to_code": "UDAY",
+    "fare": 47000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "AC3",
+    "from_code": "NEEL",
+    "to_code": "SAHY",
+    "fare": 94000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "AC3",
+    "from_code": "NEEL",
+    "to_code": "KOSA",
+    "fare": 141000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "AC3",
+    "from_code": "UDAY",
+    "to_code": "SAHY",
+    "fare": 47000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "AC3",
+    "from_code": "UDAY",
+    "to_code": "KOSA",
+    "fare": 94000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "AC3",
+    "from_code": "SAHY",
+    "to_code": "KOSA",
+    "fare": 47000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "SL",
+    "from_code": "VIND",
+    "to_code": "CHET",
+    "fare": 27000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "SL",
+    "from_code": "VIND",
+    "to_code": "NEEL",
+    "fare": 54000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "SL",
+    "from_code": "VIND",
+    "to_code": "UDAY",
+    "fare": 81000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "SL",
+    "from_code": "VIND",
+    "to_code": "SAHY",
+    "fare": 108000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "SL",
+    "from_code": "VIND",
+    "to_code": "KOSA",
+    "fare": 135000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "SL",
+    "from_code": "CHET",
+    "to_code": "NEEL",
+    "fare": 27000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "SL",
+    "from_code": "CHET",
+    "to_code": "UDAY",
+    "fare": 54000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "SL",
+    "from_code": "CHET",
+    "to_code": "SAHY",
+    "fare": 81000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "SL",
+    "from_code": "CHET",
+    "to_code": "KOSA",
+    "fare": 108000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "SL",
+    "from_code": "NEEL",
+    "to_code": "UDAY",
+    "fare": 27000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "SL",
+    "from_code": "NEEL",
+    "to_code": "SAHY",
+    "fare": 54000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "SL",
+    "from_code": "NEEL",
+    "to_code": "KOSA",
+    "fare": 81000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "SL",
+    "from_code": "UDAY",
+    "to_code": "SAHY",
+    "fare": 27000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "SL",
+    "from_code": "UDAY",
+    "to_code": "KOSA",
+    "fare": 54000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "SL",
+    "from_code": "SAHY",
+    "to_code": "KOSA",
+    "fare": 27000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "CC",
+    "from_code": "VIND",
+    "to_code": "CHET",
+    "fare": 32000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "CC",
+    "from_code": "VIND",
+    "to_code": "NEEL",
+    "fare": 64000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "CC",
+    "from_code": "VIND",
+    "to_code": "UDAY",
+    "fare": 96000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "CC",
+    "from_code": "VIND",
+    "to_code": "SAHY",
+    "fare": 128000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "CC",
+    "from_code": "VIND",
+    "to_code": "KOSA",
+    "fare": 160000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "CC",
+    "from_code": "CHET",
+    "to_code": "NEEL",
+    "fare": 32000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "CC",
+    "from_code": "CHET",
+    "to_code": "UDAY",
+    "fare": 64000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "CC",
+    "from_code": "CHET",
+    "to_code": "SAHY",
+    "fare": 96000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "CC",
+    "from_code": "CHET",
+    "to_code": "KOSA",
+    "fare": 128000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "CC",
+    "from_code": "NEEL",
+    "to_code": "UDAY",
+    "fare": 32000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "CC",
+    "from_code": "NEEL",
+    "to_code": "SAHY",
+    "fare": 64000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "CC",
+    "from_code": "NEEL",
+    "to_code": "KOSA",
+    "fare": 96000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "CC",
+    "from_code": "UDAY",
+    "to_code": "SAHY",
+    "fare": 32000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "CC",
+    "from_code": "UDAY",
+    "to_code": "KOSA",
+    "fare": 64000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "class": "CC",
+    "from_code": "SAHY",
+    "to_code": "KOSA",
+    "fare": 32000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1010",
+    "class": "AC2",
+    "from_code": "UDAY",
+    "to_code": "KOSA",
+    "fare": 62250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1010",
+    "class": "AC2",
+    "from_code": "UDAY",
+    "to_code": "MALV",
+    "fare": 124500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1010",
+    "class": "AC2",
+    "from_code": "UDAY",
+    "to_code": "ARUN",
+    "fare": 186750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1010",
+    "class": "AC2",
+    "from_code": "KOSA",
+    "to_code": "MALV",
+    "fare": 62250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1010",
+    "class": "AC2",
+    "from_code": "KOSA",
+    "to_code": "ARUN",
+    "fare": 124500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1010",
+    "class": "AC2",
+    "from_code": "MALV",
+    "to_code": "ARUN",
+    "fare": 62250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1010",
+    "class": "AC3",
+    "from_code": "UDAY",
+    "to_code": "KOSA",
+    "fare": 47250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1010",
+    "class": "AC3",
+    "from_code": "UDAY",
+    "to_code": "MALV",
+    "fare": 94500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1010",
+    "class": "AC3",
+    "from_code": "UDAY",
+    "to_code": "ARUN",
+    "fare": 141750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1010",
+    "class": "AC3",
+    "from_code": "KOSA",
+    "to_code": "MALV",
+    "fare": 47250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1010",
+    "class": "AC3",
+    "from_code": "KOSA",
+    "to_code": "ARUN",
+    "fare": 94500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1010",
+    "class": "AC3",
+    "from_code": "MALV",
+    "to_code": "ARUN",
+    "fare": 47250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1010",
+    "class": "EC",
+    "from_code": "UDAY",
+    "to_code": "KOSA",
+    "fare": 52250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1010",
+    "class": "EC",
+    "from_code": "UDAY",
+    "to_code": "MALV",
+    "fare": 104500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1010",
+    "class": "EC",
+    "from_code": "UDAY",
+    "to_code": "ARUN",
+    "fare": 156750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1010",
+    "class": "EC",
+    "from_code": "KOSA",
+    "to_code": "MALV",
+    "fare": 52250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1010",
+    "class": "EC",
+    "from_code": "KOSA",
+    "to_code": "ARUN",
+    "fare": 104500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1010",
+    "class": "EC",
+    "from_code": "MALV",
+    "to_code": "ARUN",
+    "fare": 52250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "FP",
+    "from_code": "RATN",
+    "to_code": "ARUN",
+    "fare": 87500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "FP",
+    "from_code": "RATN",
+    "to_code": "ANPR",
+    "fare": 175000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "FP",
+    "from_code": "RATN",
+    "to_code": "SURY",
+    "fare": 262500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "FP",
+    "from_code": "RATN",
+    "to_code": "VIND",
+    "fare": 350000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "FP",
+    "from_code": "ARUN",
+    "to_code": "ANPR",
+    "fare": 87500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "FP",
+    "from_code": "ARUN",
+    "to_code": "SURY",
+    "fare": 175000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "FP",
+    "from_code": "ARUN",
+    "to_code": "VIND",
+    "fare": 262500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "FP",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 87500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "FP",
+    "from_code": "ANPR",
+    "to_code": "VIND",
+    "fare": 175000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "FP",
+    "from_code": "SURY",
+    "to_code": "VIND",
+    "fare": 87500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "AC2",
+    "from_code": "RATN",
+    "to_code": "ARUN",
+    "fare": 62500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "AC2",
+    "from_code": "RATN",
+    "to_code": "ANPR",
+    "fare": 125000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "AC2",
+    "from_code": "RATN",
+    "to_code": "SURY",
+    "fare": 187500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "AC2",
+    "from_code": "RATN",
+    "to_code": "VIND",
+    "fare": 250000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "AC2",
+    "from_code": "ARUN",
+    "to_code": "ANPR",
+    "fare": 62500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "AC2",
+    "from_code": "ARUN",
+    "to_code": "SURY",
+    "fare": 125000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "AC2",
+    "from_code": "ARUN",
+    "to_code": "VIND",
+    "fare": 187500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "AC2",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 62500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "AC2",
+    "from_code": "ANPR",
+    "to_code": "VIND",
+    "fare": 125000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "AC2",
+    "from_code": "SURY",
+    "to_code": "VIND",
+    "fare": 62500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "AC3",
+    "from_code": "RATN",
+    "to_code": "ARUN",
+    "fare": 47500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "AC3",
+    "from_code": "RATN",
+    "to_code": "ANPR",
+    "fare": 95000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "AC3",
+    "from_code": "RATN",
+    "to_code": "SURY",
+    "fare": 142500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "AC3",
+    "from_code": "RATN",
+    "to_code": "VIND",
+    "fare": 190000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "AC3",
+    "from_code": "ARUN",
+    "to_code": "ANPR",
+    "fare": 47500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "AC3",
+    "from_code": "ARUN",
+    "to_code": "SURY",
+    "fare": 95000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "AC3",
+    "from_code": "ARUN",
+    "to_code": "VIND",
+    "fare": 142500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "AC3",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 47500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "AC3",
+    "from_code": "ANPR",
+    "to_code": "VIND",
+    "fare": 95000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "AC3",
+    "from_code": "SURY",
+    "to_code": "VIND",
+    "fare": 47500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "SL",
+    "from_code": "RATN",
+    "to_code": "ARUN",
+    "fare": 27500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "SL",
+    "from_code": "RATN",
+    "to_code": "ANPR",
+    "fare": 55000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "SL",
+    "from_code": "RATN",
+    "to_code": "SURY",
+    "fare": 82500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "SL",
+    "from_code": "RATN",
+    "to_code": "VIND",
+    "fare": 110000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "SL",
+    "from_code": "ARUN",
+    "to_code": "ANPR",
+    "fare": 27500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "SL",
+    "from_code": "ARUN",
+    "to_code": "SURY",
+    "fare": 55000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "SL",
+    "from_code": "ARUN",
+    "to_code": "VIND",
+    "fare": 82500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "SL",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 27500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "SL",
+    "from_code": "ANPR",
+    "to_code": "VIND",
+    "fare": 55000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "class": "SL",
+    "from_code": "SURY",
+    "to_code": "VIND",
+    "fare": 27500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC2",
+    "from_code": "ARUN",
+    "to_code": "ANPN",
+    "fare": 62750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC2",
+    "from_code": "ARUN",
+    "to_code": "KAVA",
+    "fare": 125500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC2",
+    "from_code": "ARUN",
+    "to_code": "UDAY",
+    "fare": 188250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC2",
+    "from_code": "ARUN",
+    "to_code": "MALV",
+    "fare": 251000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC2",
+    "from_code": "ARUN",
+    "to_code": "MEGH",
+    "fare": 313750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC2",
+    "from_code": "ANPN",
+    "to_code": "KAVA",
+    "fare": 62750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC2",
+    "from_code": "ANPN",
+    "to_code": "UDAY",
+    "fare": 125500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC2",
+    "from_code": "ANPN",
+    "to_code": "MALV",
+    "fare": 188250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC2",
+    "from_code": "ANPN",
+    "to_code": "MEGH",
+    "fare": 251000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC2",
+    "from_code": "KAVA",
+    "to_code": "UDAY",
+    "fare": 62750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC2",
+    "from_code": "KAVA",
+    "to_code": "MALV",
+    "fare": 125500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC2",
+    "from_code": "KAVA",
+    "to_code": "MEGH",
+    "fare": 188250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC2",
+    "from_code": "UDAY",
+    "to_code": "MALV",
+    "fare": 62750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC2",
+    "from_code": "UDAY",
+    "to_code": "MEGH",
+    "fare": 125500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC2",
+    "from_code": "MALV",
+    "to_code": "MEGH",
+    "fare": 62750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC3",
+    "from_code": "ARUN",
+    "to_code": "ANPN",
+    "fare": 47750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC3",
+    "from_code": "ARUN",
+    "to_code": "KAVA",
+    "fare": 95500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC3",
+    "from_code": "ARUN",
+    "to_code": "UDAY",
+    "fare": 143250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC3",
+    "from_code": "ARUN",
+    "to_code": "MALV",
+    "fare": 191000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC3",
+    "from_code": "ARUN",
+    "to_code": "MEGH",
+    "fare": 238750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC3",
+    "from_code": "ANPN",
+    "to_code": "KAVA",
+    "fare": 47750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC3",
+    "from_code": "ANPN",
+    "to_code": "UDAY",
+    "fare": 95500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC3",
+    "from_code": "ANPN",
+    "to_code": "MALV",
+    "fare": 143250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC3",
+    "from_code": "ANPN",
+    "to_code": "MEGH",
+    "fare": 191000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC3",
+    "from_code": "KAVA",
+    "to_code": "UDAY",
+    "fare": 47750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC3",
+    "from_code": "KAVA",
+    "to_code": "MALV",
+    "fare": 95500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC3",
+    "from_code": "KAVA",
+    "to_code": "MEGH",
+    "fare": 143250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC3",
+    "from_code": "UDAY",
+    "to_code": "MALV",
+    "fare": 47750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC3",
+    "from_code": "UDAY",
+    "to_code": "MEGH",
+    "fare": 95500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "AC3",
+    "from_code": "MALV",
+    "to_code": "MEGH",
+    "fare": 47750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "SL",
+    "from_code": "ARUN",
+    "to_code": "ANPN",
+    "fare": 27750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "SL",
+    "from_code": "ARUN",
+    "to_code": "KAVA",
+    "fare": 55500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "SL",
+    "from_code": "ARUN",
+    "to_code": "UDAY",
+    "fare": 83250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "SL",
+    "from_code": "ARUN",
+    "to_code": "MALV",
+    "fare": 111000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "SL",
+    "from_code": "ARUN",
+    "to_code": "MEGH",
+    "fare": 138750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "SL",
+    "from_code": "ANPN",
+    "to_code": "KAVA",
+    "fare": 27750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "SL",
+    "from_code": "ANPN",
+    "to_code": "UDAY",
+    "fare": 55500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "SL",
+    "from_code": "ANPN",
+    "to_code": "MALV",
+    "fare": 83250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "SL",
+    "from_code": "ANPN",
+    "to_code": "MEGH",
+    "fare": 111000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "SL",
+    "from_code": "KAVA",
+    "to_code": "UDAY",
+    "fare": 27750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "SL",
+    "from_code": "KAVA",
+    "to_code": "MALV",
+    "fare": 55500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "SL",
+    "from_code": "KAVA",
+    "to_code": "MEGH",
+    "fare": 83250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "SL",
+    "from_code": "UDAY",
+    "to_code": "MALV",
+    "fare": 27750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "SL",
+    "from_code": "UDAY",
+    "to_code": "MEGH",
+    "fare": 55500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "class": "SL",
+    "from_code": "MALV",
+    "to_code": "MEGH",
+    "fare": 27750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "class": "FP",
+    "from_code": "ANPR",
+    "to_code": "ANPN",
+    "fare": 88000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "class": "FP",
+    "from_code": "ANPR",
+    "to_code": "MTRP",
+    "fare": 176000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "class": "FP",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 264000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "class": "FP",
+    "from_code": "ANPN",
+    "to_code": "MTRP",
+    "fare": 88000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "class": "FP",
+    "from_code": "ANPN",
+    "to_code": "SURY",
+    "fare": 176000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "class": "FP",
+    "from_code": "MTRP",
+    "to_code": "SURY",
+    "fare": 88000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "class": "AC2",
+    "from_code": "ANPR",
+    "to_code": "ANPN",
+    "fare": 63000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "class": "AC2",
+    "from_code": "ANPR",
+    "to_code": "MTRP",
+    "fare": 126000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "class": "AC2",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 189000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "class": "AC2",
+    "from_code": "ANPN",
+    "to_code": "MTRP",
+    "fare": 63000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "class": "AC2",
+    "from_code": "ANPN",
+    "to_code": "SURY",
+    "fare": 126000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "class": "AC2",
+    "from_code": "MTRP",
+    "to_code": "SURY",
+    "fare": 63000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "class": "EC",
+    "from_code": "ANPR",
+    "to_code": "ANPN",
+    "fare": 53000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "class": "EC",
+    "from_code": "ANPR",
+    "to_code": "MTRP",
+    "fare": 106000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "class": "EC",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 159000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "class": "EC",
+    "from_code": "ANPN",
+    "to_code": "MTRP",
+    "fare": 53000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "class": "EC",
+    "from_code": "ANPN",
+    "to_code": "SURY",
+    "fare": 106000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "class": "EC",
+    "from_code": "MTRP",
+    "to_code": "SURY",
+    "fare": 53000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "class": "CC",
+    "from_code": "ANPR",
+    "to_code": "ANPN",
+    "fare": 33000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "class": "CC",
+    "from_code": "ANPR",
+    "to_code": "MTRP",
+    "fare": 66000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "class": "CC",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 99000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "class": "CC",
+    "from_code": "ANPN",
+    "to_code": "MTRP",
+    "fare": 33000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "class": "CC",
+    "from_code": "ANPN",
+    "to_code": "SURY",
+    "fare": 66000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "class": "CC",
+    "from_code": "MTRP",
+    "to_code": "SURY",
+    "fare": 33000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "AC3",
+    "from_code": "SURY",
+    "to_code": "KAVA",
+    "fare": 48250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "AC3",
+    "from_code": "SURY",
+    "to_code": "CHET",
+    "fare": 96500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "AC3",
+    "from_code": "SURY",
+    "to_code": "UDAY",
+    "fare": 144750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "AC3",
+    "from_code": "SURY",
+    "to_code": "KOSA",
+    "fare": 193000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "AC3",
+    "from_code": "KAVA",
+    "to_code": "CHET",
+    "fare": 48250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "AC3",
+    "from_code": "KAVA",
+    "to_code": "UDAY",
+    "fare": 96500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "AC3",
+    "from_code": "KAVA",
+    "to_code": "KOSA",
+    "fare": 144750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "AC3",
+    "from_code": "CHET",
+    "to_code": "UDAY",
+    "fare": 48250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "AC3",
+    "from_code": "CHET",
+    "to_code": "KOSA",
+    "fare": 96500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "AC3",
+    "from_code": "UDAY",
+    "to_code": "KOSA",
+    "fare": 48250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "SL",
+    "from_code": "SURY",
+    "to_code": "KAVA",
+    "fare": 28250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "SL",
+    "from_code": "SURY",
+    "to_code": "CHET",
+    "fare": 56500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "SL",
+    "from_code": "SURY",
+    "to_code": "UDAY",
+    "fare": 84750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "SL",
+    "from_code": "SURY",
+    "to_code": "KOSA",
+    "fare": 113000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "SL",
+    "from_code": "KAVA",
+    "to_code": "CHET",
+    "fare": 28250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "SL",
+    "from_code": "KAVA",
+    "to_code": "UDAY",
+    "fare": 56500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "SL",
+    "from_code": "KAVA",
+    "to_code": "KOSA",
+    "fare": 84750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "SL",
+    "from_code": "CHET",
+    "to_code": "UDAY",
+    "fare": 28250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "SL",
+    "from_code": "CHET",
+    "to_code": "KOSA",
+    "fare": 56500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "SL",
+    "from_code": "UDAY",
+    "to_code": "KOSA",
+    "fare": 28250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "CC",
+    "from_code": "SURY",
+    "to_code": "KAVA",
+    "fare": 33250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "CC",
+    "from_code": "SURY",
+    "to_code": "CHET",
+    "fare": 66500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "CC",
+    "from_code": "SURY",
+    "to_code": "UDAY",
+    "fare": 99750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "CC",
+    "from_code": "SURY",
+    "to_code": "KOSA",
+    "fare": 133000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "CC",
+    "from_code": "KAVA",
+    "to_code": "CHET",
+    "fare": 33250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "CC",
+    "from_code": "KAVA",
+    "to_code": "UDAY",
+    "fare": 66500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "CC",
+    "from_code": "KAVA",
+    "to_code": "KOSA",
+    "fare": 99750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "CC",
+    "from_code": "CHET",
+    "to_code": "UDAY",
+    "fare": 33250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "CC",
+    "from_code": "CHET",
+    "to_code": "KOSA",
+    "fare": 66500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "class": "CC",
+    "from_code": "UDAY",
+    "to_code": "KOSA",
+    "fare": 33250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC2",
+    "from_code": "VIND",
+    "to_code": "UDAY",
+    "fare": 63500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC2",
+    "from_code": "VIND",
+    "to_code": "RATN",
+    "fare": 127000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC2",
+    "from_code": "VIND",
+    "to_code": "ARUN",
+    "fare": 190500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC2",
+    "from_code": "VIND",
+    "to_code": "ANPR",
+    "fare": 254000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC2",
+    "from_code": "VIND",
+    "to_code": "SURY",
+    "fare": 317500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC2",
+    "from_code": "UDAY",
+    "to_code": "RATN",
+    "fare": 63500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC2",
+    "from_code": "UDAY",
+    "to_code": "ARUN",
+    "fare": 127000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC2",
+    "from_code": "UDAY",
+    "to_code": "ANPR",
+    "fare": 190500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC2",
+    "from_code": "UDAY",
+    "to_code": "SURY",
+    "fare": 254000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC2",
+    "from_code": "RATN",
+    "to_code": "ARUN",
+    "fare": 63500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC2",
+    "from_code": "RATN",
+    "to_code": "ANPR",
+    "fare": 127000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC2",
+    "from_code": "RATN",
+    "to_code": "SURY",
+    "fare": 190500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC2",
+    "from_code": "ARUN",
+    "to_code": "ANPR",
+    "fare": 63500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC2",
+    "from_code": "ARUN",
+    "to_code": "SURY",
+    "fare": 127000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC2",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 63500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC3",
+    "from_code": "VIND",
+    "to_code": "UDAY",
+    "fare": 48500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC3",
+    "from_code": "VIND",
+    "to_code": "RATN",
+    "fare": 97000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC3",
+    "from_code": "VIND",
+    "to_code": "ARUN",
+    "fare": 145500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC3",
+    "from_code": "VIND",
+    "to_code": "ANPR",
+    "fare": 194000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC3",
+    "from_code": "VIND",
+    "to_code": "SURY",
+    "fare": 242500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC3",
+    "from_code": "UDAY",
+    "to_code": "RATN",
+    "fare": 48500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC3",
+    "from_code": "UDAY",
+    "to_code": "ARUN",
+    "fare": 97000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC3",
+    "from_code": "UDAY",
+    "to_code": "ANPR",
+    "fare": 145500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC3",
+    "from_code": "UDAY",
+    "to_code": "SURY",
+    "fare": 194000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC3",
+    "from_code": "RATN",
+    "to_code": "ARUN",
+    "fare": 48500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC3",
+    "from_code": "RATN",
+    "to_code": "ANPR",
+    "fare": 97000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC3",
+    "from_code": "RATN",
+    "to_code": "SURY",
+    "fare": 145500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC3",
+    "from_code": "ARUN",
+    "to_code": "ANPR",
+    "fare": 48500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC3",
+    "from_code": "ARUN",
+    "to_code": "SURY",
+    "fare": 97000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "AC3",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 48500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "EC",
+    "from_code": "VIND",
+    "to_code": "UDAY",
+    "fare": 53500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "EC",
+    "from_code": "VIND",
+    "to_code": "RATN",
+    "fare": 107000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "EC",
+    "from_code": "VIND",
+    "to_code": "ARUN",
+    "fare": 160500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "EC",
+    "from_code": "VIND",
+    "to_code": "ANPR",
+    "fare": 214000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "EC",
+    "from_code": "VIND",
+    "to_code": "SURY",
+    "fare": 267500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "EC",
+    "from_code": "UDAY",
+    "to_code": "RATN",
+    "fare": 53500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "EC",
+    "from_code": "UDAY",
+    "to_code": "ARUN",
+    "fare": 107000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "EC",
+    "from_code": "UDAY",
+    "to_code": "ANPR",
+    "fare": 160500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "EC",
+    "from_code": "UDAY",
+    "to_code": "SURY",
+    "fare": 214000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "EC",
+    "from_code": "RATN",
+    "to_code": "ARUN",
+    "fare": 53500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "EC",
+    "from_code": "RATN",
+    "to_code": "ANPR",
+    "fare": 107000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "EC",
+    "from_code": "RATN",
+    "to_code": "SURY",
+    "fare": 160500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "EC",
+    "from_code": "ARUN",
+    "to_code": "ANPR",
+    "fare": 53500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "EC",
+    "from_code": "ARUN",
+    "to_code": "SURY",
+    "fare": 107000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "class": "EC",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 53500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "class": "FP",
+    "from_code": "UDAY",
+    "to_code": "MALV",
+    "fare": 88750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "class": "FP",
+    "from_code": "UDAY",
+    "to_code": "MEGH",
+    "fare": 177500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "class": "FP",
+    "from_code": "UDAY",
+    "to_code": "SURY",
+    "fare": 266250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "class": "FP",
+    "from_code": "MALV",
+    "to_code": "MEGH",
+    "fare": 88750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "class": "FP",
+    "from_code": "MALV",
+    "to_code": "SURY",
+    "fare": 177500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "class": "FP",
+    "from_code": "MEGH",
+    "to_code": "SURY",
+    "fare": 88750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "class": "AC2",
+    "from_code": "UDAY",
+    "to_code": "MALV",
+    "fare": 63750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "class": "AC2",
+    "from_code": "UDAY",
+    "to_code": "MEGH",
+    "fare": 127500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "class": "AC2",
+    "from_code": "UDAY",
+    "to_code": "SURY",
+    "fare": 191250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "class": "AC2",
+    "from_code": "MALV",
+    "to_code": "MEGH",
+    "fare": 63750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "class": "AC2",
+    "from_code": "MALV",
+    "to_code": "SURY",
+    "fare": 127500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "class": "AC2",
+    "from_code": "MEGH",
+    "to_code": "SURY",
+    "fare": 63750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "class": "AC3",
+    "from_code": "UDAY",
+    "to_code": "MALV",
+    "fare": 48750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "class": "AC3",
+    "from_code": "UDAY",
+    "to_code": "MEGH",
+    "fare": 97500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "class": "AC3",
+    "from_code": "UDAY",
+    "to_code": "SURY",
+    "fare": 146250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "class": "AC3",
+    "from_code": "MALV",
+    "to_code": "MEGH",
+    "fare": 48750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "class": "AC3",
+    "from_code": "MALV",
+    "to_code": "SURY",
+    "fare": 97500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "class": "AC3",
+    "from_code": "MEGH",
+    "to_code": "SURY",
+    "fare": 48750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "class": "SL",
+    "from_code": "UDAY",
+    "to_code": "MALV",
+    "fare": 28750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "class": "SL",
+    "from_code": "UDAY",
+    "to_code": "MEGH",
+    "fare": 57500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "class": "SL",
+    "from_code": "UDAY",
+    "to_code": "SURY",
+    "fare": 86250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "class": "SL",
+    "from_code": "MALV",
+    "to_code": "MEGH",
+    "fare": 28750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "class": "SL",
+    "from_code": "MALV",
+    "to_code": "SURY",
+    "fare": 57500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "class": "SL",
+    "from_code": "MEGH",
+    "to_code": "SURY",
+    "fare": 28750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "AC2",
+    "from_code": "RATN",
+    "to_code": "MALV",
+    "fare": 64000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "AC2",
+    "from_code": "RATN",
+    "to_code": "TUNG",
+    "fare": 128000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "AC2",
+    "from_code": "RATN",
+    "to_code": "ARUN",
+    "fare": 192000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "AC2",
+    "from_code": "RATN",
+    "to_code": "PAVA",
+    "fare": 256000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "AC2",
+    "from_code": "MALV",
+    "to_code": "TUNG",
+    "fare": 64000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "AC2",
+    "from_code": "MALV",
+    "to_code": "ARUN",
+    "fare": 128000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "AC2",
+    "from_code": "MALV",
+    "to_code": "PAVA",
+    "fare": 192000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "AC2",
+    "from_code": "TUNG",
+    "to_code": "ARUN",
+    "fare": 64000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "AC2",
+    "from_code": "TUNG",
+    "to_code": "PAVA",
+    "fare": 128000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "AC2",
+    "from_code": "ARUN",
+    "to_code": "PAVA",
+    "fare": 64000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "AC3",
+    "from_code": "RATN",
+    "to_code": "MALV",
+    "fare": 49000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "AC3",
+    "from_code": "RATN",
+    "to_code": "TUNG",
+    "fare": 98000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "AC3",
+    "from_code": "RATN",
+    "to_code": "ARUN",
+    "fare": 147000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "AC3",
+    "from_code": "RATN",
+    "to_code": "PAVA",
+    "fare": 196000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "AC3",
+    "from_code": "MALV",
+    "to_code": "TUNG",
+    "fare": 49000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "AC3",
+    "from_code": "MALV",
+    "to_code": "ARUN",
+    "fare": 98000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "AC3",
+    "from_code": "MALV",
+    "to_code": "PAVA",
+    "fare": 147000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "AC3",
+    "from_code": "TUNG",
+    "to_code": "ARUN",
+    "fare": 49000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "AC3",
+    "from_code": "TUNG",
+    "to_code": "PAVA",
+    "fare": 98000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "AC3",
+    "from_code": "ARUN",
+    "to_code": "PAVA",
+    "fare": 49000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "SL",
+    "from_code": "RATN",
+    "to_code": "MALV",
+    "fare": 29000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "SL",
+    "from_code": "RATN",
+    "to_code": "TUNG",
+    "fare": 58000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "SL",
+    "from_code": "RATN",
+    "to_code": "ARUN",
+    "fare": 87000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "SL",
+    "from_code": "RATN",
+    "to_code": "PAVA",
+    "fare": 116000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "SL",
+    "from_code": "MALV",
+    "to_code": "TUNG",
+    "fare": 29000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "SL",
+    "from_code": "MALV",
+    "to_code": "ARUN",
+    "fare": 58000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "SL",
+    "from_code": "MALV",
+    "to_code": "PAVA",
+    "fare": 87000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "SL",
+    "from_code": "TUNG",
+    "to_code": "ARUN",
+    "fare": 29000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "SL",
+    "from_code": "TUNG",
+    "to_code": "PAVA",
+    "fare": 58000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "class": "SL",
+    "from_code": "ARUN",
+    "to_code": "PAVA",
+    "fare": 29000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "FP",
+    "from_code": "ARUN",
+    "to_code": "MEGH",
+    "fare": 89250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "FP",
+    "from_code": "ARUN",
+    "to_code": "ANPN",
+    "fare": 178500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "FP",
+    "from_code": "ARUN",
+    "to_code": "SURY",
+    "fare": 267750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "FP",
+    "from_code": "ARUN",
+    "to_code": "KAVA",
+    "fare": 357000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "FP",
+    "from_code": "ARUN",
+    "to_code": "CHET",
+    "fare": 446250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "FP",
+    "from_code": "MEGH",
+    "to_code": "ANPN",
+    "fare": 89250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "FP",
+    "from_code": "MEGH",
+    "to_code": "SURY",
+    "fare": 178500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "FP",
+    "from_code": "MEGH",
+    "to_code": "KAVA",
+    "fare": 267750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "FP",
+    "from_code": "MEGH",
+    "to_code": "CHET",
+    "fare": 357000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "FP",
+    "from_code": "ANPN",
+    "to_code": "SURY",
+    "fare": 89250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "FP",
+    "from_code": "ANPN",
+    "to_code": "KAVA",
+    "fare": 178500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "FP",
+    "from_code": "ANPN",
+    "to_code": "CHET",
+    "fare": 267750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "FP",
+    "from_code": "SURY",
+    "to_code": "KAVA",
+    "fare": 89250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "FP",
+    "from_code": "SURY",
+    "to_code": "CHET",
+    "fare": 178500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "FP",
+    "from_code": "KAVA",
+    "to_code": "CHET",
+    "fare": 89250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "AC2",
+    "from_code": "ARUN",
+    "to_code": "MEGH",
+    "fare": 64250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "AC2",
+    "from_code": "ARUN",
+    "to_code": "ANPN",
+    "fare": 128500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "AC2",
+    "from_code": "ARUN",
+    "to_code": "SURY",
+    "fare": 192750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "AC2",
+    "from_code": "ARUN",
+    "to_code": "KAVA",
+    "fare": 257000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "AC2",
+    "from_code": "ARUN",
+    "to_code": "CHET",
+    "fare": 321250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "AC2",
+    "from_code": "MEGH",
+    "to_code": "ANPN",
+    "fare": 64250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "AC2",
+    "from_code": "MEGH",
+    "to_code": "SURY",
+    "fare": 128500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "AC2",
+    "from_code": "MEGH",
+    "to_code": "KAVA",
+    "fare": 192750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "AC2",
+    "from_code": "MEGH",
+    "to_code": "CHET",
+    "fare": 257000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "AC2",
+    "from_code": "ANPN",
+    "to_code": "SURY",
+    "fare": 64250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "AC2",
+    "from_code": "ANPN",
+    "to_code": "KAVA",
+    "fare": 128500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "AC2",
+    "from_code": "ANPN",
+    "to_code": "CHET",
+    "fare": 192750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "AC2",
+    "from_code": "SURY",
+    "to_code": "KAVA",
+    "fare": 64250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "AC2",
+    "from_code": "SURY",
+    "to_code": "CHET",
+    "fare": 128500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "AC2",
+    "from_code": "KAVA",
+    "to_code": "CHET",
+    "fare": 64250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "EC",
+    "from_code": "ARUN",
+    "to_code": "MEGH",
+    "fare": 54250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "EC",
+    "from_code": "ARUN",
+    "to_code": "ANPN",
+    "fare": 108500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "EC",
+    "from_code": "ARUN",
+    "to_code": "SURY",
+    "fare": 162750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "EC",
+    "from_code": "ARUN",
+    "to_code": "KAVA",
+    "fare": 217000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "EC",
+    "from_code": "ARUN",
+    "to_code": "CHET",
+    "fare": 271250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "EC",
+    "from_code": "MEGH",
+    "to_code": "ANPN",
+    "fare": 54250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "EC",
+    "from_code": "MEGH",
+    "to_code": "SURY",
+    "fare": 108500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "EC",
+    "from_code": "MEGH",
+    "to_code": "KAVA",
+    "fare": 162750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "EC",
+    "from_code": "MEGH",
+    "to_code": "CHET",
+    "fare": 217000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "EC",
+    "from_code": "ANPN",
+    "to_code": "SURY",
+    "fare": 54250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "EC",
+    "from_code": "ANPN",
+    "to_code": "KAVA",
+    "fare": 108500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "EC",
+    "from_code": "ANPN",
+    "to_code": "CHET",
+    "fare": 162750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "EC",
+    "from_code": "SURY",
+    "to_code": "KAVA",
+    "fare": 54250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "EC",
+    "from_code": "SURY",
+    "to_code": "CHET",
+    "fare": 108500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "EC",
+    "from_code": "KAVA",
+    "to_code": "CHET",
+    "fare": 54250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "CC",
+    "from_code": "ARUN",
+    "to_code": "MEGH",
+    "fare": 34250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "CC",
+    "from_code": "ARUN",
+    "to_code": "ANPN",
+    "fare": 68500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "CC",
+    "from_code": "ARUN",
+    "to_code": "SURY",
+    "fare": 102750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "CC",
+    "from_code": "ARUN",
+    "to_code": "KAVA",
+    "fare": 137000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "CC",
+    "from_code": "ARUN",
+    "to_code": "CHET",
+    "fare": 171250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "CC",
+    "from_code": "MEGH",
+    "to_code": "ANPN",
+    "fare": 34250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "CC",
+    "from_code": "MEGH",
+    "to_code": "SURY",
+    "fare": 68500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "CC",
+    "from_code": "MEGH",
+    "to_code": "KAVA",
+    "fare": 102750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "CC",
+    "from_code": "MEGH",
+    "to_code": "CHET",
+    "fare": 137000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "CC",
+    "from_code": "ANPN",
+    "to_code": "SURY",
+    "fare": 34250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "CC",
+    "from_code": "ANPN",
+    "to_code": "KAVA",
+    "fare": 68500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "CC",
+    "from_code": "ANPN",
+    "to_code": "CHET",
+    "fare": 102750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "CC",
+    "from_code": "SURY",
+    "to_code": "KAVA",
+    "fare": 34250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "CC",
+    "from_code": "SURY",
+    "to_code": "CHET",
+    "fare": 68500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "class": "CC",
+    "from_code": "KAVA",
+    "to_code": "CHET",
+    "fare": 34250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1019",
+    "class": "AC3",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 49500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1019",
+    "class": "AC3",
+    "from_code": "ANPR",
+    "to_code": "VIND",
+    "fare": 99000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1019",
+    "class": "AC3",
+    "from_code": "ANPR",
+    "to_code": "UDAY",
+    "fare": 148500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1019",
+    "class": "AC3",
+    "from_code": "SURY",
+    "to_code": "VIND",
+    "fare": 49500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1019",
+    "class": "AC3",
+    "from_code": "SURY",
+    "to_code": "UDAY",
+    "fare": 99000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1019",
+    "class": "AC3",
+    "from_code": "VIND",
+    "to_code": "UDAY",
+    "fare": 49500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1019",
+    "class": "SL",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 29500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1019",
+    "class": "SL",
+    "from_code": "ANPR",
+    "to_code": "VIND",
+    "fare": 59000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1019",
+    "class": "SL",
+    "from_code": "ANPR",
+    "to_code": "UDAY",
+    "fare": 88500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1019",
+    "class": "SL",
+    "from_code": "SURY",
+    "to_code": "VIND",
+    "fare": 29500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1019",
+    "class": "SL",
+    "from_code": "SURY",
+    "to_code": "UDAY",
+    "fare": 59000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1019",
+    "class": "SL",
+    "from_code": "VIND",
+    "to_code": "UDAY",
+    "fare": 29500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1019",
+    "class": "CC",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 34500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1019",
+    "class": "CC",
+    "from_code": "ANPR",
+    "to_code": "VIND",
+    "fare": 69000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1019",
+    "class": "CC",
+    "from_code": "ANPR",
+    "to_code": "UDAY",
+    "fare": 103500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1019",
+    "class": "CC",
+    "from_code": "SURY",
+    "to_code": "VIND",
+    "fare": 34500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1019",
+    "class": "CC",
+    "from_code": "SURY",
+    "to_code": "UDAY",
+    "fare": 69000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1019",
+    "class": "CC",
+    "from_code": "VIND",
+    "to_code": "UDAY",
+    "fare": 34500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "AC2",
+    "from_code": "SURY",
+    "to_code": "CHET",
+    "fare": 64750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "AC2",
+    "from_code": "SURY",
+    "to_code": "KOSA",
+    "fare": 129500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "AC2",
+    "from_code": "SURY",
+    "to_code": "ARUN",
+    "fare": 194250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "AC2",
+    "from_code": "SURY",
+    "to_code": "ANPN",
+    "fare": 259000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "AC2",
+    "from_code": "CHET",
+    "to_code": "KOSA",
+    "fare": 64750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "AC2",
+    "from_code": "CHET",
+    "to_code": "ARUN",
+    "fare": 129500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "AC2",
+    "from_code": "CHET",
+    "to_code": "ANPN",
+    "fare": 194250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "AC2",
+    "from_code": "KOSA",
+    "to_code": "ARUN",
+    "fare": 64750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "AC2",
+    "from_code": "KOSA",
+    "to_code": "ANPN",
+    "fare": 129500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "AC2",
+    "from_code": "ARUN",
+    "to_code": "ANPN",
+    "fare": 64750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "AC3",
+    "from_code": "SURY",
+    "to_code": "CHET",
+    "fare": 49750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "AC3",
+    "from_code": "SURY",
+    "to_code": "KOSA",
+    "fare": 99500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "AC3",
+    "from_code": "SURY",
+    "to_code": "ARUN",
+    "fare": 149250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "AC3",
+    "from_code": "SURY",
+    "to_code": "ANPN",
+    "fare": 199000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "AC3",
+    "from_code": "CHET",
+    "to_code": "KOSA",
+    "fare": 49750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "AC3",
+    "from_code": "CHET",
+    "to_code": "ARUN",
+    "fare": 99500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "AC3",
+    "from_code": "CHET",
+    "to_code": "ANPN",
+    "fare": 149250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "AC3",
+    "from_code": "KOSA",
+    "to_code": "ARUN",
+    "fare": 49750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "AC3",
+    "from_code": "KOSA",
+    "to_code": "ANPN",
+    "fare": 99500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "AC3",
+    "from_code": "ARUN",
+    "to_code": "ANPN",
+    "fare": 49750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "EC",
+    "from_code": "SURY",
+    "to_code": "CHET",
+    "fare": 54750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "EC",
+    "from_code": "SURY",
+    "to_code": "KOSA",
+    "fare": 109500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "EC",
+    "from_code": "SURY",
+    "to_code": "ARUN",
+    "fare": 164250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "EC",
+    "from_code": "SURY",
+    "to_code": "ANPN",
+    "fare": 219000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "EC",
+    "from_code": "CHET",
+    "to_code": "KOSA",
+    "fare": 54750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "EC",
+    "from_code": "CHET",
+    "to_code": "ARUN",
+    "fare": 109500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "EC",
+    "from_code": "CHET",
+    "to_code": "ANPN",
+    "fare": 164250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "EC",
+    "from_code": "KOSA",
+    "to_code": "ARUN",
+    "fare": 54750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "EC",
+    "from_code": "KOSA",
+    "to_code": "ANPN",
+    "fare": 109500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "class": "EC",
+    "from_code": "ARUN",
+    "to_code": "ANPN",
+    "fare": 54750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "FP",
+    "from_code": "VIND",
+    "to_code": "CHET",
+    "fare": 90000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "FP",
+    "from_code": "VIND",
+    "to_code": "NEEL",
+    "fare": 180000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "FP",
+    "from_code": "VIND",
+    "to_code": "UDAY",
+    "fare": 270000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "FP",
+    "from_code": "VIND",
+    "to_code": "SAHY",
+    "fare": 360000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "FP",
+    "from_code": "VIND",
+    "to_code": "KOSA",
+    "fare": 450000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "FP",
+    "from_code": "CHET",
+    "to_code": "NEEL",
+    "fare": 90000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "FP",
+    "from_code": "CHET",
+    "to_code": "UDAY",
+    "fare": 180000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "FP",
+    "from_code": "CHET",
+    "to_code": "SAHY",
+    "fare": 270000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "FP",
+    "from_code": "CHET",
+    "to_code": "KOSA",
+    "fare": 360000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "FP",
+    "from_code": "NEEL",
+    "to_code": "UDAY",
+    "fare": 90000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "FP",
+    "from_code": "NEEL",
+    "to_code": "SAHY",
+    "fare": 180000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "FP",
+    "from_code": "NEEL",
+    "to_code": "KOSA",
+    "fare": 270000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "FP",
+    "from_code": "UDAY",
+    "to_code": "SAHY",
+    "fare": 90000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "FP",
+    "from_code": "UDAY",
+    "to_code": "KOSA",
+    "fare": 180000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "FP",
+    "from_code": "SAHY",
+    "to_code": "KOSA",
+    "fare": 90000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC2",
+    "from_code": "VIND",
+    "to_code": "CHET",
+    "fare": 65000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC2",
+    "from_code": "VIND",
+    "to_code": "NEEL",
+    "fare": 130000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC2",
+    "from_code": "VIND",
+    "to_code": "UDAY",
+    "fare": 195000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC2",
+    "from_code": "VIND",
+    "to_code": "SAHY",
+    "fare": 260000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC2",
+    "from_code": "VIND",
+    "to_code": "KOSA",
+    "fare": 325000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC2",
+    "from_code": "CHET",
+    "to_code": "NEEL",
+    "fare": 65000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC2",
+    "from_code": "CHET",
+    "to_code": "UDAY",
+    "fare": 130000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC2",
+    "from_code": "CHET",
+    "to_code": "SAHY",
+    "fare": 195000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC2",
+    "from_code": "CHET",
+    "to_code": "KOSA",
+    "fare": 260000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC2",
+    "from_code": "NEEL",
+    "to_code": "UDAY",
+    "fare": 65000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC2",
+    "from_code": "NEEL",
+    "to_code": "SAHY",
+    "fare": 130000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC2",
+    "from_code": "NEEL",
+    "to_code": "KOSA",
+    "fare": 195000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC2",
+    "from_code": "UDAY",
+    "to_code": "SAHY",
+    "fare": 65000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC2",
+    "from_code": "UDAY",
+    "to_code": "KOSA",
+    "fare": 130000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC2",
+    "from_code": "SAHY",
+    "to_code": "KOSA",
+    "fare": 65000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC3",
+    "from_code": "VIND",
+    "to_code": "CHET",
+    "fare": 50000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC3",
+    "from_code": "VIND",
+    "to_code": "NEEL",
+    "fare": 100000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC3",
+    "from_code": "VIND",
+    "to_code": "UDAY",
+    "fare": 150000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC3",
+    "from_code": "VIND",
+    "to_code": "SAHY",
+    "fare": 200000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC3",
+    "from_code": "VIND",
+    "to_code": "KOSA",
+    "fare": 250000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC3",
+    "from_code": "CHET",
+    "to_code": "NEEL",
+    "fare": 50000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC3",
+    "from_code": "CHET",
+    "to_code": "UDAY",
+    "fare": 100000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC3",
+    "from_code": "CHET",
+    "to_code": "SAHY",
+    "fare": 150000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC3",
+    "from_code": "CHET",
+    "to_code": "KOSA",
+    "fare": 200000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC3",
+    "from_code": "NEEL",
+    "to_code": "UDAY",
+    "fare": 50000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC3",
+    "from_code": "NEEL",
+    "to_code": "SAHY",
+    "fare": 100000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC3",
+    "from_code": "NEEL",
+    "to_code": "KOSA",
+    "fare": 150000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC3",
+    "from_code": "UDAY",
+    "to_code": "SAHY",
+    "fare": 50000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC3",
+    "from_code": "UDAY",
+    "to_code": "KOSA",
+    "fare": 100000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "AC3",
+    "from_code": "SAHY",
+    "to_code": "KOSA",
+    "fare": 50000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "SL",
+    "from_code": "VIND",
+    "to_code": "CHET",
+    "fare": 30000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "SL",
+    "from_code": "VIND",
+    "to_code": "NEEL",
+    "fare": 60000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "SL",
+    "from_code": "VIND",
+    "to_code": "UDAY",
+    "fare": 90000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "SL",
+    "from_code": "VIND",
+    "to_code": "SAHY",
+    "fare": 120000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "SL",
+    "from_code": "VIND",
+    "to_code": "KOSA",
+    "fare": 150000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "SL",
+    "from_code": "CHET",
+    "to_code": "NEEL",
+    "fare": 30000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "SL",
+    "from_code": "CHET",
+    "to_code": "UDAY",
+    "fare": 60000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "SL",
+    "from_code": "CHET",
+    "to_code": "SAHY",
+    "fare": 90000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "SL",
+    "from_code": "CHET",
+    "to_code": "KOSA",
+    "fare": 120000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "SL",
+    "from_code": "NEEL",
+    "to_code": "UDAY",
+    "fare": 30000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "SL",
+    "from_code": "NEEL",
+    "to_code": "SAHY",
+    "fare": 60000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "SL",
+    "from_code": "NEEL",
+    "to_code": "KOSA",
+    "fare": 90000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "SL",
+    "from_code": "UDAY",
+    "to_code": "SAHY",
+    "fare": 30000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "SL",
+    "from_code": "UDAY",
+    "to_code": "KOSA",
+    "fare": 60000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "class": "SL",
+    "from_code": "SAHY",
+    "to_code": "KOSA",
+    "fare": 30000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1022",
+    "class": "AC2",
+    "from_code": "UDAY",
+    "to_code": "KOSA",
+    "fare": 65250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1022",
+    "class": "AC2",
+    "from_code": "UDAY",
+    "to_code": "MALV",
+    "fare": 130500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1022",
+    "class": "AC2",
+    "from_code": "UDAY",
+    "to_code": "ARUN",
+    "fare": 195750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1022",
+    "class": "AC2",
+    "from_code": "KOSA",
+    "to_code": "MALV",
+    "fare": 65250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1022",
+    "class": "AC2",
+    "from_code": "KOSA",
+    "to_code": "ARUN",
+    "fare": 130500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1022",
+    "class": "AC2",
+    "from_code": "MALV",
+    "to_code": "ARUN",
+    "fare": 65250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1022",
+    "class": "AC3",
+    "from_code": "UDAY",
+    "to_code": "KOSA",
+    "fare": 50250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1022",
+    "class": "AC3",
+    "from_code": "UDAY",
+    "to_code": "MALV",
+    "fare": 100500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1022",
+    "class": "AC3",
+    "from_code": "UDAY",
+    "to_code": "ARUN",
+    "fare": 150750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1022",
+    "class": "AC3",
+    "from_code": "KOSA",
+    "to_code": "MALV",
+    "fare": 50250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1022",
+    "class": "AC3",
+    "from_code": "KOSA",
+    "to_code": "ARUN",
+    "fare": 100500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1022",
+    "class": "AC3",
+    "from_code": "MALV",
+    "to_code": "ARUN",
+    "fare": 50250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1022",
+    "class": "SL",
+    "from_code": "UDAY",
+    "to_code": "KOSA",
+    "fare": 30250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1022",
+    "class": "SL",
+    "from_code": "UDAY",
+    "to_code": "MALV",
+    "fare": 60500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1022",
+    "class": "SL",
+    "from_code": "UDAY",
+    "to_code": "ARUN",
+    "fare": 90750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1022",
+    "class": "SL",
+    "from_code": "KOSA",
+    "to_code": "MALV",
+    "fare": 30250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1022",
+    "class": "SL",
+    "from_code": "KOSA",
+    "to_code": "ARUN",
+    "fare": 60500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1022",
+    "class": "SL",
+    "from_code": "MALV",
+    "to_code": "ARUN",
+    "fare": 30250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "FP",
+    "from_code": "RATN",
+    "to_code": "ARUN",
+    "fare": 90500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "FP",
+    "from_code": "RATN",
+    "to_code": "ANPR",
+    "fare": 181000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "FP",
+    "from_code": "RATN",
+    "to_code": "SURY",
+    "fare": 271500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "FP",
+    "from_code": "RATN",
+    "to_code": "VIND",
+    "fare": 362000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "FP",
+    "from_code": "ARUN",
+    "to_code": "ANPR",
+    "fare": 90500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "FP",
+    "from_code": "ARUN",
+    "to_code": "SURY",
+    "fare": 181000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "FP",
+    "from_code": "ARUN",
+    "to_code": "VIND",
+    "fare": 271500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "FP",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 90500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "FP",
+    "from_code": "ANPR",
+    "to_code": "VIND",
+    "fare": 181000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "FP",
+    "from_code": "SURY",
+    "to_code": "VIND",
+    "fare": 90500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "AC2",
+    "from_code": "RATN",
+    "to_code": "ARUN",
+    "fare": 65500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "AC2",
+    "from_code": "RATN",
+    "to_code": "ANPR",
+    "fare": 131000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "AC2",
+    "from_code": "RATN",
+    "to_code": "SURY",
+    "fare": 196500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "AC2",
+    "from_code": "RATN",
+    "to_code": "VIND",
+    "fare": 262000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "AC2",
+    "from_code": "ARUN",
+    "to_code": "ANPR",
+    "fare": 65500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "AC2",
+    "from_code": "ARUN",
+    "to_code": "SURY",
+    "fare": 131000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "AC2",
+    "from_code": "ARUN",
+    "to_code": "VIND",
+    "fare": 196500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "AC2",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 65500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "AC2",
+    "from_code": "ANPR",
+    "to_code": "VIND",
+    "fare": 131000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "AC2",
+    "from_code": "SURY",
+    "to_code": "VIND",
+    "fare": 65500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "EC",
+    "from_code": "RATN",
+    "to_code": "ARUN",
+    "fare": 55500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "EC",
+    "from_code": "RATN",
+    "to_code": "ANPR",
+    "fare": 111000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "EC",
+    "from_code": "RATN",
+    "to_code": "SURY",
+    "fare": 166500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "EC",
+    "from_code": "RATN",
+    "to_code": "VIND",
+    "fare": 222000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "EC",
+    "from_code": "ARUN",
+    "to_code": "ANPR",
+    "fare": 55500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "EC",
+    "from_code": "ARUN",
+    "to_code": "SURY",
+    "fare": 111000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "EC",
+    "from_code": "ARUN",
+    "to_code": "VIND",
+    "fare": 166500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "EC",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 55500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "EC",
+    "from_code": "ANPR",
+    "to_code": "VIND",
+    "fare": 111000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "EC",
+    "from_code": "SURY",
+    "to_code": "VIND",
+    "fare": 55500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "CC",
+    "from_code": "RATN",
+    "to_code": "ARUN",
+    "fare": 35500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "CC",
+    "from_code": "RATN",
+    "to_code": "ANPR",
+    "fare": 71000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "CC",
+    "from_code": "RATN",
+    "to_code": "SURY",
+    "fare": 106500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "CC",
+    "from_code": "RATN",
+    "to_code": "VIND",
+    "fare": 142000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "CC",
+    "from_code": "ARUN",
+    "to_code": "ANPR",
+    "fare": 35500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "CC",
+    "from_code": "ARUN",
+    "to_code": "SURY",
+    "fare": 71000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "CC",
+    "from_code": "ARUN",
+    "to_code": "VIND",
+    "fare": 106500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "CC",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 35500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "CC",
+    "from_code": "ANPR",
+    "to_code": "VIND",
+    "fare": 71000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "class": "CC",
+    "from_code": "SURY",
+    "to_code": "VIND",
+    "fare": 35500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "AC3",
+    "from_code": "ARUN",
+    "to_code": "ANPN",
+    "fare": 50750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "AC3",
+    "from_code": "ARUN",
+    "to_code": "KAVA",
+    "fare": 101500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "AC3",
+    "from_code": "ARUN",
+    "to_code": "UDAY",
+    "fare": 152250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "AC3",
+    "from_code": "ARUN",
+    "to_code": "MALV",
+    "fare": 203000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "AC3",
+    "from_code": "ARUN",
+    "to_code": "MEGH",
+    "fare": 253750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "AC3",
+    "from_code": "ANPN",
+    "to_code": "KAVA",
+    "fare": 50750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "AC3",
+    "from_code": "ANPN",
+    "to_code": "UDAY",
+    "fare": 101500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "AC3",
+    "from_code": "ANPN",
+    "to_code": "MALV",
+    "fare": 152250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "AC3",
+    "from_code": "ANPN",
+    "to_code": "MEGH",
+    "fare": 203000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "AC3",
+    "from_code": "KAVA",
+    "to_code": "UDAY",
+    "fare": 50750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "AC3",
+    "from_code": "KAVA",
+    "to_code": "MALV",
+    "fare": 101500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "AC3",
+    "from_code": "KAVA",
+    "to_code": "MEGH",
+    "fare": 152250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "AC3",
+    "from_code": "UDAY",
+    "to_code": "MALV",
+    "fare": 50750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "AC3",
+    "from_code": "UDAY",
+    "to_code": "MEGH",
+    "fare": 101500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "AC3",
+    "from_code": "MALV",
+    "to_code": "MEGH",
+    "fare": 50750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "SL",
+    "from_code": "ARUN",
+    "to_code": "ANPN",
+    "fare": 30750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "SL",
+    "from_code": "ARUN",
+    "to_code": "KAVA",
+    "fare": 61500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "SL",
+    "from_code": "ARUN",
+    "to_code": "UDAY",
+    "fare": 92250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "SL",
+    "from_code": "ARUN",
+    "to_code": "MALV",
+    "fare": 123000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "SL",
+    "from_code": "ARUN",
+    "to_code": "MEGH",
+    "fare": 153750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "SL",
+    "from_code": "ANPN",
+    "to_code": "KAVA",
+    "fare": 30750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "SL",
+    "from_code": "ANPN",
+    "to_code": "UDAY",
+    "fare": 61500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "SL",
+    "from_code": "ANPN",
+    "to_code": "MALV",
+    "fare": 92250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "SL",
+    "from_code": "ANPN",
+    "to_code": "MEGH",
+    "fare": 123000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "SL",
+    "from_code": "KAVA",
+    "to_code": "UDAY",
+    "fare": 30750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "SL",
+    "from_code": "KAVA",
+    "to_code": "MALV",
+    "fare": 61500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "SL",
+    "from_code": "KAVA",
+    "to_code": "MEGH",
+    "fare": 92250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "SL",
+    "from_code": "UDAY",
+    "to_code": "MALV",
+    "fare": 30750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "SL",
+    "from_code": "UDAY",
+    "to_code": "MEGH",
+    "fare": 61500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "SL",
+    "from_code": "MALV",
+    "to_code": "MEGH",
+    "fare": 30750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "CC",
+    "from_code": "ARUN",
+    "to_code": "ANPN",
+    "fare": 35750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "CC",
+    "from_code": "ARUN",
+    "to_code": "KAVA",
+    "fare": 71500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "CC",
+    "from_code": "ARUN",
+    "to_code": "UDAY",
+    "fare": 107250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "CC",
+    "from_code": "ARUN",
+    "to_code": "MALV",
+    "fare": 143000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "CC",
+    "from_code": "ARUN",
+    "to_code": "MEGH",
+    "fare": 178750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "CC",
+    "from_code": "ANPN",
+    "to_code": "KAVA",
+    "fare": 35750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "CC",
+    "from_code": "ANPN",
+    "to_code": "UDAY",
+    "fare": 71500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "CC",
+    "from_code": "ANPN",
+    "to_code": "MALV",
+    "fare": 107250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "CC",
+    "from_code": "ANPN",
+    "to_code": "MEGH",
+    "fare": 143000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "CC",
+    "from_code": "KAVA",
+    "to_code": "UDAY",
+    "fare": 35750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "CC",
+    "from_code": "KAVA",
+    "to_code": "MALV",
+    "fare": 71500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "CC",
+    "from_code": "KAVA",
+    "to_code": "MEGH",
+    "fare": 107250
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "CC",
+    "from_code": "UDAY",
+    "to_code": "MALV",
+    "fare": 35750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "CC",
+    "from_code": "UDAY",
+    "to_code": "MEGH",
+    "fare": 71500
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "class": "CC",
+    "from_code": "MALV",
+    "to_code": "MEGH",
+    "fare": 35750
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1025",
+    "class": "AC2",
+    "from_code": "ANPR",
+    "to_code": "ANPN",
+    "fare": 66000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1025",
+    "class": "AC2",
+    "from_code": "ANPR",
+    "to_code": "MTRP",
+    "fare": 132000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1025",
+    "class": "AC2",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 198000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1025",
+    "class": "AC2",
+    "from_code": "ANPN",
+    "to_code": "MTRP",
+    "fare": 66000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1025",
+    "class": "AC2",
+    "from_code": "ANPN",
+    "to_code": "SURY",
+    "fare": 132000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1025",
+    "class": "AC2",
+    "from_code": "MTRP",
+    "to_code": "SURY",
+    "fare": 66000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1025",
+    "class": "AC3",
+    "from_code": "ANPR",
+    "to_code": "ANPN",
+    "fare": 51000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1025",
+    "class": "AC3",
+    "from_code": "ANPR",
+    "to_code": "MTRP",
+    "fare": 102000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1025",
+    "class": "AC3",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 153000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1025",
+    "class": "AC3",
+    "from_code": "ANPN",
+    "to_code": "MTRP",
+    "fare": 51000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1025",
+    "class": "AC3",
+    "from_code": "ANPN",
+    "to_code": "SURY",
+    "fare": 102000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1025",
+    "class": "AC3",
+    "from_code": "MTRP",
+    "to_code": "SURY",
+    "fare": 51000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1025",
+    "class": "EC",
+    "from_code": "ANPR",
+    "to_code": "ANPN",
+    "fare": 56000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1025",
+    "class": "EC",
+    "from_code": "ANPR",
+    "to_code": "MTRP",
+    "fare": 112000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1025",
+    "class": "EC",
+    "from_code": "ANPR",
+    "to_code": "SURY",
+    "fare": 168000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1025",
+    "class": "EC",
+    "from_code": "ANPN",
+    "to_code": "MTRP",
+    "fare": 56000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1025",
+    "class": "EC",
+    "from_code": "ANPN",
+    "to_code": "SURY",
+    "fare": 112000
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1025",
+    "class": "EC",
+    "from_code": "MTRP",
+    "to_code": "SURY",
+    "fare": 56000
+  }
+]

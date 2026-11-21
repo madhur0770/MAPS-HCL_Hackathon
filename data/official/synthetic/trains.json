@@ -1,0 +1,445 @@
+[
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "name": "Raat Kamal Express",
+    "runs_on": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+    ],
+    "classes": [
+      "FP",
+      "AC2",
+      "AC3",
+      "SL"
+    ]
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "name": "Ujjwal Setu",
+    "runs_on": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+    ],
+    "classes": [
+      "AC2",
+      "AC3",
+      "SL"
+    ]
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "name": "Mitra Shakti",
+    "runs_on": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+    ],
+    "classes": [
+      "FP",
+      "AC2",
+      "EC",
+      "CC"
+    ]
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1004",
+    "name": "Surya Rekha",
+    "runs_on": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+    ],
+    "classes": [
+      "AC3",
+      "SL",
+      "CC"
+    ]
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "name": "Neel Dhara",
+    "runs_on": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+    ],
+    "classes": [
+      "AC2",
+      "AC3",
+      "EC"
+    ]
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "name": "Vindhya Vihar",
+    "runs_on": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+    ],
+    "classes": [
+      "FP",
+      "AC2",
+      "AC3",
+      "SL"
+    ]
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1007",
+    "name": "Kaveri Jyoti",
+    "runs_on": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+    ],
+    "classes": [
+      "AC2",
+      "AC3",
+      "SL"
+    ]
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "name": "Chetak Sandhya",
+    "runs_on": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+    ],
+    "classes": [
+      "FP",
+      "AC2",
+      "EC",
+      "CC"
+    ]
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "name": "Arunoday Link",
+    "runs_on": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+    ],
+    "classes": [
+      "AC3",
+      "SL",
+      "CC"
+    ]
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1010",
+    "name": "Sahyadri Saathi",
+    "runs_on": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+    ],
+    "classes": [
+      "AC2",
+      "AC3",
+      "EC"
+    ]
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "name": "Ratnadeep Mail",
+    "runs_on": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+    ],
+    "classes": [
+      "FP",
+      "AC2",
+      "AC3",
+      "SL"
+    ]
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "name": "Pavan Path",
+    "runs_on": [
+      "Mon",
+      "Wed",
+      "Fri",
+      "Sun"
+    ],
+    "classes": [
+      "AC2",
+      "AC3",
+      "SL"
+    ]
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "name": "Koshal Connect",
+    "runs_on": [
+      "Tue",
+      "Thu",
+      "Sat"
+    ],
+    "classes": [
+      "FP",
+      "AC2",
+      "EC",
+      "CC"
+    ]
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "name": "Megh Tarang",
+    "runs_on": [
+      "Mon",
+      "Tue",
+      "Thu",
+      "Sat"
+    ],
+    "classes": [
+      "AC3",
+      "SL",
+      "CC"
+    ]
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "name": "Nirmal Tejas",
+    "runs_on": [
+      "Wed",
+      "Fri",
+      "Sun"
+    ],
+    "classes": [
+      "AC2",
+      "AC3",
+      "EC"
+    ]
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "name": "Tunga Pravah",
+    "runs_on": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+    ],
+    "classes": [
+      "FP",
+      "AC2",
+      "AC3",
+      "SL"
+    ]
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "name": "Malva Manzil",
+    "runs_on": [
+      "Mon",
+      "Wed",
+      "Fri",
+      "Sun"
+    ],
+    "classes": [
+      "AC2",
+      "AC3",
+      "SL"
+    ]
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "name": "Anand Udaan",
+    "runs_on": [
+      "Tue",
+      "Thu",
+      "Sat"
+    ],
+    "classes": [
+      "FP",
+      "AC2",
+      "EC",
+      "CC"
+    ]
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1019",
+    "name": "Uday Pragati",
+    "runs_on": [
+      "Mon",
+      "Tue",
+      "Thu",
+      "Sat"
+    ],
+    "classes": [
+      "AC3",
+      "SL",
+      "CC"
+    ]
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "name": "Neelkanth Rapid",
+    "runs_on": [
+      "Wed",
+      "Fri",
+      "Sun"
+    ],
+    "classes": [
+      "AC2",
+      "AC3",
+      "EC"
+    ]
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "name": "Mitra Nagar Intercity",
+    "runs_on": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat",
+      "Sun"
+    ],
+    "classes": [
+      "FP",
+      "AC2",
+      "AC3",
+      "SL"
+    ]
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1022",
+    "name": "Surya Sakha",
+    "runs_on": [
+      "Mon",
+      "Wed",
+      "Fri",
+      "Sun"
+    ],
+    "classes": [
+      "AC2",
+      "AC3",
+      "SL"
+    ]
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "name": "Vindhya Nightline",
+    "runs_on": [
+      "Tue",
+      "Thu",
+      "Sat"
+    ],
+    "classes": [
+      "FP",
+      "AC2",
+      "EC",
+      "CC"
+    ]
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "name": "Kaveri Commuter",
+    "runs_on": [
+      "Mon",
+      "Tue",
+      "Thu",
+      "Sat"
+    ],
+    "classes": [
+      "AC3",
+      "SL",
+      "CC"
+    ]
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1025",
+    "name": "Ujjwal Parikrama",
+    "runs_on": [
+      "Wed",
+      "Fri",
+      "Sun"
+    ],
+    "classes": [
+      "AC2",
+      "AC3",
+      "EC"
+    ]
+  }
+]

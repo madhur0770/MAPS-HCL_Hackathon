@@ -11,7 +11,7 @@ from collections import Counter
 
 from rag import synonyms
 
-SEC_RE = re.compile(r"(?m)^(Section\s+\d+)\s*:\s*")
+SEC_RE = re.compile(r"(?m)^(Section\s+\d+(?:\.\d+)?)\s*:\s*")
 
 
 STOP = set("""a an the is are was were be i me my we our you your it its this that of to for on in at by and or if

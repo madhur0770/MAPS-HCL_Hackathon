@@ -1,0 +1,171 @@
+{
+  "dataset_id": "ujjwal-demo-v1",
+  "validated_at": "2026-11-21T12:36:23.369049+05:30",
+  "summary": {
+    "passed": 32,
+    "failed": 0,
+    "total": 32
+  },
+  "checks": [
+    {
+      "check": "station_count",
+      "status": "PASS",
+      "detail": "18"
+    },
+    {
+      "check": "train_count",
+      "status": "PASS",
+      "detail": "25"
+    },
+    {
+      "check": "unique_primary_ids",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "two_valid_stops_per_train",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "stop_order",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "chronological_stop_timeline",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "overnight_train",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "valid_running_days",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "fares_valid",
+      "status": "PASS",
+      "detail": "870"
+    },
+    {
+      "check": "seat_rows_valid",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "seat_horizon_complete",
+      "status": "PASS",
+      "detail": "expected=914 actual=914"
+    },
+    {
+      "check": "passenger_count",
+      "status": "PASS",
+      "detail": "25"
+    },
+    {
+      "check": "booking_count",
+      "status": "PASS",
+      "detail": "50"
+    },
+    {
+      "check": "required_booking_statuses",
+      "status": "PASS",
+      "detail": "['CANCELLED', 'CONFIRMED', 'MIXED', 'OPERATOR_CANCELLED', 'RAC', 'WAITLISTED']"
+    },
+    {
+      "check": "booking_references_and_routes",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "bookings_on_operating_dates",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "booking_amounts_match_fares",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "booking_aggregate_statuses",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "travellers_valid",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "capacity_limits",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "remaining_inventory_reconciled",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "passenger_cancellations_do_not_consume_inventory",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "all_inventory_states",
+      "status": "PASS",
+      "detail": "{'available': True, 'rac': True, 'waitlist': True, 'unavailable': True}"
+    },
+    {
+      "check": "operator_cancellations_consistent",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "passenger_without_bookings",
+      "status": "PASS",
+      "detail": "['P025']"
+    },
+    {
+      "check": "mixed_cnf_wl_booking",
+      "status": "PASS",
+      "detail": "BKG0003"
+    },
+    {
+      "check": "cutoff_boundary_cases",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "ambiguous_station_alias",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "mandatory_sqlite_schema",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "check": "settings_preserved",
+      "status": "PASS",
+      "detail": "settings=88, versions=93"
+    },
+    {
+      "check": "foreign_key_integrity",
+      "status": "PASS",
+      "detail": "[]"
+    },
+    {
+      "check": "json_sqlite_counts_match",
+      "status": "PASS",
+      "detail": ""
+    }
+  ]
+}

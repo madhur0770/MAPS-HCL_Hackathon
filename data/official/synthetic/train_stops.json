@@ -1,0 +1,1118 @@
+[
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "station_code": "ANPR",
+    "stop_order": 1,
+    "arrival": null,
+    "departure": "23:40",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "station_code": "ANPN",
+    "stop_order": 2,
+    "arrival": "00:55",
+    "departure": "01:05",
+    "day_offset": 1
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "station_code": "MTRP",
+    "stop_order": 3,
+    "arrival": "02:20",
+    "departure": "02:30",
+    "day_offset": 1
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1001",
+    "station_code": "SURY",
+    "stop_order": 4,
+    "arrival": "03:45",
+    "departure": null,
+    "day_offset": 1
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "station_code": "SURY",
+    "stop_order": 1,
+    "arrival": null,
+    "departure": "06:07",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "station_code": "KAVA",
+    "stop_order": 2,
+    "arrival": "07:42",
+    "departure": "07:52",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "station_code": "CHET",
+    "stop_order": 3,
+    "arrival": "09:27",
+    "departure": "09:37",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "station_code": "UDAY",
+    "stop_order": 4,
+    "arrival": "11:12",
+    "departure": "11:22",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1002",
+    "station_code": "KOSA",
+    "stop_order": 5,
+    "arrival": "12:57",
+    "departure": null,
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "station_code": "VIND",
+    "stop_order": 1,
+    "arrival": null,
+    "departure": "06:54",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "station_code": "UDAY",
+    "stop_order": 2,
+    "arrival": "08:49",
+    "departure": "08:59",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "station_code": "RATN",
+    "stop_order": 3,
+    "arrival": "10:54",
+    "departure": "11:04",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "station_code": "ARUN",
+    "stop_order": 4,
+    "arrival": "12:59",
+    "departure": "13:09",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "station_code": "ANPR",
+    "stop_order": 5,
+    "arrival": "15:04",
+    "departure": "15:14",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1003",
+    "station_code": "SURY",
+    "stop_order": 6,
+    "arrival": "17:09",
+    "departure": null,
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1004",
+    "station_code": "UDAY",
+    "stop_order": 1,
+    "arrival": null,
+    "departure": "07:41",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1004",
+    "station_code": "MALV",
+    "stop_order": 2,
+    "arrival": "09:56",
+    "departure": "10:06",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1004",
+    "station_code": "MEGH",
+    "stop_order": 3,
+    "arrival": "12:21",
+    "departure": "12:31",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1004",
+    "station_code": "SURY",
+    "stop_order": 4,
+    "arrival": "14:46",
+    "departure": null,
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "station_code": "RATN",
+    "stop_order": 1,
+    "arrival": null,
+    "departure": "08:28",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "station_code": "MALV",
+    "stop_order": 2,
+    "arrival": "09:43",
+    "departure": "09:53",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "station_code": "TUNG",
+    "stop_order": 3,
+    "arrival": "11:08",
+    "departure": "11:18",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "station_code": "ARUN",
+    "stop_order": 4,
+    "arrival": "12:33",
+    "departure": "12:43",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "station_code": "PAVA",
+    "stop_order": 5,
+    "arrival": "13:58",
+    "departure": null,
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "station_code": "ARUN",
+    "stop_order": 1,
+    "arrival": null,
+    "departure": "09:15",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "station_code": "MEGH",
+    "stop_order": 2,
+    "arrival": "10:50",
+    "departure": "11:00",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "station_code": "ANPN",
+    "stop_order": 3,
+    "arrival": "12:35",
+    "departure": "12:45",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "station_code": "SURY",
+    "stop_order": 4,
+    "arrival": "14:20",
+    "departure": "14:30",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "station_code": "KAVA",
+    "stop_order": 5,
+    "arrival": "16:05",
+    "departure": "16:15",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1006",
+    "station_code": "CHET",
+    "stop_order": 6,
+    "arrival": "17:50",
+    "departure": null,
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1007",
+    "station_code": "ANPR",
+    "stop_order": 1,
+    "arrival": null,
+    "departure": "10:02",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1007",
+    "station_code": "SURY",
+    "stop_order": 2,
+    "arrival": "11:57",
+    "departure": "12:07",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1007",
+    "station_code": "VIND",
+    "stop_order": 3,
+    "arrival": "14:02",
+    "departure": "14:12",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1007",
+    "station_code": "UDAY",
+    "stop_order": 4,
+    "arrival": "16:07",
+    "departure": null,
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "station_code": "SURY",
+    "stop_order": 1,
+    "arrival": null,
+    "departure": "10:49",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "station_code": "CHET",
+    "stop_order": 2,
+    "arrival": "13:04",
+    "departure": "13:14",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "station_code": "KOSA",
+    "stop_order": 3,
+    "arrival": "15:29",
+    "departure": "15:39",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "station_code": "ARUN",
+    "stop_order": 4,
+    "arrival": "17:54",
+    "departure": "18:04",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1008",
+    "station_code": "ANPN",
+    "stop_order": 5,
+    "arrival": "20:19",
+    "departure": null,
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "station_code": "VIND",
+    "stop_order": 1,
+    "arrival": null,
+    "departure": "11:36",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "station_code": "CHET",
+    "stop_order": 2,
+    "arrival": "12:51",
+    "departure": "13:01",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "station_code": "NEEL",
+    "stop_order": 3,
+    "arrival": "14:16",
+    "departure": "14:26",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "station_code": "UDAY",
+    "stop_order": 4,
+    "arrival": "15:41",
+    "departure": "15:51",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "station_code": "SAHY",
+    "stop_order": 5,
+    "arrival": "17:06",
+    "departure": "17:16",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1009",
+    "station_code": "KOSA",
+    "stop_order": 6,
+    "arrival": "18:31",
+    "departure": null,
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1010",
+    "station_code": "UDAY",
+    "stop_order": 1,
+    "arrival": null,
+    "departure": "12:23",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1010",
+    "station_code": "KOSA",
+    "stop_order": 2,
+    "arrival": "13:58",
+    "departure": "14:08",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1010",
+    "station_code": "MALV",
+    "stop_order": 3,
+    "arrival": "15:43",
+    "departure": "15:53",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1010",
+    "station_code": "ARUN",
+    "stop_order": 4,
+    "arrival": "17:28",
+    "departure": null,
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "station_code": "RATN",
+    "stop_order": 1,
+    "arrival": null,
+    "departure": "13:10",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "station_code": "ARUN",
+    "stop_order": 2,
+    "arrival": "15:05",
+    "departure": "15:15",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "station_code": "ANPR",
+    "stop_order": 3,
+    "arrival": "17:10",
+    "departure": "17:20",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "station_code": "SURY",
+    "stop_order": 4,
+    "arrival": "19:15",
+    "departure": "19:25",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1011",
+    "station_code": "VIND",
+    "stop_order": 5,
+    "arrival": "21:20",
+    "departure": null,
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "station_code": "ARUN",
+    "stop_order": 1,
+    "arrival": null,
+    "departure": "13:57",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "station_code": "ANPN",
+    "stop_order": 2,
+    "arrival": "16:12",
+    "departure": "16:22",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "station_code": "KAVA",
+    "stop_order": 3,
+    "arrival": "18:37",
+    "departure": "18:47",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "station_code": "UDAY",
+    "stop_order": 4,
+    "arrival": "21:02",
+    "departure": "21:12",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "station_code": "MALV",
+    "stop_order": 5,
+    "arrival": "23:27",
+    "departure": "23:37",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1012",
+    "station_code": "MEGH",
+    "stop_order": 6,
+    "arrival": "01:52",
+    "departure": null,
+    "day_offset": 1
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "station_code": "ANPR",
+    "stop_order": 1,
+    "arrival": null,
+    "departure": "14:44",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "station_code": "ANPN",
+    "stop_order": 2,
+    "arrival": "15:59",
+    "departure": "16:09",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "station_code": "MTRP",
+    "stop_order": 3,
+    "arrival": "17:24",
+    "departure": "17:34",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1013",
+    "station_code": "SURY",
+    "stop_order": 4,
+    "arrival": "18:49",
+    "departure": null,
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "station_code": "SURY",
+    "stop_order": 1,
+    "arrival": null,
+    "departure": "15:31",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "station_code": "KAVA",
+    "stop_order": 2,
+    "arrival": "17:06",
+    "departure": "17:16",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "station_code": "CHET",
+    "stop_order": 3,
+    "arrival": "18:51",
+    "departure": "19:01",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "station_code": "UDAY",
+    "stop_order": 4,
+    "arrival": "20:36",
+    "departure": "20:46",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1014",
+    "station_code": "KOSA",
+    "stop_order": 5,
+    "arrival": "22:21",
+    "departure": null,
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "station_code": "VIND",
+    "stop_order": 1,
+    "arrival": null,
+    "departure": "16:18",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "station_code": "UDAY",
+    "stop_order": 2,
+    "arrival": "18:13",
+    "departure": "18:23",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "station_code": "RATN",
+    "stop_order": 3,
+    "arrival": "20:18",
+    "departure": "20:28",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "station_code": "ARUN",
+    "stop_order": 4,
+    "arrival": "22:23",
+    "departure": "22:33",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "station_code": "ANPR",
+    "stop_order": 5,
+    "arrival": "00:28",
+    "departure": "00:38",
+    "day_offset": 1
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1015",
+    "station_code": "SURY",
+    "stop_order": 6,
+    "arrival": "02:33",
+    "departure": null,
+    "day_offset": 1
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "station_code": "UDAY",
+    "stop_order": 1,
+    "arrival": null,
+    "departure": "17:05",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "station_code": "MALV",
+    "stop_order": 2,
+    "arrival": "19:20",
+    "departure": "19:30",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "station_code": "MEGH",
+    "stop_order": 3,
+    "arrival": "21:45",
+    "departure": "21:55",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1016",
+    "station_code": "SURY",
+    "stop_order": 4,
+    "arrival": "00:10",
+    "departure": null,
+    "day_offset": 1
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "station_code": "RATN",
+    "stop_order": 1,
+    "arrival": null,
+    "departure": "17:52",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "station_code": "MALV",
+    "stop_order": 2,
+    "arrival": "19:07",
+    "departure": "19:17",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "station_code": "TUNG",
+    "stop_order": 3,
+    "arrival": "20:32",
+    "departure": "20:42",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "station_code": "ARUN",
+    "stop_order": 4,
+    "arrival": "21:57",
+    "departure": "22:07",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1017",
+    "station_code": "PAVA",
+    "stop_order": 5,
+    "arrival": "23:22",
+    "departure": null,
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "station_code": "ARUN",
+    "stop_order": 1,
+    "arrival": null,
+    "departure": "18:39",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "station_code": "MEGH",
+    "stop_order": 2,
+    "arrival": "20:14",
+    "departure": "20:24",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "station_code": "ANPN",
+    "stop_order": 3,
+    "arrival": "21:59",
+    "departure": "22:09",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "station_code": "SURY",
+    "stop_order": 4,
+    "arrival": "23:44",
+    "departure": "23:54",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "station_code": "KAVA",
+    "stop_order": 5,
+    "arrival": "01:29",
+    "departure": "01:39",
+    "day_offset": 1
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1018",
+    "station_code": "CHET",
+    "stop_order": 6,
+    "arrival": "03:14",
+    "departure": null,
+    "day_offset": 1
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1019",
+    "station_code": "ANPR",
+    "stop_order": 1,
+    "arrival": null,
+    "departure": "19:26",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1019",
+    "station_code": "SURY",
+    "stop_order": 2,
+    "arrival": "21:21",
+    "departure": "21:31",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1019",
+    "station_code": "VIND",
+    "stop_order": 3,
+    "arrival": "23:26",
+    "departure": "23:36",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1019",
+    "station_code": "UDAY",
+    "stop_order": 4,
+    "arrival": "01:31",
+    "departure": null,
+    "day_offset": 1
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "station_code": "SURY",
+    "stop_order": 1,
+    "arrival": null,
+    "departure": "20:13",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "station_code": "CHET",
+    "stop_order": 2,
+    "arrival": "22:28",
+    "departure": "22:38",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "station_code": "KOSA",
+    "stop_order": 3,
+    "arrival": "00:53",
+    "departure": "01:03",
+    "day_offset": 1
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "station_code": "ARUN",
+    "stop_order": 4,
+    "arrival": "03:18",
+    "departure": "03:28",
+    "day_offset": 1
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1020",
+    "station_code": "ANPN",
+    "stop_order": 5,
+    "arrival": "05:43",
+    "departure": null,
+    "day_offset": 1
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "station_code": "VIND",
+    "stop_order": 1,
+    "arrival": null,
+    "departure": "06:00",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "station_code": "CHET",
+    "stop_order": 2,
+    "arrival": "07:15",
+    "departure": "07:25",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "station_code": "NEEL",
+    "stop_order": 3,
+    "arrival": "08:40",
+    "departure": "08:50",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "station_code": "UDAY",
+    "stop_order": 4,
+    "arrival": "10:05",
+    "departure": "10:15",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "station_code": "SAHY",
+    "stop_order": 5,
+    "arrival": "11:30",
+    "departure": "11:40",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1021",
+    "station_code": "KOSA",
+    "stop_order": 6,
+    "arrival": "12:55",
+    "departure": null,
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1022",
+    "station_code": "UDAY",
+    "stop_order": 1,
+    "arrival": null,
+    "departure": "06:47",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1022",
+    "station_code": "KOSA",
+    "stop_order": 2,
+    "arrival": "08:22",
+    "departure": "08:32",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1022",
+    "station_code": "MALV",
+    "stop_order": 3,
+    "arrival": "10:07",
+    "departure": "10:17",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1022",
+    "station_code": "ARUN",
+    "stop_order": 4,
+    "arrival": "11:52",
+    "departure": null,
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "station_code": "RATN",
+    "stop_order": 1,
+    "arrival": null,
+    "departure": "07:34",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "station_code": "ARUN",
+    "stop_order": 2,
+    "arrival": "09:29",
+    "departure": "09:39",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "station_code": "ANPR",
+    "stop_order": 3,
+    "arrival": "11:34",
+    "departure": "11:44",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "station_code": "SURY",
+    "stop_order": 4,
+    "arrival": "13:39",
+    "departure": "13:49",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1023",
+    "station_code": "VIND",
+    "stop_order": 5,
+    "arrival": "15:44",
+    "departure": null,
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "station_code": "ARUN",
+    "stop_order": 1,
+    "arrival": null,
+    "departure": "08:21",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "station_code": "ANPN",
+    "stop_order": 2,
+    "arrival": "10:36",
+    "departure": "10:46",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "station_code": "KAVA",
+    "stop_order": 3,
+    "arrival": "13:01",
+    "departure": "13:11",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "station_code": "UDAY",
+    "stop_order": 4,
+    "arrival": "15:26",
+    "departure": "15:36",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "station_code": "MALV",
+    "stop_order": 5,
+    "arrival": "17:51",
+    "departure": "18:01",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1024",
+    "station_code": "MEGH",
+    "stop_order": 6,
+    "arrival": "20:16",
+    "departure": null,
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1025",
+    "station_code": "ANPR",
+    "stop_order": 1,
+    "arrival": null,
+    "departure": "09:08",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1025",
+    "station_code": "ANPN",
+    "stop_order": 2,
+    "arrival": "10:23",
+    "departure": "10:33",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1025",
+    "station_code": "MTRP",
+    "stop_order": 3,
+    "arrival": "11:48",
+    "departure": "11:58",
+    "day_offset": 0
+  },
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1025",
+    "station_code": "SURY",
+    "stop_order": 4,
+    "arrival": "13:13",
+    "departure": null,
+    "day_offset": 0
+  }
+]

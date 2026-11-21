@@ -1,0 +1,84 @@
+{
+  "dataset_id": "ujjwal-demo-v1",
+  "reference_date": "2026-11-21",
+  "status_mappings": {
+    "CONFIRMED": "All active travellers are CNF",
+    "RAC": "All active travellers are RAC",
+    "WAITLISTED": "All active travellers are WL",
+    "MIXED": "Active travellers have more than one CNF/RAC/WL status",
+    "CANCELLED": "Passenger-initiated cancellation; traveller status preserves historical allocation",
+    "OPERATOR_CANCELLED": "Service cancelled by Ujjwal Rail; traveller status preserves historical allocation"
+  },
+  "inventory_semantics": "available, rac and waitlist are remaining train-and-class-level capacity after active synthetic allocations; no segment reuse is modelled",
+  "cases": [
+    {
+      "case_id": "EDGE-CUTOFF-EXACT",
+      "booking_id": "BKG0001",
+      "requested_cancellation_at": "2026-11-23T09:15:00+05:30",
+      "remaining_time": "exactly 48 hours",
+      "expected_bracket": "B",
+      "policy_source": "RUL-003"
+    },
+    {
+      "case_id": "EDGE-CUTOFF-AFTER-ONE-MINUTE",
+      "booking_id": "BKG0002",
+      "requested_cancellation_at": "2026-11-24T10:03:00+05:30",
+      "remaining_time": "47 hours 59 minutes",
+      "expected_bracket": "B",
+      "policy_source": "RUL-003"
+    },
+    {
+      "case_id": "EDGE-OVERNIGHT",
+      "train_no": "UJ1001",
+      "description": "Departs 23:40 and has downstream stops with day_offset 1."
+    },
+    {
+      "case_id": "EDGE-MIXED-STATUS",
+      "booking_id": "BKG0003",
+      "traveller_statuses": [
+        "CNF",
+        "WL"
+      ]
+    },
+    {
+      "case_id": "EDGE-NO-BOOKINGS",
+      "passenger_id": "P025"
+    },
+    {
+      "case_id": "EDGE-SIMILAR-STATIONS",
+      "station_codes": [
+        "ANPR",
+        "ANPN"
+      ],
+      "ambiguous_query": "Anandpur se train dikhao"
+    },
+    {
+      "case_id": "EDGE-INVENTORY-RAC",
+      "train_no": "UJ1002",
+      "journey_date": "2026-11-21",
+      "class": "AC2"
+    },
+    {
+      "case_id": "EDGE-INVENTORY-WAITLIST",
+      "train_no": "UJ1001",
+      "journey_date": "2026-11-21",
+      "class": "FP"
+    },
+    {
+      "case_id": "EDGE-INVENTORY-UNAVAILABLE",
+      "train_no": "UJ1003",
+      "journey_date": "2026-11-21",
+      "class": "FP"
+    },
+    {
+      "case_id": "EDGE-OPERATOR-CANCELLED",
+      "train_no": "UJ1005",
+      "journey_date": "2026-11-26",
+      "booking_ids": [
+        "BKG0008",
+        "BKG0009",
+        "BKG0016"
+      ]
+    }
+  ]
+}

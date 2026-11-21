@@ -1,0 +1,9 @@
+[
+  {
+    "dataset_id": "ujjwal-demo-v1",
+    "train_no": "UJ1005",
+    "journey_date": "2026-11-26",
+    "reason": "Fictional route-control closure for operator-cancellation testing",
+    "announced_at": "2026-11-23T10:00:00+05:30"
+  }
+]
