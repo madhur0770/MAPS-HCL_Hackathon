@@ -43,6 +43,8 @@ CREATE TABLE IF NOT EXISTS settings_history(
 CREATE TABLE IF NOT EXISTS documents(
   doc_id TEXT PRIMARY KEY, doc_type TEXT, title TEXT, topic TEXT, effective_from TEXT,
   authority INTEGER, supersedes TEXT, language TEXT, text TEXT, added_at TEXT);
+CREATE TABLE IF NOT EXISTS embeddings(
+  key TEXT, model TEXT, dim INTEGER, vec TEXT, PRIMARY KEY(key, model));
 CREATE TABLE IF NOT EXISTS sessions(
   session_id TEXT PRIMARY KEY, passenger_id TEXT, slots TEXT, updated_at TEXT);
 CREATE TABLE IF NOT EXISTS handoffs(

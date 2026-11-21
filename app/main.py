@@ -91,7 +91,11 @@ def make_app(db_conn=None):
         with LOCK:
             n = db.execute("SELECT count(*) FROM documents").fetchone()[0]
             b = db.execute("SELECT count(*) FROM bookings").fetchone()[0]
-        return {"status": "ok", "documents": n, "bookings": b, "llm": "off (MOCK_LLM)" if config.MOCK_LLM() else config.OLLAMA_MODEL(),
+        from assistant import llm
+        from rag import store
+        vec = bool(getattr(store.get_index(db), "vec_ready", False)) if n else False
+        return {"status": "ok", "documents": n, "bookings": b, "llm": "off (MOCK_LLM)" if config.MOCK_LLM() else (config.OLLAMA_MODEL() if llm.ollama_up() else "Ollama not reachable"),
+                "vector_search": vec, "embed_model": config.OLLAMA_EMBED_MODEL() if vec else None,
                 "time": clock.iso(clock.real_now())}
 
     @app.post("/chat")

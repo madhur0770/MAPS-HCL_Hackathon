@@ -7,7 +7,11 @@ Set-Location (Split-Path $PSScriptRoot)
 $py = ".\.venv\Scripts\python.exe"
 if (-not (Test-Path $py)) { Write-Host "Run .\scripts\setup.ps1 first." -ForegroundColor Red; exit 1 }
 if (-not (Test-Path app\static\index.html)) { Write-Host "React build missing (app\static). Run: cd ui-react; npm install; npm run build" -ForegroundColor Red; exit 1 }
-$env:MOCK_LLM = if ($env:MOCK_LLM) { $env:MOCK_LLM } else { "true" }
+# Ollama is used automatically when it is running (language understanding + vector search). Force off with: $env:MOCK_LLM="true"
+if (-not $env:MOCK_LLM) {
+    try { Invoke-RestMethod -Uri "http://localhost:11434/api/tags" -TimeoutSec 2 | Out-Null; $env:MOCK_LLM = "false"; Write-Host "Ollama found: model understanding and vector search are ON" -ForegroundColor Green }
+    catch { $env:MOCK_LLM = "true"; Write-Host "Ollama not running: rule-based mode (start Ollama and re-run to turn the model + vector search on)" -ForegroundColor Yellow }
+}
 # free port 8000 if an older copy of the app is still running
 Get-NetTCPConnection -LocalPort 8000 -State Listen -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }
 $steps = @("Generate data", "Start app")

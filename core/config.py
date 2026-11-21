@@ -29,3 +29,6 @@ PROTECT_ADMIN = lambda: flag("PROTECT_ADMIN", False)  # noqa: E731
 PROTECT_TRACE = lambda: flag("PROTECT_TRACE", False)  # noqa: E731
 RATE_LIMIT_PER_MIN = lambda: int(env("RATE_LIMIT_PER_MIN", "300"))  # noqa: E731
 MAX_BODY_MB = lambda: float(env("MAX_BODY_MB", "5"))  # noqa: E731
+OLLAMA_EMBED_MODEL = lambda: env("OLLAMA_EMBED_MODEL", "nomic-embed-text")  # noqa: E731
+VECTOR_MIN = lambda: float(env("VECTOR_MIN", "0.65"))  # noqa: E731  (cosine above this lets a paraphrased question through the abstain guard)
+USE_VECTORS = lambda: flag("USE_VECTORS", True)  # noqa: E731

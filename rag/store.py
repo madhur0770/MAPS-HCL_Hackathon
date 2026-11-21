@@ -1,5 +1,6 @@
 """Keeps one search index in memory; rebuilt whenever documents change (live ingest, no restart)."""
 import threading
+import time
 from rag.retrieval import Index
 
 _lock = threading.Lock()
@@ -17,9 +18,22 @@ def get_index(db):
     with _lock:
         c = _cache.get(key)
         if c and c[0] == sig:
-            return c[1]
+            idx = c[1]
+            if not getattr(idx, "vec_ready", False) and time.time() - c[2] > 60:       # Ollama may have started since: try the vectors again
+                try:
+                    from rag import vectors
+                    vectors.attach(db, idx)
+                except Exception:
+                    pass
+                _cache[key] = (sig, idx, time.time())
+            return idx
         idx = Index(docs_from_db(db))
-        _cache[key] = (sig, idx)
+        try:
+            from rag import vectors
+            vectors.attach(db, idx)            # semantic vectors when Ollama (or a test embedder) is available
+        except Exception:
+            idx.vec_ready = False
+        _cache[key] = (sig, idx, time.time())
         return idx
 
 

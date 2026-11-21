@@ -6,6 +6,8 @@
  5. abstain (not_found) when nothing relevant is found
 """
 import math
+
+from core import config
 import re
 from collections import Counter
 
@@ -100,11 +102,20 @@ class Index:
         b = [(self.bm25(q, it), i) for i, it in enumerate(self.items)]
         c = [(self.cos(qg, it), i) for i, it in enumerate(self.items)]
         rank = {}
-        for lst in (b, c):
+        v = []
+        try:
+            from rag import vectors
+            v = vectors.scores(self, query)            # [] when Ollama / embeddings are not available
+        except Exception:
+            v = []
+        self.last_vec_top = max([x for x, _ in v] + [0.0])
+        for lst in ([b, c, v] if v else [b, c]):
             for r, (s, i) in enumerate(sorted(lst, reverse=True)[:30]):
                 if s > 0:
                     rank[i] = rank.get(i, 0) + 1.0 / (60 + r + 1)
         top_bm = max([s for s, _ in b] + [0.0])
+        if v and self.last_vec_top >= config.VECTOR_MIN() and top_bm < 2.5:
+            top_bm = 2.5                  # a paraphrase with few shared words: the vector match is strong enough to answer
         res = []
         for i, sc in sorted(rank.items(), key=lambda kv: -kv[1])[:k]:
             it = self.items[i]
