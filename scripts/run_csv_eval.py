@@ -12,6 +12,9 @@ from core.progress import Progress
 
 
 def main():
+    if len(sys.argv) > 1 and not sys.argv[1].startswith("-"):      # python scripts/run_csv_eval.py path\to\their_cases.csv
+        E.CSV_PATH = os.path.abspath(sys.argv[1])
+        print("using", E.CSV_PATH)
     rows = E.load_rows()
     p = Progress(len(rows), "evaluation csv")
     res = []

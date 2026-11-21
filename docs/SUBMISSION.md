@@ -15,3 +15,8 @@ Every required item, where it is, and how to check it. Tag: `final`.
 | 9 | Signed declaration of original work from each team member | `docs/declarations/` (one form per member, **each member signs**) | |
 
 One command checks the technical items: `python scripts/check_all.py` (10 steps: data, unit, API, red-team, 66-question evaluation, 40-question evaluation, robustness suite, audit samples).
+
+## Running a judge's own test-case CSV
+
+- Same layout as our evaluation set: `python scripts\run_csv_eval.py path\to\their.csv` (progress bar, report in `eval/report_40.md`).
+- Any plain list of questions: `python scripts\replay_csv.py their.csv` (in-process) or `... --url http://localhost:8000` (against the running docker app). Needs a `message` column; optional `passenger_id`, `session_id`, `as_of`, `expected_answer_type`, `expected_contains`, `expected_not_contains`. Output: `their_results.csv` with answer, type, sources, trace id, latency, PASS/FAIL.
