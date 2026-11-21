@@ -1,0 +1,420 @@
+[
+  {
+    "step": "1 ask for estimate (no change)",
+    "reply": {
+      "answer_type": "answer",
+      "answer": "If you cancel booking BK1001 now (80 h before departure from Pune Junction at 24 Nov 2026, 18:00), you would get back ₹1,860 of ₹2,040. 48 hours or more before departure: the fare minus the flat ₹180 charge.",
+      "sources": [
+        {
+          "doc_id": "RULE-03",
+          "section": "Section 2"
+        },
+        {
+          "doc_id": "RULE-03",
+          "section": "Section 1"
+        }
+      ],
+      "tools": [
+        {
+          "tool": "quote_refund",
+          "input": {},
+          "output": {
+            "ok": true,
+            "booking_id": "BK1001",
+            "band": "FLAT",
+            "hours_before": 80.0,
+            "departure": "2026-11-24T18:00:00+05:30",
+            "as_of": "2026-11-21T10:00:00+05:30",
+            "total_refund": 1860,
+            "total_paid": 2040,
+            "deduction": 180,
+            "lines": [
+              {
+                "traveller_id": 1,
+                "name": "Aarav Sharma",
+                "fare": 2040,
+                "refund": 1860,
+                "why": "fare minus flat charge Rs 180",
+                "status": "CNF"
+              }
+            ],
+            "sources": [
+              {
+                "doc_id": "RULE-03",
+                "section": "Section 2"
+              },
+              {
+                "doc_id": "RULE-03",
+                "section": "Section 1"
+              }
+            ],
+            "class": "3A",
+            "charge": 180,
+            "mid_pct": 25,
+            "low_pct": 50,
+            "wl_clerkage": 30,
+            "tatkal": false,
+            "waived": false,
+            "train_no": "12123",
+            "journey_date": "2026-11-24",
+            "from_code": "PUNE",
+            "to_code": "NGP"
+          }
+        }
+      ],
+      "pending_action": null,
+      "handed_to_human": false,
+      "trace_id": "TR-46FB81B53EDC"
+    }
+  },
+  {
+    "step": "2 preview (nothing changed)",
+    "reply": {
+      "answer_type": "confirm_needed",
+      "answer": "Preview (nothing has changed yet): cancel booking BK1001 for Aarav Sharma (₹1,860). Refund ₹1,860 of ₹2,040. 48 hours or more before departure: the fare minus the flat ₹180 charge. Press Confirm within 10 minutes to go ahead, or Cancel to keep the booking.",
+      "sources": [
+        {
+          "doc_id": "RULE-03",
+          "section": "Section 2"
+        },
+        {
+          "doc_id": "RULE-03",
+          "section": "Section 1"
+        },
+        {
+          "doc_id": "RULE-11",
+          "section": "Section 1"
+        }
+      ],
+      "tools": [
+        {
+          "tool": "quote_refund",
+          "input": {},
+          "output": {
+            "ok": true,
+            "booking_id": "BK1001",
+            "band": "FLAT",
+            "hours_before": 80.0,
+            "departure": "2026-11-24T18:00:00+05:30",
+            "as_of": "2026-11-21T10:00:00+05:30",
+            "total_refund": 1860,
+            "total_paid": 2040,
+            "deduction": 180,
+            "lines": [
+              {
+                "traveller_id": 1,
+                "name": "Aarav Sharma",
+                "fare": 2040,
+                "refund": 1860,
+                "why": "fare minus flat charge Rs 180",
+                "status": "CNF"
+              }
+            ],
+            "sources": [
+              {
+                "doc_id": "RULE-03",
+                "section": "Section 2"
+              },
+              {
+                "doc_id": "RULE-03",
+                "section": "Section 1"
+              }
+            ],
+            "class": "3A",
+            "charge": 180,
+            "mid_pct": 25,
+            "low_pct": 50,
+            "wl_clerkage": 30,
+            "tatkal": false,
+            "waived": false,
+            "train_no": "12123",
+            "journey_date": "2026-11-24",
+            "from_code": "PUNE",
+            "to_code": "NGP"
+          }
+        },
+        {
+          "tool": "propose_cancel",
+          "input": {},
+          "output": {
+            "action_id": "ACT-50C22E8C",
+            "type": "cancel_booking",
+            "booking_id": "BK1001",
+            "expires_at": "2026-11-21T10:10:00+05:30"
+          }
+        }
+      ],
+      "pending_action": {
+        "action_id": "ACT-50C22E8C",
+        "type": "cancel_booking",
+        "booking_id": "BK1001",
+        "expires_at": "2026-11-21T10:10:00+05:30"
+      },
+      "handed_to_human": false,
+      "trace_id": "TR-5F76AB9AA36F"
+    }
+  },
+  {
+    "step": "3 booking BEFORE confirm",
+    "booking": {
+      "booking_id": "BK1001",
+      "passenger_id": "P001",
+      "train_no": "12123",
+      "journey_date": "2026-11-24",
+      "from_code": "PUNE",
+      "to_code": "NGP",
+      "class": "3A",
+      "amount_paid": 2040,
+      "status": "confirmed",
+      "booked_at": "2026-11-16T10:00:00+05:30",
+      "tatkal": 0,
+      "refunded": 0,
+      "travellers": [
+        {
+          "traveller_id": 1,
+          "booking_id": "BK1001",
+          "traveller_name": "Aarav Sharma",
+          "age": 34,
+          "status": "CNF",
+          "coach": "39",
+          "berth": "61",
+          "fare_paid": 2040
+        }
+      ],
+      "passenger": {
+        "name": "Aarav Sharma",
+        "phone": "XXXXXX4821"
+      }
+    }
+  },
+  {
+    "step": "4 confirm (separate call) -> change + verify",
+    "reply": {
+      "trace_id": "TR-0E5E2AB0E1FC",
+      "answer_type": "action_done",
+      "answer": "Done. Booking BK1001: 1 traveller(s) cancelled. Refund ₹1,860. Booking status is now cancelled. (I re-read the booking to check.)",
+      "sources": [
+        {
+          "doc_id": "RULE-03",
+          "section": "Section 1"
+        }
+      ],
+      "tools": [
+        {
+          "tool": "confirm_action",
+          "output": {
+            "ok": true,
+            "status": "done",
+            "action_id": "ACT-50C22E8C",
+            "action_type": "cancel_booking",
+            "result": {
+              "booking_id": "BK1001",
+              "cancelled_traveller_ids": [
+                1
+              ],
+              "refund": 1860,
+              "new_status": "cancelled",
+              "band": "FLAT"
+            },
+            "verified": true,
+            "verify_note": "re-read: 1/1 travellers CAN, booking status cancelled"
+          }
+        }
+      ],
+      "pending_action": null,
+      "handed_to_human": false
+    }
+  },
+  {
+    "step": "5 booking AFTER confirm (re-read)",
+    "booking": {
+      "booking_id": "BK1001",
+      "passenger_id": "P001",
+      "train_no": "12123",
+      "journey_date": "2026-11-24",
+      "from_code": "PUNE",
+      "to_code": "NGP",
+      "class": "3A",
+      "amount_paid": 2040,
+      "status": "cancelled",
+      "booked_at": "2026-11-16T10:00:00+05:30",
+      "tatkal": 0,
+      "refunded": 1860,
+      "travellers": [
+        {
+          "traveller_id": 1,
+          "booking_id": "BK1001",
+          "traveller_name": "Aarav Sharma",
+          "age": 34,
+          "status": "CAN",
+          "coach": "39",
+          "berth": "61",
+          "fare_paid": 2040
+        }
+      ],
+      "passenger": {
+        "name": "Aarav Sharma",
+        "phone": "XXXXXX4821"
+      }
+    }
+  },
+  {
+    "step": "6 audit trace of the preview",
+    "trace": {
+      "trace_id": "TR-5F76AB9AA36F",
+      "ts": "2026-11-21T10:00:00+05:30",
+      "passenger_id": "P001",
+      "session_id": "demo1",
+      "input": "cancel booking BK1001",
+      "language": "en",
+      "steps": [
+        {
+          "step": "understand",
+          "intent": "cancel_request",
+          "slots": {
+            "booking_id": "BK1001"
+          }
+        },
+        {
+          "step": "correctors",
+          "problems": []
+        }
+      ],
+      "answer_type": "confirm_needed",
+      "answer": "Preview (nothing has changed yet): cancel booking BK1001 for Aarav Sharma (₹1,860). Refund ₹1,860 of ₹2,040. 48 hours or more before departure: the fare minus the flat ₹180 charge. Press Confirm within 10 minutes to go ahead, or Cancel to keep the booking.",
+      "sources": [
+        {
+          "doc_id": "RULE-03",
+          "section": "Section 2"
+        },
+        {
+          "doc_id": "RULE-03",
+          "section": "Section 1"
+        },
+        {
+          "doc_id": "RULE-11",
+          "section": "Section 1"
+        }
+      ],
+      "tools": [
+        {
+          "tool": "quote_refund",
+          "input": {},
+          "output": {
+            "ok": true,
+            "booking_id": "BK1001",
+            "band": "FLAT",
+            "hours_before": 80.0,
+            "departure": "2026-11-24T18:00:00+05:30",
+            "as_of": "2026-11-21T10:00:00+05:30",
+            "total_refund": 1860,
+            "total_paid": 2040,
+            "deduction": 180,
+            "lines": [
+              {
+                "traveller_id": 1,
+                "name": "Aarav Sharma",
+                "fare": 2040,
+                "refund": 1860,
+                "why": "fare minus flat charge Rs 180",
+                "status": "CNF"
+              }
+            ],
+            "sources": [
+              {
+                "doc_id": "RULE-03",
+                "section": "Section 2"
+              },
+              {
+                "doc_id": "RULE-03",
+                "section": "Section 1"
+              }
+            ],
+            "class": "3A",
+            "charge": 180,
+            "mid_pct": 25,
+            "low_pct": 50,
+            "wl_clerkage": 30,
+            "tatkal": false,
+            "waived": false,
+            "train_no": "12123",
+            "journey_date": "2026-11-24",
+            "from_code": "PUNE",
+            "to_code": "NGP"
+          }
+        },
+        {
+          "tool": "propose_cancel",
+          "input": {},
+          "output": {
+            "action_id": "ACT-50C22E8C",
+            "type": "cancel_booking",
+            "booking_id": "BK1001",
+            "expires_at": "2026-11-21T10:10:00+05:30"
+          }
+        }
+      ],
+      "pending_action": {
+        "action_id": "ACT-50C22E8C",
+        "type": "cancel_booking",
+        "booking_id": "BK1001",
+        "expires_at": "2026-11-21T10:10:00+05:30"
+      },
+      "handed_to_human": false,
+      "latency_ms": 1
+    }
+  },
+  {
+    "step": "7 audit trace of the confirm",
+    "trace": {
+      "trace_id": "TR-0E5E2AB0E1FC",
+      "ts": "2026-11-21T10:00:00+05:30",
+      "passenger_id": "P001",
+      "session_id": "",
+      "input": "[confirm ACT-50C22E8C]",
+      "steps": [
+        {
+          "step": "confirm",
+          "action_id": "ACT-50C22E8C",
+          "result": {
+            "trace_id": "TR-0E5E2AB0E1FC",
+            "answer_type": "action_done",
+            "answer": "Done. Booking BK1001: 1 traveller(s) cancelled. Refund ₹1,860. Booking status is now cancelled. (I re-read the booking to check.)",
+            "sources": [
+              {
+                "doc_id": "RULE-03",
+                "section": "Section 1"
+              }
+            ],
+            "tools": [
+              {
+                "tool": "confirm_action",
+                "output": {
+                  "ok": true,
+                  "status": "done",
+                  "action_id": "ACT-50C22E8C",
+                  "action_type": "cancel_booking",
+                  "result": {
+                    "booking_id": "BK1001",
+                    "cancelled_traveller_ids": [
+                      1
+                    ],
+                    "refund": 1860,
+                    "new_status": "cancelled",
+                    "band": "FLAT"
+                  },
+                  "verified": true,
+                  "verify_note": "re-read: 1/1 travellers CAN, booking status cancelled"
+                }
+              }
+            ],
+            "pending_action": null,
+            "handed_to_human": false
+          }
+        }
+      ],
+      "answer_type": "action_done",
+      "tools": []
+    }
+  }
+]

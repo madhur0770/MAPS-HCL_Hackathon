@@ -105,3 +105,16 @@ def test_ingest_removes_instructions_in_documents(client):
 def test_as_of_validation(client):
     r = client.post("/chat", json={"session_id": "a", "message": "hi", "as_of": "garbage"}, headers=H)
     assert r.status_code == 422
+
+
+def test_concurrent_requests_all_succeed(client):
+    import threading
+    codes = []
+    def work(k):
+        for i in range(15):
+            r = client.post("/chat", json={"session_id": "c%d" % k, "message": ["hello", "status of BK1001", "cancel booking BK1001"][i % 3]},
+                            headers={"X-Passenger-Id": "P001"})
+            codes.append(r.status_code)
+    ts = [threading.Thread(target=work, args=(k,)) for k in range(8)]
+    [t.start() for t in ts]; [t.join() for t in ts]
+    assert codes and set(codes) == {200}

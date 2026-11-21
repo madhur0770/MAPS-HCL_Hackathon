@@ -62,7 +62,8 @@ def make_app(db_conn=None):
     def who(x_passenger_id):
         if not x_passenger_id:
             raise HTTPException(401, "X-Passenger-Id header is required")
-        r = db.execute("SELECT passenger_id FROM passengers WHERE passenger_id=?", (x_passenger_id,)).fetchone()
+        with LOCK:
+            r = db.execute("SELECT passenger_id FROM passengers WHERE passenger_id=?", (x_passenger_id,)).fetchone()
         if not r:
             raise HTTPException(401, "unknown passenger")
         return x_passenger_id

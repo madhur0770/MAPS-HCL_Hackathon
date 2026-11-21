@@ -1,0 +1,32 @@
+# One command:  docker compose up --build
+#   API  -> http://localhost:8000/docs      UI -> http://localhost:8501
+# With a real local model:  docker compose --profile llm up --build   (then set MOCK_LLM=false)
+services:
+  api:
+    build: .
+    env_file: [.env.example]
+    environment:
+      - DB_PATH=/app/data/train.db
+      - MOCK_LLM=${MOCK_LLM:-true}
+      - OLLAMA_URL=http://ollama:11434
+    ports: ["8000:8000"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request;urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+  ui:
+    build: .
+    command: streamlit run ui/streamlit_app.py --server.port 8501 --server.address 0.0.0.0
+    environment:
+      - API_URL=http://api:8000
+    ports: ["8501:8501"]
+    depends_on:
+      api: {condition: service_healthy}
+  ollama:
+    image: ollama/ollama:latest
+    profiles: [llm]
+    ports: ["11434:11434"]
+    volumes: [ollama:/root/.ollama]
+volumes:
+  ollama:

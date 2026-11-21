@@ -1,0 +1,7 @@
+fastapi>=0.110
+uvicorn>=0.27
+pydantic>=2.5
+requests>=2.31
+streamlit>=1.32
+httpx>=0.26
+pytest>=8.0
