@@ -8,6 +8,9 @@ STEPS = ["stations", "trains+stops", "fares", "seats", "passengers", "bookings",
 
 def main():
     path = os.getenv("DB_PATH", config.db_path())
+    if "--if-missing" in sys.argv and os.path.exists(path) and os.path.getsize(path) > 0:
+        print("database already exists at %s: keeping it (bookings, actions and traces survive restarts)" % path)
+        return
     for ext in ("", "-wal", "-shm"):
         try: os.remove(path + ext)
         except OSError: pass

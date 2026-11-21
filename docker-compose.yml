@@ -1,15 +1,18 @@
 # One command:  docker compose up --build
-#   API  -> http://localhost:8000/docs      UI -> http://localhost:8501
+#   API + React UI -> http://localhost:8000   (API docs: /docs)      Streamlit UI -> http://localhost:8501
+#   Database: SQLite file in the named volume "appdata" (survives `docker compose down` and restarts; `docker compose down -v` erases it)
 # With a real local model:  docker compose --profile llm up --build   (then set MOCK_LLM=false)
 services:
   api:
     build: .
     env_file: [.env.example]
     environment:
-      - DB_PATH=/app/data/train.db
+      - DB_PATH=/app/dbdata/train.db
       - MOCK_LLM=${MOCK_LLM:-true}
       - OLLAMA_URL=http://ollama:11434
     ports: ["8000:8000"]
+    volumes: [appdata:/app/dbdata]
+    restart: unless-stopped
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request;urllib.request.urlopen('http://localhost:8000/health')"]
       interval: 10s
@@ -29,4 +32,5 @@ services:
     ports: ["11434:11434"]
     volumes: [ollama:/root/.ollama]
 volumes:
+  appdata:
   ollama:

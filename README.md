@@ -18,6 +18,8 @@ No language model is needed to run or test (tests use `MOCK_LLM=true`). To switc
 - **Understanding**: when the rules cannot read a place or an intent, the model suggests it; the suggestion is accepted only if it resolves to a real station / listed intent.
 Without Ollama everything still works (lexical search, rule understanding).
 
+**Submitting?** See `docs/SUBMISSION.md`: every required item, where it is and how to check it.
+
 ## Check everything with one command
 ```
 python scripts/check_all.py          # data -> unit -> API -> red-team -> 66-question evaluation -> 40-question CSV evaluation (live progress)
@@ -58,7 +60,8 @@ The main UI is React (`ui-react/`, built into `app/static/` and served by the AP
 | `ui/` | simple Streamlit alternative |
 | `eval/` | 66 questions with hand-calculated answers (`report.md`) and the 40-question CSV with fixtures and independent oracles (`csv_eval.py`, `report_40.md`) |
 | `tests/` | unit, API and red-team tests |
-| `docs/` | architecture, data note, documents list, AI-use note, audit samples, team and declaration template |
+| `data_kit/` | the supplied kit: policy documents, railway data, generation prompts, generator, validators, kit tests |
+| `docs/` | SUBMISSION checklist, architecture, data note, documents list, AI-use note, audit samples, team and declaration template |
 
 ## Important design points
 - **Numbers never come from the model.** Refunds use integer rupees with exact boundaries (48:00 and 12:00 and 4:00 are inclusive). Percentage charges are rounded up to the next Rs 5 and the final refund down to a whole rupee (RUL-003 3.6). Hand-checked tests cover 48h01m, 48:00, 12h01m, 12:00, 4h01m, 4:00 and departure.
