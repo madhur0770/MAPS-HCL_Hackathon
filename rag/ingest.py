@@ -132,7 +132,7 @@ def ingest(db, doc: dict, settings_override=None):
     eff = doc.get("effective_from") or clock.real_now().date().isoformat()
     lang = doc.get("language") or language.detect(text)
     lang = "hinglish" if lang == "hinglish" else lang
-    topic = doc.get("topic") or infer_topic(doc.get("title", "") + " " + text)
+    topic = doc.get("topic") or infer_topic((doc.get("title") or "") + " " + text)
     added = clock.real_now().strftime("%Y-%m-%dT%H:%M:%S.%f")
     db.execute("DELETE FROM documents WHERE doc_id=?", (doc_id,))
     db.execute("DELETE FROM settings_history WHERE source_doc=?", (doc_id,))

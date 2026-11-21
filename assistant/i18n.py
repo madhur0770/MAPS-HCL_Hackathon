@@ -137,9 +137,20 @@ T = {
  "already_cancelled": {
   "en": "Booking %(bid)s is already cancelled.", "hi": "बुकिंग %(bid)s पहले ही रद्द है।", "hinglish": "Booking %(bid)s pehle hi cancel hai."},
  "handoff": {
-  "en": "I can't decide this myself, so I have passed it to the %(desk)s with a summary (request %(hid)s). They will review it. I can't promise the outcome.",
-  "hi": "यह मैं खुद तय नहीं कर सकता, इसलिए मैंने इसे सारांश के साथ %(desk)s को भेज दिया है (अनुरोध %(hid)s)। वे इसकी समीक्षा करेंगे। मैं परिणाम का वादा नहीं कर सकता।",
-  "hinglish": "Yeh main khud tay nahi kar sakta, isliye maine ise summary ke saath %(desk)s ko bhej diya hai (request %(hid)s). Woh ise review karenge. Main result ka vaada nahi kar sakta."},
+  "en": "I can't decide this myself, so I have passed it to the %(desk)s with a summary (request %(hid)s). Target to acknowledge: %(target)s. They will review it. I can't promise the outcome.",
+  "hi": "यह मैं खुद तय नहीं कर सकता, इसलिए मैंने इसे सारांश के साथ %(desk)s को भेज दिया है (अनुरोध %(hid)s)। पावती का लक्ष्य: %(target)s। वे इसकी समीक्षा करेंगे। मैं परिणाम का वादा नहीं कर सकता।",
+  "hinglish": "Yeh main khud tay nahi kar sakta, isliye maine ise summary ke saath %(desk)s ko bhej diya hai (request %(hid)s). Acknowledge karne ka target: %(target)s. Woh ise review karenge. Main result ka vaada nahi kar sakta."},
+ "unsupported_change": {
+  "en": "I can only change the boarding station (once, and only until %(hours)s hours before the train leaves its first station). A change of date, class, train, seat or traveller is not allowed on an existing booking. What you can do: cancel the booking (I will show the refund first) and then book again. Want me to show the cancellation refund for the booking?",
+  "hi": "मैं सिर्फ़ बोर्डिंग स्टेशन बदल सकता हूँ (एक बार, और ट्रेन के पहले स्टेशन से छूटने से %(hours)s घंटे पहले तक)। मौजूदा बुकिंग में तारीख, क्लास, ट्रेन, सीट या यात्री नहीं बदले जा सकते। आप बुकिंग रद्द कर सकते हैं (पहले मैं रिफंड दिखाऊँगा) और फिर नई बुकिंग कर सकते हैं। क्या मैं रद्द करने का रिफंड दिखाऊँ?",
+  "hinglish": "Main sirf boarding station badal sakta hoon (ek baar, aur train ke pehle station se chhootne se %(hours)s ghante pehle tak). Maujooda booking me date, class, train, seat ya yatri nahi badle ja sakte. Aap booking cancel kar sakte hain (pehle main refund dikhaunga) aur phir nayi booking kar sakte hain. Kya main cancel karne ka refund dikhaun?"},
+ "setting_tatkal": {"en": "The Tatkal supplement for class %(cls)s is %(amount)s per ticket as on %(date)s.", "hi": "क्लास %(cls)s के लिए तत्काल अधिभार %(date)s तक %(amount)s प्रति टिकट है।", "hinglish": "Class %(cls)s ke liye Tatkal supplement %(date)s ko %(amount)s per ticket hai."},
+ "setting_cancel": {"en": "The fixed cancellation charge for class %(cls)s is %(amount)s per traveller as on %(date)s.", "hi": "क्लास %(cls)s का निश्चित रद्दीकरण शुल्क %(date)s तक %(amount)s प्रति यात्री है।", "hinglish": "Class %(cls)s ka fixed cancellation charge %(date)s ko %(amount)s per traveller hai."},
+ "departed_refund": {"en": "The train for booking %(bid)s has already left. A cancellation at or after departure gets no refund (%(refund)s).", "hi": "बुकिंग %(bid)s की ट्रेन जा चुकी है। प्रस्थान के समय या बाद में रद्द करने पर रिफंड नहीं मिलता (%(refund)s)।", "hinglish": "Booking %(bid)s ki train ja chuki hai. Departure ke time ya baad cancel karne par refund nahi milta (%(refund)s)."},
+ "handoff_safety": {
+  "en": "This sounds urgent. If anyone is in danger, call the emergency channel now: %(channel)s. I have sent it straight to the %(desk)s (request %(hid)s), target to acknowledge: %(target)s. I can't promise the outcome.",
+  "hi": "यह तत्काल लगता है। अगर कोई ख़तरे में है तो अभी आपातकालीन चैनल पर कॉल करें: %(channel)s। मैंने इसे सीधे %(desk)s को भेज दिया है (अनुरोध %(hid)s), पावती का लक्ष्य: %(target)s। मैं परिणाम का वादा नहीं कर सकता।",
+  "hinglish": "Yeh urgent lag raha hai. Agar koi khatre me hai to abhi emergency channel par call karein: %(channel)s. Maine ise seedha %(desk)s ko bhej diya hai (request %(hid)s), acknowledge ka target: %(target)s. Main result ka vaada nahi kar sakta."},
  "refuse_policy": {
   "en": "I can't do that. Refund amounts, charges and waiting-list order follow the published rules and I can't change them or make exceptions.",
   "hi": "मैं यह नहीं कर सकता। रिफंड राशि, शुल्क और वेटिंग क्रम प्रकाशित नियमों के अनुसार हैं; मैं इन्हें बदल या अपवाद नहीं कर सकता।",

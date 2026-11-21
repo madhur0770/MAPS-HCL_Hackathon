@@ -115,7 +115,7 @@ def handle(db, passenger_id, session_id, message, as_of_in=None, trace_id=None):
     fn = {"greet": do_greet, "my_bookings": do_my_bookings, "booking_status": do_status, "refund_estimate": do_refund_estimate,
           "cancel_request": do_cancel, "change_boarding": do_change_boarding, "book_ticket": do_book, "deadline": do_deadline,
           "search_trains": do_search, "seats": do_search, "fare": do_search, "rules": do_rules,
-          "handoff_request": do_handoff, "dispute": do_handoff, "forbidden": do_forbidden, "unknown": do_unknown,
+          "handoff_request": do_handoff, "unsupported_change": do_unsupported_change, "dispute": do_handoff, "forbidden": do_forbidden, "unknown": do_unknown,
           "privacy_ask": do_privacy}[intent]
     ctx = {"db": db, "pid": passenger_id, "lang": lang, "as_of": as_of, "text": text, "slots": slots, "sess": sess,
            "trace": trace_id, "intent": intent, "step": step, "session_id": session_id}
@@ -202,7 +202,7 @@ def route_ask(ctx, intent, missing_keys, collected):
         h = handoff.create(ctx["db"], ctx["pid"], collected.get("booking_id"), "gave_up", ctx["text"],
                            ["Collected so far: %s" % json.dumps({k: v for k, v in collected.items() if k != "topic"}, ensure_ascii=False)], ctx["as_of"], ctx["trace"])
         ctx["sess"].pop("pending_intent", None); ctx["sess"].pop("collected", None); ctx["sess"]["asked"] = 0
-        return reply("handed_to_human", t("gave_up", lang, missing=names) + " " + t("handoff", lang, desk=h["desk"], hid=h["handoff_id"]), handed=True,
+        return reply("handed_to_human", t("gave_up", lang, missing=names) + " " + handoff_text(lang, h), handed=True,
                      tools=[tool("create_handoff", h)])
     parts = [t(k, lang) for k in missing_keys]
     names = parts[0] if len(parts) == 1 else ", ".join(parts[:-1]) + {"en": " and ", "hi": " और ", "hinglish": " aur "}.get(lang, " and ") + parts[-1]
@@ -254,7 +254,7 @@ def route_ask_booking(ctx, lst):
     if asked >= MAX_FOLLOWUPS:
         h = handoff.create(ctx["db"], ctx["pid"], None, "gave_up", ctx["text"], ["No booking id was given after two questions."], ctx["as_of"], ctx["trace"])
         done_asking(ctx)
-        return reply("handed_to_human", t("handoff", lang, desk=h["desk"], hid=h["handoff_id"]), handed=True, tools=[tool("create_handoff", h)])
+        return reply("handed_to_human", handoff_text(lang, h), handed=True, tools=[tool("create_handoff", h)])
     sess["pending_intent"], sess["collected"], sess["asked"] = intent, dict(ctx["slots"]), asked + 1
     return reply("clarification", t("ask_booking", lang, list=lst))
 
@@ -360,7 +360,7 @@ def do_refund_estimate(ctx):
     if q["band"] == "OPERATOR":
         return reply("answer", t("operator_done", lang, bid=b["booking_id"], refund=inr(q["total_refund"])), tools=[tool("quote_refund", q)], sources=q["sources"])
     if q["hours_before"] <= 0:
-        return reply("answer", t("departed", lang), tools=[tool("quote_refund", q)], sources=q["sources"])
+        return reply("answer", t("departed_refund", lang, bid=b["booking_id"], refund=inr(0)), tools=[tool("quote_refund", q)], sources=q["sources"])
     dep = clock.parse_dt(q["departure"])
     ans = t("refund_estimate", lang, bid=b["booking_id"], hours=fmt_hours(q["hours_before"]), frm=station_label(db, q["from_code"]),
             dep=fmt_dt(dep), refund=inr(q["total_refund"]), paid=inr(q["total_paid"]), why=why_text(q, lang))
@@ -579,7 +579,7 @@ def do_book(ctx):
 
 def do_deadline(ctx):
     db, pid, lang, as_of, text = ctx["db"], ctx["pid"], ctx["lang"], ctx["as_of"], ctx["text"]
-    if not ctx["slots"].get("booking_id") and not last_ref(ctx):
+    if not ctx["slots"].get("booking_id") and not last_ref(ctx) and not ctx["slots"].get("train_no"):
         if re.search(r"(boarding|board|station|स्टेशन)", text, re.I):
             ctx["slots"]["topic"] = "boarding_change"
         elif re.search(r"(cancel|refund|radd|रद्द|wapas|वापस)", text, re.I):
@@ -602,8 +602,38 @@ def do_deadline(ctx):
                  tools=[tool("refund_bands", {k: (clock.iso(v) if hasattr(v, "isoformat") else v) for k, v in bands.items()})])
 
 
+SETTING_QUESTIONS = [(re.compile(r"tatkal.{0,30}(supplement|charge|fee)|(supplement|charge|fee).{0,30}tatkal|तत्काल", re.I), "tatkal_supplement_%s", "setting_tatkal"),
+                     (re.compile(r"(fixed|flat|minimum|cancel\w*|radd).{0,20}(charge|fee|shulk)|cancel\w* (charge|fee)", re.I), "cancel_fixed_charge_%s", "setting_cancel")]
+
+
+def setting_answer(ctx):
+    """A class-specific money number is read straight from the dated settings, so the newest circular always wins."""
+    cls = ctx["slots"].get("class")
+    if not cls:
+        return None
+    from tools import settings as cfg
+    for rx, key, tkey in SETTING_QUESTIONS:
+        if rx.search(ctx["text"]):
+            name = key % cls.lower()
+            val = cfg.get(ctx["db"], name, ctx["as_of"])
+            if val is None:
+                return None
+            doc, sec = cfg.source(ctx["db"], name, ctx["as_of"])
+            try:
+                money = inr(int(round(float(val) * 100)))
+            except ValueError:
+                return None
+            src = [{"doc_id": doc, "section": sec.replace("Section ", "")}] if doc else []
+            return reply("answer", t(tkey, ctx["lang"], cls=cls, amount=money, date=fmt_date(ctx["as_of"].date().isoformat())), sources=src,
+                         tools=[tool("get_setting", {"name": name, "value": val, "source": doc})])
+    return None
+
+
 def do_rules(ctx):
     db, lang, as_of, slots = ctx["db"], ctx["lang"], ctx["as_of"], ctx["slots"]
+    sa = setting_answer(ctx)
+    if sa:
+        return sa
     idx = store.get_index(db)
     asof_d = as_of.date().isoformat()
     res = retrieval.retrieve(idx, ctx["text"], asof_d, topic=slots.get("topic"))
@@ -651,6 +681,18 @@ def do_rules(ctx):
                  "overridden": [o["doc_id"] for o in res["overridden"]]})], extra={"plain_answer": plain})
 
 
+def handoff_text(lang, h):
+    if h.get("category") == "safety":
+        return t("handoff_safety", lang, desk=h["desk"], hid=h["handoff_id"], target=h["ack_target"], channel=h["emergency_channel"])
+    return t("handoff", lang, desk=h["desk"], hid=h["handoff_id"], target=h["ack_target"])
+
+
+def do_unsupported_change(ctx):
+    from tools import settings as cfg
+    hrs = cfg.get_int(ctx["db"], "boarding_change.cutoff_hours_before_origin", ctx["as_of"], 6)
+    return reply("refusal", t("unsupported_change", ctx["lang"], hours=hrs), sources=[{"doc_id": "RUL-010", "section": "3.1"}])
+
+
 def do_handoff(ctx):
     db, pid, lang, as_of = ctx["db"], ctx["pid"], ctx["lang"], ctx["as_of"]
     bid = ctx["slots"].get("booking_id") or last_ref(ctx) or ctx["sess"].get("last_booking")
@@ -668,8 +710,8 @@ def do_handoff(ctx):
     reason = "dispute" if ctx["intent"] == "dispute" else "human"
     h = handoff.create(db, pid, bid, reason, ctx["text"], facts, as_of, ctx["trace"])
     tools.append(tool("create_handoff", h))
-    return reply("handed_to_human", t("handoff", lang, desk=h["desk"], hid=h["handoff_id"]), handed=True, tools=tools,
-                 sources=[{"doc_id": "RUL-012", "section": "3.2"}] if ctx["intent"] == "dispute" else [])
+    return reply("handed_to_human", handoff_text(lang, h), handed=True, tools=tools,
+                 sources=[{"doc_id": "RUL-012", "section": {"safety": "3.3", "privacy": "3.4", "refund_dispute": "3.2"}.get(h["category"], "3.5")}])
 
 
 def do_forbidden(ctx):

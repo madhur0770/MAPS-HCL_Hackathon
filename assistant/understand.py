@@ -1,11 +1,12 @@
 """Turn a message into {intent, slots}. Keyword and pattern rules in English, Hindi and Hinglish (fast, testable).
 If the rules cannot decide, an optional language model may suggest an intent (checked against a fixed list)."""
 import re
+from assistant import handoff as handoff_mod
 
 from assistant import dates
 from tools import timetable as tt
 
-INTENTS = ["privacy_ask", "greet", "my_bookings", "booking_status", "refund_estimate", "cancel_request", "change_boarding", "book_ticket",
+INTENTS = ["unsupported_change", "privacy_ask", "greet", "my_bookings", "booking_status", "refund_estimate", "cancel_request", "change_boarding", "book_ticket",
            "deadline", "search_trains", "seats", "fare", "rules", "handoff_request", "dispute", "forbidden", "unknown"]
 
 R = lambda p: re.compile(p, re.I)  # noqa: E731
@@ -28,7 +29,8 @@ P = {
  "handoff_request": [R(r"(human|agent|real person|desk|supervisor|manager|insaan|kisi se baat|बात करनी|इंसान|मानव|speak to someone|talk to someone)")],
  "my_bookings": [R(r"(my bookings|all (my )?bookings|list (my )?bookings|show (me )?(my )?bookings|meri (saari )?bookings?|मेरी (सभी )?बुकिंग|booking list|my tickets|meri tickets?)")],
  "greet": [R(r"^\s*(hi|hello|hey|namaste|namaskar|hii+|नमस्ते|नमस्कार|good (morning|evening|afternoon))\b[\s!.]*$")],
- "deadline": [R(r"(last (date|time|day)|until when|till when|by when|deadline|cut-?off|kab tak|कब तक|antim|अंतिम|how late|how long before|time limit)")],
+ "deadline": [R(r"(last (date|time|day)|until when|till when|by when|deadline|cut-?off|kab tak|कब तक|antim|अंतिम|आखिरी|आख़िरी|समय.?सीमा|akhri|akhiri|samay seema|how late|how long before|time limit)")],
+ "unsupported_change": [R(r"(\b(upgrade|downgrade|reschedule|postpone|prepone)\b|(change|badal|बदल|modify|reschedule|upgrade|downgrade|switch|shift|move|postpone|prepone|edit).{0,30}(date|day|class|train|seat|berth|coach|destination|name|traveller|passenger|तारीख|ट्रेन|क्लास|सीट|tareekh)|(date|class|train|seat|destination|तारीख|ट्रेन|क्लास).{0,25}(change|badal|बदल|modify|upgrade))")],
  "change_boarding": [R(r"((change|badal|बदल|switch|shift|move).{0,25}(boarding|board|station|स्टेशन)|(boarding|board).{0,25}(change|badal|बदल))")],
  "book_ticket": [R(r"(\bbook\b|reserve|bukk|बुक|buking|i want a ticket|ticket chahiye|ticket book|टिकट चाहिए)")],
  "booking_status": [R(r"(status|pnr|my booking|meri booking|मेरी बुकिंग|confirm (hua|ho gaya|hai)|booking (check|details|kya)|waiting list (status|position)|berth|coach|seat number|kaunsa seat)")],
@@ -162,6 +164,8 @@ def understand(db, text: str, as_of, session_slots=None):
         intent = "privacy_ask"
     elif re.search(r"\b(hotel|hotels|flight|flights|cab|taxi|restaurant|bus ticket|movie|weather|visa|cricket|stock|recipe|pizza|resort|room booking)\b", t, re.I) and not slots.get("booking_id"):
         intent = "unknown"
+    elif handoff_mod.SAFETY.search(t) or handoff_mod.PRIVACY.search(t):
+        intent = "handoff_request"
     elif has("forbidden"):
         intent = "forbidden"
     elif has("dispute"):
@@ -184,6 +188,8 @@ def understand(db, text: str, as_of, session_slots=None):
         intent = "refund_estimate"
     elif has("change_boarding"):
         intent = "change_boarding"
+    elif has("unsupported_change"):
+        intent = "unsupported_change"
     elif has("book_ticket") and not has("booking_status") and not slots.get("booking_id") and not (
             re.search(r"^\s*(how|what|when|can|could|is|are|do|does|which|kitne|kab|kya|kaise)\b", t, re.I) and not slots.get("stations") and not slots.get("travellers")
             and not slots.get("date") and not slots.get("class")):
@@ -223,4 +229,6 @@ def understand(db, text: str, as_of, session_slots=None):
             topic = tp
             break
     slots["topic"] = topic
+    if intent in ("search_trains", "unknown") and topic == "booking" and not slots.get("stations") and not slots.get("date"):
+        intent = "rules"      # "when does booking close", "how early can I book"
     return {"intent": intent, "slots": slots}
