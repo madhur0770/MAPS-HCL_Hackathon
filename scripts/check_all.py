@@ -33,7 +33,7 @@ STEPS = [
     ("Unit tests (refund boundaries, actions, timetable)", [sys.executable, "-m", "pytest", "tests/unit", "-q"]),
     ("API tests (confirm flow, privacy, live ingest)", [sys.executable, "-m", "pytest", "tests/api", "-q"]),
     ("Red-team tests (injection, privacy, policy)", [sys.executable, "-m", "pytest", "tests/safety", "-q"]),
-    ("Evaluation (62 questions)", [sys.executable, "scripts/run_eval.py"]),
+    ("Evaluation (64 questions)", [sys.executable, "scripts/run_eval.py"]),
     ("Audit samples (3 real runs)", [sys.executable, "scripts/make_audit_samples.py"]),
 ]
 

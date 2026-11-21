@@ -221,3 +221,9 @@ def test_step_by_step_booking_of_a_search(client):
     chat(client, "i want to go from chetakgarh", sid="s10")
     chat(client, "udayabad", sid="s10")
     assert "Chetakgarh to Udayabad" in chat(client, "26 nov", sid="s10")["answer"]
+
+
+def test_why_question_admits_the_documents_give_no_reason(client):
+    r = chat(client, "why cannot rac passengers carry pets", sid="w1")
+    assert "RAC and WL passengers cannot register a pet" in r["answer"] and "do not explain the reason" in r["answer"]
+    assert "do not explain the reason" not in chat(client, "can i carry my pet dog", sid="w2")["answer"]

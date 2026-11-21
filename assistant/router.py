@@ -733,6 +733,8 @@ def do_rules(ctx):
         if rw and len(rw) < 900:
             ans = "%s %s" % (t("rules_prefix", lang, src="%s %s" % (w["doc_id"], secno(w["section"]))), rw.strip())
     doc_text = w["text"] + " " + shown["text"] + " " + " ".join(u["text"] for u in res["upcoming"])
+    if re.match(r"\s*((why|kyun|kyon|kyu|reason|what is the reason|iski wajah)\b|क्यों|क्यूँ)", ctx["text"], re.I):
+        notes.append(t("no_reason_note", lang))       # the documents state rules, not their reasons: never invent one
     if notes:
         ans += "\n" + " ".join(notes)
         plain += "\n" + " ".join(notes)

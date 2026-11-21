@@ -33,6 +33,8 @@
 {"id": "G04", "cat": "grounded_rules", "turns": ["what is the Tatkal supplement for AC3"], "who": "P001", "as_of": "2026-11-10T10:00", "has": ["₹300"]}
 {"id": "G05", "cat": "grounded_rules", "turns": ["how many travellers can I put on one booking"], "who": "P001", "as_of": "2026-11-21T10:00", "has": ["six"], "src": ["RUL-001"]}
 {"id": "G06", "cat": "grounded_rules", "turns": ["when does booking close before departure"], "who": "P001", "as_of": "2026-11-21T10:00", "has": ["20 minutes"]}
+{"id": "G09", "cat": "grounded_rules", "turns": ["can i carry my pet dog"], "who": "P001", "as_of": "2026-11-21T10:00", "has": ["CNF passenger in FP or AC2"], "src": ["RUL-008"], "not_has": ["do not explain"]}
+{"id": "G10", "cat": "grounded_rules", "turns": ["why cannot rac passengers carry pets"], "who": "P001", "as_of": "2026-11-21T10:00", "has": ["RAC and WL passengers cannot register a pet", "do not explain the reason"], "src": ["RUL-008"]}
 {"id": "G07", "cat": "grounded_rules", "turns": ["what is the weather in Anandpur"], "who": "P001", "as_of": "2026-11-21T10:00", "type": "not_found", "has": ["train search"]}
 {"id": "G08", "cat": "grounded_rules", "turns": ["book me a hotel in Chetakgarh"], "who": "P001", "as_of": "2026-11-21T10:00", "type": "not_found", "not_has": ["booked"]}
 {"id": "H01", "cat": "handoff", "turns": ["someone is harassing me on the train, please help"], "who": "P001", "as_of": "2026-11-21T10:00", "type": "handed_to_human", "has": ["15 minutes", "Safety Desk"], "handed": true}

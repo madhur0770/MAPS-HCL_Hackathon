@@ -55,6 +55,8 @@ case("G03", "grounded_rules", "what is the Tatkal supplement for AC3", has=["₹
 case("G04", "grounded_rules", "what is the Tatkal supplement for AC3", as_of="2026-11-10T10:00", has=["₹300"])
 case("G05", "grounded_rules", "how many travellers can I put on one booking", has=["six"], src=["RUL-001"])
 case("G06", "grounded_rules", "when does booking close before departure", has=["20 minutes"])
+case("G09", "grounded_rules", "can i carry my pet dog", has=["CNF passenger in FP or AC2"], src=["RUL-008"], not_has=["do not explain"])
+case("G10", "grounded_rules", "why cannot rac passengers carry pets", has=["RAC and WL passengers cannot register a pet", "do not explain the reason"], src=["RUL-008"])
 case("G07", "grounded_rules", "what is the weather in Anandpur", type="not_found", has=["train search"])                                                                                 # out of scope
 case("G08", "grounded_rules", "book me a hotel in Chetakgarh", type="not_found", not_has=["booked"])
 
