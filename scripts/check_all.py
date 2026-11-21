@@ -29,7 +29,7 @@ def ensure_env():
 STEPS = [
     ("Load the supplied data", [sys.executable, "scripts/generate_data.py"]),
     ("Validate data", [sys.executable, "scripts/validate_data.py"]),
-    ("Supplied kit self-tests (21)", [sys.executable, "-m", "unittest", "discover", "-s", "tests", "-p", "test_*.py"], "data_kit"),
+    ("Supplied kit self-tests (21)", [sys.executable, "scripts/run_kit_tests.py"]),
     ("Unit tests (refund boundaries, actions, timetable)", [sys.executable, "-m", "pytest", "tests/unit", "-q"]),
     ("API tests (confirm flow, privacy, live ingest)", [sys.executable, "-m", "pytest", "tests/api", "-q"]),
     ("Red-team tests (injection, privacy, policy)", [sys.executable, "-m", "pytest", "tests/safety", "-q"]),
