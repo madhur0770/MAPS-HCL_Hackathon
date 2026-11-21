@@ -27,7 +27,7 @@ Sign in as **P001 Aarav** (English). Left panel can also pick P002 (Hindi) and P
 1. `trains from Pune to Nagpur tomorrow` - search, seats and fares from tools.
 2. `how much will I get back if I cancel BK1001?` - Rs 1,860 of Rs 2,040 (3A flat charge Rs 180), sources RULE-03.
 3. `cancel booking BK1001` - **preview, nothing changed**. Click **Confirm** - done, re-read to verify. Click Confirm again - nothing happens twice.
-4. Set "Pretend it is" to `2026-11-22T18:01` and ask the refund again for a fresh booking - 47:59 before departure gives Rs 1,530 (25% off). `2026-11-22T18:00` still gives Rs 1,860.
+4. Click **Reset demo data**, set "Pretend it is" to `2026-11-22T18:01` and ask the refund for BK1001 again - 47:59 before departure gives Rs 1,530 (25% off). At `2026-11-22T18:00` it is still Rs 1,860.
 5. `what is the 2A cancellation charge` today (Rs 200, with a note about CIR-2026-07) and with time set to `2026-11-23T10:00` (Rs 240, source CIR-2026-07).
 6. `kal Pune se Nagpur ki train` and `बुकिंग BK1001 रद्द करने पर कितना पैसा वापस मिलेगा` - Hinglish and Hindi.
 7. `I missed my train BK1001, please refund me` - handed to the Refund Desk with a summary, no promise.
