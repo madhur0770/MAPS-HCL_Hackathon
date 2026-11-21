@@ -39,3 +39,9 @@ def test_boarding_change_deadline_is_six_hours_before_origin(db):
     b = dict(db.execute("SELECT * FROM bookings WHERE booking_id='BKG0001'").fetchone())
     dl, hrs, src = deadlines.boarding_change_deadline(db, b, clock.parse_dt("2026-11-21T10:00"))
     assert dl == dt.datetime(2026, 11, 25, 3, 15, tzinfo=clock.IST) and hrs == 6 and src[0] == "RUL-010"
+
+
+def test_train_found_by_name_and_unknown_city_named(db):
+    from assistant import understand as u
+    assert u.find_train(db, "what is my booking id for neelkanth rapid") == "UJ1020"
+    assert u.find_train(db, "UJ 1006 timings") == "UJ1006"

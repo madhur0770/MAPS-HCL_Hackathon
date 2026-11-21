@@ -75,6 +75,12 @@ def find_train(db, text):
         pat = r"\b%s[\s-]?%s\b" % (re.escape(letters), re.escape(digits)) if letters else r"\b%s\b" % re.escape(digits)
         if re.search(pat, text, re.I):
             return no
+    low = re.sub(r"[^\w\s]", " ", text.lower())
+    low = " " + re.sub(r"\s+", " ", low) + " "
+    for no, name in db.execute("SELECT train_no, name FROM trains"):       # a train called by its name: "Neelkanth Rapid"
+        nm = " " + re.sub(r"\s+", " ", re.sub(r"[^\w\s]", " ", (name or "").lower())).strip() + " "
+        if len(nm) > 5 and nm in low:
+            return no
     return None
 
 

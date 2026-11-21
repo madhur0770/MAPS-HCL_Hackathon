@@ -9,7 +9,7 @@ import time
 import uuid
 
 from actions import manager as am
-from assistant import correctors, guardrails, handoff, i18n, language, llm, understand as und
+from assistant import correctors, dates, guardrails, handoff, i18n, language, llm, understand as und
 from assistant.i18n import t
 from core import clock, config
 from core.text import fmt_date, fmt_dt, fmt_hours, inr
@@ -277,10 +277,17 @@ def do_unknown(ctx):
         r = do_rules(ctx)
         if r["answer_type"] != "not_found":
             return r
-    m = re.search(r"\b(?:to|for|from|se|tak|ko)\s+([A-Z][a-z]{2,})", text)
+    stop = {"the", "my", "an", "and", "you", "tomorrow", "today", "tonight", "know", "check", "see", "get", "go", "book", "cancel", "travel", "please", "kal", "aaj", "parso", "this", "that", "your", "our", "them", "him", "her",
+            "any", "all", "some", "one", "two", "three", "me", "us", "it", "now", "later", "next", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"} | set(dates.MONTHS.keys())
+    m = None
+    if re.search(r"(ticket|train|book|travel|go|reach|journey|seat|gaadi|jaana|जाना|टिकट|ट्रेन)", text, re.I):
+        for mm in re.finditer(r"\b(?:to|from|se|tak|for)\s+([A-Za-z]{3,})", text):
+            if mm.group(1).lower() not in stop and not mm.group(1)[0].isdigit():
+                m = mm
+                break
     if m and not tt.find_stations_in(ctx["db"], text):
         cities = ", ".join(sorted({r[0] for r in ctx["db"].execute("SELECT city FROM stations")}))
-        return reply("clarification", t("unknown_place", ctx["lang"], place=m.group(1), cities=cities))
+        return reply("clarification", t("unknown_place", ctx["lang"], place=m.group(1).title(), cities=cities))
     if re.search(r"(ticket|train|booking|book|seat|refund|cancel|station|fare|journey|travel|platform|berth|coach|pnr|gaadi|टिकट|ट्रेन|बुकिंग|रद्द|यात्रा)", text, re.I):
         return reply("clarification", t("unknown", ctx["lang"]))
     return reply("not_found", t("help", ctx["lang"]))

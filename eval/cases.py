@@ -70,6 +70,10 @@ case("V02", "vague", "I want to travel tomorrow", type="clarification")
 case("V03", "vague", "what about the refund", type="clarification")
 case("V04", "vague", "trains from Anandpur to Chetakgarh tomorrow", type="clarification", has=["Anandpur Central", "Anandpur North"])                                  # two stations share the name
 
+case("V05", "vague", "I need a ticket to delhi", type="clarification", has=["Delhi", "Anandpur"], unchanged=True)                                                   # not on the network: say so, list the cities
+case("V06", "vague", "i need a ticket from delhi to pune on 30-11-2026", type="clarification", has=["could not find a station"], unchanged=True)
+case("V07", "vague", "what is my booking id for neelkanth rapid", has=["BKG0025"], unchanged=True)                                                                   # a train called by its name
+
 # ---- Hindi / Hinglish
 case("L01", "language", "ट्रेन UJ1006 में बोर्डिंग स्टेशन बदलने की आखिरी समय सीमा क्या है", has=["25"])
 case("L02", "language", "mera BKG0001 cancel kar do", type="confirm_needed", has=["Confirm"], unchanged=True)
