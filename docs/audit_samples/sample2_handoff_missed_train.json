@@ -1,11 +1,11 @@
 {
   "reply": {
     "answer_type": "handed_to_human",
-    "answer": "I can't decide this myself, so I have passed it to the Refund Desk with a summary (request HND-1BC00EA6). They will review it. I can't promise the outcome.",
+    "answer": "I can't decide this myself, so I have passed it to the Booking Desk with a summary (request HND-AAFBAAFE). Target to acknowledge: 2 hours. They will review it. I can't promise the outcome.",
     "sources": [
       {
-        "doc_id": "RULE-10",
-        "section": "Section 1"
+        "doc_id": "RUL-012",
+        "section": "3.5"
       }
     ],
     "tools": [
@@ -14,74 +14,85 @@
         "input": {},
         "output": {
           "ok": true,
-          "booking_id": "BK1001",
-          "band": "FLAT",
-          "hours_before": 80.0,
-          "departure": "2026-11-24T18:00:00+05:30",
+          "booking_id": "BKG0001",
+          "band": "A",
+          "hours_before": 95.25,
+          "departure": "2026-11-25T09:15:00+05:30",
           "as_of": "2026-11-21T10:00:00+05:30",
-          "total_refund": 1860,
-          "total_paid": 2040,
-          "deduction": 180,
+          "total_refund": 280200,
+          "total_paid": 306250,
+          "deduction": 26050,
           "lines": [
             {
               "traveller_id": 1,
-              "name": "Aarav Sharma",
-              "fare": 2040,
-              "refund": 1860,
-              "why": "fare minus flat charge Rs 180",
-              "status": "CNF"
+              "name": "Aarav Nayan",
+              "fare": 306250,
+              "status": "CNF",
+              "refund": 280200,
+              "deduction": 26000,
+              "why": "fixed",
+              "rule": "cnf_table"
             }
           ],
           "sources": [
             {
-              "doc_id": "RULE-03",
-              "section": "Section 2"
+              "doc_id": "RUL-003",
+              "section": "3.4"
             },
             {
-              "doc_id": "RULE-03",
-              "section": "Section 1"
+              "doc_id": "RUL-003",
+              "section": "3.6"
+            },
+            {
+              "doc_id": "CIR-001",
+              "section": "3.3"
             }
           ],
-          "class": "3A",
-          "charge": 180,
-          "mid_pct": 25,
-          "low_pct": 50,
-          "wl_clerkage": 30,
+          "class": "AC2",
+          "charge": 26000,
+          "fixed_doc": "CIR-001",
+          "pct": null,
+          "rac_charge": 4000,
+          "wl_charge": 2000,
           "tatkal": false,
-          "waived": false,
-          "train_no": "12123",
-          "journey_date": "2026-11-24",
-          "from_code": "PUNE",
-          "to_code": "NGP"
+          "operator": false,
+          "train_no": "UJ1006",
+          "journey_date": "2026-11-25",
+          "from_code": "ARUN",
+          "to_code": "CHET"
         }
       },
       {
         "tool": "create_handoff",
         "input": {},
         "output": {
-          "handoff_id": "HND-1BC00EA6",
-          "desk": "Refund Desk",
-          "summary": "Passenger P001 about booking BK1001 asks: \"I missed my train BK1001, please refund me\". Facts checked by the assistant: Booking BK1001 status confirmed, PUNE to NGP on 2026-11-24. Refund calculated by rule now: ₹1,860 of ₹2,040 (band FLAT). The assistant made no promise about the outcome."
+          "handoff_id": "HND-AAFBAAFE",
+          "desk": "Booking Desk",
+          "summary": "Passenger P001 about booking BKG0001 asks: \"I missed my train BKG0001, please refund me. This is wrong, I was charged twice\". Facts checked by the assistant: Booking BKG0001 status CONFIRMED, ARUN to CHET on 2026-11-25. Refund calculated by rule now: ₹2,802 of ₹3,062.50 (band A). Category: active_travel. Acknowledgement target: 2 hours. The assistant made no promise about the outcome.",
+          "category": "active_travel",
+          "ack_target": "2 hours",
+          "ack_minutes": 120,
+          "emergency_channel": null
         }
       }
     ],
     "pending_action": null,
     "handed_to_human": true,
-    "trace_id": "TR-19E495469D14"
+    "trace_id": "TR-836B1BDD4DF3"
   },
   "trace": {
-    "trace_id": "TR-19E495469D14",
+    "trace_id": "TR-836B1BDD4DF3",
     "ts": "2026-11-21T10:00:00+05:30",
     "passenger_id": "P001",
     "session_id": "demo2",
-    "input": "I missed my train BK1001, please refund me",
+    "input": "I missed my train BKG0001, please refund me. This is wrong, I was charged twice",
     "language": "en",
     "steps": [
       {
         "step": "understand",
         "intent": "dispute",
         "slots": {
-          "booking_id": "BK1001"
+          "booking_id": "BKG0001"
         }
       },
       {
@@ -90,11 +101,11 @@
       }
     ],
     "answer_type": "handed_to_human",
-    "answer": "I can't decide this myself, so I have passed it to the Refund Desk with a summary (request HND-1BC00EA6). They will review it. I can't promise the outcome.",
+    "answer": "I can't decide this myself, so I have passed it to the Booking Desk with a summary (request HND-AAFBAAFE). Target to acknowledge: 2 hours. They will review it. I can't promise the outcome.",
     "sources": [
       {
-        "doc_id": "RULE-10",
-        "section": "Section 1"
+        "doc_id": "RUL-012",
+        "section": "3.5"
       }
     ],
     "tools": [
@@ -103,72 +114,83 @@
         "input": {},
         "output": {
           "ok": true,
-          "booking_id": "BK1001",
-          "band": "FLAT",
-          "hours_before": 80.0,
-          "departure": "2026-11-24T18:00:00+05:30",
+          "booking_id": "BKG0001",
+          "band": "A",
+          "hours_before": 95.25,
+          "departure": "2026-11-25T09:15:00+05:30",
           "as_of": "2026-11-21T10:00:00+05:30",
-          "total_refund": 1860,
-          "total_paid": 2040,
-          "deduction": 180,
+          "total_refund": 280200,
+          "total_paid": 306250,
+          "deduction": 26050,
           "lines": [
             {
               "traveller_id": 1,
-              "name": "Aarav Sharma",
-              "fare": 2040,
-              "refund": 1860,
-              "why": "fare minus flat charge Rs 180",
-              "status": "CNF"
+              "name": "Aarav Nayan",
+              "fare": 306250,
+              "status": "CNF",
+              "refund": 280200,
+              "deduction": 26000,
+              "why": "fixed",
+              "rule": "cnf_table"
             }
           ],
           "sources": [
             {
-              "doc_id": "RULE-03",
-              "section": "Section 2"
+              "doc_id": "RUL-003",
+              "section": "3.4"
             },
             {
-              "doc_id": "RULE-03",
-              "section": "Section 1"
+              "doc_id": "RUL-003",
+              "section": "3.6"
+            },
+            {
+              "doc_id": "CIR-001",
+              "section": "3.3"
             }
           ],
-          "class": "3A",
-          "charge": 180,
-          "mid_pct": 25,
-          "low_pct": 50,
-          "wl_clerkage": 30,
+          "class": "AC2",
+          "charge": 26000,
+          "fixed_doc": "CIR-001",
+          "pct": null,
+          "rac_charge": 4000,
+          "wl_charge": 2000,
           "tatkal": false,
-          "waived": false,
-          "train_no": "12123",
-          "journey_date": "2026-11-24",
-          "from_code": "PUNE",
-          "to_code": "NGP"
+          "operator": false,
+          "train_no": "UJ1006",
+          "journey_date": "2026-11-25",
+          "from_code": "ARUN",
+          "to_code": "CHET"
         }
       },
       {
         "tool": "create_handoff",
         "input": {},
         "output": {
-          "handoff_id": "HND-1BC00EA6",
-          "desk": "Refund Desk",
-          "summary": "Passenger P001 about booking BK1001 asks: \"I missed my train BK1001, please refund me\". Facts checked by the assistant: Booking BK1001 status confirmed, PUNE to NGP on 2026-11-24. Refund calculated by rule now: ₹1,860 of ₹2,040 (band FLAT). The assistant made no promise about the outcome."
+          "handoff_id": "HND-AAFBAAFE",
+          "desk": "Booking Desk",
+          "summary": "Passenger P001 about booking BKG0001 asks: \"I missed my train BKG0001, please refund me. This is wrong, I was charged twice\". Facts checked by the assistant: Booking BKG0001 status CONFIRMED, ARUN to CHET on 2026-11-25. Refund calculated by rule now: ₹2,802 of ₹3,062.50 (band A). Category: active_travel. Acknowledgement target: 2 hours. The assistant made no promise about the outcome.",
+          "category": "active_travel",
+          "ack_target": "2 hours",
+          "ack_minutes": 120,
+          "emergency_channel": null
         }
       }
     ],
     "pending_action": null,
     "handed_to_human": true,
-    "latency_ms": 1
+    "latency_ms": 4
   },
   "handoff_row": [
     {
-      "handoff_id": "HND-1BC00EA6",
+      "handoff_id": "HND-AAFBAAFE",
       "passenger_id": "P001",
-      "booking_id": "BK1001",
-      "desk": "Refund Desk",
+      "booking_id": "BKG0001",
+      "desk": "Booking Desk",
       "reason": "dispute",
-      "summary": "Passenger P001 about booking BK1001 asks: \"I missed my train BK1001, please refund me\". Facts checked by the assistant: Booking BK1001 status confirmed, PUNE to NGP on 2026-11-24. Refund calculated by rule now: ₹1,860 of ₹2,040 (band FLAT). The assistant made no promise about the outcome.",
+      "summary": "Passenger P001 about booking BKG0001 asks: \"I missed my train BKG0001, please refund me. This is wrong, I was charged twice\". Facts checked by the assistant: Booking BKG0001 status CONFIRMED, ARUN to CHET on 2026-11-25. Refund calculated by rule now: ₹2,802 of ₹3,062.50 (band A). Category: active_travel. Acknowledgement target: 2 hours. The assistant made no promise about the outcome.",
       "status": "open",
       "created_at": "2026-11-21T10:00:00+05:30",
-      "trace_id": "TR-19E495469D14"
+      "trace_id": "TR-836B1BDD4DF3"
     }
   ]
 }

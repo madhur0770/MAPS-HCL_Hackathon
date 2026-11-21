@@ -105,7 +105,13 @@ def main():
         L.append("None.")
     for c, f, last in bad:
         L.append("- **%s** `%s` -> %s | got [%s] %s" % (c["id"], " / ".join(c["turns"])[:80], "; ".join(f), last.get("answer_type"), last.get("answer", "")[:160].replace("\n", " ")))
-    L += ["", "## Notes", "", "- Run with the language model OFF (`MOCK_LLM=true`): answers are rule/template based, so results are repeatable. With Ollama on, only the wording of document answers can change; numbers are re-checked by the number corrector.",
+    L += ["", "## Hand-calculated workings (BKG0001: Rs 3,062.50, AC2, fixed charge Rs 260)", "",
+          "Rule RUL-003 3.6: percentage charge rounded UP to the next Rs 5; the greater of that and the fixed charge is deducted; the refund is rounded DOWN to a whole rupee.", "",
+          "| When (hours before departure) | Band | Working | Refund |", "|---|---|---|---|",
+          "| more than 48 | A | 3062.50 - 260 | Rs 2,802 |", "| exactly 48:00 | B | 25% = 765.625 -> 770; 3062.50 - 770 | Rs 2,292 |",
+          "| exactly 12:00 | C | 50% = 1531.25 -> 1535; 3062.50 - 1535 | Rs 1,527 |", "| exactly 4:00 | D | 75% = 2296.875 -> 2300; 3062.50 - 2300 | Rs 762 |",
+          "| at departure | E | no refund | Rs 0 |", "| BKG0003 (FP, 13h40m) | B | CNF 2550 - 640 = 1910; WL 2550 - 20 = 2530 | Rs 4,440 |", "",
+          "Every other expected value has its working in the comment beside the case in `eval/cases.py`.", "", "## Notes", "", "- Run with the language model OFF (`MOCK_LLM=true`): answers are rule/template based, so results are repeatable. With Ollama on, only the wording of document answers can change; numbers are re-checked by the number corrector.",
           "- The brief asks for at least 30 questions; this set also covers boundary minutes (48:00, 47:59, 12:00, 11:59, 4:00, 3:59), circular dates, Hindi/Hinglish and after-midnight trains.", ""]
     os.makedirs(os.path.join(ROOT, "eval"), exist_ok=True)
     open(os.path.join(ROOT, "eval", "report.md"), "w", encoding="utf-8").write("\n".join(L))

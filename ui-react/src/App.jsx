@@ -2,16 +2,17 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import { api } from "./api.js";
 
 const SAMPLES = [
-  "trains from Pune to Nagpur tomorrow",
-  "how much will I get back if I cancel BK1001?",
-  "cancel booking BK1001",
-  "change boarding station of BK1001 to Bhopal",
-  "kal Pune se Nagpur ki train",
-  "BK1001 cancel karne par kitna paisa wapas milega",
-  "बुकिंग BK1001 रद्द करने पर कितना पैसा वापस मिलेगा",
-  "what is the 2A cancellation charge",
-  "I missed my train BK1001, please refund me",
-  "book 12123 3A Pune to Nagpur 24 Nov Aarav 34, Neha 31",
+  "trains from Anandpur Central to Udayabad on 26 Nov",
+  "trains from Anandpur to Chetakgarh tomorrow",
+  "how much will I get back if I cancel BKG0001?",
+  "cancel booking BKG0001",
+  "change boarding station of BKG0001 to Suryanagar",
+  "mera BKG0001 cancel kar do",
+  "BKG0001 रद्द करने पर कितना पैसा वापस मिलेगा",
+  "what is the cancellation charge for AC2",
+  "what is the Tatkal supplement for AC3",
+  "I was charged twice for BKG0001",
+  "book Anandpur North to Chetakgarh 22 Nov AC2 for Neha 31 and Ravi 40",
 ];
 const TYPE_LABEL = {
   answer: "Answer", clarification: "Need more info", confirm_needed: "Waiting for your confirm", action_done: "Done",
@@ -112,11 +113,11 @@ function Bookings({ items, onAsk }) {
 }
 
 function IngestPanel({ onDone }) {
-  const [text, setText] = useState("Section 1: From 1 January 2027 the flat cancellation charge for Sleeper is Rs 80 per ticket.");
-  const [id, setId] = useState("CIR-2026-99");
+  const [text, setText] = useState("Section 3.1: From 1 January 2027 the fixed cancellation charge for SL is Rs 150 per traveller.");
+  const [id, setId] = useState("CIR-099");
   const [eff, setEff] = useState("2027-01-01");
   const [topic, setTopic] = useState("refund");
-  const [sup, setSup] = useState("RULE-03");
+  const [sup, setSup] = useState("RUL-003");
   const [out, setOut] = useState(null);
   const send = async () => {
     const r = await api.ingest({ doc_id: id, title: "Circular " + id, doc_type: "circular", effective_from: eff, topic, supersedes: sup, text });
@@ -223,7 +224,7 @@ export default function App() {
             <div ref={endRef} />
           </div>
           <form className="composer" onSubmit={(e) => { e.preventDefault(); send(); }}>
-            <input autoFocus value={input} onChange={(e) => setInput(e.target.value)} placeholder="Type your question…  (e.g. cancel booking BK1001)" />
+            <input autoFocus value={input} onChange={(e) => setInput(e.target.value)} placeholder="Type your question…  (e.g. cancel booking BKG0001)" />
             <button className="btn primary" disabled={busy || !input.trim()}>Send</button>
           </form>
         </section>

@@ -5,12 +5,14 @@ sys.path.insert(0, ROOT)
 from core.progress import Progress
 
 STEPS = [
-    ("Generate data", [sys.executable, "scripts/generate_data.py"]),
+    ("Load the supplied data", [sys.executable, "scripts/generate_data.py"]),
     ("Validate data", [sys.executable, "scripts/validate_data.py"]),
+    ("Supplied kit self-tests (21)", [sys.executable, "-m", "unittest", "discover", "-s", "tests", "-p", "test_*.py"], "data_kit"),
     ("Unit tests (refund boundaries, actions, timetable)", [sys.executable, "-m", "pytest", "tests/unit", "-q"]),
     ("API tests (confirm flow, privacy, live ingest)", [sys.executable, "-m", "pytest", "tests/api", "-q"]),
     ("Red-team tests (injection, privacy, policy)", [sys.executable, "-m", "pytest", "tests/safety", "-q"]),
-    ("Evaluation (62 questions)", [sys.executable, "scripts/run_eval.py"]),
+    ("Evaluation (55 questions)", [sys.executable, "scripts/run_eval.py"]),
+    ("Audit samples (3 real runs)", [sys.executable, "scripts/make_audit_samples.py"]),
 ]
 
 def main():
@@ -18,9 +20,11 @@ def main():
     env.pop("DEMO_NOW", None)
     p = Progress(len(STEPS), "check all")
     failed = []
-    for name, cmd in STEPS:
+    for step in STEPS:
+        name, cmd = step[0], step[1]
+        cwd = os.path.join(ROOT, step[2]) if len(step) > 2 else ROOT
         t0 = time.time()
-        r = subprocess.run(cmd, cwd=ROOT, env=env, capture_output=True, text=True, encoding="utf-8", errors="replace")
+        r = subprocess.run(cmd, cwd=cwd, env=env, capture_output=True, text=True, encoding="utf-8", errors="replace")
         ok = r.returncode == 0
         tail = [l for l in (r.stdout + r.stderr).strip().splitlines() if l.strip()][-1:] or [""]
         sys.stdout.write("\r" + " " * 118 + "\r")

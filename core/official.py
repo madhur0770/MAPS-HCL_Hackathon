@@ -19,9 +19,47 @@ LANG = {"en": "en", "hi": "hi", "hinglish": "hinglish", "hi-Latn": "hinglish", "
 SKIP_DOCS = {"RULE_INDEX", "FAQ_INDEX", "CIRCULAR_INDEX", "CIRCULAR_CHANGELOG", "OUTDATED_FAQS", "POLICY_ASSUMPTIONS"}
 
 
+def _syn_dir():
+    """Folder with the table files: <DATA_KIT_DIR>/synthetic, or the folder itself when the files are flat."""
+    root = os.environ.get("DATA_KIT_DIR") or DIR
+    sub = os.path.join(root, "synthetic")
+    return sub if os.path.isdir(sub) else (root if os.environ.get("DATA_KIT_DIR") else SYN)
+
+
+def _cell(v):
+    if v is None:
+        return None
+    v = v.strip()
+    if v[:1] in "[{":
+        try:
+            return json.loads(v)
+        except ValueError:
+            return v
+    if re.fullmatch(r"-?\d+", v):
+        return int(v)
+    return v
+
+
+def _lst(v):
+    """A list column may arrive as a JSON array or as 'a, b, c' text (CSV)."""
+    if isinstance(v, list):
+        return v
+    return [x.strip() for x in str(v or "").replace(";", ",").split(",") if x.strip()]
+
+
 def _j(name):
-    with open(os.path.join(SYN, name), encoding="utf-8") as f:
-        return json.load(f)
+    """Read stations.json; if only stations.csv is supplied, read that. Extra columns are kept and ignored by the loader."""
+    base = _syn_dir()
+    path = os.path.join(base, name)
+    if os.path.exists(path):
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    csv_path = os.path.splitext(path)[0] + ".csv"
+    if os.path.exists(csv_path):
+        import csv
+        with open(csv_path, encoding="utf-8-sig", newline="") as f:
+            return [{k: _cell(v) for k, v in row.items()} for row in csv.DictReader(f)]
+    raise FileNotFoundError("neither %s nor %s found" % (path, csv_path))
 
 
 def parse_frontmatter(text):
@@ -155,8 +193,8 @@ def load_documents():
 def load(db, progress=None):
     P = progress or (lambda n: None)
     ins = lambda t, rows: db.executemany("INSERT INTO %s(%s) VALUES(%s)" % (t, ",".join(rows[0].keys()), ",".join("?" * len(rows[0]))), [tuple(r.values()) for r in rows])  # noqa: E731
-    ins("stations", [dict(station_code=s["station_code"], name=s["name"], other_names=",".join(s["other_names"]), city=s["city"]) for s in _j("stations.json")]); P("stations")
-    ins("trains", [dict(train_no=t["train_no"], name=t["name"], runs_on="".join(WEEK[d] for d in t["runs_on"]), classes=",".join(t["classes"])) for t in _j("trains.json")]); P("trains")
+    ins("stations", [dict(station_code=s["station_code"], name=s["name"], other_names=",".join(_lst(s["other_names"])), city=s["city"]) for s in _j("stations.json")]); P("stations")
+    ins("trains", [dict(train_no=t["train_no"], name=t["name"], runs_on="".join(WEEK.get(d, d) for d in _lst(t["runs_on"])), classes=",".join(_lst(t["classes"]))) for t in _j("trains.json")]); P("trains")
     ins("train_stops", [dict(train_no=s["train_no"], station_code=s["station_code"], stop_order=s["stop_order"], arrival=s["arrival"], departure=s["departure"], day_offset=s["day_offset"]) for s in _j("train_stops.json")]); P("train stops")
     fares = _j("fares.json")
     ins("fares", [dict(train_no=f["train_no"], **{"class": f["class"]}, from_code=f["from_code"], to_code=f["to_code"], fare=f["fare"]) for f in fares]); P("fares")

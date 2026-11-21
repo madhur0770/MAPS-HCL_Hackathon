@@ -38,7 +38,7 @@ with st.sidebar:
         st.caption("API ok · %d documents · %d bookings · model: %s" % (h["documents"], h["bookings"], h["llm"]))
     except Exception:
         st.error("API not reachable at %s" % API)
-    st.markdown("**Try:** `trains from Pune to Nagpur tomorrow` · `cancel booking BK1001` · `kal Pune se Nagpur ki train` · `BK1001 cancel karne par kitna paisa wapas milega`")
+    st.markdown("**Try:** `trains from Anandpur Central to Udayabad on 26 Nov` · `cancel booking BKG0001` · `mera BKG0001 cancel kar do` · `BKG0001 cancel karne par kitna paisa wapas milega`")
 
 if "sid" not in st.session_state:
     st.session_state.sid = uuid.uuid4().hex[:8]
