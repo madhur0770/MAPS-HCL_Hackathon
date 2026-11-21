@@ -268,6 +268,33 @@ def do_greet(ctx):
     return reply("answer", t("greet", ctx["lang"]))
 
 
+STOP_PLACE = {"the", "my", "an", "and", "you", "tomorrow", "today", "tonight", "know", "check", "see", "get", "go", "book", "cancel", "travel", "please", "kal", "aaj", "parso", "this", "that", "your", "our",
+              "them", "him", "her", "any", "all", "some", "one", "two", "three", "me", "us", "it", "now", "later", "next", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday",
+              "sunday", "central", "north", "junction", "station", "city", "road", "ticket", "tickets", "train", "trains", "morning", "evening", "night", "afternoon", "date", "time"}
+
+
+def unknown_place_reply(ctx):
+    """A place the passenger named that is not a station: say so, suggest the closest names, list what we serve."""
+    db, text, lang = ctx["db"], ctx["text"], ctx["lang"]
+    known = tt.find_stations_in(db, text)
+    for mm in re.finditer(r"\b(?:to|from|se|tak|for|near|in)\s+([A-Za-z]{3,}(?:\s+[A-Za-z]{3,})?)", text):
+        words = mm.group(1).split()
+        first = words[0].lower()
+        if first in STOP_PLACE or first in dates.MONTHS:
+            continue
+        if tt.resolve_station(db, mm.group(1)) or tt.ambiguous_in(db, mm.group(1)):
+            continue
+        sug = tt.suggest(db, words[0]) or (tt.suggest(db, " ".join(words)) if len(words) > 1 else [])
+        if sug and sug[0] in known:
+            continue                      # a typo that find_stations_in already repaired
+        cities = ", ".join(sorted({r[0] for r in db.execute("SELECT city FROM stations")}))
+        if sug:
+            names = " / ".join("%s (%s)" % (station_label(db, c), c) for c in sug)
+            return reply("clarification", t("unknown_place_suggest", lang, place=words[0].title(), names=names))
+        return reply("clarification", t("unknown_place", lang, place=words[0].title(), cities=cities))
+    return None
+
+
 def do_unknown(ctx):
     """Not a known request type. If it looks like a question about the rules, try the documents; otherwise say what we can do."""
     text = ctx["text"]
@@ -277,17 +304,12 @@ def do_unknown(ctx):
         r = do_rules(ctx)
         if r["answer_type"] != "not_found":
             return r
-    stop = {"the", "my", "an", "and", "you", "tomorrow", "today", "tonight", "know", "check", "see", "get", "go", "book", "cancel", "travel", "please", "kal", "aaj", "parso", "this", "that", "your", "our", "them", "him", "her",
-            "any", "all", "some", "one", "two", "three", "me", "us", "it", "now", "later", "next", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"} | set(dates.MONTHS.keys())
-    m = None
     if re.search(r"(ticket|train|book|travel|go|reach|journey|seat|gaadi|jaana|जाना|टिकट|ट्रेन)", text, re.I):
-        for mm in re.finditer(r"\b(?:to|from|se|tak|for)\s+([A-Za-z]{3,})", text):
-            if mm.group(1).lower() not in stop and not mm.group(1)[0].isdigit():
-                m = mm
-                break
-    if m and not tt.find_stations_in(ctx["db"], text):
-        cities = ", ".join(sorted({r[0] for r in ctx["db"].execute("SELECT city FROM stations")}))
-        return reply("clarification", t("unknown_place", ctx["lang"], place=m.group(1).title(), cities=cities))
+        r = unknown_place_reply(ctx)
+        if r:
+            return r
+        if ctx["slots"].get("stations"):          # one real station (possibly typed with a typo) and a wish to travel: ask for the rest
+            return do_search(ctx)
     if re.search(r"(ticket|train|booking|book|seat|refund|cancel|station|fare|journey|travel|platform|berth|coach|pnr|gaadi|टिकट|ट्रेन|बुकिंग|रद्द|यात्रा)", text, re.I):
         return reply("clarification", t("unknown", ctx["lang"]))
     return reply("not_found", t("help", ctx["lang"]))
@@ -478,15 +500,25 @@ def seat_text(av, lang):
 def do_search(ctx):
     db, lang, slots, as_of = ctx["db"], ctx["lang"], ctx["slots"], ctx["as_of"]
     sts = slots.get("stations", [])
+    if len(sts) < 2:
+        up = unknown_place_reply(ctx)
+        if up:
+            return up
     amb = tt.ambiguous_in(db, ctx["text"]) if ctx.get("text") else []
     if amb:
         alias, codes = amb[0]
         opts = " / ".join("%s (%s)" % (station_label(db, c), c) for c in codes)
         return reply("clarification", t("ambiguous_station", lang, place=alias.title(), options=opts))
     missing = []
-    if len(sts) < 1:
+    fs, ts = slots.get("from_st"), slots.get("to_st")
+    if len(sts) < 2 and fs and ts:
+        sts = [fs, ts]
+        slots["stations"] = sts
+    if len(sts) == 1 and ts and not fs:
         missing.append("m_from")
-    if len(sts) < 2:
+    elif len(sts) < 1:
+        missing.append("m_from")
+    if len(sts) < 2 and not (len(sts) == 1 and ts and not fs):
         missing.append("m_to")
     if not slots.get("date"):
         missing.append("m_date")

@@ -154,6 +154,11 @@ def understand(db, text: str, as_of, session_slots=None):
     st = tt.find_stations_in(db, t)
     if st:
         slots["stations"] = st
+        if len(st) == 1:        # one station named: is it where they leave from or where they go to? ("ticket to X" / "from X")
+            if re.search(r"\b(from|se)\b|से", t, re.I):
+                slots["from_st"] = st[0]
+            elif re.search(r"\b(to|tak|ko)\b|तक", t, re.I):
+                slots["to_st"] = st[0]
     trs = extract_travellers(db, t)
     if trs:
         slots["travellers"] = trs

@@ -88,6 +88,24 @@ def find_stations_in(db, text: str):
     return out
 
 
+def suggest(db, word: str, n: int = 2):
+    """Stations whose name or alias looks like a word that matched nothing exactly (typo help). Best first."""
+    import difflib
+    w = norm(word).replace(" ", "")
+    if len(w) < 3:
+        return []
+    scored = {}
+    for alias, codes in _alias_map(db).items():
+        a = alias.replace(" ", "")
+        r = difflib.SequenceMatcher(None, w, a).ratio()
+        if a.startswith(w) or w.startswith(a):
+            r = max(r, 0.8)
+        for c in codes:
+            scored[c] = max(scored.get(c, 0), r)
+    best = sorted(((v, c) for c, v in scored.items() if v >= 0.6), reverse=True)[:n]
+    return [c for _, c in best]
+
+
 def station_name(db, code):
     r = db.execute("SELECT name FROM stations WHERE station_code=?", (code,)).fetchone()
     return r["name"] if r else code

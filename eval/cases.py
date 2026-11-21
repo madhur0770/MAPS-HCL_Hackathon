@@ -74,6 +74,9 @@ case("V05", "vague", "I need a ticket to delhi", type="clarification", has=["Del
 case("V06", "vague", "i need a ticket from delhi to pune on 30-11-2026", type="clarification", has=["could not find a station"], unchanged=True)
 case("V07", "vague", "what is my booking id for neelkanth rapid", has=["BKG0025"], unchanged=True)                                                                   # a train called by its name
 
+case("V08", "vague", "trains from chetakgrah to udayabd on 26 Nov", type="answer", has=["Chetakgarh to Udayabad"], unchanged=True)                                   # two spelling mistakes repaired
+case("V09", "vague", ["ticket to chetkgarh", "from anandpur central on 26 nov"], has=["Anandpur Central to Chetakgarh"], unchanged=True)                              # destination first, origin next message
+
 # ---- Hindi / Hinglish
 case("L01", "language", "ट्रेन UJ1006 में बोर्डिंग स्टेशन बदलने की आखिरी समय सीमा क्या है", has=["25"])
 case("L02", "language", "mera BKG0001 cancel kar do", type="confirm_needed", has=["Confirm"], unchanged=True)

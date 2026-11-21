@@ -45,3 +45,15 @@ def test_train_found_by_name_and_unknown_city_named(db):
     from assistant import understand as u
     assert u.find_train(db, "what is my booking id for neelkanth rapid") == "UJ1020"
     assert u.find_train(db, "UJ 1006 timings") == "UJ1006"
+
+
+def test_misspelled_stations_are_matched(db):
+    cases = {"trains from chetakgrah to udayabd": ["CHET", "UDAY"], "suryanagr to meghvn": ["SURY", "MEGH"], "koshalpr to mitrapur": ["KOSA", "MTRP"],
+             "arunodya to chetakgarh": ["ARUN", "CHET"], "anandpur central to chetkgarh": ["ANPR", "CHET"]}
+    for text, want in cases.items():
+        assert tt.find_stations_in(db, text) == want, text
+
+
+def test_suggest_for_unknown_word(db):
+    assert tt.suggest(db, "mitrapor")[0] == "MTRP"
+    assert tt.suggest(db, "delhi") == []

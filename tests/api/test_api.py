@@ -192,3 +192,18 @@ def test_sibling_brief_names_work(client):
     docs = client.get("/sources").json()
     assert len(docs) == 38 and {"doc_id", "effective_from"} <= set(docs[0])
     assert client.post("/admin/load-data").json()["status"] == "reset"
+
+
+def test_unknown_city_prompt_and_typo_help(client):
+    r = chat(client, "I need a ticket to delhi", sid="u1")
+    assert r["answer_type"] == "clarification" and "Delhi" in r["answer"] and "Chetakgarh" in r["answer"]
+    r = chat(client, "trains from delhi to chetakgarh tomorrow", sid="u2")
+    assert "Delhi" in r["answer"] and "could not find" in r["answer"]
+    r = chat(client, "trains from chetakgrah to udayabd on 26 Nov 2026", sid="u3")
+    assert r["answer_type"] == "answer" and "Chetakgarh to Udayabad" in r["answer"]
+
+
+def test_destination_first_then_origin_in_two_messages(client):
+    assert "travelling from" in chat(client, "ticket to chetkgarh", sid="u4")["answer"]
+    r = chat(client, "from anandpur central on 26 nov", sid="u4")
+    assert "Anandpur Central to Chetakgarh" in r["answer"]

@@ -17,7 +17,7 @@ No language model is needed (`MOCK_LLM=true` is the default). To use a local mod
 
 ## Check everything with one command
 ```
-python scripts/check_all.py          # data -> unit -> API -> red-team -> 55-question evaluation (live progress)
+python scripts/check_all.py          # data -> unit -> API -> red-team -> 60-question evaluation (live progress)
 python scripts/stress.py http://localhost:8000 1000 24    # load test against a running API
 python scripts/make_audit_samples.py # rewrites the 3 sample audit records in docs/audit_samples/
 ```
@@ -52,7 +52,7 @@ The main UI is React (`ui-react/`, built into `app/static/` and served by the AP
 | `app/` | FastAPI (also answers to `/ask`, `/audit/{id}`, `/sources`, `/admin/load-data` and the `X-Customer-Id` header, the names the sibling briefs use): `/chat`, `/actions/{id}/confirm`, `/actions/{id}/cancel`, `/bookings/{id}`, `/ingest`, `/trace/{id}`, `/health` |
 | `ui-react/` | React chat app: passenger picker, live bookings panel, Confirm/Cancel buttons, sources, audit view, time travel, add-circular form |
 | `ui/` | simple Streamlit alternative |
-| `eval/` | 55 questions with hand-calculated answers, runner output (`report.md`) |
+| `eval/` | 60 questions with hand-calculated answers, runner output (`report.md`) |
 | `tests/` | unit, API and red-team tests |
 | `docs/` | architecture, data note, documents list, AI-use note, audit samples, team and declaration template |
 
@@ -73,7 +73,7 @@ The main UI is React (`ui-react/`, built into `app/static/` and served by the AP
 
 ## Honest limits
 - The Hindi and Hinglish understanding is keyword and pattern based. Unusual phrasing falls back to "I'm not sure I understood" and a clarification, not a guess.
-- The 55-question evaluation was written by the same team that built the system, so it is optimistic; the red-team tests and the load test found and fixed real bugs (see commit history).
+- The 60-question evaluation was written by the same team that built the system, so it is optimistic; the red-team tests and the load test found and fixed real bugs (see commit history).
 - Waiting-list promotion after a cancellation is not simulated; the seat counts are updated but waitlisted bookings are not automatically upgraded.
 - No Tatkal booking exists in the supplied data, so Tatkal refunds are covered by a unit test that marks a booking Tatkal.
 - SQLite with one lock is enough for a demo (about 300 requests per second here); a real deployment would use a server database.
