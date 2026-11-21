@@ -39,8 +39,18 @@ def make_app(db_conn=None):
     def jlog(**kw):
         log.info(json.dumps(kw, ensure_ascii=False, default=str))
 
+    ALIASES = {"/ask": "/chat", "/admin/load-data": "/admin/reset_demo"}      # names used by sibling briefs; same behaviour
+
     @app.middleware("http")
     async def mw(request: Request, call_next):
+        path = request.scope["path"]
+        if path in ALIASES:
+            request.scope["path"] = ALIASES[path]
+        elif path.startswith("/audit/"):
+            request.scope["path"] = "/trace/" + path[len("/audit/"):]
+        hdrs = dict(request.scope["headers"])
+        if b"x-passenger-id" not in hdrs and b"x-customer-id" in hdrs:           # X-Customer-Id is accepted as the same identity header
+            request.scope["headers"] = list(request.scope["headers"]) + [(b"x-passenger-id", hdrs[b"x-customer-id"])]
         rid = request.headers.get("X-Request-ID") or uuid.uuid4().hex[:12]
         t0 = time.time()
         cl = request.headers.get("content-length")
@@ -206,6 +216,12 @@ def make_app(db_conn=None):
             raise HTTPException(404, "trace not found")
         return json.loads(r["record"])
 
+    @app.get("/sources")
+    def sources():
+        """Every document the assistant can cite: id, type, topic, effective date, what it replaces."""
+        with LOCK:
+            return [dict(r) for r in db.execute("SELECT doc_id, doc_type, title, topic, effective_from, supersedes, language FROM documents ORDER BY authority, doc_id")]
+
     @app.get("/demo/passengers")
     def demo_passengers():
         if os.getenv("DEMO", "true").lower() not in ("1", "true", "yes"):
@@ -219,7 +235,7 @@ def make_app(db_conn=None):
             raise HTTPException(403, "admin key required")
         with LOCK:
             seed.seed(db, anchor=os.getenv("DATA_ANCHOR", seed.ANCHOR_DEFAULT))
-        return {"status": "reset"}
+        return {"status": "reset", "loaded_from": os.environ.get("DATA_KIT_DIR") or "data_kit/data"}
 
     static = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static")
     if os.path.isdir(static):                       # the React build is served by the API itself: one URL, no CORS

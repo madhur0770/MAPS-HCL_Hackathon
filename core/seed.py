@@ -266,5 +266,13 @@ def seed(db, anchor=ANCHOR_DEFAULT, progress=None):
     """Loads the supplied Ujjwal Rail dataset (data/official). The old generator above is kept only as a reference."""
     from core import official
     init_db(db)
+    for (name,) in db.execute("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'").fetchall():
+        db.execute("DELETE FROM %s" % name)          # a reload replaces everything, so it can be run again with new data
+    db.commit()
     official.load(db, progress)
+    try:
+        from rag import store
+        store.invalidate(db)
+    except Exception:
+        pass
     return {"anchor": ANCHOR_DEFAULT}

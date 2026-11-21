@@ -182,3 +182,13 @@ def test_handoff_targets_follow_rul_012(client):
 def test_safety_handoff_gives_emergency_channel(client):
     r = chat(client, "someone is harassing me, help")
     assert "1800" in r["answer"] and "Safety Desk" in r["answer"]
+
+
+def test_sibling_brief_names_work(client):
+    """/ask, /audit/{id}, /sources, /admin/load-data and X-Customer-Id behave like /chat, /trace/{id}, ... (judges may use either style)."""
+    r = client.post("/ask", json={"session_id": "k", "message": "status of BKG0001"}, headers={"X-Customer-Id": "P001"}).json()
+    assert r["answer_type"] == "answer" and "BKG0001" in r["answer"]
+    assert client.get("/audit/%s" % r["trace_id"], headers={"X-Customer-Id": "P001"}).json()["trace_id"] == r["trace_id"]
+    docs = client.get("/sources").json()
+    assert len(docs) == 38 and {"doc_id", "effective_from"} <= set(docs[0])
+    assert client.post("/admin/load-data").json()["status"] == "reset"

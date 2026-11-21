@@ -49,7 +49,7 @@ The main UI is React (`ui-react/`, built into `app/static/` and served by the AP
 | `actions/manager.py` | the only code that changes bookings: propose, confirm, execute in one transaction, verify |
 | `rag/` | search (BM25 + character n-grams + rank fusion), precedence by date and authority, live ingest |
 | `assistant/` | guards, understanding (en/hi/hinglish), router, templates (`i18n.py`), correctors, handoff, optional LLM |
-| `app/` | FastAPI: `/chat`, `/actions/{id}/confirm`, `/actions/{id}/cancel`, `/bookings/{id}`, `/ingest`, `/trace/{id}`, `/health` |
+| `app/` | FastAPI (also answers to `/ask`, `/audit/{id}`, `/sources`, `/admin/load-data` and the `X-Customer-Id` header, the names the sibling briefs use): `/chat`, `/actions/{id}/confirm`, `/actions/{id}/cancel`, `/bookings/{id}`, `/ingest`, `/trace/{id}`, `/health` |
 | `ui-react/` | React chat app: passenger picker, live bookings panel, Confirm/Cancel buttons, sources, audit view, time travel, add-circular form |
 | `ui/` | simple Streamlit alternative |
 | `eval/` | 55 questions with hand-calculated answers, runner output (`report.md`) |
