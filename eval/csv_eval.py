@@ -456,7 +456,7 @@ def run_row(row, d=None):
         day = dt.datetime.strptime(" ".join(used.groups()), "%d %b %Y").date() if used else ctx["date"]
         want = [t for t in oracle_trains(d, ctx["frm"], ctx["to"], day) if t["overnight"] and 240 <= int(t["arr"][:2]) * 60 + int(t["arr"][3:5]) < 720]
         R.check("overnight morning-arrival trains listed", bool(want) and {t["train_no"] for t in want} <= trains_in(ans()))
-        R.check("arrival date computed from stop offsets", bool(want) and all(t["arr_date"].strftime("%-d %b %Y") in ans() for t in want))
+        R.check("arrival date computed from stop offsets", bool(want) and all((str(t["arr_date"].day) + t["arr_date"].strftime(" %b %Y")) in ans() for t in want))
         R.flags["grounded"] = R.ok
     elif tid == "EV-007":
         last = s.say(msg)
