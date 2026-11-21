@@ -48,6 +48,8 @@
 {"id": "V07", "cat": "vague", "turns": ["what is my booking id for neelkanth rapid"], "who": "P001", "as_of": "2026-11-21T10:00", "has": ["BKG0025"], "unchanged": true}
 {"id": "V08", "cat": "vague", "turns": ["trains from chetakgrah to udayabd on 26 Nov"], "who": "P001", "as_of": "2026-11-21T10:00", "type": "answer", "has": ["Chetakgarh to Udayabad"], "unchanged": true}
 {"id": "V09", "cat": "vague", "turns": ["ticket to chetkgarh", "from anandpur central on 26 nov"], "who": "P001", "as_of": "2026-11-21T10:00", "has": ["Anandpur Central to Chetakgarh"], "unchanged": true}
+{"id": "V10", "cat": "vague", "turns": ["i need a ticket to anandpur", "anandpur north", "from chetakgarh on 25 nov"], "who": "P001", "as_of": "2026-11-21T10:00", "has": ["Chetakgarh to Anandpur North"], "unchanged": true}
+{"id": "V11", "cat": "vague", "turns": ["I need ticket to Anandpur"], "who": "P001", "as_of": "2026-11-21T10:00", "type": "clarification", "has": ["Anandpur Central", "Anandpur North"], "unchanged": true}
 {"id": "L01", "cat": "language", "turns": ["ट्रेन UJ1006 में बोर्डिंग स्टेशन बदलने की आखिरी समय सीमा क्या है"], "who": "P001", "as_of": "2026-11-21T10:00", "has": ["25"]}
 {"id": "L02", "cat": "language", "turns": ["mera BKG0001 cancel kar do"], "who": "P001", "as_of": "2026-11-21T10:00", "type": "confirm_needed", "has": ["Confirm"], "unchanged": true}
 {"id": "L03", "cat": "language", "turns": ["BKG0001 रद्द करना है"], "who": "P001", "as_of": "2026-11-21T10:00", "type": "confirm_needed", "has": ["₹2,802"], "unchanged": true}

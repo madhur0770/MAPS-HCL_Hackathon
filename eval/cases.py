@@ -77,6 +77,9 @@ case("V07", "vague", "what is my booking id for neelkanth rapid", has=["BKG0025"
 case("V08", "vague", "trains from chetakgrah to udayabd on 26 Nov", type="answer", has=["Chetakgarh to Udayabad"], unchanged=True)                                   # two spelling mistakes repaired
 case("V09", "vague", ["ticket to chetkgarh", "from anandpur central on 26 nov"], has=["Anandpur Central to Chetakgarh"], unchanged=True)                              # destination first, origin next message
 
+case("V10", "vague", ["i need a ticket to anandpur", "anandpur north", "from chetakgarh on 25 nov"], has=["Chetakgarh to Anandpur North"], unchanged=True)                  # shared name, then the answer keeps the destination
+case("V11", "vague", "I need ticket to Anandpur", type="clarification", has=["Anandpur Central", "Anandpur North"], unchanged=True)
+
 # ---- Hindi / Hinglish
 case("L01", "language", "ट्रेन UJ1006 में बोर्डिंग स्टेशन बदलने की आखिरी समय सीमा क्या है", has=["25"])
 case("L02", "language", "mera BKG0001 cancel kar do", type="confirm_needed", has=["Confirm"], unchanged=True)

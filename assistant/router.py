@@ -89,9 +89,18 @@ def handle(db, passenger_id, session_id, message, as_of_in=None, trace_id=None):
     # continue a half-finished request (slot filling)
     if pend_intent and (intent in ("unknown", "booking_status", "search_trains") or intent == pend_intent) and not slots.get("action_id"):
         merged = dict(sess.get("collected", {}))
+        if len(slots.get("stations", [])) == 1 and not slots.get("from_st") and not slots.get("to_st"):
+            # a bare station name answers the question that was asked: fill whichever end is still missing
+            if merged.get("to_st") and not merged.get("from_st"):
+                slots["from_st"] = slots["stations"][0]
+            elif merged.get("from_st") and not merged.get("to_st"):
+                slots["to_st"] = slots["stations"][0]
         for k, v in slots.items():
             if v not in (None, [], ""):
                 merged[k] = v
+        role = merged.pop("amb_role", None)
+        if role and len(merged.get("stations", [])) == 1 and not merged.get("from_st") and not merged.get("to_st"):
+            merged["to_st" if role == "to" else "from_st"] = merged["stations"][0]      # the answer to "which Anandpur?" keeps the role it was asked for
         slots = merged
         intent = pend_intent
         step("context", note="continued earlier request %s" % pend_intent)
@@ -273,6 +282,16 @@ STOP_PLACE = {"the", "my", "an", "and", "you", "tomorrow", "today", "tonight", "
               "sunday", "central", "north", "junction", "station", "city", "road", "ticket", "tickets", "train", "trains", "morning", "evening", "night", "afternoon", "date", "time"}
 
 
+def ambiguous_reply(ctx, amb):
+    """A name shared by two stations (Anandpur): ask which one, remember what else was said so the answer completes the request."""
+    alias, codes = amb[0]
+    opts = " / ".join("%s (%s)" % (station_label(ctx["db"], c), c) for c in codes)
+    kept = {k: v for k, v in ctx["slots"].items() if k != "topic"}
+    kept["amb_role"] = "to" if re.search(r"\b(to|tak|ko)\b|तक", ctx["text"], re.I) and not re.search(r"\b(from|se)\b|से", ctx["text"], re.I) else "from"
+    ctx["sess"]["pending_intent"], ctx["sess"]["collected"], ctx["sess"]["asked"] = "search_trains", kept, 1
+    return reply("clarification", t("ambiguous_station", ctx["lang"], place=alias.title(), options=opts))
+
+
 def unknown_place_reply(ctx):
     """A place the passenger named that is not a station: say so, suggest the closest names, list what we serve."""
     db, text, lang = ctx["db"], ctx["text"], ctx["lang"]
@@ -305,6 +324,9 @@ def do_unknown(ctx):
         if r["answer_type"] != "not_found":
             return r
     if re.search(r"(ticket|train|book|travel|go|reach|journey|seat|gaadi|jaana|जाना|टिकट|ट्रेन)", text, re.I):
+        amb = tt.ambiguous_in(ctx["db"], text)
+        if amb:
+            return ambiguous_reply(ctx, amb)
         r = unknown_place_reply(ctx)
         if r:
             return r
@@ -506,9 +528,7 @@ def do_search(ctx):
             return up
     amb = tt.ambiguous_in(db, ctx["text"]) if ctx.get("text") else []
     if amb:
-        alias, codes = amb[0]
-        opts = " / ".join("%s (%s)" % (station_label(db, c), c) for c in codes)
-        return reply("clarification", t("ambiguous_station", lang, place=alias.title(), options=opts))
+        return ambiguous_reply(ctx, amb)
     missing = []
     fs, ts = slots.get("from_st"), slots.get("to_st")
     if len(sts) < 2 and fs and ts:

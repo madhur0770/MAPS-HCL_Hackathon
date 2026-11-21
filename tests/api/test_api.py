@@ -207,3 +207,17 @@ def test_destination_first_then_origin_in_two_messages(client):
     assert "travelling from" in chat(client, "ticket to chetkgarh", sid="u4")["answer"]
     r = chat(client, "from anandpur central on 26 nov", sid="u4")
     assert "Anandpur Central to Chetakgarh" in r["answer"]
+
+
+def test_shared_station_name_flow_keeps_the_destination(client):
+    r = chat(client, "i need a ticket to anandpur", sid="s9")
+    assert r["answer_type"] == "clarification" and "Anandpur Central" in r["answer"] and "Anandpur North" in r["answer"]
+    assert "travelling from" in chat(client, "anandpur north", sid="s9")["answer"]
+    r = chat(client, "chetakgarh on 25 nov", sid="s9")                 # bare name fills the missing origin
+    assert "Chetakgarh to Anandpur North" in r["answer"]
+
+
+def test_step_by_step_booking_of_a_search(client):
+    chat(client, "i want to go from chetakgarh", sid="s10")
+    chat(client, "udayabad", sid="s10")
+    assert "Chetakgarh to Udayabad" in chat(client, "26 nov", sid="s10")["answer"]
