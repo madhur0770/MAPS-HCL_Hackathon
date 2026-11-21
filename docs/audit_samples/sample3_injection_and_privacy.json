@@ -73,10 +73,10 @@
     ],
     "pending_action": null,
     "handed_to_human": false,
-    "trace_id": "TR-7F6A242F5F1D"
+    "trace_id": "TR-2A9A908B25D6"
   },
   "injection_trace": {
-    "trace_id": "TR-7F6A242F5F1D",
+    "trace_id": "TR-2A9A908B25D6",
     "ts": "2026-11-21T10:00:00+05:30",
     "passenger_id": "P001",
     "session_id": "demo3",
@@ -196,7 +196,7 @@
     ],
     "pending_action": null,
     "handed_to_human": false,
-    "trace_id": "TR-CF08B78F6280"
+    "trace_id": "TR-4380E5130EF3"
   },
   "booking_BKG0001_still": "CONFIRMED"
 }
