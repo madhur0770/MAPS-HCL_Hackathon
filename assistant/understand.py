@@ -100,6 +100,10 @@ def find_booking_ref(db, text, train_no=None):
                 return cand
         if first is None and pre in ("BKG", "UR", "BK", "PNR", "BKNG"):
             first = (pre + "-" + num) if pre == "UR" else (pre + num)
+    if first is None:                       # a too-short reference such as "BKG1": it is still a booking reference (it will simply not be found)
+        m = re.search(r"\b(BKG|UR|PNR|BKNG)\s?-?\s?(\d{1,2})\b", text, re.I)
+        if m:
+            first = (m.group(1).upper() + "-" + m.group(2)) if m.group(1).upper() == "UR" else (m.group(1).upper() + m.group(2))
     return first
 
 
@@ -131,7 +135,7 @@ def extract_travellers(db, text):
 
 
 def understand(db, text: str, as_of, session_slots=None):
-    t = text.strip()
+    t = re.sub(r"\s+", " ", text).strip()
     slots = {}
     tn = find_train(db, t)
     if tn:
@@ -150,9 +154,11 @@ def understand(db, text: str, as_of, session_slots=None):
             if w.upper() in _known(db)["classes"]:
                 slots["class"] = w.upper()
                 break
-    d, _ = dates.parse_date(t, as_of)
+    d, dlabel = dates.parse_date(t, as_of)
     if d:
         slots["date"] = d.isoformat()
+    elif dlabel == "bad":
+        slots["bad_date"] = True
     st = tt.find_stations_in(db, t)
     if st:
         slots["stations"] = st
@@ -183,7 +189,7 @@ def understand(db, text: str, as_of, session_slots=None):
         intent = "forbidden"
     elif has("dispute"):
         intent = "dispute"
-    elif has("handoff_request"):
+    elif has("handoff_request") and not re.search(r"\b(manager|boss|officer|staff|friend|colleague)\s+(ne|has|have|had|authori[sz]ed|approved|said|allowed|told|permitted|gave)\b|authori[sz]ed me|permission di|anumati|\bmy (manager|boss)\b.{0,20}(ticket|booking)", t, re.I):
         intent = "handoff_request"
     elif has("greet"):
         intent = "greet"
@@ -225,6 +231,8 @@ def understand(db, text: str, as_of, session_slots=None):
     elif has("seats") and slots.get("train_no"):
         intent = "seats"
     elif has("rules"):
+        intent = "rules"
+    elif refund_w and re.search(r"(milta|milega|milenge|मिलता|मिलेगा|mil sakta|hoga|होगा|\?)", t, re.I):
         intent = "rules"
     elif has("fare"):
         intent = "fare"

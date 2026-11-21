@@ -74,7 +74,7 @@ def handle(db, passenger_id, session_id, message, as_of_in=None, trace_id=None):
     if cm and cm.group(4).upper() != passenger_id:
         claimed = cm.group(4).upper()
         text = (text[:cm.start()] + " " + text[cm.end():]).strip()          # an ID typed in the message is never believed; only the signed-in header counts
-    if other_person(db, passenger_id, text) and not re.search(r"\b(BKG\s?-?\d|UR-?\d)", text, re.I):
+    if (other_person(db, passenger_id, text) or other_person(db, passenger_id, typos.fix(text) if text.isascii() else text)) and not re.search(r"\b(BKG\s?-?\d|UR-?\d)", text, re.I):
         step("route", decision="asks_about_another_passenger")
         r = reply("refusal", t("own_only", lang), sources=[{"doc_id": "RUL-006", "section": "3.6"}])
         return finish(db, r, audit, trace_id, passenger_id, session_id, lang, sess, as_of, t0)
@@ -88,6 +88,12 @@ def handle(db, passenger_id, session_id, message, as_of_in=None, trace_id=None):
     intent, slots = u["intent"], u["slots"]
     step("understand", intent=intent, slots={k: v for k, v in slots.items() if k != "topic"})
 
+    if slots.get("bad_date") and intent in ("search_trains", "seats", "fare", "book_ticket", "deadline", "unknown"):
+        r = reply("clarification", t("bad_date", lang))
+        return finish(db, r, audit, trace_id, passenger_id, session_id, lang, sess, as_of, t0)
+    if slots.get("action_id") and not re.match(r"^\s*ACT-[A-Z0-9]{8}\s*$", text):
+        r = reply("refusal", t("no_chat_confirm", lang))
+        return finish(db, r, audit, trace_id, passenger_id, session_id, lang, sess, as_of, t0)
     pend_intent = sess.get("pending_intent")
     if injected and (intent in ("unknown",) or len(text.strip()) < 12):
         r = reply("refusal", t("refuse_injection", lang))
@@ -216,6 +222,16 @@ def other_person(db, pid, text):
     for m in re.findall(r"\bP\d{3}\b", text, re.I):
         if m.upper() != pid:
             return True
+    if re.search(r"\b(reveal|list|show|give|display|dump|print|expose|dikha\w*|bata\w*)\b.{0,25}\b(all|every|each|sabhi|saare|saari)\b.{0,12}\b(passengers?|users?|people|customers?|accounts?|yatri\w*|bookings?|tickets?)\b", text, re.I) \
+            and not re.search(r"\b(my|mere|meri|mera)\b", text, re.I):
+        return True
+    if re.search(r"\b(all|every|each|sabhi|saare|saari)\b.{0,12}\b(passengers?|users?|people|customers?|yatri\w*)\b.{0,40}\b(names?|naam|phones?|numbers?|bookings?|tickets?|details?|list|dikha\w*|bata\w*|reveal|show)\b", text, re.I) \
+            and not re.search(r"\b(my|mere|meri|mera)\b", text, re.I):
+        return True
+    if re.search(r"(सभी|सारे|दूसरे|दूसरों|अन्य)\s*(के\s*)?(यात्रियों|यात्री|पैसेंजर|लोगों)", text):
+        return True
+    if re.search(r"\b(someone|somebody|anyone|anybody|kisi)\s+(else|aur|dusre|doosre)\b|(किसी|कोई)\s*(और|दूसरे|अन्य)", text, re.I):
+        return True
     askw = r"(ticket|booking|booked|trip|journey|status|refund|phone|detail|history|pnr|reservation|data|record|बुकिंग|टिकट)"
     if re.search(askw, text, re.I) and not re.search(r"\b(on|in|with)\s+(my|this|the same|that)\s+(booking|ticket|pnr)", text, re.I) and (
             re.search(r"\b(other|another|different|all|every|any|some)\s+(\w+\s+)?(passengers?|people|persons?|users?|customers?|accounts?)\b", text, re.I)
@@ -224,18 +240,30 @@ def other_person(db, pid, text):
         return True
     rows = db.execute("SELECT passenger_id, name FROM passengers").fetchall()
     own = next((r["name"] for r in rows if r["passenger_id"] == pid), "").lower().split()
-    words = [w for w in re.findall(r"[a-zA-Z]{4,}", text.lower())]
-    pointing = re.search(r"\b(for|of|about|ke|ka|ki|ko)\b|'s\b", text, re.I)
+    low = text.lower()
+    words = [w for w in re.findall(r"[a-zA-Z]{4,}", low)]
     askword = re.search(r"(ticket|booking|booked|trip|journey|status|refund|phone|detail|history|pnr|बुकिंग|टिकट)", text, re.I)
-    if not (pointing and askword):
+    if not askword:
         return False
+    booking_verb = re.search(r"\b(book|reserve|buy|get|want|need|chahiye|karo|kar do)\b.*\b(ticket|seat|tickets|seats)\b", low)
+
+    def near(w, part):
+        return difflib.SequenceMatcher(None, w, part).ratio() >= 0.8
     for r in rows:
         if r["passenger_id"] == pid:
             continue
-        for part in r["name"].lower().split():
-            if part in own:
-                continue
-            if any(difflib.SequenceMatcher(None, w, part).ratio() >= 0.8 for w in words):
+        parts = [x for x in r["name"].lower().split() if x not in own]
+        if not parts:
+            continue
+        full = all(any(near(w, x) for w in words) for x in r["name"].lower().split())
+        if full:                                                    # "Meera Tapan" asked for by full name (even misspelled)
+            return True
+        if booking_verb:                                           # "book a ticket for Rohan Sen": a traveller's name, not another account
+            continue
+        for x in parts:                                            # "Meera's ticket", "Meera ka ticket", "tickets of Meera"
+            if re.search(r"(ticket|booking|trip|journey|status|refund|phone|pnr)s?\s+(of|for|about)\s+%s" % re.escape(x[:max(4, len(x) - 1)]), low):
+                return True
+            if re.search(r"\b%s\w{0,2}'?s?\s+(ka|ki|ke)?\s*(ticket|booking|trip|journey|status|refund|phone|pnr)" % re.escape(x[:max(4, len(x) - 1)]), low):
                 return True
     return False
 
@@ -1041,7 +1069,18 @@ def do_book(ctx):
     done_asking(ctx)
     if not p["ok"]:
         r = p["reason"]
-        kw = {"max": p.get("max"), "days": p.get("days"), "mins": p.get("minutes"), "opens": fmt_date(p["opens"]) if p.get("opens") else ""}
+        if r == "not_available":
+            try:       # the train already left the boarding station on that date, or there is simply no inventory for it
+                gone = tt.departure_dt(db, train_no, origin, sts[0]) <= as_of
+            except Exception:
+                gone = False
+            if gone:
+                r = "departed"
+            else:
+                return reply("answer", t("book_no_inventory", lang, no=train_no, date=fmt_date(slots["date"]), cls=slots["class"]), tools=[tool("propose_book", p)])
+        if r == "no_such_train_or_class":
+            return reply("clarification", t("train_no_class", lang, no=train_no, cls=slots["class"], have="see the train timetable"))
+        kw = {"max": p.get("max"), "days": p.get("days"), "mins": p.get("minutes") or cfg.get_int(db, "booking.cutoff_minutes_before_origin", as_of, 20), "opens": fmt_date(p["opens"]) if p.get("opens") else ""}
         key = {"regret": "regret", "departed": "closed_b", "too_early": "too_early_b", "bad_traveller_count": "too_many", "service_cancelled": "service_cancelled"}.get(r, "unknown")
         sec = {"regret": ("RUL-004", "3.2"), "departed": ("RUL-001", "3.5"), "too_early": ("RUL-001", "3.1"), "bad_traveller_count": ("RUL-001", "3.3"),
                "service_cancelled": ("RUL-011", "3.1")}.get(r, ("RUL-001", "3.4"))

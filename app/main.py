@@ -107,7 +107,20 @@ def make_app(db_conn=None):
         except Exception:
             raise HTTPException(422, "as_of must be an ISO date or datetime")
         with LOCK:
-            return router.handle(db, pid, body.session_id, body.message, body.as_of)
+            try:
+                return router.handle(db, pid, body.session_id, body.message, body.as_of)
+            except HTTPException:
+                raise
+            except Exception as e:                      # last safety net: a bug must never become a 500 page or a half-answer
+                log.exception("chat failed")
+                db.rollback()
+                lang = session_lang(pid)
+                trace = "TR-" + uuid.uuid4().hex[:12].upper()
+                rec = {"trace_id": trace, "ts": clock.iso(clock.real_now()), "passenger_id": pid, "session_id": body.session_id, "input": "[unprocessable]",
+                       "steps": [{"step": "error", "error": repr(e)[:200]}], "answer_type": "not_found", "tools": []}
+                db.execute("INSERT OR REPLACE INTO audit VALUES(?,?,?,?,?)", (trace, rec["ts"], pid, body.session_id, json.dumps(rec)))
+                db.commit()
+                return _answer(pid, trace, "not_found", t("unknown", lang))
 
     def _answer(pid, trace, answer_type, text, sources=None, tools=None, pending=None, handed=False):
         return {"trace_id": trace, "answer_type": answer_type, "answer": text, "sources": sources or [], "tools": tools or [],

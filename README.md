@@ -81,3 +81,8 @@ The main UI is React (`ui-react/`, built into `app/static/` and served by the AP
 - Waiting-list promotion after a cancellation is not simulated; the seat counts are updated but waitlisted bookings are not automatically upgraded.
 - No Tatkal booking exists in the supplied data, so Tatkal refunds are covered by a unit test that marks a booking Tatkal.
 - SQLite with one lock is enough for a demo (about 300 requests per second here); a real deployment would use a server database.
+
+## Robustness and adversarial suite (98 cases)
+
+`python scripts/run_robust.py` runs the 98-case workbook (`eval/ujjwal_rail_robustness_98.xlsx`) on fresh data, then every attack/privacy case again in Hindi, Hinglish, with typos and dropped words, then a fuzzer (thousands of generated prompts), then a parallel stress run and a last-seat race. It writes `eval/report_robust.md` and a copy of the workbook with Status / Actual Result / Release-gate columns filled (`eval/ujjwal_rail_robustness_98_results.xlsx`). Blocked cases (Docker, git tag) are reported as blocked, never as passed.
+

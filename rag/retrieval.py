@@ -20,6 +20,7 @@ STOP = set("""a an the is are was were be i me my we our you your it its this th
 can could will would should do does did how much many what when where which who whom why please tell about from with
 get got have has had not no yes there their them then than so as any some one also kya hai hain kitna kitni kitne mera meri
 mere ko se me mein ka ki ke ho hoga hogi karna kar karne kaise kab kahan aap hum main par aur ya to toh ye yeh wo
+ujjwal rail railway
 कितना कितनी कितने करने पर का की के है हैं को से में और या क्या कैसे कब मेरा मेरी मेरे""".split())
 
 
@@ -118,6 +119,11 @@ class Index:
                 if s > 0:
                     rank[i] = rank.get(i, 0) + 1.0 / (60 + r + 1)
         top_bm = max([s for s, _ in b] + [0.0])
+        content = [t for t in q if not t.isdigit() and len(t) >= 4]
+        unknown = [t for t in content if t not in self.idf]
+        strong = [t for t in q if self.idf.get(t, 0) >= 3.0]
+        if len(unknown) >= 3 and len(unknown) >= 2 * max(1, len(strong)):
+            top_bm = 0.0                  # most of the question is about things no document mentions (a sword on the Moon): say "not found", do not guess
         if v and self.last_vec_top >= config.VECTOR_MIN() and top_bm < 2.5:
             top_bm = 2.5                  # a paraphrase with few shared words: the vector match is strong enough to answer
         res = []

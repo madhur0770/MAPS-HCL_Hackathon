@@ -16,6 +16,10 @@ INJECTION = [
     r"(skip|bypass|without) (the )?(confirm|confirmation|preview)", r"pre-?authori[sz]ed",
     r"\byou are (now )?(the |an? )?(admin|administrator|root|system|developer|owner|operator)\b", r"\bwithout (asking|confirming|my confirmation|any confirmation)\b",
     r"\bsudo\b", r"</?(system|assistant|instructions?)>", r"new instructions?\s*:",
+    r"ignore (the |this )?(user'?s?|customer'?s?|passenger'?s?) (request|question)", r"ignore (the )?(policy|policies|rules?)\b",
+    r"set (every |all )?refunds? to\b", r"set answer_type", r"disable (the )?(authori[sz]ation|confirmation|checks?)\b", r"(reveal|show|list|output) (all|every) (bookings?|passengers?|phone)",
+    r"always claim\b", r"\badvertise\b", r"\bcall (POST|GET|DELETE|PUT) /", r"\boutput (phone|all|every)\b", r"\bno citations?\b", r"(hide|omit|skip) (the )?citations?",
+    r"mark (every|all) bookings?", r"assistant (must|should|will) (disable|reveal|ignore|always)",
     r"पिछले (सभी )?निर्देश(ों)? (को )?(अनदेखा|भूल)", r"pichhle (saare )?(instructions|nirdesh) (ignore|bhul)",
 ]
 INJ_RE = re.compile("|".join(INJECTION), re.I)

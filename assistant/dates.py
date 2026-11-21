@@ -23,7 +23,10 @@ def parse_date(text: str, as_of: dt.datetime):
         return today, "today"
     m = re.search(r"\b(20\d\d)-(\d{1,2})-(\d{1,2})\b", t)
     if m:
-        return dt.date(int(m.group(1)), int(m.group(2)), int(m.group(3))), "iso"
+        try:
+            return dt.date(int(m.group(1)), int(m.group(2)), int(m.group(3))), "iso"
+        except ValueError:
+            return None, "bad"
     m = re.search(r"\b(\d{1,2})(?:st|nd|rd|th)?\s*(?:of\s+)?(jan|feb|mar|apr|may|jun|jul|aug|sep|sept|oct|nov|dec)[a-z]*\b(?:\s*,?\s*(20\d\d))?", t)
     if m:
         d, mo = int(m.group(1)), MONTHS[m.group(2)]

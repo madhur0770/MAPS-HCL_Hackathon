@@ -107,6 +107,31 @@ def infer_topic(text):
 
 
 def ingest(db, doc: dict, settings_override=None):
+    """All-or-nothing: a bad date or a failed index rebuild leaves the old documents, settings and search index exactly as they were."""
+    eff_in = doc.get("effective_from")
+    if eff_in:
+        try:
+            dt.date.fromisoformat(str(eff_in)[:10])
+        except ValueError:
+            raise ValueError("effective_from must be a valid date (YYYY-MM-DD)")
+    if not (doc.get("text") or "").strip():
+        raise ValueError("text is empty")
+    try:
+        db.commit()
+        out = _ingest(db, doc, settings_override)
+        return out
+    except Exception:
+        db.rollback()
+        try:
+            refresh_current(db, clock.real_now().date())
+            db.commit()
+            store.invalidate(db)
+        except Exception:
+            pass
+        raise
+
+
+def _ingest(db, doc: dict, settings_override=None):
     from core import official
     raw = doc["text"]
     meta, body = official.parse_frontmatter(raw) if raw.lstrip().startswith("---") else ({}, raw)
@@ -146,8 +171,8 @@ def ingest(db, doc: dict, settings_override=None):
         applied.append({"name": it["name"], "value": str(it["value"]), "effective_from": eff, "section": it.get("section", ""),
                         "from": "override" if settings_override else "extracted"})
     refresh_current(db, clock.real_now().date())
+    store.invalidate(db)                   # if the rebuild fails the whole change is rolled back by ingest()
     db.commit()
-    store.invalidate(db)
     return {"doc_id": doc_id, "effective_from": eff, "authority": AUTH.get(doc_type, 4), "language": lang,
             "settings_applied": applied, "instruction_sentences_removed": removed,
             "note": "Check the extracted numbers; send a 'settings' override to correct them." if applied and not settings_override else ""}

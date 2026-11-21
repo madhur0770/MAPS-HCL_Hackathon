@@ -80,6 +80,19 @@ def find_stations_in(db, text: str):
         if cand and single[cand[0]] not in found:
             hits.append((m.start(), -len(w), single[cand[0]]))
             found.add(single[cand[0]])
+    # two-word names with a typo in either word: "anadnpur central" -> Anandpur Central
+    multi = {a: c for a, c in idx.items() if " " in a and len(a) >= 8}
+    words = [(m.start(), m.group()) for m in re.finditer(r"[\w\u0900-\u097F]+", t)]
+    for (p1, w1), (p2, w2) in zip(words, words[1:]):
+        if not (w1.isascii() and w2.isascii()) or w1 in skip or w2 in skip:
+            continue
+        pair = w1 + " " + w2
+        if pair in multi:
+            continue
+        cand = difflib.get_close_matches(pair, list(multi), n=1, cutoff=0.86)
+        if cand and multi[cand[0]] not in found:
+            hits.append((p1, -len(pair), multi[cand[0]]))
+            found.add(multi[cand[0]])
     hits.sort()
     out = []
     for pos, _, code in hits:

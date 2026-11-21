@@ -14,6 +14,9 @@ T = {
  "unknown_train": {"en": "I could not find train %(no)s on Ujjwal Rail. Our trains are numbered like UJ1006. Tell me the route (for example \"Arunoday to Chetakgarh\") and I will list the trains.",
                    "hi": "उज्ज्वल रेल पर ट्रेन %(no)s नहीं मिली। हमारी ट्रेनें UJ1006 जैसे नंबर की होती हैं। रूट बताइए (जैसे \"Arunoday से Chetakgarh\") तो मैं ट्रेनें दिखाऊँगा।",
                    "hinglish": "Ujjwal Rail par train %(no)s nahi mili. Hamari trains UJ1006 jaise number ki hoti hain. Route batayein (jaise \"Arunoday se Chetakgarh\") to main trains dikhaunga."},
+ "bad_date": {"en": "That date does not exist on the calendar. Please give the travel date again (for example 25 Nov or 2026-11-25).",
+              "hi": "यह तारीख कैलेंडर में नहीं है। कृपया यात्रा की तारीख फिर बताइए (जैसे 25 नवंबर या 2026-11-25)।",
+              "hinglish": "Yeh tareekh calendar me nahi hai. Kripya travel ki tareekh dobara bataiye (jaise 25 Nov ya 2026-11-25)."},
  "no_class": {"en": "No train on %(frm)s to %(to)s on %(date)s has %(cls)s. Classes that do run there: %(have)s. Want me to show those?",
               "hi": "%(date)s को %(frm)s से %(to)s की किसी ट्रेन में %(cls)s नहीं है। उपलब्ध क्लास: %(have)s।",
               "hinglish": "%(date)s ko %(frm)s se %(to)s ki kisi train me %(cls)s nahi hai. Available classes: %(have)s."},
@@ -162,6 +165,12 @@ T = {
   "en": "I can't find that pending action.", "hi": "वह लंबित कार्रवाई नहीं मिली।", "hinglish": "Woh pending action nahi mila."},
  "action_failed": {
   "en": "I could not complete that (%(why)s). Nothing was changed.", "hi": "मैं यह पूरा नहीं कर सका (%(why)s)। कुछ नहीं बदला।", "hinglish": "Main yeh poora nahi kar saka (%(why)s). Kuch nahi badla."},
+ "book_no_inventory": {"en": "I have no seat information for train %(no)s on %(date)s in %(cls)s, so I cannot prepare a booking for it. Please choose another date or class.",
+                       "hi": "%(date)s को ट्रेन %(no)s में %(cls)s की सीट की जानकारी मेरे पास नहीं है, इसलिए बुकिंग तैयार नहीं कर सकता। कृपया दूसरी तारीख या क्लास चुनिए।",
+                       "hinglish": "%(date)s ko train %(no)s me %(cls)s ki seat ki jaankari mere paas nahi hai, isliye booking taiyar nahi kar sakta. Kripya dusri tareekh ya class chuniye."},
+ "no_chat_confirm": {"en": "I cannot confirm or run an action from a chat message, and an action ID typed here is never accepted. A change happens only when the account holder presses the Confirm button on a preview that I created for this account.",
+                     "hi": "मैं चैट संदेश से कोई कार्य कन्फर्म या लागू नहीं कर सकता, और यहाँ लिखी गई action ID कभी स्वीकार नहीं होती। बदलाव तभी होता है जब खाताधारक मेरे बनाए प्रीव्यू पर Confirm बटन दबाए।",
+                     "hinglish": "Main chat message se koi action confirm ya run nahi kar sakta, aur yahan likhi action ID kabhi accept nahi hoti. Badlav tabhi hota hai jab account holder mere banaye preview par Confirm button dabaye."},
  "pending_hint": {
   "en": "You have a preview waiting (%(aid)s). Please use the Confirm or Cancel button (a separate step) so I know it is really you deciding.",
   "hi": "आपका एक पूर्वावलोकन लंबित है (%(aid)s)। कृपया Confirm या Cancel बटन दबाइए (यह अलग चरण है)।",

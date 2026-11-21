@@ -35,6 +35,7 @@ STEPS = [
     ("Red-team tests (injection, privacy, policy)", [sys.executable, "-m", "pytest", "tests/safety", "-q"]),
     ("Evaluation (66 questions)", [sys.executable, "scripts/run_eval.py"]),
     ("Evaluation CSV (40 questions, 7 measures)", [sys.executable, "scripts/run_csv_eval.py"]),
+    ("Robustness suite (98 cases + variants + fuzz + stress)", [sys.executable, "scripts/run_robust.py", "--fuzz", "1500"]),
     ("Audit samples (3 real runs)", [sys.executable, "scripts/make_audit_samples.py"]),
 ]
 
