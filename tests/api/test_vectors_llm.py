@@ -102,3 +102,29 @@ def test_ollama_probe_is_off_with_mock(monkeypatch):
     monkeypatch.setenv("MOCK_LLM", "true")
     assert llm.available() is False
     assert llm.embed(["x"]) is None
+
+
+def test_followups_keep_context(app_db):
+    c = TestClient(make_app(app_db))
+    chat(c, "trains from Arunoday to Anandpur North on 30 Nov 2026", sid="f1")
+    a = chat(c, "is there a AC3 seat on UJ1024", sid="f1")
+    assert "UJ1024" in a["answer"] and "AC3" in a["answer"] and "Arunoday" in a["answer"], a["answer"]
+    assert "UJ1020" not in a["answer"]
+    a = chat(c, "what about 1 Dec 2026", sid="f1")
+    assert "Arunoday" in a["answer"] and "1 Dec" in a["answer"], a["answer"]
+    a = chat(c, "AC2 only", sid="f1")
+    assert "AC2" in a["answer"] and "Arunoday" in a["answer"], a["answer"]
+
+
+def test_full_anandpur_flow_from_screenshot(app_db):
+    c = TestClient(make_app(app_db))
+    a = chat(c, "i need a ticket to delhi", sid="g1")
+    assert "Delhi" in a["answer"]
+    a = chat(c, "I need a ticket to anandpur", sid="g2")
+    assert "Anandpur North" in a["answer"]
+    a = chat(c, "ANPN", sid="g2")
+    assert "from" in a["answer"]
+    a = chat(c, "Arunoday and date 30-11-2026", sid="g2")
+    assert "UJ1024" in a["answer"]
+    a = chat(c, "is there a AC3 seat on UJ1024", sid="g2")
+    assert "UJ1024" in a["answer"] and "AC3" in a["answer"] and "Please tell me" not in a["answer"], a["answer"]

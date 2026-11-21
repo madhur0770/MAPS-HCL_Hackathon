@@ -129,7 +129,9 @@ def handle(db, passenger_id, session_id, message, as_of_in=None, trace_id=None):
     ctx = {"db": db, "pid": passenger_id, "lang": lang, "as_of": as_of, "text": text, "slots": slots, "sess": sess,
            "trace": trace_id, "intent": intent, "step": step, "session_id": session_id}
     try:
-        r = fn(ctx)
+        r = followup(ctx) if intent in ("unknown", "rules", "greet", "search_trains", "seats", "fare", "my_bookings") else None
+        if r is None:
+            r = fn(ctx)
     except Exception as e:                                   # never crash the conversation
         step("error", error=repr(e)[:200])
         r = reply("not_found", t("unknown", lang))
@@ -294,7 +296,7 @@ def ambiguous_reply(ctx, amb):
 
 FILLER = {"need", "want", "wanna", "like", "looking", "look", "find", "show", "search", "give", "tell", "help", "can", "could", "would", "should", "will", "get", "got",
           "have", "has", "for", "with", "from", "into", "onto", "about", "just", "only", "also", "some", "reservation", "journey", "trip", "seat", "seats", "berth",
-          "hai", "chahiye", "chahie", "karna", "karni", "karo", "jana", "jaana", "mujhe", "hamein", "ek", "bhai", "yaar", "tak", "se", "ko", "ka", "ki", "ke"}
+          "what", "how", "where", "when", "why", "who", "which", "does", "late", "delay", "delayed", "lost", "wallet", "bag", "luggage", "hai", "chahiye", "chahie", "karna", "karni", "karo", "jana", "jaana", "mujhe", "hamein", "ek", "bhai", "yaar", "tak", "se", "ko", "ka", "ki", "ke"}
 
 
 def _place_candidates(text):
@@ -303,7 +305,7 @@ def _place_candidates(text):
     out = []
     for mm in re.finditer(r"\b(?:to|from|se|tak|for|near|in)\s+([A-Za-z]{3,}(?:\s+[A-Za-z]{3,})?)", text):
         out.append(mm.group(1).split())
-    if not out:
+    if not out and re.search(r"\b(need|want|wanna|book|booking|ticket|tickets|go|going|travel|reach|trip|journey|jana|jaana|chahiye|चाहिए|जाना)\b", text, re.I):
         left = [w for w in re.findall(r"[A-Za-z]{3,}", text) if w.lower() not in STOP_PLACE and w.lower() not in FILLER and w.lower() not in dates.MONTHS]
         if left:
             out.append([left[-1]])
@@ -355,11 +357,99 @@ def llm_places(ctx):
     return do_search(ctx)
 
 
+
+def _fmt_time(iso):
+    return fmt_dt(dt.datetime.fromisoformat(iso))
+
+
+def followup(ctx):
+    """Short messages that only make sense with the earlier conversation: 'cheapest one?', 'book the first one', 'what about the day after',
+    'Rahul 30 and Meera 28' after a search, 'what is the refund' after a booking, small talk. Uses the session memory; returns None if it is not one."""
+    text, sess, slots, lang = ctx["text"].strip(), ctx["sess"], ctx["slots"], ctx["lang"]
+    low = text.lower()
+    short = len(low.split()) <= 9
+    if re.match(r"^\s*(thanks|thank you|thx|ty|shukriya|dhanyavaad|dhanyavad|धन्यवाद|शुक्रिया)\b", low):
+        return reply("answer", t("thanks", lang))
+    if re.match(r"^\s*(bye|goodbye|good bye|see you|alvida|ok bye|tata)\b", low):
+        return reply("answer", t("bye", lang))
+    if re.search(r"\b(what can you do|what do you do|how can you help|can you help me|help me|what can i ask|kya kar sakte|kya madad)\b", low) and not slots.get("booking_id"):
+        return reply("answer", t("help", lang))
+    ls, lr = sess.get("last_search"), sess.get("last_results")
+    if ls and lr and short:
+        db = ctx["db"]
+        cls = slots.get("class") or sess.get("last_class")
+        def fare_of(r):
+            f = r["fares"]
+            if cls and cls in f:
+                return f[cls]
+            return min(f.values()) if f else 10 ** 12
+        pick, what = None, None
+        if re.search(r"\b(cheapest|cheap|lowest fare|least expensive|sasta|sasti|सस्ता|सस्ती)\b", low):
+            pick, what = min((r for r in lr if r["fares"]), key=fare_of, default=None), "w_cheapest"
+        elif re.search(r"\b(fastest|quickest|shortest|least time|tez|तेज़|तेज)\b", low):
+            pick, what = min(lr, key=lambda r: r["mins"]), "w_fastest"
+        elif re.search(r"\b(earliest|first train|first one|pehli)\b", low) and not re.search(r"\bbook\b|seat|available|berth", low) and not slots.get("class"):
+            pick, what = lr[0], "w_earliest"
+        elif re.search(r"\b(latest|last train|last one)\b", low) and not re.search(r"\bbook\b|seat|available|berth", low) and not slots.get("class"):
+            pick, what = lr[-1], "w_latest"
+        if pick and what:
+            c = cls if cls in pick["fares"] else (min(pick["fares"], key=pick["fares"].get) if pick["fares"] else "")
+            return reply("answer", t("pick_best", lang, what=t(what, lang), date=fmt_date(ls["date"]), frm=station_label(db, ls["frm"]), to=station_label(db, ls["to"]),
+                                     train=pick["train_no"], name=pick["name"], dep=_fmt_time(pick["dep"]), arr=_fmt_time(pick["arr"]), cls=c,
+                                     fare=inr(pick["fares"].get(c, 0))), tools=[tool("compare_results", {"criterion": what}, train_no=pick["train_no"], fares=pick["fares"], minutes=pick["mins"], departs=pick["dep"], arrives=pick["arr"])])
+        # "book the first one / the cheapest / UJ1006"
+        if re.search(r"\b(book|take|choose|select|pick|go with|confirm)\b", low) and not slots.get("train_no"):
+            m = re.search(r"\b(first|second|third|last|cheapest|fastest|earliest|latest)\b", low)
+            if m:
+                w = m.group(1)
+                tr = {"first": lr[0], "earliest": lr[0], "last": lr[-1], "latest": lr[-1], "second": lr[1] if len(lr) > 1 else None, "third": lr[2] if len(lr) > 2 else None,
+                      "cheapest": min((r for r in lr if r["fares"]), key=fare_of, default=None), "fastest": min(lr, key=lambda r: r["mins"])}[w]
+                if tr:
+                    slots["train_no"] = tr["train_no"]
+                    return do_book(dict(ctx, intent="book_ticket"))
+        # travellers typed right after a search ("Rahul 30 and Meera 28") start a booking
+        if slots.get("travellers") and not slots.get("booking_id"):
+            if len(lr) == 1 and not slots.get("train_no"):
+                slots["train_no"] = lr[0]["train_no"]
+            return do_book(dict(ctx, intent="book_ticket"))
+        # date moves: "the day after", "next day", "previous day"
+        mv = 1 if re.search(r"\b(next day|the day after|day after$|following day|agle din|अगले दिन)\b", low) and "tomorrow" not in low else (-1 if re.search(r"\b(previous day|day before|pichle din)\b", low) else 0)
+        if mv and not slots.get("date"):
+            nd = (dt.date.fromisoformat(ls["date"]) + dt.timedelta(days=mv)).isoformat()
+            slots["date"] = nd
+            return do_search(ctx)
+        if re.search(r"\b(how much|price|fare|cost|kitna|kharcha|kiraya|कितना|किराया)\b", low) and not re.search(r"refund|cancel|charge|tatkal|fee", low):
+            return do_search(ctx)
+    # a problem report ("my train is late", "i lost my wallet") is not a search request
+    if (not slots.get("stations") and not slots.get("date") and not slots.get("train_no") and not slots.get("class") and not slots.get("booking_id")
+            and re.search(r"\b(late|delayed|delay|lost|stolen|missing|misplaced|dirty|broken|rude|complain\w*|wallet|phone|not working|smell|noisy|overcrowded)\b", low)):
+        r = do_rules(ctx)
+        words = set(re.findall(r"late|delayed|delay|lost|stolen|missing|misplaced|dirty|broken|rude|complain\w*|wallet|phone|smell|noisy|overcrowded", low))
+        need = {"late": "delay", "delayed": "delay", "delay": "delay", "lost": "lost", "missing": "lost", "misplaced": "lost", "wallet": "lost", "phone": "lost", "stolen": "stolen"}
+        keys = {need.get(w, w[:6]) for w in words}
+        if r["answer_type"] != "not_found" and not any(k in (r["answer"] + r.get("_doc_text", "")).lower() for k in keys):
+            return reply("not_found", t("rules_not_found", lang))       # retrieved text is about something else: do not pretend it answers
+        return r
+    # a booking was just shown or previewed: "what is the refund", "and the status?"
+    lb = sess.get("last_booking")
+    if lb and short and not slots.get("booking_id") and re.search(r"\b(how much|what('s| is| will)?)\b.{0,25}\brefund\b|\brefund (amount|will i get)\b|\bkitna refund\b", low) and not re.search(r"polic|rule|process|how long|when", low):
+        slots["booking_id"] = lb
+        return do_refund_estimate(dict(ctx, intent="refund_estimate"))
+    return None
+
+
 def do_unknown(ctx):
     """Not a known request type. If it looks like a question about the rules, try the documents; otherwise say what we can do."""
     text = ctx["text"]
     if re.search(r"\b(hotel|hotels|flight|flights|cab|taxi|restaurant|bus|movie|weather|visa|cricket|stock|recipe|pizza|resort)\b", text, re.I):
         return reply("not_found", t("help", ctx["lang"]))
+    if (ctx["sess"].get("last_search") and (ctx["slots"].get("date") or ctx["slots"].get("class") or ctx["slots"].get("train_no"))
+            and len(text.split()) <= 8 and not re.search(r"refund|cancel|charge|fee|rule|policy|penalt", text, re.I)):
+        return do_search(ctx)                  # short follow-up to the last search: "what about 1 Dec", "AC2 only", "UJ1024 AC3?"
+    if len(text.split()) >= 4 and not re.search(r"(ticket|book|need|want|go to|travel)", text, re.I) and not re.search(r"(\?|\bhow\b|\bwhat\b)", text, re.I):
+        r = do_rules(ctx)
+        if r["answer_type"] != "not_found":
+            return r
     if re.search(r"(\?|\bhow\b|\bwhat\b|\bwhen\b|\bwhich\b|\bcan\b|\bis\b|\bare\b|\bdo\b|\bkya\b|\bkaise\b|\bkitn|\bkab\b|क्या|कैसे|कितन|कब)", text, re.I):
         r = do_rules(ctx)
         if r["answer_type"] != "not_found":
@@ -567,6 +657,15 @@ def seat_text(av, lang):
 def do_search(ctx):
     db, lang, slots, as_of = ctx["db"], ctx["lang"], ctx["slots"], ctx["as_of"]
     sts = slots.get("stations", [])
+    ls = ctx["sess"].get("last_search")
+    if (not sts and not slots.get("from_st") and not slots.get("to_st") and ls and not ctx["sess"].get("collected")
+            and (slots.get("train_no") or slots.get("class") or slots.get("date") or not tt.ambiguous_in(db, ctx.get("text", "")))
+            and not tt.find_stations_in(db, ctx.get("text", ""))):
+        # a follow-up ("is there an AC3 seat on UJ1024", "what about tomorrow"): keep the route and date from the last search
+        sts = [ls["frm"], ls["to"]]
+        slots["stations"] = sts
+        slots.setdefault("date", ls["date"])
+        ctx["step"]("context", note="reused last search %s->%s %s" % (ls["frm"], ls["to"], ls["date"]))
     if len(sts) < 2:
         if not sts and not ctx["sess"].get("collected"):
             r = llm_places(ctx)
@@ -627,6 +726,10 @@ def do_search(ctx):
                                      "origin_date": r["origin_date"], "classes": {c: {"fare": i["fare"], "availability": i["availability"]} for c, i in r["class_info"].items()}}
                                     for r in res[:6]], frm=frm, to=to, date=slots["date"])]
     ctx["sess"]["last_search"] = {"frm": frm, "to": to, "date": slots["date"]}
+    ctx["sess"]["last_class"] = slots.get("class")
+    ctx["sess"]["last_results"] = [{"train_no": r["train_no"], "name": r["name"], "dep": clock.iso(r["departs"]), "arr": clock.iso(r["arrives"]),
+                                    "mins": int((r["arrives"] - r["departs"]).total_seconds() // 60),
+                                    "fares": {c: i["fare"] for c, i in r["class_info"].items() if i["fare"]}} for r in res[:6]]
     return reply("answer", "\n".join(lines), tools=tools)
 
 
@@ -728,9 +831,29 @@ SETTING_QUESTIONS = [(re.compile(r"tatkal.{0,30}(supplement|charge|fee)|(supplem
 def setting_answer(ctx):
     """A class-specific money number is read straight from the dated settings, so the newest circular always wins."""
     cls = ctx["slots"].get("class")
-    if not cls:
-        return None
     from tools import settings as cfg
+    if not cls:
+        for rx, key, tkey in SETTING_QUESTIONS:
+            if rx.search(ctx["text"]):                    # no class named: answer for every class that has the setting
+                names = [r[0] for r in ctx["db"].execute("SELECT DISTINCT name FROM settings WHERE name LIKE ? ORDER BY name", (key.replace("%s", "") + "%",))]
+                parts, src, tl = [], [], []
+                for n in names:
+                    val = cfg.get(ctx["db"], n, ctx["as_of"])
+                    if val is None:
+                        continue
+                    try:
+                        money = inr(int(round(float(val) * 100)))
+                    except ValueError:
+                        continue
+                    c = n.rsplit("_", 1)[-1].upper()
+                    parts.append(t(tkey, ctx["lang"], cls=c, amount=money, date=fmt_date(ctx["as_of"].date().isoformat())))
+                    doc, sec = cfg.source(ctx["db"], n, ctx["as_of"])
+                    if doc and {"doc_id": doc, "section": sec.replace("Section ", "")} not in src:
+                        src.append({"doc_id": doc, "section": sec.replace("Section ", "")})
+                    tl.append({"name": n, "value": val})
+                if parts:
+                    return reply("answer", "\n".join(parts), sources=src, tools=[tool("get_setting", tl)])
+        return None
     for rx, key, tkey in SETTING_QUESTIONS:
         if rx.search(ctx["text"]):
             name = key % cls.lower()
@@ -750,6 +873,11 @@ def setting_answer(ctx):
 
 def do_rules(ctx):
     db, lang, as_of, slots = ctx["db"], ctx["lang"], ctx["as_of"], ctx["slots"]
+    prev = ctx["sess"].get("last_rules_q")
+    if prev and len(ctx["text"].split()) <= 5 and re.match(r"^\s*(and|what about|how about|aur|or|also)\b", ctx["text"], re.I):
+        ctx["text"] = prev + " " + ctx["text"]                     # "and for AC3?" continues the earlier rules question
+    elif len(ctx["text"].split()) >= 2:
+        ctx["sess"]["last_rules_q"] = ctx["text"]
     sa = setting_answer(ctx)
     if sa:
         return sa

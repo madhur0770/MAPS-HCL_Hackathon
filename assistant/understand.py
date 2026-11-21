@@ -90,7 +90,7 @@ def find_booking_ref(db, text, train_no=None):
     first = None
     for m in BK_RE.finditer(text):
         pre, num = m.group(1).upper(), m.group(2)
-        if pre == "ACT" or (pre + num) == (train_no or ""):
+        if pre == "ACT" or (pre + num) == (train_no or "") or pre in ("JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUNE", "JUL", "AUG", "SEP", "SEPT", "OCT", "NOV", "DEC"):
             continue
         if any(pre + num == tn or pre + "-" + num == tn for tn in k["trains"]):
             continue
