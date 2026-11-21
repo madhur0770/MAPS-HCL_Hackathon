@@ -4,40 +4,38 @@ from tools import timetable as tt, seats, deadlines
 
 
 def test_station_aliases(db):
-    assert tt.resolve_station(db, "Bombay") == "CSMT"
-    assert tt.resolve_station(db, "CST") == "CSMT"
-    assert tt.resolve_station(db, "मुंबई") == "CSMT"
-    assert tt.resolve_station(db, "Banaras") == "BSB"
-    assert tt.find_stations_in(db, "pune se nagpur kal") == ["PUNE", "NGP"]
-    assert tt.find_stations_in(db, "trains from Bombay to Delhi") == ["CSMT", "NDLS"]
+    assert tt.resolve_station(db, "Surya Nagar") == "SURY"
+    assert tt.resolve_station(db, "Chetak Fort") == "CHET"
+    assert tt.find_stations_in(db, "Anandpur Central to Chetakgarh") == ["ANPR", "CHET"]
 
 
-def test_search_pune_nagpur(db):
-    r = tt.search_trains(db, "PUNE", "NGP", "2026-11-24")
-    assert r and r[0]["train_no"] == "12123" and r[0]["departs"].hour == 18
+def test_shared_name_is_ambiguous(db):
+    # "Anandpur" is the city of both ANPR and ANPN: never guess
+    assert tt.find_stations_in(db, "Anandpur to Chetakgarh") == ["CHET"]
+    amb = tt.ambiguous_in(db, "trains from Anandpur to Chetakgarh")
+    assert amb and amb[0][1] == ["ANPN", "ANPR"]
+    assert not tt.ambiguous_in(db, "Anandpur North to Chetakgarh")
 
 
-def test_after_midnight_boarding_uses_next_calendar_day(db):
-    # BK1004 boards KYN at 00:30 the day AFTER the origin date
-    dep = tt.departure_dt(db, "12301", "2026-11-23", "KYN")
-    assert dep == dt.datetime(2026, 11, 24, 0, 30, tzinfo=clock.IST)
+def test_overnight_train_arrival_next_day(db):
+    r = [x for x in tt.search_trains(db, "ANPR", "ANPN", "2026-11-21") if x["train_no"] == "UJ1001"][0]
+    assert r["departs"] == dt.datetime(2026, 11, 21, 23, 40, tzinfo=clock.IST)
+    assert r["arrives"] == dt.datetime(2026, 11, 22, 0, 55, tzinfo=clock.IST)
 
 
-def test_search_converts_user_date_to_origin_date(db):
-    r = tt.search_trains(db, "KYN", "NDLS", "2026-11-24")
-    t = [x for x in r if x["train_no"] == "12301"][0]
-    assert t["origin_date"] == "2026-11-23" and t["after_midnight"]
+def test_search_direct_only_and_sorted(db):
+    r = tt.search_trains(db, "ANPR", "UDAY", "2026-11-26")
+    assert [x["train_no"] for x in r][:2] == ["UJ1007", "UJ1019"]
+    assert tt.search_trains(db, "ANPR", "CHET", "2026-11-25") == []
 
 
 def test_seat_states(db):
-    full = seats.availability(db, "12123", "2026-11-25", "SL")
-    assert full["state"] == "WL" and full["waitlist"] == 14
-    ok = seats.availability(db, "12123", "2026-11-24", "3A")
-    assert ok["state"] == "AVAILABLE" and ok["available"] == 12
+    assert seats.availability(db, "UJ1002", "2026-11-21", "AC2")["state"] == "RAC"
+    assert seats.availability(db, "UJ1001", "2026-11-21", "FP")["state"] == "WL"
+    assert seats.availability(db, "UJ1003", "2026-11-21", "FP")["state"] == "WL"
 
 
-def test_deadline_changes_with_circular(db):
-    b = dict(db.execute("SELECT * FROM bookings WHERE booking_id='BK1001'").fetchone())
-    _, h1, _ = deadlines.boarding_change_deadline(db, b, clock.parse_dt("2026-11-21T10:00"))
-    _, h2, src = deadlines.boarding_change_deadline(db, b, clock.parse_dt("2026-12-02T10:00"))
-    assert (h1, h2) == (24, 12) and src[0] == "CIR-2026-09"
+def test_boarding_change_deadline_is_six_hours_before_origin(db):
+    b = dict(db.execute("SELECT * FROM bookings WHERE booking_id='BKG0001'").fetchone())
+    dl, hrs, src = deadlines.boarding_change_deadline(db, b, clock.parse_dt("2026-11-21T10:00"))
+    assert dl == dt.datetime(2026, 11, 25, 3, 15, tzinfo=clock.IST) and hrs == 6 and src[0] == "RUL-010"

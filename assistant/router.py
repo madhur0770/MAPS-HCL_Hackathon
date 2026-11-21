@@ -471,6 +471,11 @@ def seat_text(av, lang):
 def do_search(ctx):
     db, lang, slots, as_of = ctx["db"], ctx["lang"], ctx["slots"], ctx["as_of"]
     sts = slots.get("stations", [])
+    amb = tt.ambiguous_in(db, ctx["text"]) if ctx.get("text") else []
+    if amb:
+        alias, codes = amb[0]
+        opts = " / ".join("%s (%s)" % (station_label(db, c), c) for c in codes)
+        return reply("clarification", t("ambiguous_station", lang, place=alias.title(), options=opts))
     missing = []
     if len(sts) < 1:
         missing.append("m_from")

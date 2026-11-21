@@ -107,7 +107,7 @@ def extract_travellers(db, text):
     skip = set(tt.station_index(db).keys()) | set(dates.MONTHS.keys()) | _BLACK
     out = []
     for chunk in re.split(r"[,;\n]|\band\b|\baur\b", text):
-        m = re.search(r"([A-Za-z\u0900-\u097F]+(?: [A-Za-z\u0900-\u097F]+){0,2})\s*[:\-(]?\s*(?:aged?\s*)?(\d{1,3})\s*(?:yrs?|years?|saal|साल)?\)?\s*$", chunk.strip(), re.I)
+        m = re.search(r"([A-Za-z\u0900-\u097F]+(?: [A-Za-z\u0900-\u097F]+){0,2})[\s:\-(]+(?:aged?\s*)?(\d{1,3})\s*(?:yrs?|years?|saal|साल)?\)?\s*$", chunk.strip(), re.I)
         if not m:
             continue
         words = m.group(1).split()

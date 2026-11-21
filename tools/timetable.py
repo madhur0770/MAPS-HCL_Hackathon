@@ -9,13 +9,33 @@ def norm(s: str) -> str:
     return re.sub(r"[^\wऀ-ॿ]+", " ", s.lower()).strip()
 
 
-def station_index(db):
-    idx = {}
+def _alias_map(db):
+    """alias -> set of station codes. An alias shared by two stations (Anandpur) is ambiguous."""
+    m = {}
     for r in db.execute("SELECT * FROM stations"):
         names = [r["station_code"], r["name"], r["city"]] + [x for x in (r["other_names"] or "").split(",") if x]
         for n in names:
-            idx[norm(n)] = r["station_code"]
-    return idx
+            m.setdefault(norm(n), set()).add(r["station_code"])
+    return m
+
+
+def station_index(db):
+    """Only aliases that point to exactly one station."""
+    return {a: next(iter(c)) for a, c in _alias_map(db).items() if len(c) == 1}
+
+
+def ambiguous_in(db, text: str):
+    """[(alias, [codes])] for a shared alias that is in the text and not settled by a more specific name."""
+    t = norm(text)
+    idx = station_index(db)
+    out = []
+    for alias, codes in _alias_map(db).items():
+        if len(codes) < 2 or len(alias) < 3:
+            continue
+        if re.search(r"(?<![\wऀ-ॿ])%s(?![\wऀ-ॿ])" % re.escape(alias), t):
+            if not any(re.search(r"(?<![\wऀ-ॿ])%s(?![\wऀ-ॿ])" % re.escape(a), t) for a, c in idx.items() if c in codes and len(a) >= 2):
+                out.append((alias, sorted(codes)))
+    return out
 
 
 def resolve_station(db, text: str):

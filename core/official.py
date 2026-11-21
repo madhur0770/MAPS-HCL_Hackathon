@@ -7,7 +7,7 @@ import re
 
 from core import config
 
-DIR = os.path.join(config.ROOT, "data", "official")
+DIR = os.environ.get("DATA_KIT_DIR") or os.path.join(config.ROOT, "data_kit", "data")   # the supplied data kit; point DATA_KIT_DIR at another folder with the same layout to test other data
 SYN = os.path.join(DIR, "synthetic")
 POL = os.path.join(DIR, "policies")
 
@@ -176,7 +176,11 @@ def load(db, progress=None):
         rows.append(dict(booking_id=t["booking_id"], traveller_name=t["traveller_name"], age=t["age"], status=t["status"], coach=t["coach"], berth=t["berth"],
                          fare_paid=fare[(b["train_no"], b["class"], b["from_code"], b["to_code"])]))
     ins("booking_travellers", rows); P("travellers")
-    sv = json.load(open(os.path.join(DIR, "setting_versions.json"), encoding="utf-8"))
+    import sqlite3
+    src = sqlite3.connect(os.path.join(DIR, "ujjwal_rail.db"))
+    src.row_factory = sqlite3.Row
+    sv = [dict(r) for r in src.execute("SELECT name,value,source_doc,effective_from FROM setting_versions ORDER BY name,effective_from")]
+    src.close()
     for r in sv:
         db.execute("INSERT INTO settings_history(name,value,effective_from,source_doc,section) VALUES(?,?,?,?,?)",
                    (r["name"], r["value"], r["effective_from"][:10], r["source_doc"], ""))
