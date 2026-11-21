@@ -108,4 +108,6 @@ def quote_refund(db, booking_id: str, as_of: dt.datetime, only_travellers=None) 
     return {"ok": True, "booking_id": booking_id, "band": band, "hours_before": hours, "departure": clock.iso(dep),
             "as_of": clock.iso(as_of), "total_refund": total, "total_paid": paid, "deduction": paid - total,
             "lines": lines, "sources": [{"doc_id": a, "section": c} for a, c in uniq], "class": b["class"],
+            "charge": cfg["charge"][b["class"]], "mid_pct": cfg["mid_pct"], "low_pct": cfg["low_pct"], "wl_clerkage": cfg["wl_clerkage"],
+            "tatkal": bool(b["tatkal"]), "waived": (cfg["festival"] == 1 and cfg["festival_start"] <= b["journey_date"] <= cfg["festival_end"]),
             "train_no": b["train_no"], "journey_date": b["journey_date"], "from_code": b["from_code"], "to_code": b["to_code"]}
