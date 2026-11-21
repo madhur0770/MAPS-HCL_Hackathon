@@ -4,6 +4,28 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 from core.progress import Progress
 
+CORE_PACKAGES = ["fastapi", "uvicorn", "pydantic", "httpx", "pytest", "requests"]   # streamlit is optional and large: not needed for the checks
+
+
+def ensure_env():
+    """Wrong Python (no fastapi/pytest)? Use the project's .venv, creating it and installing the packages on first run, then run again inside it."""
+    try:
+        import fastapi, pytest, httpx  # noqa: F401
+        return
+    except ImportError:
+        pass
+    vpy = os.path.join(ROOT, ".venv", "Scripts" if os.name == "nt" else "bin", "python.exe" if os.name == "nt" else "python")
+    if os.environ.get("CHECK_ALL_BOOTSTRAPPED"):
+        print("Packages still missing after setup. Run: %s -m pip install %s" % (vpy, " ".join(CORE_PACKAGES)))
+        sys.exit(2)
+    if not os.path.exists(vpy):
+        print("Creating the project's own Python environment (.venv) ...", flush=True)
+        subprocess.check_call([sys.executable, "-m", "venv", os.path.join(ROOT, ".venv")])
+    print("Installing packages into .venv (first run only, about a minute) ...", flush=True)
+    subprocess.check_call([vpy, "-m", "pip", "install", "--disable-pip-version-check", "-q"] + CORE_PACKAGES)
+    r = subprocess.run([vpy, os.path.abspath(__file__)] + sys.argv[1:], env=dict(os.environ, CHECK_ALL_BOOTSTRAPPED="1"))
+    sys.exit(r.returncode)
+
 STEPS = [
     ("Load the supplied data", [sys.executable, "scripts/generate_data.py"]),
     ("Validate data", [sys.executable, "scripts/validate_data.py"]),
@@ -16,6 +38,7 @@ STEPS = [
 ]
 
 def main():
+    ensure_env()
     env = dict(os.environ, MOCK_LLM="true", TRAIN_NO_AUTOAPP="1", PYTHONIOENCODING="utf-8")
     env.pop("DEMO_NOW", None)
     p = Progress(len(STEPS), "check all")
