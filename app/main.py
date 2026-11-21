@@ -119,6 +119,15 @@ def make_app(db_conn=None):
         db.execute("INSERT OR REPLACE INTO audit VALUES(?,?,?,?,?)", (trace, clock.iso(clock.real_now()), pid, "", json.dumps(rec, default=str)))
         db.commit()
 
+    def _remember_booking(pid, bid):
+        for sid, raw in db.execute("SELECT session_id, slots FROM sessions WHERE passenger_id=?", (pid,)).fetchall():
+            try:
+                s = json.loads(raw)
+            except ValueError:
+                continue
+            s["last_booking"] = bid
+            db.execute("UPDATE sessions SET slots=? WHERE session_id=?", (json.dumps(s), sid))
+
     @app.post("/actions/{action_id}/confirm")
     def confirm(action_id: str, x_passenger_id: str = Header(None)):
         pid = who(x_passenger_id)
@@ -129,6 +138,8 @@ def make_app(db_conn=None):
             if r["ok"]:
                 kind = r.get("action_type")
                 res = r.get("result") or {}
+                if res.get("booking_id"):
+                    _remember_booking(pid, res["booking_id"])      # "cancel this ticket" in the chat now means the one just confirmed
                 if r.get("already"):
                     out = _answer(pid, trace, "action_done", t("already_done", lang), tools=[{"tool": "confirm_action", "output": r}])
                 elif kind == "cancel_booking":

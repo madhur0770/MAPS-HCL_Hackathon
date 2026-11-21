@@ -414,12 +414,27 @@ def _fmt_time(iso):
     return fmt_dt(dt.datetime.fromisoformat(iso))
 
 
+def do_network(ctx):
+    """'list all stations and train routes': the fixed network (stations and each train's stops), not a search."""
+    db, lang = ctx["db"], ctx["lang"]
+    sts = db.execute("SELECT station_code, name FROM stations ORDER BY name").fetchall()
+    routes = []
+    for tr in db.execute("SELECT train_no, name FROM trains ORDER BY train_no").fetchall():
+        stops = [r[0] for r in db.execute("SELECT station_code FROM train_stops WHERE train_no=? ORDER BY stop_order", (tr[0],))]
+        if stops:
+            routes.append("- %s %s: %s" % (tr[0], tr[1], " → ".join(stops)))
+    return reply("answer", t("network", lang, n=len(sts), stations=", ".join("%s (%s)" % (s[1], s[0]) for s in sts), routes="\n".join(routes)),
+                 tools=[tool("list_network", [{"code": s[0], "name": s[1]} for s in sts])])
+
+
 def followup(ctx):
     """Short messages that only make sense with the earlier conversation: 'cheapest one?', 'book the first one', 'what about the day after',
     'Rahul 30 and Meera 28' after a search, 'what is the refund' after a booking, small talk. Uses the session memory; returns None if it is not one."""
     text, sess, slots, lang = ctx["text"].strip(), ctx["sess"], ctx["slots"], ctx["lang"]
     low = text.lower()
     short = len(low.split()) <= 9
+    if re.search(r"\b(list|show|give|tell|what are|all)\b.{0,25}\b(stations?|routes?|network|stops)\b", low) and not slots.get("stations") and not slots.get("train_no"):
+        return do_network(ctx)
     if re.match(r"^\s*(thanks|thank you|thx|ty|shukriya|dhanyavaad|dhanyavad|धन्यवाद|शुक्रिया)\b", low):
         return reply("answer", t("thanks", lang))
     if re.match(r"^\s*(bye|goodbye|good bye|see you|alvida|ok bye|tata)\b", low):
@@ -1147,7 +1162,7 @@ def do_handoff(ctx):
 
 def do_forbidden(ctx):
     lang, text = ctx["lang"], ctx["text"]
-    if re.search(r"(someone else|somebody|my (friend|brother|sister|colleague|neighbou?r|boss|wife|husband)|his|her|their|kisi aur|dost|bhai|behen|padosi)", text, re.I):
+    if re.search(r"(someone else|somebody|my (friend|brother|sister|colleague|neighbou?r|boss|wife|husband)|\bhis\b|\bher\b|\btheir\b|kisi aur|dost|bhai|behen|padosi)", text, re.I):
         return reply("refusal", t("own_only", lang), sources=[{"doc_id": "RUL-006", "section": "3.6"}])
     if re.search(r"(jump|skip|ahead|upar|aage|waiting|waitlist)", text, re.I):
         return reply("refusal", t("refuse_policy", lang), sources=[{"doc_id": "RUL-004", "section": "3.3"}])

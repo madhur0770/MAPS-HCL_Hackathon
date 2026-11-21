@@ -113,3 +113,18 @@ def test_rate_limit_still_works(client, monkeypatch):
     monkeypatch.setenv("RATE_LIMIT_PER_MIN", "3")
     codes = [client.get("/health", headers={"X-Passenger-Id": "P099"}).status_code for _ in range(6)]
     assert 429 in codes
+
+
+def test_cancel_this_ticket_after_booking_and_list_network(client):
+    H = {"X-Passenger-Id": "P001"}
+    def say(m):
+        return client.post("/chat", json={"session_id": "88", "message": m}, headers=H).json()
+    say("trains from arunoday to anandpur central on 30-11-2026"); say("book one AC2 ticket in UJ1003")
+    r = say("Sufiyan 27")
+    done = client.post("/actions/%s/confirm" % r["pending_action"]["action_id"], headers=H).json()
+    bid = done["answer"].split("Booking ")[1].split(",")[0]
+    assert bid in [b["booking_id"] for b in client.get("/bookings", headers=H).json()]      # the new booking is listed, with its own id
+    r = say("i changed my mind, i want to cancel this ticket")
+    assert r["answer_type"] == "confirm_needed" and bid in r["answer"]                    # "this ticket" = the one just booked (not "his" inside "this")
+    r = say("list all stations and train routes")
+    assert "stations" in r["answer"] and "UJ1003" in r["answer"]

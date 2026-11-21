@@ -19,7 +19,7 @@ P = {
    R(r"(give me (a |the )?(full|complete|100%|poora) refund|\bwaive\b|exception|bend the rules|make an exception|extra refund|full refund anyway|refund (more|above|extra)|more than (the )?(rule|policy)|zyada refund|poora refund de do|charge (hata|mat|waive))"),
    R(r"(jump|skip|move (me|my|it)|push (me|my)|ahead of|upar kar|aage kar|confirm kar do|confirm my waitlist|waiting? ?list.*(confirm|upar|jump|ahead))"),
    R(r"(change|lower|reduce|decrease|kam kar|badal).{0,20}(the )?(fare|kiraya|price)|fare.{0,15}(change|kam|lower|reduce|discount)|discount de do"),
-   R(r"(cancel|change|show|see|dikha|check).{0,30}(someone else|somebody|my (friend|brother|sister|colleague|neighbou?r|boss|wife|husband)|his|her|their|kisi aur|dost|bhai|behen|padosi)(.{0,15}(booking|ticket))?"),
+   R(r"(cancel|change|show|see|dikha|check).{0,30}(someone else|somebody|my (friend|brother|sister|colleague|neighbou?r|boss|wife|husband)|\bhis\b|\bher\b|\btheir\b|kisi aur|dost|bhai|behen|padosi)(.{0,15}(booking|ticket))?"),
  ],
  "dispute": [
    R(r"(missed|miss (my|the)|chhoot gayi|chut gayi|छूट गई|train miss|late (to|for) the train)"),

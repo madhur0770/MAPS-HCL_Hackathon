@@ -88,7 +88,7 @@ function Bookings({ items, onAsk }) {
   if (!items.length) return <div className="muted">No bookings.</div>;
   return (
     <div className="bkList">
-      {items.map((b) => (
+      {[...items].sort((a, b) => (b.booked_at || "").localeCompare(a.booked_at || "")).map((b) => (
         <div className="bk" key={b.booking_id}>
           <div className="bkTop">
             <b>{b.booking_id}</b>
