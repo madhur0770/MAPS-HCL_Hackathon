@@ -69,9 +69,9 @@ def handle(db, passenger_id, session_id, message, as_of_in=None, trace_id=None):
     if injected:
         step("input_guard", result="injection_detected", matched=injected[:60])
         text = guardrails.strip_injection(message)
-    if other_person(db, passenger_id, text) and not re.search(r"\bBK\d", text, re.I):
+    if other_person(db, passenger_id, text) and not re.search(r"\b(BKG\s?-?\d|UR-?\d)", text, re.I):
         step("route", decision="asks_about_another_passenger")
-        r = reply("refusal", t("own_only", lang), sources=[{"doc_id": "RULE-12", "section": "Section 1"}])
+        r = reply("refusal", t("own_only", lang), sources=[{"doc_id": "RUL-006", "section": "3.6"}])
         return finish(db, r, audit, trace_id, passenger_id, session_id, lang, sess, as_of, t0)
     u = und.understand(db, text, as_of, sess)
     intent, slots = u["intent"], u["slots"]
@@ -230,6 +230,10 @@ def pick_booking(ctx, need_active=True):
     """Returns (booking_dict or None, reply_if_problem)."""
     db, pid, lang, slots, sess = ctx["db"], ctx["pid"], ctx["lang"], ctx["slots"], ctx["sess"]
     bid = slots.get("booking_id") or last_ref(ctx)
+    if not bid and slots.get("train_no"):        # "status of my ticket on UJ1006"
+        on_train = [b for b in bk.list_bookings(db, pid) if b["train_no"] == slots["train_no"]]
+        if len(on_train) == 1:
+            bid = on_train[0]["booking_id"]
     if not bid:
         mine = bk.list_bookings(db, pid)
         if not mine:
@@ -265,13 +269,25 @@ def do_greet(ctx):
 
 
 def do_unknown(ctx):
-    if re.search(r"(ticket|train|booking|book|seat|refund|cancel|station|fare|journey|travel|platform|berth|coach|pnr|gaadi|टिकट|ट्रेन|बुकिंग|रद्द|यात्रा)", ctx["text"], re.I):
+    """Not a known request type. If it looks like a question about the rules, try the documents; otherwise say what we can do."""
+    text = ctx["text"]
+    if re.search(r"\b(hotel|hotels|flight|flights|cab|taxi|restaurant|bus|movie|weather|visa|cricket|stock|recipe|pizza|resort)\b", text, re.I):
+        return reply("not_found", t("help", ctx["lang"]))
+    if re.search(r"(\?|\bhow\b|\bwhat\b|\bwhen\b|\bwhich\b|\bcan\b|\bis\b|\bare\b|\bdo\b|\bkya\b|\bkaise\b|\bkitn|\bkab\b|क्या|कैसे|कितन|कब)", text, re.I):
+        r = do_rules(ctx)
+        if r["answer_type"] != "not_found":
+            return r
+    m = re.search(r"\b(?:to|for|from|se|tak|ko)\s+([A-Z][a-z]{2,})", text)
+    if m and not tt.find_stations_in(ctx["db"], text):
+        cities = ", ".join(sorted({r[0] for r in ctx["db"].execute("SELECT city FROM stations")}))
+        return reply("clarification", t("unknown_place", ctx["lang"], place=m.group(1), cities=cities))
+    if re.search(r"(ticket|train|booking|book|seat|refund|cancel|station|fare|journey|travel|platform|berth|coach|pnr|gaadi|टिकट|ट्रेन|बुकिंग|रद्द|यात्रा)", text, re.I):
         return reply("clarification", t("unknown", ctx["lang"]))
     return reply("not_found", t("help", ctx["lang"]))
 
 
 def do_privacy(ctx):
-    return reply("refusal", t("refuse_privacy", ctx["lang"]), sources=[{"doc_id": "RULE-12", "section": "Section 2"}])
+    return reply("refusal", t("refuse_privacy", ctx["lang"]), sources=[{"doc_id": "RUL-006", "section": "3.6"}])
 
 
 def do_my_bookings(ctx):
@@ -305,24 +321,25 @@ def do_status(ctx):
 
 
 def why_text(q, lang):
+    """Plain explanation of the calculation. Every number comes from the quote (code), never from a model."""
+    if q["band"] == "OPERATOR":
+        return t("why_OPERATOR", lang)
     parts = []
-    if q["band"] == "TRAIN_CANCELLED":
-        return t("why_TRAIN_CANCELLED", lang)
-    if q["tatkal"] and q["band"] != "NONE":
+    cls = inr(q["charge"])
+    if q["band"] == "E":
+        return t("why_E", lang)
+    sts = {l.get("status") for l in q["lines"]}
+    if q["tatkal"] and "CNF" in sts:
         parts.append(t("why_TATKAL", lang))
-    if any(l.get("status") == "WL" for l in q["lines"]):
-        parts.append(t("why_WL", lang) + " (%s)" % inr(q["wl_clerkage"]))
-    if q["waived"] and q["band"] == "FLAT":
-        parts.append(t("why_WAIVER", lang))
-    elif not q["tatkal"] or q["band"] == "NONE":
-        if q["band"] == "FLAT":
-            parts.append(t("why_FLAT", lang, cls=inr(q["charge"])))
-        elif q["band"] == "MID":
-            parts.append(t("why_MID", lang, pct=q["mid_pct"]))
-        elif q["band"] == "LOW":
-            parts.append(t("why_LOW", lang, pct=q["low_pct"]))
+    if "RAC" in sts:
+        parts.append(t("why_RAC", lang, chg=inr(q["rac_charge"])))
+    if "WL" in sts:
+        parts.append(t("why_WL", lang, chg=inr(q["wl_charge"])))
+    if "CNF" in sts and not q["tatkal"]:
+        if q["band"] == "A":
+            parts.append(t("why_A", lang, cls=cls))
         else:
-            parts.append(t("why_NONE", lang))
+            parts.append(t("why_" + q["band"], lang, pct=q["pct"], cls=cls))
     return " ".join(parts)
 
 
@@ -340,7 +357,9 @@ def do_refund_estimate(ctx):
         return reply("answer", t("already_cancelled", lang, bid=b["booking_id"]), tools=[tool("quote_refund", q)])
     done_asking(ctx)
     ctx["sess"]["last_booking"] = b["booking_id"]
-    if q["hours_before"] < 0:
+    if q["band"] == "OPERATOR":
+        return reply("answer", t("operator_done", lang, bid=b["booking_id"], refund=inr(q["total_refund"])), tools=[tool("quote_refund", q)], sources=q["sources"])
+    if q["hours_before"] <= 0:
         return reply("answer", t("departed", lang), tools=[tool("quote_refund", q)], sources=q["sources"])
     dep = clock.parse_dt(q["departure"])
     ans = t("refund_estimate", lang, bid=b["booking_id"], hours=fmt_hours(q["hours_before"]), frm=station_label(db, q["from_code"]),
@@ -368,19 +387,23 @@ def do_cancel(ctx):
         db.execute("UPDATE actions SET status='cancelled', result='superseded' WHERE action_id=?", (a[0],))
     p = am.propose_cancel(db, pid, b["booking_id"], as_of, traveller_ids=chosen, trace_id=ctx["trace"])
     done_asking(ctx)
-    ids_in_msg = list(dict.fromkeys("BK" + m for m in re.findall(r"\bBK\s?-?(\d{3,6})\b", text, re.I)))
+    ids_in_msg = list(dict.fromkeys(m.upper() for m in re.findall(r"\b(BKG\s?-?\d{4}|UR-?\d{8})\b", text, re.I)))
     ctx["multi"] = [x for x in ids_in_msg if x != b["booking_id"]]
     ctx["sess"]["last_booking"] = b["booking_id"]
     if not p["ok"]:
+        if p["reason"] == "operator_cancelled":
+            return reply("answer", t("operator_done", lang, bid=b["booking_id"], refund=inr(p["quote"]["total_refund"])), sources=p["quote"]["sources"],
+                         tools=[tool("quote_refund", p["quote"])])
         key = {"already_cancelled": "already_cancelled", "departed": "departed"}.get(p["reason"], "unknown")
-        return reply("answer", t(key, lang, bid=b["booking_id"]), tools=[tool("propose_cancel", {k: v for k, v in p.items() if k != "quote"})])
+        return reply("answer", t(key, lang, bid=b["booking_id"]), sources=[{"doc_id": "RUL-003", "section": "3.1"}],
+                     tools=[tool("propose_cancel", {k: v for k, v in p.items() if k != "quote"})])
     q = p["quote"]
-    mins = cfg.get_int(db, "action_expiry_minutes", as_of, 10)
+    mins = cfg.get_int(db, "actions.pending_expiry_minutes", as_of, 10)
     ans = t("confirm_cancel", lang, bid=b["booking_id"], who=who_text(q), refund=inr(q["total_refund"]), paid=inr(q["total_paid"]),
             why=why_text(q, lang), mins=mins)
     if ctx.get("multi"):
         ans += " " + t("multi_note", lang, first=b["booking_id"], rest=", ".join(ctx["multi"]))
-    src = dedupe(q["sources"] + [{"doc_id": "RULE-11", "section": "Section 1"}])
+    src = dedupe(q["sources"])
     return reply("confirm_needed", ans, sources=src, pending=p["pending_action"],
                  tools=[tool("quote_refund", q), tool("propose_cancel", p["pending_action"])])
 
@@ -408,11 +431,12 @@ def do_change_boarding(ctx):
             return reply("refusal", t("too_late_change", lang, bid=b["booking_id"], deadline=fmt_dt(dl), hours=p["hours"],
                                       src="%s %s" % (p["source"]["doc_id"], p["source"]["section"])),
                          sources=[p["source"]], tools=[tool("propose_change_boarding", p)])
-        key = {"bad_station": "bad_station", "already_changed": "already_changed", "not_active": "not_active"}.get(r, "unknown")
-        return reply("refusal", t(key, lang, bid=b["booking_id"]), tools=[tool("propose_change_boarding", p)], sources=[{"doc_id": "RULE-07", "section": "Section 2"}])
+        key = {"bad_station": "bad_station", "already_changed": "already_changed", "not_active": "not_active", "has_waitlisted": "has_waitlisted"}.get(r, "unknown")
+        sec = {"bad_station": "3.3", "already_changed": "3.1", "not_active": "3.6", "has_waitlisted": "3.6"}.get(r, "3.6")
+        return reply("refusal", t(key, lang, bid=b["booking_id"]), tools=[tool("propose_change_boarding", p)], sources=[{"doc_id": "RUL-010", "section": sec}])
     pv = p["preview"]
-    mins = cfg.get_int(db, "action_expiry_minutes", as_of, 10)
-    src = [pv["source"], {"doc_id": "RULE-11", "section": "Section 1"}]
+    mins = cfg.get_int(db, "actions.pending_expiry_minutes", as_of, 10)
+    src = [pv["source"], {"doc_id": "RUL-010", "section": "3.5"}]
     ans = t("confirm_change", lang, bid=b["booking_id"], old=station_label(db, pv["old_code"]), new=station_label(db, pv["new_code"]),
             dep=fmt_dt(clock.parse_dt(pv["new_departure"])), hours=pv["hours"], src="%s %s" % (pv["source"]["doc_id"], pv["source"]["section"]), mins=mins)
     return reply("confirm_needed", ans, sources=src, pending=p["pending_action"], tools=[tool("propose_change_boarding", p)])
@@ -534,15 +558,17 @@ def do_book(ctx):
     done_asking(ctx)
     if not p["ok"]:
         r = p["reason"]
-        kw = {"max": p.get("max"), "days": p.get("days")}
-        key = {"regret": "regret", "departed": "departed", "too_early": "too_early", "bad_traveller_count": "too_many"}.get(r, "unknown")
-        return reply("answer", t(key, lang, **kw), tools=[tool("propose_book", p)])
+        kw = {"max": p.get("max"), "days": p.get("days"), "mins": p.get("minutes"), "opens": fmt_date(p["opens"]) if p.get("opens") else ""}
+        key = {"regret": "regret", "departed": "closed_b", "too_early": "too_early_b", "bad_traveller_count": "too_many", "service_cancelled": "service_cancelled"}.get(r, "unknown")
+        sec = {"regret": ("RUL-004", "3.2"), "departed": ("RUL-001", "3.5"), "too_early": ("RUL-001", "3.1"), "bad_traveller_count": ("RUL-001", "3.3"),
+               "service_cancelled": ("RUL-011", "3.1")}.get(r, ("RUL-001", "3.4"))
+        return reply("answer", t(key, lang, **kw), sources=[{"doc_id": sec[0], "section": sec[1]}], tools=[tool("propose_book", p)])
     pv = p["preview"]
-    mins = cfg.get_int(db, "action_expiry_minutes", as_of, 10)
+    mins = cfg.get_int(db, "actions.pending_expiry_minutes", as_of, 10)
     who = ", ".join("%s (%s) %s %s" % (l["name"], l["age"], l["status"], inr(l["fare"])) for l in pv["lines"])
     ans = t("confirm_book", lang, train=train_no, frm=station_label(db, sts[0]), to=station_label(db, sts[1]), cls=slots["class"],
             dep=fmt_dt(clock.parse_dt(pv["departure"])), who=who, total=inr(pv["total"]), mins=mins)
-    return reply("confirm_needed", ans, sources=[{"doc_id": "RULE-01", "section": "Section 1"}, {"doc_id": "RULE-11", "section": "Section 1"}],
+    return reply("confirm_needed", ans, sources=[{"doc_id": "RUL-001", "section": "3.4"}, {"doc_id": "RUL-004", "section": "3.2"}],
                  pending=p["pending_action"], tools=[tool("propose_book", pv)])
 
 
@@ -565,12 +591,10 @@ def do_deadline(ctx):
         return reply("answer", ans, sources=[{"doc_id": src[0], "section": src[1]}],
                      tools=[tool("boarding_change_deadline", {"booking_id": b["booking_id"], "deadline": clock.iso(dl), "hours": hours})])
     bands = deadlines.refund_bands(db, b, as_of)
-    g = lambda n, d: cfg.get_int(db, n, as_of, d)  # noqa: E731
-    ans = t("deadline_refund", lang, bid=b["booking_id"], dep=fmt_dt(bands["departure"]), flat=fmt_dt(bands["flat_until"]),
-            mid=g("deduct_pct_12_48h", 25), midt=fmt_dt(bands["mid_until"]), low=g("deduct_pct_4_12h", 50), lowt=fmt_dt(bands["none_after"]),
-            none=fmt_dt(bands["none_after"]))
-    return reply("answer", ans, sources=[{"doc_id": "RULE-03", "section": "Section 2"}, {"doc_id": "RULE-03", "section": "Section 3"}],
-                 tools=[tool("refund_bands", {k: clock.iso(v) for k, v in bands.items()})])
+    ans = t("deadline_refund", lang, bid=b["booking_id"], dep=fmt_dt(bands["departure"]), a=fmt_dt(bands["a_until"]), b=fmt_dt(bands["b_until"]),
+            c=fmt_dt(bands["c_until"]), pb=bands["pct_b"], pc=bands["pct_c"], pd=bands["pct_d"])
+    return reply("answer", ans, sources=[{"doc_id": "RUL-003", "section": "3.4"}, {"doc_id": "RUL-003", "section": "3.5"}],
+                 tools=[tool("refund_bands", {k: (clock.iso(v) if hasattr(v, "isoformat") else v) for k, v in bands.items()})])
 
 
 def do_rules(ctx):
@@ -584,29 +608,36 @@ def do_rules(ctx):
         return reply("not_found", t("rules_not_found", lang))
     w = res["winner"]
     shown = w
-    src = [{"doc_id": w["doc_id"], "section": w["section"]}]
+    secno = lambda x: x.replace("Section ", "")  # noqa: E731
+    if w["doc"]["doc_type"] == "circular":
+        # a circular is shown by its details + effective-date sections, not by an example paragraph
+        extra = [it for it in idx.items if it["doc"]["doc_id"] == w["doc_id"] and secno(it["section"]) in ("3", "4")]
+        if extra:
+            w = dict(w, section="3-4" if len(extra) > 1 else secno(extra[0]["section"]), text="\n".join(it["text"] for it in extra))
+            shown = w
+    src = [{"doc_id": w["doc_id"], "section": secno(w["section"])}]
     # same-language FAQ that agrees with the winner can be the readable text for Hindi/Hinglish users
     if lang in ("hi", "hinglish") and w["doc"]["language"] != lang:
         for h in res["hits"]:
             if h["doc"]["language"] == lang and h["doc"]["topic"] == w["doc"]["topic"] and retrieval.numbers_in(h["text"]) == retrieval.numbers_in(w["text"]):
                 shown = h
-                src.append({"doc_id": h["doc_id"], "section": h["section"]})
+                src.append({"doc_id": h["doc_id"], "section": secno(h["section"])})
                 break
     body = shown["text"]
-    plain = "%s %s" % (t("rules_prefix", lang, src="%s %s" % (w["doc_id"], w["section"])), body)
+    plain = "%s %s" % (t("rules_prefix", lang, src="%s %s" % (w["doc_id"], secno(w["section"]))), body)
     ans = plain
     notes = []
     for u in res["upcoming"]:
         if u["doc"]["topic"] == w["doc"]["topic"] and u["doc"]["supersedes"]:
             notes.append(t("upcoming_note", lang, doc=u["doc_id"], date=fmt_date(u["doc"]["effective_from"])))
-            src.append({"doc_id": u["doc_id"], "section": u["section"]})
+            src.append({"doc_id": u["doc_id"], "section": secno(u["section"])})
             break
     if res["overridden"]:
         notes.append(t("overridden_note", lang, docs=", ".join(sorted({o["doc_id"] for o in res["overridden"]}))))
     if llm.available() and shown["doc"]["language"] == "en" or (llm.available() and lang != "en"):
         rw = llm.reword(body, ctx["text"], lang)
         if rw and len(rw) < 900:
-            ans = "%s %s" % (t("rules_prefix", lang, src="%s %s" % (w["doc_id"], w["section"])), rw.strip())
+            ans = "%s %s" % (t("rules_prefix", lang, src="%s %s" % (w["doc_id"], secno(w["section"]))), rw.strip())
     doc_text = w["text"] + " " + shown["text"] + " " + " ".join(u["text"] for u in res["upcoming"])
     if notes:
         ans += "\n" + " ".join(notes)
@@ -633,15 +664,15 @@ def do_handoff(ctx):
     h = handoff.create(db, pid, bid, reason, ctx["text"], facts, as_of, ctx["trace"])
     tools.append(tool("create_handoff", h))
     return reply("handed_to_human", t("handoff", lang, desk=h["desk"], hid=h["handoff_id"]), handed=True, tools=tools,
-                 sources=[{"doc_id": "RULE-10", "section": "Section 1"}] if ctx["intent"] == "dispute" else [])
+                 sources=[{"doc_id": "RUL-012", "section": "3.2"}] if ctx["intent"] == "dispute" else [])
 
 
 def do_forbidden(ctx):
     lang, text = ctx["lang"], ctx["text"]
     if re.search(r"(someone else|somebody|my (friend|brother|sister|colleague|neighbou?r|boss|wife|husband)|his|her|their|kisi aur|dost|bhai|behen|padosi)", text, re.I):
-        return reply("refusal", t("own_only", lang), sources=[{"doc_id": "RULE-12", "section": "Section 1"}])
+        return reply("refusal", t("own_only", lang), sources=[{"doc_id": "RUL-006", "section": "3.6"}])
     if re.search(r"(jump|skip|ahead|upar|aage|waiting|waitlist)", text, re.I):
-        return reply("refusal", t("refuse_policy", lang), sources=[{"doc_id": "RULE-04", "section": "Section 2"}])
+        return reply("refusal", t("refuse_policy", lang), sources=[{"doc_id": "RUL-004", "section": "3.3"}])
     if re.search(r"(fare|kiraya|price)", text, re.I):
-        return reply("refusal", t("refuse_policy", lang), sources=[{"doc_id": "RULE-02", "section": "Section 3"}])
-    return reply("refusal", t("refuse_policy", lang), sources=[{"doc_id": "RULE-10", "section": "Section 2"}])
+        return reply("refusal", t("refuse_policy", lang), sources=[{"doc_id": "RUL-002", "section": "3.4"}])
+    return reply("refusal", t("refuse_policy", lang), sources=[{"doc_id": "RUL-012", "section": "3.6"}])

@@ -114,7 +114,7 @@ def quote_refund(db, booking_id: str, as_of: dt.datetime, only_travellers=None) 
             lines.append(traveller_line(t, b["class"], band, cfg, tatkal, delta.total_seconds()))
         sources.append(("RUL-003", "3.4"))
         sources.append(("RUL-003", "3.6"))
-        if any(l["why"] in ("fixed", "fixed_is_greater") for l in lines):
+        if band != "E" and any(l["rule"] == "cnf_table" for l in lines):
             s = fixed_source(db, b["class"], as_of)
             sources.append((s[0], "3.3"))
         if any(l["rule"] == "status_charge" for l in lines):

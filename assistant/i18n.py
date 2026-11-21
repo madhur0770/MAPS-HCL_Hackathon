@@ -31,7 +31,7 @@ T = {
  "m_from": {"en": "where you are travelling from", "hi": "कहाँ से यात्रा करनी है", "hinglish": "kahan se jaana hai"},
  "m_to": {"en": "where you are going", "hi": "कहाँ जाना है", "hinglish": "kahan jaana hai"},
  "m_date": {"en": "the travel date", "hi": "यात्रा की तारीख", "hinglish": "travel ki tareekh"},
- "m_class": {"en": "the class (SL, 3A, 2A or 1A)", "hi": "श्रेणी (SL, 3A, 2A या 1A)", "hinglish": "class (SL, 3A, 2A ya 1A)"},
+ "m_class": {"en": "the class (FP, AC2, AC3, EC, SL or CC)", "hi": "श्रेणी (FP, AC2, AC3, EC, SL या CC)", "hinglish": "class (FP, AC2, AC3, EC, SL ya CC)"},
  "m_train": {"en": "which train number", "hi": "कौन सी ट्रेन (नंबर)", "hinglish": "kaun si train (number)"},
  "m_travellers": {"en": "traveller names and ages, like: Aarav 34, Neha 31", "hi": "यात्रियों के नाम और उम्र, जैसे: Aarav 34, Neha 31", "hinglish": "yatriyon ke naam aur umar, jaise: Aarav 34, Neha 31"},
  "m_newstation": {"en": "the new boarding station", "hi": "नया बोर्डिंग स्टेशन", "hinglish": "naya boarding station"},
@@ -60,14 +60,20 @@ T = {
   "en": "If you cancel booking %(bid)s now (%(hours)s before departure from %(frm)s at %(dep)s), you would get back %(refund)s of %(paid)s. %(why)s",
   "hi": "अगर आप बुकिंग %(bid)s अभी रद्द करते हैं (%(frm)s से %(dep)s पर प्रस्थान से %(hours)s पहले), तो %(paid)s में से %(refund)s वापस मिलेंगे। %(why)s",
   "hinglish": "Agar aap booking %(bid)s abhi cancel karte hain (%(frm)s se %(dep)s par departure se %(hours)s pehle), to %(paid)s me se %(refund)s wapas milenge. %(why)s"},
- "why_FLAT": {"en": "48 hours or more before departure: the fare minus the flat %(cls)s charge.", "hi": "प्रस्थान से 48 घंटे या अधिक पहले: किराया घटा %(cls)s का निश्चित शुल्क।", "hinglish": "Departure se 48 ghante ya zyada pehle: kiraya minus %(cls)s ka fixed charge."},
- "why_MID": {"en": "Between 12 and 48 hours before departure: %(pct)s%% of the fare is deducted.", "hi": "प्रस्थान से 12 से 48 घंटे पहले: किराये का %(pct)s%% कटता है।", "hinglish": "Departure se 12 se 48 ghante pehle: kiraye ka %(pct)s%% katta hai."},
- "why_LOW": {"en": "Between 4 and 12 hours before departure: %(pct)s%% of the fare is deducted.", "hi": "प्रस्थान से 4 से 12 घंटे पहले: किराये का %(pct)s%% कटता है।", "hinglish": "Departure se 4 se 12 ghante pehle: kiraye ka %(pct)s%% katta hai."},
- "why_NONE": {"en": "Less than 4 hours before departure (or after it): no refund.", "hi": "प्रस्थान से 4 घंटे से कम (या बाद में): कोई रिफंड नहीं।", "hinglish": "Departure se 4 ghante se kam (ya baad me): refund nahi."},
- "why_TRAIN_CANCELLED": {"en": "The operator cancelled this train, so the full fare is refunded.", "hi": "ऑपरेटर ने यह ट्रेन रद्द की है, इसलिए पूरा किराया वापस होगा।", "hinglish": "Operator ne yeh train cancel ki hai, isliye poora kiraya wapas hoga."},
- "why_WL": {"en": "Waiting-list tickets are refunded minus the clerkage per traveller.", "hi": "वेटिंग टिकट पर प्रति यात्री क्लर्केज कटकर पैसा वापस होता है।", "hinglish": "Waiting list ticket me per traveller clerkage katkar paisa wapas hota hai."},
- "why_TATKAL": {"en": "Tatkal tickets are not refundable.", "hi": "तत्काल टिकट वापसी योग्य नहीं हैं।", "hinglish": "Tatkal ticket refundable nahi hote."},
- "why_WAIVER": {"en": "A festival waiver applies: full refund.", "hi": "त्योहार छूट लागू है: पूरा रिफंड।", "hinglish": "Festival waiver lagu hai: poora refund."},
+ "why_A": {"en": "More than 48 hours before departure: the fare minus the fixed %(cls)s charge.", "hi": "प्रस्थान से 48 घंटे से अधिक पहले: किराया घटा %(cls)s का निश्चित शुल्क।", "hinglish": "Departure se 48 ghante se zyada pehle: kiraya minus %(cls)s ka fixed charge."},
+ "why_B": {"en": "Between 12 and 48 hours before departure: %(pct)s%% of the fare (rounded up to the next ₹5) or the fixed %(cls)s charge, whichever is greater, is deducted.", "hi": "प्रस्थान से 12 से 48 घंटे पहले: किराये का %(pct)s%% (अगले ₹5 तक ऊपर) या निश्चित %(cls)s शुल्क, जो अधिक हो, कटता है।", "hinglish": "Departure se 12 se 48 ghante pehle: kiraye ka %(pct)s%% (agle ₹5 tak upar) ya fixed %(cls)s charge, jo zyada ho, katta hai."},
+ "why_C": {"en": "Between 4 and 12 hours before departure: %(pct)s%% of the fare (rounded up to the next ₹5) or the fixed %(cls)s charge, whichever is greater, is deducted.", "hi": "प्रस्थान से 4 से 12 घंटे पहले: किराये का %(pct)s%% (अगले ₹5 तक ऊपर) या निश्चित %(cls)s शुल्क, जो अधिक हो, कटता है।", "hinglish": "Departure se 4 se 12 ghante pehle: kiraye ka %(pct)s%% (agle ₹5 tak upar) ya fixed %(cls)s charge, jo zyada ho, katta hai."},
+ "why_D": {"en": "Less than 4 hours before departure: %(pct)s%% of the fare (rounded up to the next ₹5) or the fixed %(cls)s charge, whichever is greater, is deducted.", "hi": "प्रस्थान से 4 घंटे से कम पहले: किराये का %(pct)s%% (अगले ₹5 तक ऊपर) या निश्चित %(cls)s शुल्क, जो अधिक हो, कटता है।", "hinglish": "Departure se 4 ghante se kam pehle: kiraye ka %(pct)s%% (agle ₹5 tak upar) ya fixed %(cls)s charge, jo zyada ho, katta hai."},
+ "why_E": {"en": "At or after departure: no voluntary refund.", "hi": "प्रस्थान के समय या बाद में: स्वैच्छिक रद्दीकरण पर कोई रिफंड नहीं।", "hinglish": "Departure ke time ya baad me: voluntary cancellation par refund nahi."},
+ "why_OPERATOR": {"en": "Ujjwal Rail cancelled this train, so every fare component is refunded in full without any deduction.", "hi": "उज्ज्वल रेल ने यह ट्रेन रद्द की है, इसलिए बिना किसी कटौती के पूरा किराया वापस होगा।", "hinglish": "Ujjwal Rail ne yeh train cancel ki hai, isliye bina kisi katauti ke poora kiraya wapas hoga."},
+ "why_RAC": {"en": "RAC traveller: a fixed charge of %(chg)s per traveller is deducted.", "hi": "RAC यात्री: प्रति यात्री %(chg)s का निश्चित शुल्क कटता है।", "hinglish": "RAC yatri: per yatri %(chg)s ka fixed charge katta hai."},
+ "why_WL": {"en": "Waiting-list traveller: a fixed charge of %(chg)s per traveller is deducted.", "hi": "वेटिंग यात्री: प्रति यात्री %(chg)s का निश्चित शुल्क कटता है।", "hinglish": "Waiting list yatri: per yatri %(chg)s ka fixed charge katta hai."},
+ "why_TATKAL": {"en": "Confirmed Tatkal travellers get no base-fare refund.", "hi": "कन्फर्म तत्काल यात्रियों को मूल किराये का रिफंड नहीं मिलता।", "hinglish": "Confirmed Tatkal yatriyon ko base fare ka refund nahi milta."},
+ "operator_done": {"en": "Booking %(bid)s was cancelled by Ujjwal Rail because the train is not running. You do not need to cancel anything: the full %(refund)s is refunded automatically (card and wallet refunds start within five business days). If it does not arrive, I can pass a dispute to the finance desk.", "hi": "बुकिंग %(bid)s उज्ज्वल रेल ने रद्द की है क्योंकि ट्रेन नहीं चल रही। आपको कुछ रद्द करने की ज़रूरत नहीं: पूरा %(refund)s अपने आप वापस होगा (कार्ड/वॉलेट रिफंड पाँच कार्य-दिवस में शुरू होते हैं)। न मिले तो मैं विवाद फाइनेंस डेस्क को भेज सकता हूँ।", "hinglish": "Booking %(bid)s Ujjwal Rail ne cancel ki hai kyunki train nahi chal rahi. Aapko kuch cancel nahi karna: poora %(refund)s apne aap wapas hoga (card/wallet refund paanch business din me shuru hote hain). Na mile to main dispute finance desk ko bhej sakta hoon."},
+ "has_waitlisted": {"en": "Booking %(bid)s has a waiting-list traveller, and a boarding station cannot be changed while any traveller is on the waiting list.", "hi": "बुकिंग %(bid)s में एक वेटिंग यात्री है, और वेटिंग रहते बोर्डिंग स्टेशन नहीं बदला जा सकता।", "hinglish": "Booking %(bid)s me ek waiting list yatri hai, aur waiting rahte boarding station nahi badla ja sakta."},
+ "service_cancelled": {"en": "That train service is cancelled on that date, so it cannot be booked.", "hi": "उस तारीख को वह ट्रेन सेवा रद्द है, इसलिए बुक नहीं हो सकती।", "hinglish": "Us tarikh ko woh train service cancel hai, isliye book nahi ho sakti."},
+ "too_early_b": {"en": "Booking for that journey opens at 08:00 on %(opens)s (%(days)s days before departure).", "hi": "उस यात्रा की बुकिंग %(opens)s को 08:00 बजे खुलती है (प्रस्थान से %(days)s दिन पहले)।", "hinglish": "Us journey ki booking %(opens)s ko 08:00 baje khulti hai (departure se %(days)s din pehle)."},
+ "closed_b": {"en": "Booking for that train closed %(mins)s minutes before it leaves its first station.", "hi": "उस ट्रेन की बुकिंग पहले स्टेशन से छूटने से %(mins)s मिनट पहले बंद हो गई।", "hinglish": "Us train ki booking pehle station se chhootne se %(mins)s minute pehle band ho gayi."},
  "confirm_cancel": {
   "en": "Preview (nothing has changed yet): cancel booking %(bid)s for %(who)s. Refund %(refund)s of %(paid)s. %(why)s Press Confirm within %(mins)s minutes to go ahead, or Cancel to keep the booking.",
   "hi": "पूर्वावलोकन (अभी कुछ नहीं बदला): बुकिंग %(bid)s %(who)s के लिए रद्द होगी। %(paid)s में से %(refund)s रिफंड। %(why)s आगे बढ़ने के लिए %(mins)s मिनट में Confirm दबाइए, या बुकिंग रखने के लिए Cancel दबाइए।",
@@ -111,7 +117,7 @@ T = {
   "hi": "आपका एक पूर्वावलोकन लंबित है (%(aid)s)। कृपया Confirm या Cancel बटन दबाइए (यह अलग चरण है)।",
   "hinglish": "Aapka ek preview pending hai (%(aid)s). Kripya Confirm ya Cancel button dabaiye (yeh alag step hai)."},
  "too_late_change": {
-  "en": "Sorry, the last time to change the boarding station for booking %(bid)s was %(deadline)s (%(hours)s hours before departure, %(src)s). I can't change it now.",
+  "en": "Sorry, the last time to change the boarding station for booking %(bid)s was %(deadline)s (%(hours)s hours before the train leaves its first station, %(src)s). I can't change it now.",
   "hi": "क्षमा करें, बुकिंग %(bid)s का बोर्डिंग स्टेशन बदलने का अंतिम समय %(deadline)s था (प्रस्थान से %(hours)s घंटे पहले, %(src)s)। अब मैं इसे नहीं बदल सकता।",
   "hinglish": "Maaf kijiye, booking %(bid)s ka boarding station badalne ka last time %(deadline)s tha (departure se %(hours)s ghante pehle, %(src)s). Ab main ise nahi badal sakta."},
  "bad_station": {
@@ -164,15 +170,16 @@ T = {
  "overridden_note": {
   "en": "Some older or less official pages (%(docs)s) say something different; I followed the higher-authority, newer source.", "hi": "कुछ पुराने या कम आधिकारिक पृष्ठ (%(docs)s) कुछ और कहते हैं; मैंने अधिक आधिकारिक, नए स्रोत का पालन किया।", "hinglish": "Kuch purane ya kam official pages (%(docs)s) kuch aur kehte hain; maine zyada official, naye source ko follow kiya."},
  "deadline_change": {
-  "en": "You can change the boarding station of booking %(bid)s until %(deadline)s (%(hours)s hours before departure, %(src)s).", "hi": "आप बुकिंग %(bid)s का बोर्डिंग स्टेशन %(deadline)s तक बदल सकते हैं (प्रस्थान से %(hours)s घंटे पहले, %(src)s)।", "hinglish": "Aap booking %(bid)s ka boarding station %(deadline)s tak badal sakte hain (departure se %(hours)s ghante pehle, %(src)s)."},
+  "en": "You can change the boarding station of booking %(bid)s until %(deadline)s (%(hours)s hours before the train leaves its first station, %(src)s).", "hi": "आप बुकिंग %(bid)s का बोर्डिंग स्टेशन %(deadline)s तक बदल सकते हैं (प्रस्थान से %(hours)s घंटे पहले, %(src)s)।", "hinglish": "Aap booking %(bid)s ka boarding station %(deadline)s tak badal sakte hain (departure se %(hours)s ghante pehle, %(src)s)."},
  "deadline_refund": {
-  "en": "For booking %(bid)s (departure %(dep)s): flat-charge band until %(flat)s; %(mid)s%% deducted until %(midt)s; %(low)s%% deducted until %(lowt)s; no refund after %(none)s.",
-  "hi": "बुकिंग %(bid)s (प्रस्थान %(dep)s): %(flat)s तक निश्चित शुल्क; %(midt)s तक %(mid)s%% कटौती; %(lowt)s तक %(low)s%% कटौती; %(none)s के बाद कोई रिफंड नहीं।",
-  "hinglish": "Booking %(bid)s (departure %(dep)s): %(flat)s tak fixed charge; %(midt)s tak %(mid)s%% katauti; %(lowt)s tak %(low)s%% katauti; %(none)s ke baad refund nahi."},
+  "en": "For booking %(bid)s (departure %(dep)s): until %(a)s only the fixed class charge is deducted; until %(b)s %(pb)s%% (or the fixed charge if greater) is deducted; until %(c)s %(pc)s%%; after that %(pd)s%% until departure; at or after departure there is no refund.",
+  "hi": "बुकिंग %(bid)s (प्रस्थान %(dep)s): %(a)s तक केवल निश्चित शुल्क कटता है; %(b)s तक %(pb)s%% (या निश्चित शुल्क, जो अधिक हो); %(c)s तक %(pc)s%%; उसके बाद प्रस्थान तक %(pd)s%%; प्रस्थान के समय या बाद में कोई रिफंड नहीं।",
+  "hinglish": "Booking %(bid)s (departure %(dep)s): %(a)s tak sirf fixed class charge katta hai; %(b)s tak %(pb)s%% (ya fixed charge agar zyada ho); %(c)s tak %(pc)s%%; uske baad departure tak %(pd)s%%; departure ke time ya baad me refund nahi."},
+ "unknown_place": {"en": "I could not find a station called %(place)s in the Ujjwal Rail network. We serve: %(cities)s. Where would you like to travel from and to?", "hi": "उज्ज्वल रेल नेटवर्क में %(place)s नाम का स्टेशन नहीं मिला। हम इन शहरों को जोड़ते हैं: %(cities)s। आप कहाँ से कहाँ जाना चाहते हैं?", "hinglish": "Ujjwal Rail network me %(place)s naam ka station nahi mila. Hum in shehron ko jodte hain: %(cities)s. Aap kahan se kahan jaana chahte hain?"},
  "unknown": {
-  "en": "I'm not sure I understood. Could you rephrase? For example: \"trains from Pune to Nagpur tomorrow\" or \"cancel booking BK1001\".",
-  "hi": "मुझे पूरी तरह समझ नहीं आया। क्या आप दोबारा कह सकते हैं? जैसे: \"कल पुणे से नागपुर की ट्रेनें\" या \"बुकिंग BK1001 रद्द करो\"।",
-  "hinglish": "Mujhe poori tarah samajh nahi aaya. Kya aap dobara keh sakte hain? Jaise: \"kal Pune se Nagpur ki trains\" ya \"booking BK1001 cancel karo\"."},
+  "en": "I'm not sure I understood. Could you rephrase? For example: \"trains from Anandpur to Chetakgarh tomorrow\" or \"cancel booking BKG0001\".",
+  "hi": "मुझे पूरी तरह समझ नहीं आया। क्या आप दोबारा कह सकते हैं? जैसे: \"कल आनंदपुर से चेतकगढ़ की ट्रेनें\" या \"बुकिंग BKG0001 रद्द करो\"।",
+  "hinglish": "Mujhe poori tarah samajh nahi aaya. Kya aap dobara keh sakte hain? Jaise: \"kal Anandpur se Chetakgarh ki trains\" ya \"booking BKG0001 cancel karo\"."},
  "gave_up": {
   "en": "I still don't have enough to go ahead (%(missing)s). I'll pass this to a human desk who can take the details.",
   "hi": "आगे बढ़ने के लिए अब भी जानकारी कम है (%(missing)s)। मैं इसे मानव डेस्क को भेज देता हूँ जो विवरण ले सकते हैं।",
@@ -181,11 +188,12 @@ T = {
 }
 
 STATUS_NAMES = {
-    "confirmed": {"en": "confirmed", "hi": "कन्फर्म", "hinglish": "confirmed"},
-    "rac": {"en": "RAC", "hi": "RAC", "hinglish": "RAC"},
-    "waitlisted": {"en": "waiting list", "hi": "वेटिंग लिस्ट", "hinglish": "waiting list"},
-    "cancelled": {"en": "cancelled", "hi": "रद्द", "hinglish": "cancelled"},
-    "train_cancelled": {"en": "train cancelled by operator", "hi": "ऑपरेटर द्वारा ट्रेन रद्द", "hinglish": "operator ne train cancel ki"},
+    "CONFIRMED": {"en": "confirmed", "hi": "कन्फर्म", "hinglish": "confirmed"},
+    "RAC": {"en": "RAC", "hi": "RAC", "hinglish": "RAC"},
+    "WAITLISTED": {"en": "waiting list", "hi": "वेटिंग लिस्ट", "hinglish": "waiting list"},
+    "MIXED": {"en": "mixed (travellers have different statuses)", "hi": "मिश्रित (यात्रियों की स्थिति अलग-अलग)", "hinglish": "mixed (yatriyon ka status alag-alag)"},
+    "CANCELLED": {"en": "cancelled", "hi": "रद्द", "hinglish": "cancelled"},
+    "OPERATOR_CANCELLED": {"en": "train cancelled by Ujjwal Rail", "hi": "उज्ज्वल रेल द्वारा ट्रेन रद्द", "hinglish": "Ujjwal Rail ne train cancel ki"},
 }
 
 

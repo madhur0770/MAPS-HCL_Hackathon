@@ -120,14 +120,14 @@ def make_app(db_conn=None):
                 elif kind == "cancel_booking":
                     txt = t("done_cancel", lang, bid=res["booking_id"], n=len(res["cancelled_traveller_ids"]), refund=inr(res["refund"]),
                             status=res["new_status"])
-                    out = _answer(pid, trace, "action_done", txt, sources=[{"doc_id": "RULE-03", "section": "Section 1"}], tools=[{"tool": "confirm_action", "output": r}])
+                    out = _answer(pid, trace, "action_done", txt, sources=[{"doc_id": "RUL-003", "section": "3.1"}], tools=[{"tool": "confirm_action", "output": r}])
                 elif kind == "change_boarding":
                     from tools import timetable as tt
                     txt = t("done_change", lang, bid=res["booking_id"], new=tt.station_name(db, res["new_code"]), old=tt.station_name(db, res["old_code"]))
-                    out = _answer(pid, trace, "action_done", txt, sources=[{"doc_id": "RULE-07", "section": "Section 1"}], tools=[{"tool": "confirm_action", "output": r}])
+                    out = _answer(pid, trace, "action_done", txt, sources=[{"doc_id": "RUL-010", "section": "3.5"}], tools=[{"tool": "confirm_action", "output": r}])
                 else:
                     txt = t("done_book", lang, bid=res["booking_id"], status=res["status"], total=inr(res["total"]))
-                    out = _answer(pid, trace, "action_done", txt, sources=[{"doc_id": "RULE-01", "section": "Section 1"}], tools=[{"tool": "confirm_action", "output": r}])
+                    out = _answer(pid, trace, "action_done", txt, sources=[{"doc_id": "RUL-001", "section": "3.4"}], tools=[{"tool": "confirm_action", "output": r}])
             else:
                 reason = r["reason"]
                 if reason == "not_found":

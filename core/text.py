@@ -4,11 +4,12 @@ import datetime as dt
 MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
 
-def inr(n) -> str:
-    """Rupees with Indian digit grouping: 1840 -> ₹1,840 ; 123456 -> ₹1,23,456."""
-    n = int(round(n))
-    sign = "-" if n < 0 else ""
-    s = str(abs(n))
+def inr(paise) -> str:
+    """Money is kept in paise. Shows rupees with Indian digit grouping: 306250 -> ₹3,062.50 ; 229200 -> ₹2,292 ; 12345600 -> ₹1,23,456."""
+    paise = int(round(paise))
+    sign = "-" if paise < 0 else ""
+    rupees, pr = divmod(abs(paise), 100)
+    s = str(rupees)
     if len(s) > 3:
         head, tail = s[:-3], s[-3:]
         parts = []
@@ -18,7 +19,7 @@ def inr(n) -> str:
         if head:
             parts.insert(0, head)
         s = ",".join(parts + [tail])
-    return "%s₹%s" % (sign, s)
+    return "%s₹%s%s" % (sign, s, (".%02d" % pr) if pr else "")
 
 
 def fmt_date(d) -> str:

@@ -114,6 +114,10 @@ class Index:
 
 
 def numbers_in(text):
+    """Numbers that carry a fact. Document ids (RUL-005), section references (Section 3.2, Sections 3.1 to 3.4) and dates are ignored."""
+    text = re.sub(r"\b[A-Z]{2,4}-[A-Z0-9-]*\d+\b", " ", text)
+    text = re.sub(r"(?i)\bsections?\s+\d+(?:\.\d+)?(?:\s*(?:to|and|,|-)\s*\d+(?:\.\d+)?)*", " ", text)
+    text = re.sub(r"\b\d{4}-\d{2}-\d{2}\b", " ", text)
     return set(re.findall(r"\d+(?:\.\d+)?", text))
 
 

@@ -27,7 +27,7 @@ def _row(db, action_id, passenger_id):
 
 
 def _insert(db, passenger_id, booking_id, kind, payload, preview, as_of, trace_id):
-    minutes = cfg.get_int(db, "action_expiry_minutes", as_of, 10)
+    minutes = cfg.get_int(db, "actions.pending_expiry_minutes", as_of, 10)
     aid = _new_id()
     offset = (as_of - clock.real_now()).total_seconds()
     created = as_of
@@ -48,7 +48,9 @@ def propose_cancel(db, passenger_id, booking_id, as_of, traveller_ids=None, trac
     q = refund.quote_refund(db, booking_id, as_of, only_travellers=traveller_ids)
     if not q["ok"]:
         return {"ok": False, "reason": q["reason"], "booking_id": booking_id}
-    if q["band"] == "NONE" and q["hours_before"] < 0:
+    if q["band"] == "OPERATOR":
+        return {"ok": False, "reason": "operator_cancelled", "booking_id": booking_id, "quote": q}
+    if q["band"] == "E":
         return {"ok": False, "reason": "departed", "booking_id": booking_id, "quote": q}
     pend = _insert(db, passenger_id, booking_id, "cancel_booking",
                    {"traveller_ids": traveller_ids}, {"quote": q}, as_of, trace_id)
@@ -59,16 +61,18 @@ def propose_change_boarding(db, passenger_id, booking_id, new_code, as_of, trace
     b = bk.get_booking(db, booking_id, passenger_id)
     if not b:
         return {"ok": False, "reason": "not_found"}
-    if b["status"] in ("cancelled", "train_cancelled"):
+    if b["status"] in ("CANCELLED", "OPERATOR_CANCELLED"):
         return {"ok": False, "reason": "not_active", "booking_id": booking_id}
+    if db.execute("SELECT 1 FROM booking_travellers WHERE booking_id=? AND status='WL'", (booking_id,)).fetchone():
+        return {"ok": False, "reason": "has_waitlisted", "booking_id": booking_id}
     deadline, hours, src = deadlines.boarding_change_deadline(db, b, as_of)
     stops = {r["station_code"]: r["stop_order"] for r in tt.stops_of(db, b["train_no"])}
     if new_code not in stops or not (stops[b["from_code"]] < stops[new_code] < stops[b["to_code"]]):
         return {"ok": False, "reason": "bad_station", "booking_id": booking_id}
     done = db.execute("SELECT count(*) FROM actions WHERE booking_id=? AND action_type='change_boarding' AND status='done'", (booking_id,)).fetchone()[0]
-    if done:
+    if done >= cfg.get_int(db, "boarding_change.maximum_changes", as_of, 1):
         return {"ok": False, "reason": "already_changed", "booking_id": booking_id}
-    if as_of > deadline:
+    if as_of >= deadline:
         return {"ok": False, "reason": "too_late", "booking_id": booking_id, "deadline": clock.iso(deadline), "hours": hours,
                 "source": {"doc_id": src[0], "section": src[1]}}
     pv = {"old_code": b["from_code"], "new_code": new_code, "deadline": clock.iso(deadline), "hours": hours,
@@ -79,46 +83,42 @@ def propose_change_boarding(db, passenger_id, booking_id, new_code, as_of, trace
 
 
 def propose_book(db, passenger_id, train_no, origin_date, frm, to, cls, travellers, as_of, trace_id=""):
-    """travellers = [{'name':..,'age':..}]"""
+    """travellers = [{'name':..,'age':..}]. Rules: RUL-001 (window, cutoff, max travellers), RUL-004 3.2 (CNF, then RAC, then WL)."""
     t = db.execute("SELECT * FROM trains WHERE train_no=?", (train_no,)).fetchone()
     if not t or cls not in t["classes"].split(","):
         return {"ok": False, "reason": "no_such_train_or_class"}
-    maxn = cfg.get_int(db, "max_travellers_per_booking", as_of, 6)
+    maxn = cfg.get_int(db, "booking.max_travellers", as_of, 6)
     if not travellers or len(travellers) > maxn:
         return {"ok": False, "reason": "bad_traveller_count", "max": maxn}
     base = fr.fare(db, train_no, cls, frm, to)
     av = st_seats.availability(db, train_no, origin_date, cls)
     if base is None or av is None:
         return {"ok": False, "reason": "not_available"}
+    if db.execute("SELECT 1 FROM service_cancellations WHERE train_no=? AND journey_date=? AND announced_at<=?", (train_no, origin_date, clock.iso(as_of))).fetchone():
+        return {"ok": False, "reason": "service_cancelled"}
+    first = tt.stops_of(db, train_no)[0]["station_code"]
+    origin_dep = tt.departure_dt(db, train_no, origin_date, first)
     dep = tt.departure_dt(db, train_no, origin_date, frm)
-    if dep <= as_of:
-        return {"ok": False, "reason": "departed"}
-    adv = cfg.get_int(db, "advance_booking_days", as_of, 60)
-    if dep - as_of > dt.timedelta(days=adv):
-        return {"ok": False, "reason": "too_early", "days": adv}
-    free_age = cfg.get_int(db, "child_free_age", as_of, 5)
-    half_max = cfg.get_int(db, "child_half_fare_max_age", as_of, 11)
-    sen = cfg.get_int(db, "senior_concession_pct", as_of, 40)
-    lines, total = [], 0
-    for tr in travellers:
-        age = int(tr["age"])
-        f = 0 if age < free_age else (base // 2 if age <= half_max else base)
-        if age >= 60:
-            f = int(refund.rupees(base * (100 - sen) / 100))
-        lines.append({"name": tr["name"], "age": age, "fare": f})
-        total += f
-    # status for each traveller based on what is left
+    cutoff = cfg.get_int(db, "booking.cutoff_minutes_before_origin", as_of, 20)
+    if as_of >= origin_dep - dt.timedelta(minutes=cutoff):
+        return {"ok": False, "reason": "departed", "minutes": cutoff}
+    adv = cfg.get_int(db, "booking.advance_window_days", as_of, 90)
+    opens = dt.datetime.combine(dt.date.fromisoformat(origin_date) - dt.timedelta(days=adv), dt.time(8, 0), tzinfo=clock.IST)
+    if as_of < opens:
+        return {"ok": False, "reason": "too_early", "days": adv, "opens": clock.iso(opens)}
+    lines = [{"name": tr["name"], "age": int(tr["age"]), "fare": int(base)} for tr in travellers]
+    wl_room = db.execute("SELECT wl_capacity-waitlist FROM seats WHERE train_no=? AND journey_date=? AND class=?", (train_no, origin_date, cls)).fetchone()[0]
     left_av, left_rac = av["available"], av["rac"]
-    wl_room = (av["capacity"] and True) and (db.execute("SELECT wl_capacity-waitlist FROM seats WHERE train_no=? AND journey_date=? AND class=?", (train_no, origin_date, cls)).fetchone()[0])
     for ln in lines:
         if left_av > 0:
             ln["status"] = "CNF"; left_av -= 1
         elif left_rac > 0:
             ln["status"] = "RAC"; left_rac -= 1
-        elif wl_room and wl_room > 0:
+        elif wl_room > 0:
             ln["status"] = "WL"; wl_room -= 1
         else:
             return {"ok": False, "reason": "regret", "availability": av}
+    total = sum(l["fare"] for l in lines)
     pv = {"train_no": train_no, "origin_date": origin_date, "from": frm, "to": to, "class": cls, "lines": lines,
           "total": total, "departure": clock.iso(dep)}
     pend = _insert(db, passenger_id, "", "book", {"train_no": train_no, "origin_date": origin_date, "from": frm, "to": to,
@@ -180,7 +180,7 @@ def confirm_action(db, action_id, passenger_id, trace_id=""):
         elif a["action_type"] == "change_boarding":
             b = bk.get_booking(db, a["booking_id"], passenger_id)
             deadline, _, _ = deadlines.boarding_change_deadline(db, b, now)
-            if now > deadline:
+            if now >= deadline:
                 raise _Fail("too_late")
             result = _exec_change(db, a["booking_id"], payload["new_code"], b)
         elif a["action_type"] == "book":
@@ -216,11 +216,11 @@ def _exec_cancel(db, booking_id, q, traveller_ids):
         t = db.execute("SELECT status FROM booking_travellers WHERE traveller_id=?", (l["traveller_id"],)).fetchone()
         db.execute("UPDATE booking_travellers SET status='CAN' WHERE traveller_id=?", (l["traveller_id"],))
         col = {"CNF": "available", "RAC": "rac", "WL": "waitlist"}.get(t["status"])
-        if col and b["status"] != "train_cancelled":
+        if col and b["status"] != "OPERATOR_CANCELLED":
             delta = -1 if col == "waitlist" else 1
             db.execute("UPDATE seats SET %s=MAX(0,%s+?) WHERE train_no=? AND journey_date=? AND class=?" % (col, col),
                        (delta, b["train_no"], b["journey_date"], b["class"]))
-    db.execute("UPDATE bookings SET refunded=refunded+? WHERE booking_id=?", (q["total_refund"], booking_id))
+    db.execute("UPDATE bookings SET refunded=refunded+?, cancelled_at=?, cancellation_type='PASSENGER' WHERE booking_id=?", (q["total_refund"], q["as_of"], booking_id))
     status = bk.recompute_status(db, booking_id)
     return {"booking_id": booking_id, "cancelled_traveller_ids": ids, "refund": q["total_refund"], "new_status": status,
             "band": q["band"]}
@@ -235,35 +235,31 @@ def _exec_book(db, passenger_id, payload, now):
     no, od, frm, to, cls = payload["train_no"], payload["origin_date"], payload["from"], payload["to"], payload["class"]
     av = db.execute("SELECT * FROM seats WHERE train_no=? AND journey_date=? AND class=?", (no, od, cls)).fetchone()
     base = fr.fare(db, no, cls, frm, to)
-    n = db.execute("SELECT count(*) FROM bookings").fetchone()[0]
-    bid = "BK%d" % (2000 + n)
+    n = db.execute("SELECT count(*) FROM bookings").fetchone()[0] + 1
+    bid = "UR-%08d" % (10000000 + n)       # RUL-001 3.4: UR- plus eight decimal digits
     while db.execute("SELECT 1 FROM bookings WHERE booking_id=?", (bid,)).fetchone():
         n += 1
-        bid = "BK%d" % (2000 + n)
+        bid = "UR-%08d" % (10000000 + n)
     left_av, left_rac, wl = av["available"], av["rac"], av["waitlist"]
-    free_age = cfg.get_int(db, "child_free_age", now, 5)
-    half_max = cfg.get_int(db, "child_half_fare_max_age", now, 11)
-    sen = cfg.get_int(db, "senior_concession_pct", now, 40)
-    total, worst, rows = 0, "confirmed", []
+    total, rows, sts = 0, [], []
     for tr in payload["travellers"]:
         age = int(tr["age"])
-        f = 0 if age < free_age else (base // 2 if age <= half_max else base)
-        if age >= 60:
-            f = int(refund.rupees(base * (100 - sen) / 100))
+        f = int(base)
         if left_av > 0:
             s, left_av = "CNF", left_av - 1
         elif left_rac > 0:
             s, left_rac = "RAC", left_rac - 1
-            worst = "rac" if worst == "confirmed" else worst
         elif av["wl_capacity"] - wl > 0:
             s, wl = "WL", wl + 1
-            worst = "waitlisted"
         else:
             raise _Fail("regret")
         total += f
+        sts.append(s)
         rows.append((bid, tr["name"], age, s, "", "", f))
-    db.execute("INSERT INTO bookings VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",
-               (bid, passenger_id, no, od, frm, to, cls, total, worst, clock.iso(now), 0, 0))
+    worst = "MIXED" if len(set(sts)) > 1 else {"CNF": "CONFIRMED", "RAC": "RAC", "WL": "WAITLISTED"}[sts[0]]
+    dep = tt.departure_dt(db, no, od, frm)
+    db.execute("INSERT INTO bookings(booking_id,passenger_id,train_no,journey_date,from_code,to_code,class,amount_paid,status,booked_at,tatkal,refunded,boarding_datetime) "
+               "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)", (bid, passenger_id, no, od, frm, to, cls, total, worst, clock.iso(now), 0, 0, clock.iso(dep)))
     db.executemany("INSERT INTO booking_travellers(booking_id,traveller_name,age,status,coach,berth,fare_paid) VALUES(?,?,?,?,?,?,?)", rows)
     db.execute("UPDATE seats SET available=?, rac=?, waitlist=? WHERE train_no=? AND journey_date=? AND class=?", (left_av, left_rac, wl, no, od, cls))
     return {"booking_id": bid, "status": worst, "total": total, "travellers": [{"name": r[1], "status": r[3], "fare": r[6]} for r in rows]}

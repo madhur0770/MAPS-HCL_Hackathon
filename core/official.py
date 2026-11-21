@@ -64,6 +64,60 @@ def md_to_sections(body):
     return text.strip()
 
 
+def flatten_tables(text):
+    """Markdown tables -> plain lines, so answers read well in any chat window and numbers stay next to their labels."""
+    out, rows = [], []
+
+    def flush():
+        if not rows:
+            return
+        head = rows[0]
+        body = rows[1:]
+        if len(head) == 2 and head[0].lower() in ("field", "item", "setting"):
+            out.extend("- %s: %s" % (r[0], r[1]) for r in body)
+        else:
+            for r in body:
+                out.append("- " + r[0] + ": " + "; ".join("%s %s" % (h, v) for h, v in zip(head[1:], r[1:])) if len(r) > 1 else "- " + r[0])
+        rows.clear()
+
+    for line in text.split("\n"):
+        if re.match(r"^\s*\|", line):
+            cells = [c.strip() for c in line.strip().strip("|").split("|")]
+            if all(re.match(r"^:?-{2,}:?$", c) for c in cells if c):
+                continue
+            rows.append(cells)
+        else:
+            flush()
+            out.append(line)
+    flush()
+    return "\n".join(out)
+
+
+def trim_sections(text, typ):
+    """Keep only the sections that carry facts. Rules: drop Purpose/Scope/Related. Circulars: drop Purpose/Reference. FAQs: question joins the answer.
+    (Boilerplate sections match every query by title words and would hide the real answer.)"""
+    parts = re.split(r"(?m)^(?=Section \d+(?:\.\d+)?: )", text)
+    secs = []
+    for p in parts:
+        m = re.match(r"Section (\d+(?:\.\d+)?): ([^\n]*)\n?(.*)$", p.strip(), re.S)
+        if m:
+            secs.append([m.group(1), m.group(2), m.group(3).strip()])
+    if typ == "faq":
+        q = next((x for x in secs if x[0] == "1"), None)
+        out = []
+        for x in secs:
+            if x[0] == "2":
+                x[2] = ("Q: %s\nA: %s" % (q[2], x[2])) if q else x[2]
+                out.append(x)
+            elif x[0] == "4":
+                out.append(x)
+        secs = out
+    else:
+        drop = {"1", "2", "5"} if typ == "rule" else {"1", "2"}
+        secs = [x for x in secs if x[0] not in drop] or secs
+    return "\n\n".join("Section %s: %s\n%s" % (a, b, c) for a, b, c in secs)
+
+
 def load_documents():
     docs, topic_of = [], dict(RULE_TOPIC)
     for sub in ("rules", "circulars", "faqs"):
@@ -93,7 +147,7 @@ def load_documents():
             sup = refs[0]["doc_id"]
         out.append(dict(doc_id=did, doc_type=typ, title=meta.get("title", did), topic=topic, effective_from=eff,
                         authority={"rule": 1, "circular": 2, "faq": 4}[typ], supersedes=sup,
-                        language=LANG.get(meta.get("language", "en"), "en"), text=md_to_sections(body),
+                        language=LANG.get(meta.get("language", "en"), "en"), text=flatten_tables(trim_sections(md_to_sections(body), typ)),
                         status=meta.get("status", ""), refs=refs))
     return out
 

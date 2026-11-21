@@ -12,11 +12,19 @@ from assistant import guardrails
 PROMISE = re.compile(r"(i (can )?(guarantee|promise|assure)|you will (definitely|surely|certainly) (get|receive)|"
                      r"(refund|approval) (is|will be) (guaranteed|assured|sure)|100% (sure|guaranteed)|"
                      r"मैं (गारंटी|वादा) (देता|करता)|guarantee karta)", re.I)
-RS = re.compile(r"(?:₹|Rs\.?\s?)\s?([\d,]+)")
+RS = re.compile(r"(?:₹|Rs\.?\s?|INR\s?)\s?(\d[\d,]*(?:\.\d{1,2})?)")
 
 
 def money_in(text):
-    return {int(m.replace(",", "")) for m in RS.findall(text) if m.replace(",", "")}
+    """Amounts written with ₹ / Rs / INR, as PAISE (integers). '₹3,062.50' -> 306250 ; 'Rs 240' -> 24000."""
+    out = set()
+    for m in RS.findall(text):
+        m = m.replace(",", "")
+        if not m:
+            continue
+        whole, _, frac = m.partition(".")
+        out.add(int(whole) * 100 + int((frac + "00")[:2]) if frac else int(whole) * 100)
+    return out
 
 
 def numbers_in(text):
@@ -24,9 +32,10 @@ def numbers_in(text):
 
 
 def number_check(answer: str, allowed_text: str, allowed_numbers=()):
-    """Every ₹ amount in the answer must appear in allowed_text (tool outputs + document text) or allowed_numbers."""
-    allowed = money_in(allowed_text) | {int(x) for x in allowed_numbers}
-    allowed |= {int(n) for n in re.findall(r"\d+", allowed_text.replace(",", ""))}
+    """Every money amount in the answer must be backed by the tool outputs (stored in paise) or by a rupee figure in a document."""
+    ints = {int(n) for n in re.findall(r"\d+", allowed_text.replace(",", ""))}
+    allowed = ints | {n * 100 for n in ints} | {int(x) for x in allowed_numbers}
+    allowed |= money_in(allowed_text)
     bad = [m for m in money_in(answer) if m not in allowed]
     return (not bad), bad
 

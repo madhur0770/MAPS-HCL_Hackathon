@@ -23,7 +23,7 @@ P = {
  "dispute": [
    R(r"(missed|miss (my|the)|chhoot gayi|chut gayi|छूट गई|train miss|late (to|for) the train)"),
    R(r"(refund (dispute|not (received|credited)|didn.?t (come|arrive))|not got my refund|wrong refund|system error|double charged|charged twice|complain|complaint|शिकायत|shikayat|galat refund|refund nahi aaya|refund nahi mila)"),
-   R(r"(disab|handicap|divyang|press (card|quota)|defence|defense|army|veteran|concession (for|with|needs?)|proof|certificate|medical concession)"),
+   R(r"(disab|handicap|divyang|press (card|quota)|defence|defense|army|veteran|concession (for|with|needs?)|medical concession|concession.{0,25}(proof|certificate)|(proof|certificate).{0,25}concession)"),
  ],
  "handoff_request": [R(r"(human|agent|real person|desk|supervisor|manager|insaan|kisi se baat|बात करनी|इंसान|मानव|speak to someone|talk to someone)")],
  "my_bookings": [R(r"(my bookings|all (my )?bookings|list (my )?bookings|show (me )?(my )?bookings|meri (saari )?bookings?|मेरी (सभी )?बुकिंग|booking list|my tickets|meri tickets?)")],
@@ -35,15 +35,63 @@ P = {
  "seats": [R(r"(seats?|availab|berth|rac|waiting ?list|wl\b|vacant|khaali|खाली|सीट)")],
  "fare": [R(r"(fare|kiraya|किराया|ticket price|price of|cost of|how much (is|does|for).{0,25}(ticket|train|2a|3a|sl|1a)|kitna lagega)")],
  "search_trains": [R(r"(train|trains|gaadi|गाड़ी|ट्रेन|timetable|schedule|departure|arrival|timing|chalti|कब चलती)")],
- "rules": [R(r"(rule|policy|allowed|permitted|can i (carry|take|bring)|how many|charge|charges|tatkal|तत्काल|luggage|saaman|सामान|pet|child|children|bachche|senior|concession|chart|rac|waiting|clerkage|waiver|circular|faq|notice|कितना|नियम|rules?)")],
+ "rules": [R(r"(kitne (ghante|din|minute)|hoti hai|hota hai|hote hain|kya hai|kaise|kya main|kya mai|kab (khul|band)|\bkhulti|\bband hoti|\bkitna|rule|policy|allowed|permitted|can i (carry|take|bring)|how many|charge|charges|tatkal|तत्काल|luggage|saaman|सामान|pet|child|children|bachche|senior|concession|chart|rac|waiting|clerkage|waiver|circular|faq|notice|कितना|नियम|rules?)")],
 }
 
-CLASS_RE = R(r"\b(sl|sleeper|slpr|3a|3ac|ac ?3( tier)?|3 tier|2a|2ac|ac ?2( tier)?|2 tier|1a|1ac|first ac|first class)\b")
-BK_RE = R(r"\bBK\s?-?(\d{3,6})\b")
-TRAIN_RE = re.compile(r"\b(1\d{4})\b")
+CLASS_RE = R(r"\b(fp|first premium|ac ?2( tier)?|2a|2ac|2 tier|ac ?3( tier)?|3a|3ac|3 tier|ec|executive chair|sl|sleeper|slpr|cc|city chair)\b")
+BK_RE = R(r"\b([A-Z]{2,4})\s?-?\s?(\d{3,8})\b")      # any booking-reference style: BKG0001, UR-48213 ... (checked against the data below)
+TRAIN_RE = re.compile(r"\b(UJ\s?-?\d{4})\b", re.I)
 ACT_RE = re.compile(r"\bACT-[A-Z0-9]{8}\b")
-CLASS_MAP = {"sl": "SL", "sleeper": "SL", "slpr": "SL", "3a": "3A", "3ac": "3A", "ac3": "3A", "ac 3": "3A", "3 tier": "3A", "ac3 tier": "3A", "ac 3 tier": "3A",
-             "2a": "2A", "2ac": "2A", "ac2": "2A", "ac 2": "2A", "2 tier": "2A", "ac2 tier": "2A", "ac 2 tier": "2A", "1a": "1A", "1ac": "1A", "first ac": "1A", "first class": "1A"}
+CLASS_MAP = {"fp": "FP", "first premium": "FP", "ac2": "AC2", "ac 2": "AC2", "ac2 tier": "AC2", "ac 2 tier": "AC2", "2a": "AC2", "2ac": "AC2", "2 tier": "AC2",
+             "ac3": "AC3", "ac 3": "AC3", "ac3 tier": "AC3", "ac 3 tier": "AC3", "3a": "AC3", "3ac": "AC3", "3 tier": "AC3",
+             "ec": "EC", "executive chair": "EC", "sl": "SL", "sleeper": "SL", "slpr": "SL", "cc": "CC", "city chair": "CC"}
+
+
+_cache = {}
+
+
+def _known(db):
+    """Train numbers, booking ids and class codes that really exist in the data (so new test data works without code changes)."""
+    key = id(db)
+    n = db.execute("SELECT count(*) FROM trains").fetchone()[0] + db.execute("SELECT count(*) FROM bookings").fetchone()[0]
+    c = _cache.get(key)
+    if c and c[0] == n:
+        return c[1]
+    trains = [r[0] for r in db.execute("SELECT train_no FROM trains")]
+    bids = {r[0] for r in db.execute("SELECT booking_id FROM bookings")}
+    classes = set()
+    for r in db.execute("SELECT classes FROM trains"):
+        classes |= {x.strip() for x in (r[0] or "").split(",") if x.strip()}
+    val = {"trains": trains, "bids": bids, "classes": classes}
+    _cache[key] = (n, val)
+    return val
+
+
+def find_train(db, text):
+    for no in _known(db)["trains"]:
+        letters, digits = re.match(r"^(\D*)(\d.*)$", no).groups() if re.match(r"^\D*\d", no) else (no, "")
+        pat = r"\b%s[\s-]?%s\b" % (re.escape(letters), re.escape(digits)) if letters else r"\b%s\b" % re.escape(digits)
+        if re.search(pat, text, re.I):
+            return no
+    return None
+
+
+def find_booking_ref(db, text, train_no=None):
+    """A booking reference written like XXX-1234 / XXX1234. Prefer one that exists; otherwise return the first candidate (it will be refused as 'not yours')."""
+    k = _known(db)
+    first = None
+    for m in BK_RE.finditer(text):
+        pre, num = m.group(1).upper(), m.group(2)
+        if pre == "ACT" or (pre + num) == (train_no or ""):
+            continue
+        if any(pre + num == tn or pre + "-" + num == tn for tn in k["trains"]):
+            continue
+        for cand in (pre + num, pre + "-" + num):
+            if cand in k["bids"]:
+                return cand
+        if first is None and pre not in ("AC", "SL", "CC", "EC", "FP", "UJ") and pre not in ("RS", "INR", "KG"):
+            first = (pre + "-" + num) if pre == "UR" else (pre + num)
+    return first
 
 
 def norm_class(s):
@@ -75,18 +123,23 @@ def extract_travellers(db, text):
 def understand(db, text: str, as_of, session_slots=None):
     t = text.strip()
     slots = {}
-    m = BK_RE.search(t)
-    if m:
-        slots["booking_id"] = "BK" + m.group(1)
+    tn = find_train(db, t)
+    if tn:
+        slots["train_no"] = tn
+    ref = find_booking_ref(db, t, tn)
+    if ref:
+        slots["booking_id"] = ref
     m = ACT_RE.search(t)
     if m:
         slots["action_id"] = m.group(0)
-    m = TRAIN_RE.search(t)
-    if m:
-        slots["train_no"] = m.group(1)
     m = CLASS_RE.search(t)
     if m:
         slots["class"] = norm_class(m.group(1))
+    else:   # any class code that exists in the data (e.g. a new class added to the test data)
+        for w in re.findall(r"\b[A-Za-z0-9]{1,4}\b", t):
+            if w.upper() in _known(db)["classes"]:
+                slots["class"] = w.upper()
+                break
     d, _ = dates.parse_date(t, as_of)
     if d:
         slots["date"] = d.isoformat()
@@ -107,6 +160,8 @@ def understand(db, text: str, as_of, session_slots=None):
 
     if re.search(r"\b(phone|mobile|contact number|aadhaar|aadhar|passport|pan card|id number|home address)\b|फ़ोन|मोबाइल|आधार", t, re.I) and re.search(r"\b(number|passenger|his|her|their|[A-Z][a-z]+'s|of|ka|ki)\b|नंबर", t):
         intent = "privacy_ask"
+    elif re.search(r"\b(hotel|hotels|flight|flights|cab|taxi|restaurant|bus ticket|movie|weather|visa|cricket|stock|recipe|pizza|resort|room booking)\b", t, re.I) and not slots.get("booking_id"):
+        intent = "unknown"
     elif has("forbidden"):
         intent = "forbidden"
     elif has("dispute"):
@@ -129,7 +184,9 @@ def understand(db, text: str, as_of, session_slots=None):
         intent = "refund_estimate"
     elif has("change_boarding"):
         intent = "change_boarding"
-    elif has("book_ticket") and not has("booking_status") and not slots.get("booking_id"):
+    elif has("book_ticket") and not has("booking_status") and not slots.get("booking_id") and not (
+            re.search(r"^\s*(how|what|when|can|could|is|are|do|does|which|kitne|kab|kya|kaise)\b", t, re.I) and not slots.get("stations") and not slots.get("travellers")
+            and not slots.get("date") and not slots.get("class")):
         intent = "book_ticket"
     elif has("booking_status") or (slots.get("booking_id") and not has("search_trains")):
         intent = "booking_status"
@@ -151,11 +208,17 @@ def understand(db, text: str, as_of, session_slots=None):
         intent = "unknown"
     # topic hint for the document search
     topic = None
-    for rx, tp in ((r"tatkal|तत्काल", "tatkal"), (r"luggage|saaman|सामान|pet\b|dog|cat|पालतू", "luggage"),
-                   (r"child|children|bachche|senior|concession|बच्चे|बुज़ुर्ग|छूट", "concession"),
-                   (r"waiting|waitlist|wl\b|clerkage|वेटिंग", "waitlist"),
+    for rx, tp in ((r"tatkal|तत्काल", "tatkal"), (r"\bpets?\b|\bdogs?\b|\bcats?\b|पालतू|assistance animal|kutta|kutte", "pets"),
+                   (r"luggage|baggage|saaman|सामान|excess weight", "luggage"),
+                   (r"\bid proof|identity|\bid\b|aadhaar|passport|photo id|verification|पहचान", "identity"),
+                   (r"child|children|bachche|senior|concession|student|discount|बच्चे|बुज़ुर्ग|छूट", "concession"),
+                   (r"train (was |is |has been )?cancel|delay|late by|cancelled by|operator cancel|train cancel|delayed|गाड़ी रद्द|देरी", "disruption"),
+                   (r"waiting|waitlist|\bwl\b|\brac\b|promot|clerkage|वेटिंग", "waitlist"),
                    (r"boarding|board", "boarding_change"),
-                   (r"refund|cancel|charge|waiver|wapas|radd|रद्द|वापस|पैसा|paisa", "refund")):
+                   (r"refund|cancel|charge|wapas|radd|रद्द|वापस|पैसा|paisa|fixed charge", "refund"),
+                   (r"complain|complaint|harass|safety|shikayat|शिकायत", "complaints"),
+                   (r"open|opens|close|closes|advance|how early|book(ing)? window|kitne din pehle|band hoti|traveller limit|how many (travellers|passengers)|kitne (travellers|yatri|passengers|log)", "booking"),
+                   (r"\bclass(es)?\b|\bfp\b|\bec\b|\bcc\b|first premium|executive chair|city chair", "classes")):
         if re.search(rx, t, re.I):
             topic = tp
             break

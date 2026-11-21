@@ -15,7 +15,7 @@ def travellers(db, booking_id):
 def list_bookings(db, passenger_id, active_only=False):
     sql = "SELECT * FROM bookings WHERE passenger_id=?"
     if active_only:
-        sql += " AND status NOT IN ('cancelled')"
+        sql += " AND status NOT IN ('CANCELLED','OPERATOR_CANCELLED')"
     return [dict(r) for r in db.execute(sql + " ORDER BY journey_date, booking_id", (passenger_id,))]
 
 
@@ -32,19 +32,17 @@ def booking_view(db, booking_id, passenger_id):
 
 
 def recompute_status(db, booking_id):
-    """Booking status = worst active traveller (WL > RAC > CNF); 'cancelled' if all cancelled."""
+    """Booking status from its travellers: CANCELLED when all are CAN; MIXED when active travellers differ; else CONFIRMED / RAC / WAITLISTED."""
     ts = [r["status"] for r in db.execute("SELECT status FROM booking_travellers WHERE booking_id=?", (booking_id,))]
     cur = db.execute("SELECT status FROM bookings WHERE booking_id=?", (booking_id,)).fetchone()["status"]
-    if cur == "train_cancelled":
+    if cur == "OPERATOR_CANCELLED":
         return cur
-    act = [s for s in ts if s != "CAN"]
+    act = [x for x in ts if x != "CAN"]
     if not act:
-        s = "cancelled"
-    elif "WL" in act:
-        s = "waitlisted"
-    elif "RAC" in act:
-        s = "rac"
+        s = "CANCELLED"
+    elif len(set(act)) > 1:
+        s = "MIXED"
     else:
-        s = "confirmed"
+        s = {"CNF": "CONFIRMED", "RAC": "RAC", "WL": "WAITLISTED"}.get(act[0], "CONFIRMED")
     db.execute("UPDATE bookings SET status=? WHERE booking_id=?", (s, booking_id))
     return s
