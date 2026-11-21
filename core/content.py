@@ -9,8 +9,8 @@ SETTINGS = [
     ("cancel_charge_2A", "200", "2026-01-01", "RULE-03", "Section 2"),
     ("cancel_charge_2A", "240", "2026-11-22", "CIR-2026-07", "Section 1"),
     ("cancel_charge_1A", "240", "2026-01-01", "RULE-03", "Section 2"),
-    ("refund_pct_12_48h", "25", "2026-01-01", "RULE-03", "Section 3"),
-    ("refund_pct_4_12h", "50", "2026-01-01", "RULE-03", "Section 3"),
+    ("deduct_pct_12_48h", "25", "2026-01-01", "RULE-03", "Section 3"),
+    ("deduct_pct_4_12h", "50", "2026-01-01", "RULE-03", "Section 3"),
     ("refund_free_hours", "48", "2026-01-01", "RULE-03", "Section 2"),
     ("refund_mid_hours", "12", "2026-01-01", "RULE-03", "Section 3"),
     ("refund_none_hours", "4", "2026-01-01", "RULE-03", "Section 4"),
@@ -30,7 +30,11 @@ SETTINGS = [
     ("senior_concession_pct", "40", "2026-01-01", "RULE-08", "Section 3"),
     ("train_cancelled_refund_pct", "100", "2026-01-01", "RULE-05", "Section 1"),
     ("festival_waiver", "0", "2026-01-01", "RULE-03", "Section 5"),
+    ("festival_waiver_start", "2026-12-20", "2026-01-01", "RULE-03", "Section 5"),
+    ("festival_waiver_end", "2027-01-05", "2026-01-01", "RULE-03", "Section 5"),
     ("festival_waiver", "1", "2026-12-20", "CIR-2026-11", "Section 1"),
+    ("festival_waiver_start", "2026-12-20", "2026-12-20", "CIR-2026-11", "Section 1"),
+    ("festival_waiver_end", "2027-01-05", "2026-12-20", "CIR-2026-11", "Section 1"),
 ]
 
 CLASS_NAMES = {"SL": "Sleeper (SL)", "3A": "AC 3-Tier (3A)", "2A": "AC 2-Tier (2A)", "1A": "First AC (1A)"}
@@ -62,12 +66,12 @@ Section 3: Fares cannot be negotiated or changed by the assistant."""))
     d.append(("RULE-03", "Cancellation and refund", "refund", "2026-01-01", "en", """
 Section 1: Refund time is counted in hours from the cancellation request to the departure of the train from the passenger's BOARDING station.
 Section 2: Cancelled %s hours or more before departure: refund is the fare minus a flat cancellation charge per class: Sleeper Rs %s, 3A Rs %s, 2A Rs %s, 1A Rs %s. The charge never exceeds the fare.
-Section 3: Cancelled from %s hours up to (not including) %s hours before departure: refund is %s%% of the fare. Cancelled from %s hours up to (not including) %s hours: refund is %s%% of the fare.
+Section 3: Cancelled from %s hours up to (not including) %s hours before departure: %s%% of the fare is deducted and the rest is refunded. Cancelled from %s hours up to (not including) %s hours: %s%% of the fare is deducted and the rest is refunded.
 Section 4: Cancelled less than %s hours before departure, or after departure: no refund.
 Section 5: No festival waiver applies unless a circular says so.""" % (
         S("refund_free_hours"), S("cancel_charge_SL"), S("cancel_charge_3A"), S("cancel_charge_2A"), S("cancel_charge_1A"),
-        S("refund_mid_hours"), S("refund_free_hours"), S("refund_pct_12_48h"),
-        S("refund_none_hours"), S("refund_mid_hours"), S("refund_pct_4_12h"), S("refund_none_hours"))))
+        S("refund_mid_hours"), S("refund_free_hours"), S("deduct_pct_12_48h"),
+        S("refund_none_hours"), S("refund_mid_hours"), S("deduct_pct_4_12h"), S("refund_none_hours"))))
     d.append(("RULE-04", "Waiting list", "waitlist", "2026-01-01", "en", """
 Section 1: A waitlisted ticket cancelled before the chart is prepared is refunded in full minus a clerkage of Rs %s per traveller.
 Section 2: Waiting list tickets move up automatically when confirmed passengers cancel. Staff cannot move a ticket ahead of the queue."""  % S("wl_clerkage")))
@@ -124,7 +128,7 @@ Section 1: For journeys from 20 December 2026 to 5 January 2027 the flat cancell
 def _faqs():
     d = []
     f = lambda n, title, topic, text, lang="en": ("FAQ-%02d" % n, title, topic, "2026-03-01", lang, text)
-    d.append(f(1, "How much will I get back if I cancel?", "refund", "Section 1: If you cancel 48 hours or more before departure you get the fare back minus a flat charge of Rs 60 (Sleeper), Rs 180 (3A), Rs 200 (2A) or Rs 240 (1A). See the cancellation rule for other time bands."))
+    d.append(f(1, "How much will I get back if I cancel?", "refund", "Section 1: If you cancel 48 hours or more before departure you get the fare back minus a flat charge of Rs 60 (Sleeper), Rs 180 (3A), Rs 200 (2A) or Rs 240 (1A). Closer to departure, 25% (12 to 48 hours) or 50% (4 to 12 hours) of the fare is deducted; under 4 hours there is no refund."))
     d.append(f(2, "Can I change my boarding station on the day?", "boarding_change", "Section 1: Yes, you can change boarding station up to 12 hours before departure.")) # outdated (24h rule)
     d.append(f(3, "What is the Tatkal charge?", "tatkal", "Section 1: Tatkal in Sleeper costs Rs 150 extra per ticket."))
     d.append(f(4, "Will my waitlisted ticket get confirmed?", "waitlist", "Section 1: Waitlisted tickets move up as others cancel. Nobody can jump the queue, not even staff."))
@@ -139,8 +143,8 @@ def _faqs():
     d.append(f(13, "Is there a fee to cancel a waitlisted ticket?", "waitlist", "Section 1: Waitlisted tickets cancelled before the chart cost a clerkage of Rs 30 per traveller."))
     d.append(f(14, "How early can I book?", "booking", "Section 1: Up to 60 days before the journey date."))
     d.append(f(15, "Can someone else cancel my booking?", "privacy", "Section 1: No. Only the passenger who owns the booking can see or change it."))
-    d.append(f(16, "टिकट रद्द करने पर कितना पैसा वापस मिलेगा?", "refund", "Section 1: यदि आप प्रस्थान से 48 घंटे या अधिक पहले टिकट रद्द करते हैं तो किराया वापस मिलता है, कक्षा के अनुसार निश्चित शुल्क घटाकर (स्लीपर ₹60, 3A ₹180, 2A ₹200, 1A ₹240)। 12 से 48 घंटे के बीच किराये का 25% और 4 से 12 घंटे के बीच 50% वापस मिलता है। 4 घंटे से कम पर कुछ नहीं।", "hi"))
-    d.append(f(17, "Ticket cancel karne par paisa kitna wapas milega?", "refund", "Section 1: Agar aap train chalne se 48 ghante ya zyada pehle cancel karte ho to kiraya wapas milta hai, bas class ke hisaab se fixed charge katega (Sleeper Rs 60, 3A Rs 180, 2A Rs 200, 1A Rs 240). 12 se 48 ghante me 25% aur 4 se 12 ghante me 50% milta hai. 4 ghante se kam me kuch nahi.", "hinglish"))
+    d.append(f(16, "टिकट रद्द करने पर कितना पैसा वापस मिलेगा?", "refund", "Section 1: यदि आप प्रस्थान से 48 घंटे या अधिक पहले टिकट रद्द करते हैं तो किराया वापस मिलता है, कक्षा के अनुसार निश्चित शुल्क घटाकर (स्लीपर ₹60, 3A ₹180, 2A ₹200, 1A ₹240)। 12 से 48 घंटे के बीच किराये का 25% और 4 से 12 घंटे के बीच 50% कटता है, बाकी वापस मिलता है। 4 घंटे से कम पर कुछ नहीं।", "hi"))
+    d.append(f(17, "Ticket cancel karne par paisa kitna wapas milega?", "refund", "Section 1: Agar aap train chalne se 48 ghante ya zyada pehle cancel karte ho to kiraya wapas milta hai, bas class ke hisaab se fixed charge katega (Sleeper Rs 60, 3A Rs 180, 2A Rs 200, 1A Rs 240). 12 se 48 ghante me kiraye ka 25% aur 4 se 12 ghante me 50% katta hai, baaki wapas milta hai. 4 ghante se kam me kuch nahi.", "hinglish"))
     d.append(f(18, "Boarding station kaise badlein?", "boarding_change", "Section 1: Boarding station apni booking me badal sakte ho, train ke original boarding station se chalne ke 24 ghante pehle tak. Naya station usi train ka aage wala stop hona chahiye.", "hinglish"))
     d.append(f(19, "वेटिंग टिकट का क्या होगा?", "waitlist", "Section 1: वेटिंग टिकट कन्फर्म होने की गारंटी नहीं है। चार्ट बनने से पहले रद्द करने पर प्रति यात्री ₹30 क्लर्केज कटकर बाकी पैसा वापस मिलता है।", "hi"))
     d.append(f(20, "Is there any discount for senior citizens?", "concession", "Section 1: Senior citizens get a concession on the base fare. Concessions needing proof are decided by the Concession Desk."))
