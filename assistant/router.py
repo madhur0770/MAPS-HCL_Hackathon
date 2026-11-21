@@ -865,6 +865,14 @@ def do_search(ctx):
         else:
             window_note = t("time_none", lang) + "\n"
     head_kw = dict(frm=station_label(db, frm), to=station_label(db, to), date=fmt_date(slots["date"]))
+    if res and slots.get("class"):
+        with_cls = [r for r in res if slots["class"] in r["class_info"]]
+        if with_cls:
+            res = with_cls
+        else:
+            have = sorted({c for r in res for c in r["class_info"]})
+            ctx["sess"]["last_search"] = {"frm": frm, "to": to, "date": slots["date"]}
+            return reply("answer", t("no_class", lang, cls=slots["class"], have=", ".join(have), **head_kw), tools=[tool("search_trains", [], frm=frm, to=to, date=slots["date"])])
     if not res:
         msg = t("search_none", lang, **head_kw)
         a = [station_label(db, c) for c in tt.reachable(db, frm=frm)]
@@ -945,6 +953,10 @@ def do_book(ctx):
     if missing:
         return route_ask(ctx, "book_ticket", missing, col)
     chosen = [r for r in res if r["train_no"] == train_no]
+    if chosen and slots["class"] not in chosen[0]["class_info"]:
+        have = ", ".join(sorted(chosen[0]["class_info"]))
+        ctx["sess"]["pending_intent"], ctx["sess"]["collected"] = "book_ticket", {k: v for k, v in dict(col).items() if k != "class"}
+        return reply("clarification", t("train_no_class", lang, no=train_no, cls=slots["class"], have=have))
     if not chosen:
         done_asking(ctx)
         return reply("answer", t("search_none", lang, frm=station_label(db, sts[0]), to=station_label(db, sts[1]), date=fmt_date(slots["date"])))

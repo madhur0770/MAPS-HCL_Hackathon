@@ -95,3 +95,20 @@ def test_variation(client, msg, must, atype, mustnot):
         assert r["answer_type"] == atype, (r["answer_type"], r["answer"])
     for bad in mustnot:
         assert bad not in r["answer"], r["answer"]
+
+
+def test_class_not_on_train_and_name_and_age(client_factory=None):
+    """3AC asked on a train without it: say so, keep the booking going, accept 'Madhur and 24'."""
+    import os
+    from fastapi.testclient import TestClient
+    from core import db as dbm, seed
+    from app.main import make_app
+    d = dbm.connect(":memory:"); seed.seed(d); c = TestClient(make_app(d))
+    def say(m):
+        return c.post("/chat", json={"session_id": "77", "message": m}, headers={"X-Passenger-Id": "P001"}).json()
+    r = say("is there 3AC from chet to arunoday on 30-11-2026")
+    assert "has AC3" in r["answer"] and "AC2" in r["answer"]
+    assert "traveller" in say("book one 3AC ticket in this train")["answer"]
+    assert "does not have AC3" in say("Madhur and 24")["answer"]
+    r = say("AC2")
+    assert r["answer_type"] == "confirm_needed" and "Madhur (24)" in r["answer"]

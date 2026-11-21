@@ -115,6 +115,7 @@ def extract_travellers(db, text):
     """Pairs like 'Aarav 34, Neha 31'. Only the last words before a number count as the name."""
     skip = set(tt.station_index(db).keys()) | set(dates.MONTHS.keys()) | _BLACK
     out = []
+    text = re.sub(r"(?i)\b([A-Za-z]+)\s+(?:and|aur)\s+(\d{1,3})\b", r"\1 \2", text)      # "Madhur and 24"
     for chunk in re.split(r"[,;\n]|\band\b|\baur\b", text):
         m = re.search(r"([A-Za-z\u0900-\u097F]+(?: [A-Za-z\u0900-\u097F]+){0,2})[\s:\-(]+(?:aged?\s*)?(\d{1,3})\s*(?:yrs?|years?|saal|साल)?\)?\s*$", chunk.strip(), re.I)
         if not m:
