@@ -138,6 +138,10 @@ T = {
   "en": "I can only help with bookings in your own account. I can't view or change anyone else's booking.",
   "hi": "मैं केवल आपके अपने खाते की बुकिंग में मदद कर सकता हूँ। मैं किसी और की बुकिंग न देख सकता हूँ, न बदल सकता हूँ।",
   "hinglish": "Main sirf aapke apne account ki booking me madad kar sakta hoon. Main kisi aur ki booking na dekh sakta hoon, na badal sakta hoon."},
+ "multi_note": {
+  "en": "You named more than one booking. I prepared %(first)s first; after you confirm or cancel it, ask me again for %(rest)s.",
+  "hi": "आपने एक से अधिक बुकिंग बताई हैं। मैंने पहले %(first)s तैयार की है; इसे Confirm या Cancel करने के बाद %(rest)s के लिए दोबारा कहिए।",
+  "hinglish": "Aapne ek se zyada booking batayi hain. Maine pehle %(first)s tayyar ki hai; ise Confirm ya Cancel karne ke baad %(rest)s ke liye dobara kahiye."},
  "refuse_secret": {
   "en": "Please don't share passwords, keys or card numbers here. I never need them.", "hi": "कृपया यहाँ पासवर्ड, कुंजी या कार्ड नंबर साझा न करें। मुझे इनकी ज़रूरत नहीं।", "hinglish": "Kripya yahan password, key ya card number share na karein. Mujhe inki zaroorat nahi."},
  "refuse_privacy": {

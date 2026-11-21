@@ -5,7 +5,7 @@ import re
 from assistant import dates
 from tools import timetable as tt
 
-INTENTS = ["greet", "my_bookings", "booking_status", "refund_estimate", "cancel_request", "change_boarding", "book_ticket",
+INTENTS = ["privacy_ask", "greet", "my_bookings", "booking_status", "refund_estimate", "cancel_request", "change_boarding", "book_ticket",
            "deadline", "search_trains", "seats", "fare", "rules", "handoff_request", "dispute", "forbidden", "unknown"]
 
 R = lambda p: re.compile(p, re.I)  # noqa: E731
@@ -15,7 +15,7 @@ HOWMUCH = r"(how much|kitna|kitne|kitni|कितना|कितने|कि�
 
 P = {
  "forbidden": [
-   R(r"(waive|waiver|exception|bend the rules|make an exception|extra refund|full refund anyway|refund (more|above|extra)|more than (the )?(rule|policy)|zyada refund|poora refund de do|charge (hata|mat|waive))"),
+   R(r"(give me (a |the )?(full|complete|100%|poora) refund|\bwaive\b|exception|bend the rules|make an exception|extra refund|full refund anyway|refund (more|above|extra)|more than (the )?(rule|policy)|zyada refund|poora refund de do|charge (hata|mat|waive))"),
    R(r"(jump|skip|move (me|my|it)|push (me|my)|ahead of|upar kar|aage kar|confirm kar do|confirm my waitlist|waiting? ?list.*(confirm|upar|jump|ahead))"),
    R(r"(change|lower|reduce|decrease|kam kar|badal).{0,20}(the )?(fare|kiraya|price)|fare.{0,15}(change|kam|lower|reduce|discount)|discount de do"),
    R(r"(cancel|change|show|see|dikha|check).{0,30}(someone else|somebody|my (friend|brother|sister|colleague|neighbou?r|boss|wife|husband)|his|her|their|kisi aur|dost|bhai|behen|padosi)(.{0,15}(booking|ticket))?"),
@@ -50,7 +50,7 @@ def norm_class(s):
     return CLASS_MAP.get(re.sub(r"\s+", " ", s.lower()).strip())
 
 
-_BLACK = set("book booking ticket tickets train to from on for of the and aur names name travellers traveller passengers passenger "
+_BLACK = set("tomorrow today kal aaj parso day after monday tuesday wednesday thursday friday saturday sunday next on book booking ticket tickets train to from on for of the and aur names name travellers traveller passengers passenger "
              "age aged years year yrs old class sl 3a 2a 1a with please need want pune nagpur".split())
 
 
@@ -105,7 +105,9 @@ def understand(db, text: str, as_of, session_slots=None):
     refund_w = bool(re.search(REFUND, t, re.I))
     howmuch = bool(re.search(HOWMUCH, t, re.I))
 
-    if has("forbidden"):
+    if re.search(r"\b(phone|mobile|contact number|aadhaar|aadhar|passport|pan card|id number|home address)\b|फ़ोन|मोबाइल|आधार", t, re.I) and re.search(r"\b(number|passenger|his|her|their|[A-Z][a-z]+'s|of|ka|ki)\b|नंबर", t):
+        intent = "privacy_ask"
+    elif has("forbidden"):
         intent = "forbidden"
     elif has("dispute"):
         intent = "dispute"
@@ -113,13 +115,13 @@ def understand(db, text: str, as_of, session_slots=None):
         intent = "handoff_request"
     elif has("greet"):
         intent = "greet"
-    elif has("my_bookings"):
+    elif has("my_bookings") and not slots.get("booking_id"):
         intent = "my_bookings"
     elif has("deadline"):
         intent = "deadline"
     elif cancel_w and (refund_w or howmuch) and re.search(r"(how much|kitna|kitne|कितना|estimate|what (will|would)|if i|agar|अगर|what if|milega|मिलेगा|milenge)", t, re.I):
         intent = "refund_estimate"
-    elif cancel_w and not slots.get("booking_id") and re.search(r"\b(what('s| is| are)?|charges?|fees?|policy|rules?|why|when|how|kya hai|क्या|कितना|kitna)\b|क्या|कितना", t, re.I) and not re.search(r"\b(cancel|cancel karo|radd karo)\b (my|the|this|it|booking|ticket)", t, re.I):
+    elif cancel_w and not slots.get("booking_id") and re.search(r"\b(what('s| is| are)?|is there|are there|does|do you|any|charges?|fees?|policy|rules?|why|when|how|kya hai|क्या|कितना|kitna)\b|क्या|कितना", t, re.I) and not re.search(r"\b(cancel|cancel karo|radd karo)\b (my|the|this|it|booking|ticket)", t, re.I):
         intent = "rules"
     elif cancel_w and not re.search(r"\b(train|trains|gaadi)\b.*\b(cancelled|cancel hui|cancel ho gayi)\b", low):
         intent = "cancel_request"

@@ -155,7 +155,7 @@ def retrieve(index: Index, query: str, as_of_date: str, topic=None, min_bm25=2.5
         if h["doc"]["doc_id"] == winner["doc"]["doc_id"]:
             continue
         hn = numbers_in(h["text"])
-        if hn and wn and hn != wn and (h["doc"]["authority"] > winner["doc"]["authority"] or h["doc"]["doc_id"] in all_applicable_sup):
+        if hn and wn and (hn - wn) and (wn - hn) and (h["doc"]["authority"] > winner["doc"]["authority"] or h["doc"]["doc_id"] in all_applicable_sup):
             over.append({"doc_id": h["doc"]["doc_id"], "section": h["section"], "why": "older or lower authority and its figures differ"})
     return {"winner": winner, "hits": ranked, "overridden": over, "upcoming": upcoming, "abstain": False}
 

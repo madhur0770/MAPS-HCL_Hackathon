@@ -111,7 +111,8 @@ def handle(db, passenger_id, session_id, message, as_of_in=None, trace_id=None):
     fn = {"greet": do_greet, "my_bookings": do_my_bookings, "booking_status": do_status, "refund_estimate": do_refund_estimate,
           "cancel_request": do_cancel, "change_boarding": do_change_boarding, "book_ticket": do_book, "deadline": do_deadline,
           "search_trains": do_search, "seats": do_search, "fare": do_search, "rules": do_rules,
-          "handoff_request": do_handoff, "dispute": do_handoff, "forbidden": do_forbidden, "unknown": do_unknown}[intent]
+          "handoff_request": do_handoff, "dispute": do_handoff, "forbidden": do_forbidden, "unknown": do_unknown,
+          "privacy_ask": do_privacy}[intent]
     ctx = {"db": db, "pid": passenger_id, "lang": lang, "as_of": as_of, "text": text, "slots": slots, "sess": sess,
            "trace": trace_id, "intent": intent, "step": step, "session_id": session_id}
     try:
@@ -235,7 +236,13 @@ def do_greet(ctx):
 
 
 def do_unknown(ctx):
-    return reply("clarification", t("unknown", ctx["lang"]))
+    if re.search(r"(ticket|train|booking|book|seat|refund|cancel|station|fare|journey|travel|platform|berth|coach|pnr|gaadi|टिकट|ट्रेन|बुकिंग|रद्द|यात्रा)", ctx["text"], re.I):
+        return reply("clarification", t("unknown", ctx["lang"]))
+    return reply("not_found", t("help", ctx["lang"]))
+
+
+def do_privacy(ctx):
+    return reply("refusal", t("refuse_privacy", ctx["lang"]), sources=[{"doc_id": "RULE-12", "section": "Section 2"}])
 
 
 def do_my_bookings(ctx):
@@ -332,6 +339,8 @@ def do_cancel(ctx):
         db.execute("UPDATE actions SET status='cancelled', result='superseded' WHERE action_id=?", (a[0],))
     p = am.propose_cancel(db, pid, b["booking_id"], as_of, traveller_ids=chosen, trace_id=ctx["trace"])
     done_asking(ctx)
+    ids_in_msg = list(dict.fromkeys("BK" + m for m in re.findall(r"\bBK\s?-?(\d{3,6})\b", text, re.I)))
+    ctx["multi"] = [x for x in ids_in_msg if x != b["booking_id"]]
     ctx["sess"]["last_booking"] = b["booking_id"]
     if not p["ok"]:
         key = {"already_cancelled": "already_cancelled", "departed": "departed"}.get(p["reason"], "unknown")
@@ -340,6 +349,8 @@ def do_cancel(ctx):
     mins = cfg.get_int(db, "action_expiry_minutes", as_of, 10)
     ans = t("confirm_cancel", lang, bid=b["booking_id"], who=who_text(q), refund=inr(q["total_refund"]), paid=inr(q["total_paid"]),
             why=why_text(q, lang), mins=mins)
+    if ctx.get("multi"):
+        ans += " " + t("multi_note", lang, first=b["booking_id"], rest=", ".join(ctx["multi"]))
     src = dedupe(q["sources"] + [{"doc_id": "RULE-11", "section": "Section 1"}])
     return reply("confirm_needed", ans, sources=src, pending=p["pending_action"],
                  tools=[tool("quote_refund", q), tool("propose_cancel", p["pending_action"])])
@@ -347,6 +358,10 @@ def do_cancel(ctx):
 
 def do_change_boarding(ctx):
     db, pid, lang, as_of, slots = ctx["db"], ctx["pid"], ctx["lang"], ctx["as_of"], ctx["slots"]
+    if not slots.get("booking_id") and not last_ref(ctx) and re.search(
+            r"\b(can i|could i|may i|is it possible|how|what|when|until|allowed|kya|kaise|kab|sakta|sakti)\b|क्या|कैसे|कब", ctx["text"], re.I) and not slots.get("stations"):
+        slots["topic"] = "boarding_change"           # a general question, not a request to change a booking
+        return do_rules(ctx)
     b, prob = pick_booking(ctx)
     if prob:
         return prob
