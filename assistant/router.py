@@ -9,14 +9,14 @@ import time
 import uuid
 
 from actions import manager as am
-from assistant import correctors, dates, guardrails, handoff, i18n, language, llm, understand as und
+from assistant import correctors, dates, guardrails, handoff, i18n, language, llm, typos, understand as und
 from assistant.i18n import t
 from core import clock, config
 from core.text import fmt_date, fmt_dt, fmt_hours, inr
 from rag import retrieval, store
 from tools import bookings as bk, deadlines, fares, refund, seats, settings as cfg, timetable as tt
 
-MAX_FOLLOWUPS = 2
+MAX_FOLLOWUPS = 3
 
 
 # ------------------------------------------------------------------ session memory
@@ -73,6 +73,12 @@ def handle(db, passenger_id, session_id, message, as_of_in=None, trace_id=None):
         step("route", decision="asks_about_another_passenger")
         r = reply("refusal", t("own_only", lang), sources=[{"doc_id": "RUL-006", "section": "3.6"}])
         return finish(db, r, audit, trace_id, passenger_id, session_id, lang, sess, as_of, t0)
+    if text.isascii():
+        prot = {w for a in tt.station_index(db) for w in a.split()}
+        fixed = typos.fix(text, prot)
+        if fixed != text:
+            step("typo_fix", before=text[:80], after=fixed[:80])
+            text = fixed
     u = und.understand(db, text, as_of, sess)
     intent, slots = u["intent"], u["slots"]
     step("understand", intent=intent, slots={k: v for k, v in slots.items() if k != "topic"})
@@ -146,7 +152,7 @@ def handle(db, passenger_id, session_id, message, as_of_in=None, trace_id=None):
     ctx = {"db": db, "pid": passenger_id, "lang": lang, "as_of": as_of, "text": text, "slots": slots, "sess": sess,
            "trace": trace_id, "intent": intent, "step": step, "session_id": session_id}
     try:
-        r = followup(ctx) if intent in ("unknown", "rules", "greet", "search_trains", "seats", "fare", "my_bookings") else None
+        r = followup(ctx) if intent in ("unknown", "rules", "greet", "search_trains", "seats", "fare", "my_bookings", "booking_status", "book_ticket") else None
         if r is None:
             r = fn(ctx)
     except Exception as e:                                   # never crash the conversation
@@ -232,7 +238,7 @@ def route_ask(ctx, intent, missing_keys, collected):
         ctx["sess"].pop("pending_intent", None); ctx["sess"].pop("collected", None); ctx["sess"]["asked"] = 0
         return reply("handed_to_human", t("gave_up", lang, missing=names) + " " + handoff_text(lang, h), handed=True,
                      tools=[tool("create_handoff", h)])
-    parts = [t(k, lang) for k in missing_keys]
+    parts = [t(k, lang) for k in missing_keys[:3]]          # a few quick questions at a time, not a long form
     names = parts[0] if len(parts) == 1 else ", ".join(parts[:-1]) + {"en": " and ", "hi": " और ", "hinglish": " aur "}.get(lang, " and ") + parts[-1]
     sess["pending_intent"], sess["collected"], sess["asked"] = intent, collected, asked + 1
     return reply("clarification", t("ask_search", lang, missing=names), extra={})
@@ -266,6 +272,29 @@ def pick_booking(ctx, need_active=True):
         mine = bk.list_bookings(db, pid)
         if not mine:
             return None, reply("not_found", t("no_bookings", lang), tools=[tool("list_bookings", [])])
+        # narrow down with what the passenger said: tomorrow / 22 Nov, 2AC, the train, the route; one match = that booking
+        op = re.search(r"\b(train|service|gaadi)\b.{0,20}\b(was|got|is|has been|hua|ho gayi|hui)?\s*(cancel\w*|radd)\b", ctx["text"], re.I) and not re.search(r"\b(i|want to|wanna|please|pls)\b.{0,12}\bcancel", ctx["text"], re.I)
+        if op and any(b["status"] == "OPERATOR_CANCELLED" for b in mine):
+            cand = [b for b in mine if b["status"] == "OPERATOR_CANCELLED"]       # "my train got cancelled": the booking the operator cancelled
+        else:
+            cand = [b for b in mine if b["status"] not in ("CANCELLED", "OPERATOR_CANCELLED")] if need_active else mine
+        cand = cand or mine
+        for key, fn in (("date", lambda b, v: b["journey_date"] == v), ("class", lambda b, v: b["class"] == v), ("train_no", lambda b, v: b["train_no"] == v)):
+            v = slots.get(key)
+            if v and not (key == "train_no" and False):
+                f = [b for b in cand if fn(b, v)]
+                if f:
+                    cand = f
+        for key, field in (("from_st", "from_code"), ("to_st", "to_code")):
+            if slots.get(key):
+                f = [b for b in cand if b[field] == slots[key]]
+                if f:
+                    cand = f
+        if len(cand) == 1:
+            bid = cand[0]["booking_id"]
+        elif len(cand) < len(mine):
+            mine = cand
+    if not bid:
         lst = "; ".join("%s (%s %s→%s, %s)" % (b["booking_id"], b["train_no"], b["from_code"], b["to_code"], fmt_date(b["journey_date"])) for b in mine[:8])
         r = route_ask_booking(ctx, lst)
         return None, r
@@ -313,6 +342,8 @@ def ambiguous_reply(ctx, amb):
 
 FILLER = {"need", "want", "wanna", "like", "looking", "look", "find", "show", "search", "give", "tell", "help", "can", "could", "would", "should", "will", "get", "got",
           "have", "has", "for", "with", "from", "into", "onto", "about", "just", "only", "also", "some", "reservation", "journey", "trip", "seat", "seats", "berth",
+          "refund", "status", "cancel", "cancellation", "booking", "bookings", "confirmed", "confirm", "charge", "charges", "fare", "price", "seat", "available", "availability",
+          "sleeper", "chair", "executive", "premium", "class", "tier", "second", "third", "first", "rules", "rule", "policy", "pet", "pets", "dog", "cat", "luggage", "baggage",
           "what", "how", "where", "when", "why", "who", "which", "does", "late", "delay", "delayed", "lost", "wallet", "bag", "luggage", "hai", "chahiye", "chahie", "karna", "karni", "karo", "jana", "jaana", "mujhe", "hamein", "ek", "bhai", "yaar", "tak", "se", "ko", "ka", "ki", "ke"}
 
 
@@ -338,6 +369,10 @@ def unknown_place_reply(ctx):
         if first in STOP_PLACE or first in dates.MONTHS or first in FILLER:
             continue
         phrase = " ".join(words)
+        if re.search(r"\bfor\s+%s\s+\d{1,3}\b(?!\s*(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec|/|-))" % re.escape(words[0]), text, re.I):
+            continue                      # "for Neha 31": a traveller, not a place
+        if und.norm_class(phrase) or und.norm_class(words[0]):
+            continue
         if tt.resolve_station(db, phrase) or tt.ambiguous_in(db, phrase):
             continue
         sug = tt.suggest(db, words[0]) or (tt.suggest(db, phrase) if len(words) > 1 else [])
@@ -389,8 +424,48 @@ def followup(ctx):
         return reply("answer", t("thanks", lang))
     if re.match(r"^\s*(bye|goodbye|good bye|see you|alvida|ok bye|tata)\b", low):
         return reply("answer", t("bye", lang))
+    if re.match(r"^\s*(help|menu|options|start|madad)\s*[?!.]*\s*$", low):
+        return reply("answer", t("help", lang))
+    if re.match(r"^\s*(i |we )?(want|need|wanna|would like) to (change|modify|edit|update) (something|anything|my (booking|ticket)|it)\s*[?.!]*\s*$", low):
+        return do_unsupported_change(ctx)
     if re.search(r"\b(what can you do|what do you do|how can you help|can you help me|help me|what can i ask|kya kar sakte|kya madad)\b", low) and not slots.get("booking_id"):
         return reply("answer", t("help", lang))
+    db = ctx["db"]
+    if re.search(r"\b(hotel|hotels|flight|flights|cab|taxi|restaurant|movie|weather|visa|cricket|stock|recipe|pizza|resort|joke|poem|song|bus ticket|shopping)\b", low) and not slots.get("booking_id"):
+        return reply("not_found", t("out_of_scope", lang))
+    money_w = re.search(r"refund|cancel|charge|fee|rule|polic|penalt|tatkal|wapas|paisa", low)
+    free = not sess.get("pending_intent")          # not in the middle of a question we asked
+    # an unknown 5-digit train number such as 12123
+    m5 = re.search(r"\b(\d{5})\b", text)
+    if free and m5 and not slots.get("train_no") and not slots.get("booking_id") and re.search(r"train|seat|fare|ticket|berth|gaadi|available|price", low) and not re.search(r"\bpnr\b", low):
+        return reply("clarification", t("unknown_train", lang, no=m5.group(1)))
+    # a train named with a seat / fare question, or just "UJ1006 25 nov": search that train over its whole route
+    if free and slots.get("train_no") and not slots.get("booking_id") and not money_w and (
+            re.search(r"\b(seat|seats|available|availability|vacant|berth|fare|price|cost|how much|kitna|kitne|left|khaali|rac|waiting)\b|सीट|किराया", low)
+            or (slots.get("date") and len(low.split()) <= 6 and not re.search(r"status|pnr|book\b", low))):
+        return do_search(dict(ctx, intent="search_trains"))
+    # a personal refund question: "how much will I get back if I cancel my 2AC ticket", "kal ki train cancel karni hai, kitna paisa wapas milega"
+    if (free and not slots.get("booking_id") and re.search(r"(refund|get back|money back|wapas|paisa|paise|पैसे|वापस|how much (will|would|do|can|shall) (i|we) (get|receive))", low)
+            and re.search(r"\b(my|mine|mera|meri|mere|tomorrow|tomorrows|kal|aaj|today|ticket|booking)\b|मेरा|मेरी|कल|आज", low)
+            and not re.search(r"polic|rule|how long|when will|kab tak|process|timeline|days|working|business", low)
+            ):
+        return do_refund_estimate(dict(ctx, intent="refund_estimate"))
+    # "is my ticket confirmed", "mera ticket confirm hai kya"
+    if free and not slots.get("booking_id") and re.search(r"\b(is|are|mera|meri|my)\b.{0,25}\b(ticket|booking|seat|tickets)\b.{0,25}\b(confirm\w*|cnf|rac|wl|waitlist\w*|clear\w*)\b|\b(ticket|booking)\b.{0,20}\bconfirm (hai|hua|ho)", low) and not money_w:
+        return do_status(dict(ctx, intent="booking_status"))
+    # bare "refund?" : which booking?  bare "UJ1006?" : search that train
+    if free and re.match(r"^\s*(refund|refunds|my refund)\s*[?.!]*\s*$", low):
+        slots["_personal"] = True
+        return do_refund_estimate(dict(ctx, intent="refund_estimate"))
+    if free and slots.get("train_no") and len(low.split()) <= 3 and not slots.get("booking_id"):
+        return do_search(dict(ctx, intent="search_trains"))
+    # a bare wish: "ticket", "i need a ticket", "i want to travel"
+    if free and (re.search(r"^\s*(i |we )?(need|want|wanna|would like|looking for|chahiye)?\s*(a |one |an |to )?(ticket|tickets|travel|journey|trip|train ticket|go somewhere)\s*[.!?]*\s*$", low)
+            or re.search(r"^\s*(i |we )?(need|want|wanna|would like) to (travel|go|take a train|book)\s*[.!?]*\s*$", low)):
+        return do_book(dict(ctx, intent="book_ticket"))
+    # a bare station name: ask whether it is the start or the end
+    if tt.find_stations_in(db, text) and len(low.split()) <= 3 and not slots.get("booking_id") and not slots.get("train_no") and not sess.get("pending_intent"):
+        return do_search(dict(ctx, intent="search_trains"))
     ls, lr = sess.get("last_search"), sess.get("last_results")
     if ls and lr and short:
         db = ctx["db"]
@@ -458,8 +533,8 @@ def followup(ctx):
 def do_unknown(ctx):
     """Not a known request type. If it looks like a question about the rules, try the documents; otherwise say what we can do."""
     text = ctx["text"]
-    if re.search(r"\b(hotel|hotels|flight|flights|cab|taxi|restaurant|bus|movie|weather|visa|cricket|stock|recipe|pizza|resort)\b", text, re.I):
-        return reply("not_found", t("help", ctx["lang"]))
+    if re.search(r"\b(hotel|hotels|flight|flights|cab|taxi|restaurant|bus|movie|weather|visa|cricket|stock|recipe|pizza|resort|joke|poem|song|news|match|score|shopping|order)\b", text, re.I):
+        return reply("not_found", t("out_of_scope", ctx["lang"]))
     if (ctx["sess"].get("last_search") and (ctx["slots"].get("date") or ctx["slots"].get("class") or ctx["slots"].get("train_no"))
             and len(text.split()) <= 8 and not re.search(r"refund|cancel|charge|fee|rule|policy|penalt", text, re.I)):
         return do_search(ctx)                  # short follow-up to the last search: "what about 1 Dec", "AC2 only", "UJ1024 AC3?"
@@ -471,7 +546,7 @@ def do_unknown(ctx):
         r = do_rules(ctx)
         if r["answer_type"] != "not_found":
             return r
-    if re.search(r"(ticket|train|book|travel|go|reach|journey|seat|gaadi|jaana|जाना|टिकट|ट्रेन)", text, re.I):
+    if re.search(r"(ticket|train|book|travel|go|reach|journey|seat|gaadi|jaana|जाना|टिकट|ट्रेन)|\bfrom\b.+\bto\b", text, re.I):
         amb = tt.ambiguous_in(ctx["db"], text)
         if amb:
             return ambiguous_reply(ctx, amb)
@@ -484,9 +559,16 @@ def do_unknown(ctx):
             return r
         if ctx["slots"].get("stations"):          # one real station (possibly typed with a typo) and a wish to travel: ask for the rest
             return do_search(ctx)
+    sl = ctx["slots"]
+    if len(text.split()) >= 1 and not sl.get("booking_id") and not ((sl.get("class") or sl.get("date") or sl.get("travellers")) and len(text.split()) <= 3):
+        r = do_rules(ctx)                 # last try: any short topic word ("id proof", "konsa ID chalega") may be in the documents
+        if r["answer_type"] != "not_found":
+            return r
     if re.search(r"(ticket|train|booking|book|seat|refund|cancel|station|fare|journey|travel|platform|berth|coach|pnr|gaadi|टिकट|ट्रेन|बुकिंग|रद्द|यात्रा)", text, re.I):
         return reply("clarification", t("unknown", ctx["lang"]))
-    return reply("not_found", t("help", ctx["lang"]))
+    if sl.get("class") or sl.get("date") or sl.get("travellers") or sl.get("stations"):
+        return reply("clarification", t("unknown", ctx["lang"]))              # we understood a piece but not the request: say what we can do
+    return reply("not_found", t("out_of_scope", ctx["lang"]))
 
 
 def do_privacy(ctx):
@@ -548,7 +630,10 @@ def why_text(q, lang):
 
 def do_refund_estimate(ctx):
     db, pid, lang, as_of = ctx["db"], ctx["pid"], ctx["lang"], ctx["as_of"]
-    if not ctx["slots"].get("booking_id") and not last_ref(ctx):
+    sl = ctx["slots"]
+    personal = (sl.get("_personal") or sl.get("class") or sl.get("date") or sl.get("train_no") or sl.get("from_st") or sl.get("to_st")
+                or re.search(r"\b(my|mine|mera|meri|mere|tomorrow|tomorrows|kal|aaj|today|ticket|booking)\b|मेरा|मेरी|कल|आज", ctx["text"], re.I))
+    if not sl.get("booking_id") and not last_ref(ctx) and not (personal and not re.search(r"polic|rule|how long|process|timeline", ctx["text"], re.I)):
         ctx["slots"]["topic"] = "refund"
         r = do_rules(ctx)
         return r
@@ -576,6 +661,14 @@ def who_text(q):
 
 def do_cancel(ctx):
     db, pid, lang, as_of, text = ctx["db"], ctx["pid"], ctx["lang"], ctx["as_of"], ctx["text"]
+    ids = list(dict.fromkeys(re.findall(r"\bBKG\d{3,8}\b", text, re.I)))
+    if re.search(r"\b(all|every|sabhi|saari|saare|everything)\b.{0,15}\b(bookings?|tickets?)\b|सभी बुकिंग", text, re.I) and not ids:
+        mine = [b for b in bk.list_bookings(db, pid) if b["status"] not in ("CANCELLED", "OPERATOR_CANCELLED")]
+        lst = "; ".join("%s (%s %s→%s, %s)" % (b["booking_id"], b["train_no"], b["from_code"], b["to_code"], fmt_date(b["journey_date"])) for b in mine)
+        return reply("clarification", t("multi_cancel_all", lang, lst=lst))
+    multi = len(ids) > 1
+    if multi:
+        ctx["slots"]["booking_id"] = ids[0].upper()
     b, prob = pick_booking(ctx)
     if prob:
         return prob
@@ -617,6 +710,7 @@ def do_change_boarding(ctx):
             r"\b(can i|could i|may i|is it possible|how|what|when|until|allowed|kya|kaise|kab|sakta|sakti)\b|क्या|कैसे|कब", ctx["text"], re.I) and not slots.get("stations"):
         slots["topic"] = "boarding_change"           # a general question, not a request to change a booking
         return do_rules(ctx)
+    slots.pop("from_st", None); slots.pop("to_st", None)         # the station named is the NEW boarding point, not a filter for finding the booking
     b, prob = pick_booking(ctx)
     if prob:
         return prob
@@ -645,6 +739,30 @@ def do_change_boarding(ctx):
     return reply("confirm_needed", ans, sources=src, pending=p["pending_action"], tools=[tool("propose_change_boarding", p)])
 
 
+def time_window(text):
+    """'after 6 pm', 'before 10 am', 'morning' -> (from_minute, to_minute) of the day, else None."""
+    low = text.lower()
+    def mins(h, m, ap):
+        h, m = int(h), int(m or 0)
+        if ap == "pm" and h < 12:
+            h += 12
+        if ap == "am" and h == 12:
+            h = 0
+        return h * 60 + m
+    m = re.search(r"\b(after|later than|post|baad)\s+(\d{1,2})(?::(\d\d))?\s*(am|pm)?\b", low)
+    if m:
+        ap = m.group(4) or ("pm" if 1 <= int(m.group(2)) <= 11 and "pm" in low else None)
+        return mins(m.group(2), m.group(3), ap), 24 * 60
+    m = re.search(r"\b(before|earlier than|by|pehle)\s+(\d{1,2})(?::(\d\d))?\s*(am|pm)?\b", low)
+    if m and not re.search(r"\b(hours?|ghante)\b", low[m.end():m.end() + 8]):
+        return 0, mins(m.group(2), m.group(3), m.group(4))
+    for word, lo, hi in (("morning", 300, 720), ("subah", 300, 720), ("afternoon", 720, 1020), ("dopahar", 720, 1020), ("evening", 1020, 1260), ("shaam", 1020, 1260),
+                         ("night", 1260, 1440), ("raat", 1260, 1440)):
+        if re.search(r"\b%s\b" % word, low):
+            return lo, hi
+    return None
+
+
 def search_for(ctx, frm, to, date_iso):
     db = ctx["db"]
     res = tt.search_trains(db, frm, to, date_iso)
@@ -661,7 +779,7 @@ def search_for(ctx, frm, to, date_iso):
 
 def seat_text(av, lang):
     if not av:
-        return "n/a"
+        return t("no_seat_data", lang)
     if av["state"] == "AVAILABLE":
         return "%d %s" % (av["available"], {"en": "available", "hi": "उपलब्ध", "hinglish": "available"}[lang])
     if av["state"] == "RAC":
@@ -675,6 +793,17 @@ def do_search(ctx):
     db, lang, slots, as_of = ctx["db"], ctx["lang"], ctx["slots"], ctx["as_of"]
     sts = slots.get("stations", [])
     ls = ctx["sess"].get("last_search")
+    if slots.get("train_no") and len(sts) < 2 and not slots.get("from_st") and not slots.get("to_st"):
+        # "is there a 3AC seat on UJ1006 on 25 Nov": no stations named, so use the train's whole route (or the route just searched)
+        stops = [r[0] for r in db.execute("SELECT station_code FROM train_stops WHERE train_no=? ORDER BY stop_order", (slots["train_no"],))]
+        if ls and ls["frm"] in stops and ls["to"] in stops and stops.index(ls["frm"]) < stops.index(ls["to"]):
+            sts = [ls["frm"], ls["to"]]
+            slots.setdefault("date", ls["date"])
+        elif len(stops) >= 2:
+            sts = [stops[0], stops[-1]]
+        if len(sts) == 2:
+            slots["stations"] = sts
+            ctx["step"]("context", note="route of %s: %s->%s" % (slots["train_no"], sts[0], sts[1]))
     if (not sts and not slots.get("from_st") and not slots.get("to_st") and ls and not ctx["sess"].get("collected")
             and (slots.get("train_no") or slots.get("class") or slots.get("date") or not tt.ambiguous_in(db, ctx.get("text", "")))
             and not tt.find_stations_in(db, ctx.get("text", ""))):
@@ -727,6 +856,14 @@ def do_search(ctx):
     res = search_for(ctx, frm, to, slots["date"])
     if slots.get("train_no"):
         res = [r for r in res if r["train_no"] == slots["train_no"]]
+    window_note = ""
+    tw = time_window(ctx.get("text", ""))
+    if tw and res:
+        inside = [r for r in res if tw[0] <= r["departs"].hour * 60 + r["departs"].minute < tw[1]]
+        if inside:
+            res = inside
+        else:
+            window_note = t("time_none", lang) + "\n"
     head_kw = dict(frm=station_label(db, frm), to=station_label(db, to), date=fmt_date(slots["date"]))
     if not res:
         msg = t("search_none", lang, **head_kw)
@@ -737,7 +874,7 @@ def do_search(ctx):
             if not direct_any:
                 msg += " " + t("search_none_hint", lang, frm=head_kw["frm"], to=head_kw["to"], a=", ".join(a), b=", ".join(b))
         return reply("answer", msg, tools=[tool("search_trains", [], frm=frm, to=to, date=slots["date"])])
-    lines = [t("search_head", lang, **head_kw)]
+    lines = [window_note + t("search_head", lang, **head_kw)]
     for r in res[:6]:
         cls = []
         for c, info in r["class_info"].items():
@@ -763,6 +900,13 @@ def do_book(ctx):
     db, pid, lang, slots, as_of = ctx["db"], ctx["pid"], ctx["lang"], ctx["slots"], ctx["as_of"]
     sts = slots.get("stations", [])
     ls = ctx["sess"].get("last_search")
+    if len(sts) < 2 and slots.get("train_no") and not slots.get("from_st") and not slots.get("to_st"):
+        stops = [r[0] for r in db.execute("SELECT station_code FROM train_stops WHERE train_no=? ORDER BY stop_order", (slots["train_no"],))]
+        if ls and ls["frm"] in stops and ls["to"] in stops and stops.index(ls["frm"]) < stops.index(ls["to"]):
+            sts = [ls["frm"], ls["to"]]
+            slots.setdefault("date", ls["date"])
+        elif len(stops) >= 2:
+            sts = [stops[0], stops[-1]]
     if len(sts) < 2 and ls:
         sts = [ls["frm"], ls["to"]]
         slots.setdefault("date", ls["date"])

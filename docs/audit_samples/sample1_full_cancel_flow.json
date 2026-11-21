@@ -75,7 +75,7 @@
       ],
       "pending_action": null,
       "handed_to_human": false,
-      "trace_id": "TR-93031C93337A"
+      "trace_id": "TR-C934234945BB"
     }
   },
   {
@@ -155,7 +155,7 @@
           "tool": "propose_cancel",
           "input": {},
           "output": {
-            "action_id": "ACT-CF133D8B",
+            "action_id": "ACT-107FE2AA",
             "type": "cancel_booking",
             "booking_id": "BKG0001",
             "expires_at": "2026-11-21T10:10:00+05:30"
@@ -163,13 +163,13 @@
         }
       ],
       "pending_action": {
-        "action_id": "ACT-CF133D8B",
+        "action_id": "ACT-107FE2AA",
         "type": "cancel_booking",
         "booking_id": "BKG0001",
         "expires_at": "2026-11-21T10:10:00+05:30"
       },
       "handed_to_human": false,
-      "trace_id": "TR-039ABDCC54B6"
+      "trace_id": "TR-EC79F6339C95"
     }
   },
   {
@@ -211,7 +211,7 @@
   {
     "step": "4 confirm (separate call) -> change + verify",
     "reply": {
-      "trace_id": "TR-3157FF604451",
+      "trace_id": "TR-E97CA09101F9",
       "answer_type": "action_done",
       "answer": "Done. Booking BKG0001: 1 traveller(s) cancelled. Refund ₹2,802. Booking status is now CANCELLED. (I re-read the booking to check.)",
       "sources": [
@@ -226,7 +226,7 @@
           "output": {
             "ok": true,
             "status": "done",
-            "action_id": "ACT-CF133D8B",
+            "action_id": "ACT-107FE2AA",
             "action_type": "cancel_booking",
             "result": {
               "booking_id": "BKG0001",
@@ -285,7 +285,7 @@
   {
     "step": "6 audit trace of the preview",
     "trace": {
-      "trace_id": "TR-039ABDCC54B6",
+      "trace_id": "TR-EC79F6339C95",
       "ts": "2026-11-21T10:00:00+05:30",
       "passenger_id": "P001",
       "session_id": "demo1",
@@ -378,7 +378,7 @@
           "tool": "propose_cancel",
           "input": {},
           "output": {
-            "action_id": "ACT-CF133D8B",
+            "action_id": "ACT-107FE2AA",
             "type": "cancel_booking",
             "booking_id": "BKG0001",
             "expires_at": "2026-11-21T10:10:00+05:30"
@@ -386,29 +386,29 @@
         }
       ],
       "pending_action": {
-        "action_id": "ACT-CF133D8B",
+        "action_id": "ACT-107FE2AA",
         "type": "cancel_booking",
         "booking_id": "BKG0001",
         "expires_at": "2026-11-21T10:10:00+05:30"
       },
       "handed_to_human": false,
-      "latency_ms": 6
+      "latency_ms": 4
     }
   },
   {
     "step": "7 audit trace of the confirm",
     "trace": {
-      "trace_id": "TR-3157FF604451",
+      "trace_id": "TR-E97CA09101F9",
       "ts": "2026-11-21T10:00:00+05:30",
       "passenger_id": "P001",
       "session_id": "",
-      "input": "[confirm ACT-CF133D8B]",
+      "input": "[confirm ACT-107FE2AA]",
       "steps": [
         {
           "step": "confirm",
-          "action_id": "ACT-CF133D8B",
+          "action_id": "ACT-107FE2AA",
           "result": {
-            "trace_id": "TR-3157FF604451",
+            "trace_id": "TR-E97CA09101F9",
             "answer_type": "action_done",
             "answer": "Done. Booking BKG0001: 1 traveller(s) cancelled. Refund ₹2,802. Booking status is now CANCELLED. (I re-read the booking to check.)",
             "sources": [
@@ -423,7 +423,7 @@
                 "output": {
                   "ok": true,
                   "status": "done",
-                  "action_id": "ACT-CF133D8B",
+                  "action_id": "ACT-107FE2AA",
                   "action_type": "cancel_booking",
                   "result": {
                     "booking_id": "BKG0001",

@@ -26,7 +26,7 @@ P = {
    R(r"(refund (dispute|not (received|credited)|didn.?t (come|arrive))|not got my refund|wrong refund|system error|double charged|charged twice|complain|complaint|शिकायत|shikayat|galat refund|refund nahi aaya|refund nahi mila)"),
    R(r"(disab|handicap|divyang|press (card|quota)|defence|defense|army|veteran|concession (for|with|needs?)|medical concession|concession.{0,25}(proof|certificate)|(proof|certificate).{0,25}concession)"),
  ],
- "handoff_request": [R(r"(human|agent|real person|desk|supervisor|manager|insaan|kisi se baat|बात करनी|इंसान|मानव|speak to someone|talk to someone)")],
+ "handoff_request": [R(r"(human|agent|real person|desk|supervisor|manager|insaan|kisi se baat|बात करनी|इंसान|मानव|speak to someone|talk to someone|customer (care|service|support)|helpline|help line|representative|call centre|call center|talk to (a |an )?(person|staff|officer)|baat karni hai)")],
  "my_bookings": [R(r"(my bookings|all (my )?bookings|list (my )?bookings|show (me )?(my )?bookings|meri (saari )?bookings?|मेरी (सभी )?बुकिंग|booking list|my tickets|meri tickets?)")],
  "greet": [R(r"^\s*(hi|hello|hey|namaste|namaskar|hii+|नमस्ते|नमस्कार|good (morning|evening|afternoon))\b[\s!.]*$")],
  "deadline": [R(r"(last (date|time|day)|until when|till when|by when|deadline|cut-?off|kab tak|कब तक|antim|अंतिम|आखिरी|आख़िरी|समय.?सीमा|akhri|akhiri|samay seema|how late|how long before|time limit)")],
@@ -40,13 +40,14 @@ P = {
  "rules": [R(r"(kitne (ghante|din|minute)|hoti hai|hota hai|hote hain|kya hai|kaise|kya main|kya mai|kab (khul|band)|\bkhulti|\bband hoti|\bkitna|rule|policy|allowed|permitted|can i (carry|take|bring)|how many|charge|charges|tatkal|तत्काल|luggage|saaman|सामान|pet|child|children|bachche|senior|concession|chart|rac|waiting|clerkage|waiver|circular|faq|notice|कितना|नियम|rules?)")],
 }
 
-CLASS_RE = R(r"\b(fp|first premium|ac ?2( tier)?|2a|2ac|2 tier|ac ?3( tier)?|3a|3ac|3 tier|ec|executive chair|sl|sleeper|slpr|cc|city chair)\b")
+CLASS_RE = R(r"\b(fp|first premium|ac ?2( tier)?|2 ?a|2 ?ac|2 tier|second ac|ac ?3( tier)?|3 ?a|3 ?ac|3 tier|third ac|ec|executive chair|executive|sl|sleeper( class)?|slpr|cc|city chair|chair car)\b")
 BK_RE = R(r"\b([A-Z]{2,4})\s?-?\s?(\d{3,8})\b")      # any booking-reference style: BKG0001, UR-48213 ... (checked against the data below)
 TRAIN_RE = re.compile(r"\b(UJ\s?-?\d{4})\b", re.I)
 ACT_RE = re.compile(r"\bACT-[A-Z0-9]{8}\b")
 CLASS_MAP = {"fp": "FP", "first premium": "FP", "ac2": "AC2", "ac 2": "AC2", "ac2 tier": "AC2", "ac 2 tier": "AC2", "2a": "AC2", "2ac": "AC2", "2 tier": "AC2",
              "ac3": "AC3", "ac 3": "AC3", "ac3 tier": "AC3", "ac 3 tier": "AC3", "3a": "AC3", "3ac": "AC3", "3 tier": "AC3",
-             "ec": "EC", "executive chair": "EC", "sl": "SL", "sleeper": "SL", "slpr": "SL", "cc": "CC", "city chair": "CC"}
+             "ec": "EC", "executive chair": "EC", "executive": "EC", "sl": "SL", "sleeper": "SL", "sleeper class": "SL", "slpr": "SL", "cc": "CC", "city chair": "CC", "chair car": "CC",
+             "2 a": "AC2", "2 ac": "AC2", "second ac": "AC2", "3 a": "AC3", "3 ac": "AC3", "third ac": "AC3"}
 
 
 _cache = {}
@@ -90,7 +91,7 @@ def find_booking_ref(db, text, train_no=None):
     first = None
     for m in BK_RE.finditer(text):
         pre, num = m.group(1).upper(), m.group(2)
-        if pre == "ACT" or (pre + num) == (train_no or "") or pre in ("JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUNE", "JUL", "AUG", "SEP", "SEPT", "OCT", "NOV", "DEC"):
+        if pre == "ACT" or (pre + num) == (train_no or "") or pre in ("ON", "IN", "AT", "TO", "OF", "NO", "BY", "IS", "IT", "MY", "ME", "UP", "AS", "OR", "AN", "IF", "SO", "DO", "GO", "WE", "PM", "AM", "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUNE", "JUL", "AUG", "SEP", "SEPT", "OCT", "NOV", "DEC"):
             continue
         if any(pre + num == tn or pre + "-" + num == tn for tn in k["trains"]):
             continue
@@ -185,7 +186,7 @@ def understand(db, text: str, as_of, session_slots=None):
         intent = "handoff_request"
     elif has("greet"):
         intent = "greet"
-    elif has("my_bookings") and not slots.get("booking_id"):
+    elif has("my_bookings") and not slots.get("booking_id") and not cancel_w:
         intent = "my_bookings"
     elif has("deadline"):
         intent = "deadline"

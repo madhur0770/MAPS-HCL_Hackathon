@@ -97,6 +97,10 @@ class Index:
 
     def search(self, query: str, k=8):
         q = [t for t in synonyms.expand(tokenize(query)) if t not in STOP]
+        if not any(not t.isdigit() for t in q):
+            return [], 0.0
+        if any(not t.isdigit() for t in q):
+            q = [t for t in q if not t.isdigit() or len(q) > 6]       # a number alone ("2+2") must not find a rule
         qtext = " ".join(q)
         qg = ngrams(qtext)
         b = [(self.bm25(q, it), i) for i, it in enumerate(self.items)]
@@ -151,19 +155,55 @@ def retrieve(index: Index, query: str, as_of_date: str, topic=None, min_bm25=2.5
     best_topic = hits[0]["doc"]["topic"]
     same = [h for h in hits if h["doc"]["topic"] == best_topic]
     in_force_ids = {h["doc"]["doc_id"] for h in same}
-    # a rule is superseded when an applicable circular names it AND is on the same topic
-    all_applicable_sup = {d["supersedes"] for d in (i["doc"] for i in index.items)
-                          if d["supersedes"] and d["topic"] == best_topic and applicable(d, as_of_date)}
+    # a rule SECTION is superseded when an applicable circular on the same topic amends that section
+    # (the circular says "Original rule: RUL-005 / Original section: 3.3"); a circular that names no section replaces the whole rule
+    amended, whole = set(), set()
+    for d in (i["doc"] for i in index.items):
+        pass
+    seen = set()
+    for it in index.items:
+        d = it["doc"]
+        if d["doc_id"] in seen or d["doc_type"] != "circular" or not d["supersedes"] or d["topic"] != best_topic or not applicable(d, as_of_date):
+            continue
+        seen.add(d["doc_id"])
+        full = " ".join(x["text"] for x in index.items if x["doc"]["doc_id"] == d["doc_id"])
+        secs = re.findall(r"Original section:\s*([\d.]+)", full)
+        rel = re.findall(r"Related repeated provision:\s*([A-Z]+-\d+)\s*Sections?\s*([\d.]+)", full)
+        if secs:
+            amended.update((d["supersedes"], x) for x in secs)
+            amended.update(rel)
+        else:
+            whole.add(d["supersedes"])
+    all_applicable_sup = whole
 
     def key(h):
         d = h["doc"]
-        superseded = d["doc_id"] in all_applicable_sup
+        sec = h["section"].replace("Section ", "")
+        superseded = d["doc_id"] in all_applicable_sup or (d["doc_id"], sec) in amended
         # lower tuple sorts first: not-superseded, lower authority number, newer date, higher score
         return (1 if superseded else 0, d["authority"], _neg_date(d["effective_from"]), -h["score"])
 
-    ranked = sorted(same, key=key)
+    # authority (rule > circular > FAQ) decides only between sections that are about equally relevant to the question
+    top = max(same, key=lambda h: (h["bm25"], h["score"]))
+    close = [h for h in same if h is top or h["bm25"] >= 0.55 * top["bm25"]]
+    rest = [h for h in same if h not in close]
+    ranked = sorted(close, key=key) + sorted(rest, key=lambda h: -h["score"])
     # a circular that replaces a rule is shown first, but the rule's sections keep their own value
     winner = ranked[0]
+    if winner["doc"]["doc_type"] == "circular":
+        # a circular only wins for the section it amends: if the question matches a DIFFERENT section of the rule better, answer from that section
+        m_doc = re.search(r"Original rule:\s*([A-Z]+-\d+)", winner["text"])
+        m_sec = re.search(r"Original section:\s*([\d.]+)", winner["text"])
+        amended = ((m_doc.group(1) if m_doc else None), (m_sec.group(1) if m_sec else None))
+        for h in ranked[1:]:
+            if h["doc"]["doc_type"] == "circular":
+                continue
+            hs = h["section"].replace("Section ", "")
+            if h["bm25"] > winner["bm25"] * 1.1 and not (h["doc_id"] == amended[0] and hs == amended[1]) and h["doc"]["topic"] == winner["doc"]["topic"]:
+                ranked.remove(h)
+                ranked.insert(0, h)
+                winner = h
+                break
     over = []
     wn = numbers_in(winner["text"])
     for h in ranked[1:]:

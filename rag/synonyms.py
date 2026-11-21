@@ -18,6 +18,8 @@ SYN = {
     "train": ["train", "gaadi", "gadi", "ट्रेन", "गाड़ी"],
     "missed": ["missed", "miss", "chhoot", "chhut", "छूट"],
     "privacy": ["privacy", "private", "data"],
+    "identity": ["identity", "id", "proof", "document", "documents", "aadhaar", "pehchan", "पहचान", "konsa"],
+    "open": ["open", "opening", "timing", "timings", "opens", "cutoff", "samay"],
 }
 _REV = {}
 SYN = {k: [x.rstrip("s") if x.isascii() and len(x) > 3 and not x.endswith("ss") else x for x in v] for k, v in SYN.items()}

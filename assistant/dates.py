@@ -13,6 +13,8 @@ def parse_date(text: str, as_of: dt.datetime):
     """Returns (date or None, label). Never guesses when the words are not clear."""
     t = text.lower()
     today = as_of.date()
+    t = re.sub(r"\b(tomorow|tommorow|tomorrrow|tommorrow|tomoro|tomorow|tmr|tmrw|tmw|2morrow|2moro)\b", "tomorrow", t)
+    t = re.sub(r"\b(todya|toady|todai|tody)\b", "today", t)
     if re.search(r"\b(day after tomorrow|parso|parson)\b|परसों", t):
         return today + dt.timedelta(days=2), "day after tomorrow"
     if re.search(r"\b(tomorrow|tmrw|kal)\b|कल", t) and not re.search(r"\bkal (se|tak) pehle\b", t):

@@ -11,7 +11,7 @@ DESKS = {"dispute": "Refund Desk", "missed_train": "Refund Desk", "concession": 
 import os
 import re
 
-SAFETY = re.compile(r"(harass|molest|eve.?teas|threat|attack|assault|unsafe|emergency|medical emergency|heart attack|faint|unconscious|bomb|suspicious (bag|package)|unattended (bag|luggage)|fire\b|stalk|following me|छेड़|धमकी|आपातकाल|ख़तरा|khatre|chhed|dhamki|bachao|help me)", re.I)
+SAFETY = re.compile(r"(stole|stolen|theft|robbed|robbery|pickpocket|चोरी|chori|harass|molest|eve.?teas|threat|attack|assault|unsafe|emergency|medical emergency|heart attack|faint|unconscious|bomb|suspicious (bag|package)|unattended (bag|luggage)|fire\b|stalk|following me|छेड़|धमकी|आपातकाल|ख़तरा|khatre|chhed|dhamki|bachao|help me)", re.I)
 PRIVACY = re.compile(r"(my (details|data|phone|aadhaar|id|otp|password) (was|were|got|has been) (leaked|stolen|exposed|shared|hacked)|leaked|someone (logged|accessed|opened) (in )?my|hacked|unauthori[sz]ed|identity (theft|exposure)|data breach|privacy complaint|डेटा लीक)", re.I)
 ACTIVE = re.compile(r"(train (is )?(leaving|departing)|at the station|boarding now|already (at|on)|in the train|on board|aaj (ki|ka)|today'?s train|missed my train|miss(ed)? the train|train chhoot|ट्रेन छूट)", re.I)
 
@@ -36,7 +36,7 @@ def classify(text: str, reason: str = "other") -> str:
         return "active_travel"
     if re.search(r"concession|disab|divyang|veteran|defen[cs]e|press pass|senior citizen", text, re.I):
         return "other"
-    if reason in ("dispute", "missed_train") or re.search(r"(refund|charged|dispute|deduct|double|duplicate|wrong status|missing booking|पैसे|रिफंड)", text, re.I):
+    if reason == "missed_train" or re.search(r"(refund|money|charged|dispute|deduct|double|duplicate|wrong status|missing booking|पैसे|रिफंड|paisa|paise)", text, re.I):
         return "refund_dispute"
     return "other"
 
@@ -57,7 +57,7 @@ def target_for(db, category: str, as_of=None):
 def pick_desk(text: str, reason: str) -> str:
     if re.search(r"(disab|handicap|divyang|press|defence|defense|army|veteran|concession|proof|certificate)", text, re.I):
         return "Concession Desk"
-    if re.search(r"(refund|missed|miss|chhoot|चूक|छूट|charged|dispute|complain|शिकायत|shikayat)", text, re.I):
+    if re.search(r"(refund|missed|miss|chhoot|चूक|छूट|charged|dispute)", text, re.I):
         return "Refund Desk"
     return DESKS.get(reason, "Booking Desk")
 
